@@ -10,12 +10,22 @@
 		2B1469BD2BD38F8000E6483E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1469BC2BD38F8000E6483E /* AppDelegate.swift */; };
 		2B1469BF2BD38F8000E6483E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1469BE2BD38F8000E6483E /* SceneDelegate.swift */; };
 		2B1469C12BD38F8000E6483E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1469C02BD38F8000E6483E /* ViewController.swift */; };
-		2B1469C42BD38F8000E6483E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2B1469C32BD38F8000E6483E /* Base */; };
 		2B1469C62BD38F8000E6483E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B1469C52BD38F8000E6483E /* Assets.xcassets */; };
 		2B1469C92BD38F8000E6483E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2B1469C82BD38F8000E6483E /* Base */; };
 		2B1469D42BD38F8000E6483E /* ArtBridgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1469D32BD38F8000E6483E /* ArtBridgeTests.swift */; };
 		2B1469DE2BD38F8000E6483E /* ArtBridgeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1469DD2BD38F8000E6483E /* ArtBridgeUITests.swift */; };
 		2B1469E02BD38F8000E6483E /* ArtBridgeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1469DF2BD38F8000E6483E /* ArtBridgeUITestsLaunchTests.swift */; };
+		2B1469F12BD395E300E6483E /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1469F02BD395E300E6483E /* AppComponent.swift */; };
+		2B1469F42BD3963600E6483E /* MainTabComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1469F32BD3963600E6483E /* MainTabComponent.swift */; };
+		2B1469F62BD3974000E6483E /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1469F52BD3974000E6483E /* MainTabController.swift */; };
+		2B1469F82BD3979700E6483E /* MainTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1469F72BD3979700E6483E /* MainTabViewModel.swift */; };
+		2B1469FB2BD3991F00E6483E /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 2B1469FA2BD3991F00E6483E /* Then */; };
+		2B1469FF2BD399BF00E6483E /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1469FE2BD399BF00E6483E /* UIView+.swift */; };
+		2B146A022BD39A9A00E6483E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2B146A012BD39A9A00E6483E /* SnapKit */; };
+		2B146A042BD3DA6D00E6483E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B146A032BD3DA6D00E6483E /* AppCoordinator.swift */; };
+		2B146A062BD3DC0C00E6483E /* MainTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B146A052BD3DC0C00E6483E /* MainTabCoordinator.swift */; };
+		2B146A092BD3DF0000E6483E /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B146A082BD3DF0000E6483E /* BaseCoordinator.swift */; };
+		2B146A0C2BD3E07600E6483E /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B146A0B2BD3E07600E6483E /* RxSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +50,6 @@
 		2B1469BC2BD38F8000E6483E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B1469BE2BD38F8000E6483E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2B1469C02BD38F8000E6483E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		2B1469C32BD38F8000E6483E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2B1469C52BD38F8000E6483E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B1469C82BD38F8000E6483E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B1469CA2BD38F8000E6483E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +58,14 @@
 		2B1469D92BD38F8000E6483E /* ArtBridgeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArtBridgeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B1469DD2BD38F8000E6483E /* ArtBridgeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtBridgeUITests.swift; sourceTree = "<group>"; };
 		2B1469DF2BD38F8000E6483E /* ArtBridgeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtBridgeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2B1469F02BD395E300E6483E /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
+		2B1469F32BD3963600E6483E /* MainTabComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabComponent.swift; sourceTree = "<group>"; };
+		2B1469F52BD3974000E6483E /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
+		2B1469F72BD3979700E6483E /* MainTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewModel.swift; sourceTree = "<group>"; };
+		2B1469FE2BD399BF00E6483E /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		2B146A032BD3DA6D00E6483E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		2B146A052BD3DC0C00E6483E /* MainTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabCoordinator.swift; sourceTree = "<group>"; };
+		2B146A082BD3DF0000E6483E /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +73,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B146A0C2BD3E07600E6483E /* RxSwift in Frameworks */,
+				2B1469FB2BD3991F00E6483E /* Then in Frameworks */,
+				2B146A022BD39A9A00E6483E /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,11 +119,9 @@
 		2B1469BB2BD38F8000E6483E /* ArtBridge */ = {
 			isa = PBXGroup;
 			children = (
-				2B1469BC2BD38F8000E6483E /* AppDelegate.swift */,
-				2B1469BE2BD38F8000E6483E /* SceneDelegate.swift */,
+				2B1469EC2BD391D300E6483E /* Sources */,
+				2B1469ED2BD391DB00E6483E /* Resources */,
 				2B1469C02BD38F8000E6483E /* ViewController.swift */,
-				2B1469C22BD38F8000E6483E /* Main.storyboard */,
-				2B1469C52BD38F8000E6483E /* Assets.xcassets */,
 				2B1469C72BD38F8000E6483E /* LaunchScreen.storyboard */,
 				2B1469CA2BD38F8000E6483E /* Info.plist */,
 			);
@@ -127,6 +145,71 @@
 			path = ArtBridgeUITests;
 			sourceTree = "<group>";
 		};
+		2B1469EC2BD391D300E6483E /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				2B146A072BD3DEF000E6483E /* Base */,
+				2B1469EF2BD3922100E6483E /* App */,
+				2B1469F22BD3961200E6483E /* MainTabbar */,
+				2B1469FC2BD3999500E6483E /* Extensions */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		2B1469ED2BD391DB00E6483E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2B1469C52BD38F8000E6483E /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		2B1469EF2BD3922100E6483E /* App */ = {
+			isa = PBXGroup;
+			children = (
+				2B1469BC2BD38F8000E6483E /* AppDelegate.swift */,
+				2B1469BE2BD38F8000E6483E /* SceneDelegate.swift */,
+				2B1469F02BD395E300E6483E /* AppComponent.swift */,
+				2B146A032BD3DA6D00E6483E /* AppCoordinator.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		2B1469F22BD3961200E6483E /* MainTabbar */ = {
+			isa = PBXGroup;
+			children = (
+				2B1469F32BD3963600E6483E /* MainTabComponent.swift */,
+				2B1469F52BD3974000E6483E /* MainTabController.swift */,
+				2B1469F72BD3979700E6483E /* MainTabViewModel.swift */,
+				2B146A052BD3DC0C00E6483E /* MainTabCoordinator.swift */,
+			);
+			path = MainTabbar;
+			sourceTree = "<group>";
+		};
+		2B1469FC2BD3999500E6483E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2B1469FD2BD399B300E6483E /* View+ */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2B1469FD2BD399B300E6483E /* View+ */ = {
+			isa = PBXGroup;
+			children = (
+				2B1469FE2BD399BF00E6483E /* UIView+.swift */,
+			);
+			path = "View+";
+			sourceTree = "<group>";
+		};
+		2B146A072BD3DEF000E6483E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				2B146A082BD3DF0000E6483E /* BaseCoordinator.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +226,11 @@
 			dependencies = (
 			);
 			name = ArtBridge;
+			packageProductDependencies = (
+				2B1469FA2BD3991F00E6483E /* Then */,
+				2B146A012BD39A9A00E6483E /* SnapKit */,
+				2B146A0B2BD3E07600E6483E /* RxSwift */,
+			);
 			productName = ArtBridge;
 			productReference = 2B1469B92BD38F8000E6483E /* ArtBridge.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +303,11 @@
 				Base,
 			);
 			mainGroup = 2B1469B02BD38F7F00E6483E;
+			packageReferences = (
+				2B1469F92BD3991F00E6483E /* XCRemoteSwiftPackageReference "Then" */,
+				2B146A002BD39A9A00E6483E /* XCRemoteSwiftPackageReference "SnapKit" */,
+				2B146A0A2BD3E07600E6483E /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = 2B1469BA2BD38F8000E6483E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -233,7 +326,6 @@
 			files = (
 				2B1469C62BD38F8000E6483E /* Assets.xcassets in Resources */,
 				2B1469C92BD38F8000E6483E /* Base in Resources */,
-				2B1469C42BD38F8000E6483E /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,8 +351,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B1469C12BD38F8000E6483E /* ViewController.swift in Sources */,
+				2B1469F42BD3963600E6483E /* MainTabComponent.swift in Sources */,
+				2B1469F62BD3974000E6483E /* MainTabController.swift in Sources */,
+				2B146A062BD3DC0C00E6483E /* MainTabCoordinator.swift in Sources */,
+				2B1469F12BD395E300E6483E /* AppComponent.swift in Sources */,
+				2B1469FF2BD399BF00E6483E /* UIView+.swift in Sources */,
 				2B1469BD2BD38F8000E6483E /* AppDelegate.swift in Sources */,
+				2B146A042BD3DA6D00E6483E /* AppCoordinator.swift in Sources */,
 				2B1469BF2BD38F8000E6483E /* SceneDelegate.swift in Sources */,
+				2B146A092BD3DF0000E6483E /* BaseCoordinator.swift in Sources */,
+				2B1469F82BD3979700E6483E /* MainTabViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +397,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		2B1469C22BD38F8000E6483E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2B1469C32BD38F8000E6483E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		2B1469C72BD38F8000E6483E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -609,6 +701,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2B1469F92BD3991F00E6483E /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		2B146A002BD39A9A00E6483E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		2B146A0A2BD3E07600E6483E /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2B1469FA2BD3991F00E6483E /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B1469F92BD3991F00E6483E /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+		2B146A012BD39A9A00E6483E /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B146A002BD39A9A00E6483E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		2B146A0B2BD3E07600E6483E /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B146A0A2BD3E07600E6483E /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2B1469B12BD38F7F00E6483E /* Project object */;
 }
