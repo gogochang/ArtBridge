@@ -35,8 +35,52 @@ class MainTabController: UIViewController {
     }
     
     private var bottomView = UIView().then { view in
-        view.backgroundColor = .blue
+        view.backgroundColor = .systemGray6
     }
+    
+    private var homeBtn = UIButton().then { button in
+        button.setTitle("홈", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.snp.makeConstraints { make in
+            make.width.equalTo(36)
+            make.height.equalTo(36)
+        }
+    }
+    
+    private var postBtn = UIButton().then { button in
+        button.setTitle("게", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.snp.makeConstraints { make in
+            make.width.equalTo(36)
+            make.height.equalTo(36)
+        }
+    }
+    
+    private var messageBtn = UIButton().then { button in
+        button.setTitle("메", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.snp.makeConstraints { make in
+            make.width.equalTo(36)
+            make.height.equalTo(36)
+        }
+    }
+    
+    private var myPageBtn = UIButton().then { button in
+        button.setTitle("내", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.snp.makeConstraints { make in
+            make.width.equalTo(36)
+            make.height.equalTo(36)
+        }
+    }
+    
+    private lazy var bottomContentHStack = UIStackView.make(
+        with: [homeBtn,postBtn, messageBtn, myPageBtn],
+        axis: .horizontal,
+        alignment: .center,
+        distribution: .equalCentering,
+        spacing: 0
+    )
 }
 
 //MARK: - Layout
@@ -46,6 +90,8 @@ extension MainTabController {
             mainContentView,
             bottomView,
         ])
+        
+        bottomView.addSubviews([bottomContentHStack])
     }
     
     private func initLayout() {
@@ -59,6 +105,12 @@ extension MainTabController {
             $0.left.right.equalTo(mainContentView)
             $0.bottom.equalTo(view.snp.bottom)
             $0.height.equalTo(100)//FIXME: 임시로 처리
+        }
+        
+        bottomContentHStack.snp.makeConstraints { make in
+            make.top.equalTo(bottomView.snp.top).offset(14)
+            make.leading.equalTo(bottomView.snp.leading).offset(36)
+            make.trailing.equalTo(bottomView.snp.trailing).offset(-36)
         }
     }
 }
