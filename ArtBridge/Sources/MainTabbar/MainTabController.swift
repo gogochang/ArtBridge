@@ -8,11 +8,16 @@
 import UIKit
 import Then
 import SnapKit
+import RxSwift
+import RxCocoa
 
 class MainTabController: UIViewController {
     override func viewDidLoad() {
         setupViews()
         initLayout()
+        
+        viewModelInput()
+        viewModelOutput()
     }
     
     init(viewModel: MainTabViewModel) {
@@ -25,13 +30,69 @@ class MainTabController: UIViewController {
     }
     
     //MARK: - Properties
+    private var disposeBag = DisposeBag()
     private let viewModel: MainTabViewModel
+    
+    private func viewModelInput() {
+        homeBtn.rx.tap
+            .bind(to: viewModel.inputs.homeSelected)
+            .disposed(by: disposeBag)
+
+    }
+    
+    private func viewModelOutput() {
+        viewModel.outputs.selectScene
+            .subscribe(onNext: { [weak self] index in
+                self?.tabSelected(at: index)
+                self?.showSelectedVC(at: index)
+                
+            }).disposed(by: disposeBag)
+    }
+    
+    private func showSelectedVC(at index: Int) {
+        for (idx, viewController) in viewControllers.enumerated() {
+            viewController.view.isHidden = !(idx == index)
+        }
+        
+        if !mainContentView.subviews.contains(where: {$0 == viewControllers[index].view }) {
+            mainContentView.addSubview(viewControllers[index].view)
+            viewControllers[index].view.snp.makeConstraints { make in
+                make.top.equalTo(mainContentView.snp.top)
+                make.leading.equalTo(mainContentView.snp.leading)
+                make.trailing.equalTo(mainContentView.snp.trailing)
+                make.bottom.equalTo(mainContentView.snp.bottom)
+            }
+        }
+    }
+    
+    private func tabSelected(at index: Int) {
+        guard index < 4 else { return }
+
+        homeBtn.isSelected = false
+        postBtn.isSelected = false
+        messageBtn.isSelected = false
+        myPageBtn.isSelected = false
+
+        switch index {
+        case 0:
+            homeBtn.isSelected = true
+        case 1:
+            postBtn.isSelected = true
+        case 2:
+            messageBtn.isSelected = true
+        case 3:
+            myPageBtn.isSelected = true
+        default:
+            break
+        }
+    }
+
     
     var viewControllers: [UIViewController] = []
     
     //MARK: - UI
     private var mainContentView = UIView().then { view in
-        view.backgroundColor = .orange
+        view.backgroundColor = .clear
     }
     
     private var bottomView = UIView().then { view in

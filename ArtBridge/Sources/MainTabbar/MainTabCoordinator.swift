@@ -41,6 +41,19 @@ final class MainTabCoordinator: BaseCoordinator<Void> {
     }
     
     private func configureAndGetHomeScene(vm: MainTabViewModel) -> UIViewController {
-        return UIViewController()
+        let comp = component.homeComponent
+        let coord = HomeCoordinator(component: comp, navController: navigationController)
+        
+        coordinate(coordinator: coord, animated: false, needRelease: false) { coordResult in
+        }
+        
+        vm.routes.home
+            .subscribe(onNext: {
+                print("BBB")
+                comp.viewModel.routeInputs.needUpdate.onNext(true)
+            })
+            .disposed(by: sceneDisposeBag)
+        
+        return comp.scene.VC
     }
 }

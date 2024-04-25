@@ -15,7 +15,7 @@ final class MainTabComponent {
     
     lazy var viewModel = MainTabViewModel()
     
-//    var homeComponent: HomeComponent {
-//        return  homeComponent()
-//    }
+    var homeComponent: HomeComponent {
+        return  HomeComponent()
+    }
 }
