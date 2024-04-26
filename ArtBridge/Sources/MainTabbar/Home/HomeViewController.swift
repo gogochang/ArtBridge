@@ -9,24 +9,32 @@ import UIKit
 import RxSwift
 
 fileprivate enum Section: Hashable {
-    case navBar
     case banner
+    case horizontal
 }
 
 fileprivate enum Item: Hashable {
     case normal(Int)
+    case quickBtn(Int)
 }
 
 class HomeViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
+    
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout())
-        collectionView.alwaysBounceVertical = false
+        
         collectionView.register(
             BannerCollectionViewCell.self,
             forCellWithReuseIdentifier: BannerCollectionViewCell.id
         )
+        
+        collectionView.register(
+            QuickBtnCollectionViewCell.self,
+            forCellWithReuseIdentifier: QuickBtnCollectionViewCell.id
+        )
+        
         return collectionView
     }()
     
@@ -41,12 +49,21 @@ class HomeViewController: UIViewController {
         initialLayout()
         setDatasource()
         
+        createSnapshot()
+    }
+    
+    private func createSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section,Item>()
-
         let items = [Item.normal(1),Item.normal(2),Item.normal(3),Item.normal(4)]
-        let section = Section.banner
-        snapshot.appendSections([section])
-        snapshot.appendItems(items, toSection: section)
+        let bannerSection = Section.banner
+        snapshot.appendSections([bannerSection])
+        snapshot.appendItems(items, toSection: bannerSection)
+        
+        let horizontalSection = Section.horizontal
+        let quickItems = [Item.quickBtn(1),Item.quickBtn(2),Item.quickBtn(3),Item.quickBtn(4)]
+        snapshot.appendSections([horizontalSection])
+        snapshot.appendItems(quickItems, toSection: horizontalSection)
+        
         dataSource?.apply(snapshot)
     }
 }
@@ -84,6 +101,8 @@ extension HomeViewController {
             switch section {
             case .banner:
                 return self?.createBannerSection()
+            case.horizontal:
+                return self?.createQuickBtnSection()
             default:
                 return self?.createBannerSection()
             }
@@ -111,6 +130,29 @@ extension HomeViewController {
         section.orthogonalScrollingBehavior = .groupPagingCentered
         return section
     }
+    
+    private func createQuickBtnSection() -> NSCollectionLayoutSection {
+        //Item
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(0.25),
+            heightDimension: .fractionalHeight(1.0)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)  // 아이템 간 간격 조정
+
+        // Group
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(80)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        // Section
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .none
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
+        return section
+    }
 }
 
 //MARK: - Datasource
@@ -119,12 +161,28 @@ extension HomeViewController {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(
             collectionView: collectionView,
             cellProvider: { collectionView, indexPath, item in
-                print("test: \(indexPath)")
-                let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: BannerCollectionViewCell.id,
-                    for: indexPath
-                ) as? BannerCollectionViewCell
-                return cell
+                
+                switch item {
+                case .normal:
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: BannerCollectionViewCell.id,
+                        for: indexPath
+                    ) as? BannerCollectionViewCell
+                    return cell
+                    
+                case .quickBtn:
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: QuickBtnCollectionViewCell.id,
+                        for: indexPath
+                    ) as? QuickBtnCollectionViewCell
+                    
+                    cell?.configure(
+                        icon: UIImage(systemName: "doc.text.magnifyingglass"),
+                        title: "버튼이름"
+                    )
+                    return cell
+                }
+                
             }
         )
     }

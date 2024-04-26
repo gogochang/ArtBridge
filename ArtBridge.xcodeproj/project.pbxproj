@@ -36,6 +36,7 @@
 		2BB5156F2BDACA2E0092CC72 /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5156E2BDACA2E0092CC72 /* BannerCollectionViewCell.swift */; };
 		2BB515722BDBCE5A0092CC72 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515712BDBCE5A0092CC72 /* UIColor+.swift */; };
 		2BB515762BDBD1800092CC72 /* ArtBridgeNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515752BDBD1800092CC72 /* ArtBridgeNavBar.swift */; };
+		2BB515782BDBF13D0092CC72 /* QuickBtnCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515772BDBF13D0092CC72 /* QuickBtnCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		2BB5156E2BDACA2E0092CC72 /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BB515712BDBCE5A0092CC72 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		2BB515752BDBD1800092CC72 /* ArtBridgeNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtBridgeNavBar.swift; sourceTree = "<group>"; };
+		2BB515772BDBF13D0092CC72 /* QuickBtnCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickBtnCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				2BB5156E2BDACA2E0092CC72 /* BannerCollectionViewCell.swift */,
+				2BB515772BDBF13D0092CC72 /* QuickBtnCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				2BB515612BDAA7190092CC72 /* HomeComponent.swift in Sources */,
 				2B146A042BD3DA6D00E6483E /* AppCoordinator.swift in Sources */,
 				2B1469BF2BD38F8000E6483E /* SceneDelegate.swift in Sources */,
+				2BB515782BDBF13D0092CC72 /* QuickBtnCollectionViewCell.swift in Sources */,
 				2B146A092BD3DF0000E6483E /* BaseCoordinator.swift in Sources */,
 				2BB515672BDAA85E0092CC72 /* HomeCoordinator.swift in Sources */,
 				2BB515652BDAA75A0092CC72 /* HomeViewModel.swift in Sources */,
