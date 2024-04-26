@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 
 fileprivate enum Section: Hashable {
+    case navBar
     case banner
 }
 
@@ -26,20 +27,22 @@ class HomeViewController: UIViewController {
             BannerCollectionViewCell.self,
             forCellWithReuseIdentifier: BannerCollectionViewCell.id
         )
-        collectionView.backgroundColor = .orange
-        
         return collectionView
     }()
     
+    private var navBar = ArtBridgeNavBar().then {
+        $0.leftBtnItem.setImage(UIImage(systemName: "apple.logo"), for: .normal)
+        $0.rightBtnItem.setImage(UIImage(systemName: "bell"), for: .normal)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .red
         setupViews()
         initialLayout()
         setDatasource()
         
         var snapshot = NSDiffableDataSourceSnapshot<Section,Item>()
-//        let items = tvList.map { return Item.normal(Content(tv: $0)) }
+
         let items = [Item.normal(1),Item.normal(2),Item.normal(3),Item.normal(4)]
         let section = Section.banner
         snapshot.appendSections([section])
@@ -51,12 +54,22 @@ class HomeViewController: UIViewController {
 //MARK: - Layout
 extension HomeViewController {
     private func setupViews() {
-        view.addSubviews([collectionView])
+        view.addSubviews([
+            navBar,
+            collectionView
+        ])
     }
     
     private func initialLayout() {
+        view.backgroundColor = .white
+        
+        navBar.snp.makeConstraints {
+            $0.top.left.right.equalToSuperview()
+        }
+        
         collectionView.snp.makeConstraints {
-            $0.top.leading.right.bottom.equalToSuperview()
+            $0.top.equalTo(navBar.snp.bottom)
+            $0.left.right.bottom.equalToSuperview()
         }
     }
 }
