@@ -33,6 +33,8 @@
 		2BB515672BDAA85E0092CC72 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515662BDAA85E0092CC72 /* HomeCoordinator.swift */; };
 		2BB5156A2BDAB0AB0092CC72 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2BB515692BDAB0AB0092CC72 /* RxCocoa */; };
 		2BB5156C2BDAB0B00092CC72 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 2BB5156B2BDAB0B00092CC72 /* RxRelay */; };
+		2BB5156F2BDACA2E0092CC72 /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5156E2BDACA2E0092CC72 /* BannerCollectionViewCell.swift */; };
+		2BB515722BDBCE5A0092CC72 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515712BDBCE5A0092CC72 /* UIColor+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,8 @@
 		2BB515622BDAA7490092CC72 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2BB515642BDAA75A0092CC72 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		2BB515662BDAA85E0092CC72 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		2BB5156E2BDACA2E0092CC72 /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewCell.swift; sourceTree = "<group>"; };
+		2BB515712BDBCE5A0092CC72 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +209,7 @@
 		2B1469FC2BD3999500E6483E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2BB515702BDBCE4E0092CC72 /* CG */,
 				2B1469FD2BD399B300E6483E /* View+ */,
 			);
 			path = Extensions;
@@ -230,6 +235,7 @@
 		2BB5155F2BDAA7090092CC72 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				2BB5156D2BDAC99E0092CC72 /* View */,
 				2BB515602BDAA7190092CC72 /* HomeComponent.swift */,
 				2BB515622BDAA7490092CC72 /* HomeViewController.swift */,
 				2BB515642BDAA75A0092CC72 /* HomeViewModel.swift */,
@@ -243,6 +249,22 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2BB5156D2BDAC99E0092CC72 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2BB5156E2BDACA2E0092CC72 /* BannerCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2BB515702BDBCE4E0092CC72 /* CG */ = {
+			isa = PBXGroup;
+			children = (
+				2BB515712BDBCE5A0092CC72 /* UIColor+.swift */,
+			);
+			path = CG;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -396,6 +418,7 @@
 				2B1469FF2BD399BF00E6483E /* UIView+.swift in Sources */,
 				2B1469BD2BD38F8000E6483E /* AppDelegate.swift in Sources */,
 				2BB5155E2BD91CE90092CC72 /* UIStackView+.swift in Sources */,
+				2BB515722BDBCE5A0092CC72 /* UIColor+.swift in Sources */,
 				2BB515612BDAA7190092CC72 /* HomeComponent.swift in Sources */,
 				2B146A042BD3DA6D00E6483E /* AppCoordinator.swift in Sources */,
 				2B1469BF2BD38F8000E6483E /* SceneDelegate.swift in Sources */,
@@ -403,6 +426,7 @@
 				2BB515672BDAA85E0092CC72 /* HomeCoordinator.swift in Sources */,
 				2BB515652BDAA75A0092CC72 /* HomeViewModel.swift in Sources */,
 				2B1469F82BD3979700E6483E /* MainTabViewModel.swift in Sources */,
+				2BB5156F2BDACA2E0092CC72 /* BannerCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
