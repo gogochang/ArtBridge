@@ -10,12 +10,14 @@ import RxSwift
 
 fileprivate enum Section: Hashable {
     case banner
-    case horizontal(String)
+    case quickHorizontal(String)
+    case PopularPost(String)
 }
 
 fileprivate enum Item: Hashable {
     case normal(Int)
     case quickBtn(Int)
+    case popularPost(Int) //TODO: 인기글 데이터 Model로 변경
 }
 
 class HomeViewController: UIViewController {
@@ -33,6 +35,11 @@ class HomeViewController: UIViewController {
         collectionView.register(
             QuickBtnCollectionViewCell.self,
             forCellWithReuseIdentifier: QuickBtnCollectionViewCell.id
+        )
+        
+        collectionView.register(
+            PreviewCollectionViewCell.self,
+            forCellWithReuseIdentifier: PreviewCollectionViewCell.id
         )
         
         collectionView.register(
@@ -65,10 +72,15 @@ class HomeViewController: UIViewController {
         snapshot.appendSections([bannerSection])
         snapshot.appendItems(items, toSection: bannerSection)
         
-        let horizontalSection = Section.horizontal("빠른 버튼")
+        let horizontalSection = Section.quickHorizontal("빠른 버튼")
         let quickItems = [Item.quickBtn(1),Item.quickBtn(2),Item.quickBtn(3),Item.quickBtn(4)]
         snapshot.appendSections([horizontalSection])
         snapshot.appendItems(quickItems, toSection: horizontalSection)
+        
+        let popularPostSection = Section.PopularPost("지금 인기있는 글")
+        let popularPostItems = [Item.popularPost(1),Item.popularPost(2),Item.popularPost(3),Item.popularPost(4)]
+        snapshot.appendSections([popularPostSection])
+        snapshot.appendItems(popularPostItems, toSection: popularPostSection)
         
         dataSource?.apply(snapshot)
     }
@@ -100,15 +112,17 @@ extension HomeViewController {
 extension HomeViewController {
     private func createLayout() -> UICollectionViewCompositionalLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()
-        config.interSectionSpacing = 14
+        config.interSectionSpacing = 20
         return UICollectionViewCompositionalLayout(sectionProvider: { [weak self] sectionIndex, _ in
             let section = self?.dataSource?.sectionIdentifier(for: sectionIndex)
             
             switch section {
             case .banner:
                 return self?.createBannerSection()
-            case.horizontal:
+            case .quickHorizontal:
                 return self?.createQuickBtnSection()
+            case .PopularPost:
+                return self?.createPopularHorizontalSection()
             default:
                 return self?.createBannerSection()
             }
@@ -171,6 +185,41 @@ extension HomeViewController {
         section.boundarySupplementaryItems = [header]
         return section
     }
+    
+    private func createPopularHorizontalSection() -> NSCollectionLayoutSection {
+        //Item
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)  // 아이템 간 간격 조정
+        
+        // Group
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(200),
+            heightDimension: .absolute(80)
+        )
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        
+        // Section
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
+        
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(44)
+        )
+        
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .topLeading
+        )
+        section.boundarySupplementaryItems = [header]
+        return section
+    }
 }
 
 //MARK: - Datasource
@@ -199,6 +248,19 @@ extension HomeViewController {
                         title: "버튼이름"
                     )
                     return cell
+                case .popularPost(let title):
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: PreviewCollectionViewCell.id,
+                        for: indexPath
+                    ) as? PreviewCollectionViewCell
+                    
+                    cell?.configure(
+                        previewImage: UIImage(),
+                        title: "Title",
+                        subTitle: "Sub Title"
+                    )
+                    
+                    return cell
                 }
             })
         
@@ -211,7 +273,9 @@ extension HomeViewController {
             let section = self?.dataSource?.sectionIdentifier(for: indexPath.section)
             
             switch section {
-            case .horizontal(let title):
+            case .quickHorizontal(let title):
+                (header as? HeaderView)?.configure(title: title)
+            case .PopularPost(let title):
                 (header as? HeaderView)?.configure(title: title)
             default:
                 print("Default")

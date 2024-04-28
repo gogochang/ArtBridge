@@ -38,6 +38,7 @@
 		2BB515762BDBD1800092CC72 /* ArtBridgeNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515752BDBD1800092CC72 /* ArtBridgeNavBar.swift */; };
 		2BB515782BDBF13D0092CC72 /* QuickBtnCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515772BDBF13D0092CC72 /* QuickBtnCollectionViewCell.swift */; };
 		2BB5157A2BDDF1E60092CC72 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515792BDDF1E60092CC72 /* HeaderView.swift */; };
+		2BB5157C2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5157B2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		2BB515752BDBD1800092CC72 /* ArtBridgeNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtBridgeNavBar.swift; sourceTree = "<group>"; };
 		2BB515772BDBF13D0092CC72 /* QuickBtnCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickBtnCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BB515792BDDF1E60092CC72 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		2BB5157B2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +265,7 @@
 			children = (
 				2BB5156E2BDACA2E0092CC72 /* BannerCollectionViewCell.swift */,
 				2BB515772BDBF13D0092CC72 /* QuickBtnCollectionViewCell.swift */,
+				2BB5157B2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift */,
 				2BB515792BDDF1E60092CC72 /* HeaderView.swift */,
 			);
 			path = View;
@@ -437,6 +440,7 @@
 				2BB515762BDBD1800092CC72 /* ArtBridgeNavBar.swift in Sources */,
 				2B1469C12BD38F8000E6483E /* ViewController.swift in Sources */,
 				2B1469F42BD3963600E6483E /* MainTabComponent.swift in Sources */,
+				2BB5157C2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift in Sources */,
 				2B1469F62BD3974000E6483E /* MainTabController.swift in Sources */,
 				2B146A062BD3DC0C00E6483E /* MainTabCoordinator.swift in Sources */,
 				2B1469F12BD395E300E6483E /* AppComponent.swift in Sources */,
