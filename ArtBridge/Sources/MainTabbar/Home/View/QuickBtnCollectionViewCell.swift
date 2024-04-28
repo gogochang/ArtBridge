@@ -42,7 +42,6 @@ extension QuickBtnCollectionViewCell {
     }
     
     private func initialLayout() {
-        self.backgroundColor = .orange
         icon.snp.makeConstraints {
             $0.top.equalToSuperview().inset(8)
             $0.centerX.equalToSuperview()

@@ -12,12 +12,13 @@ fileprivate enum Section: Hashable {
     case banner
     case quickHorizontal(String)
     case PopularPost(String)
+    case PopularTutor(String)
 }
 
 fileprivate enum Item: Hashable {
     case normal(Int)
     case quickBtn(Int)
-    case popularPost(Int) //TODO: 인기글 데이터 Model로 변경
+    case privewItem(Int) //TODO: 인기글 데이터 Model로 변경
 }
 
 class HomeViewController: UIViewController {
@@ -78,9 +79,14 @@ class HomeViewController: UIViewController {
         snapshot.appendItems(quickItems, toSection: horizontalSection)
         
         let popularPostSection = Section.PopularPost("지금 인기있는 글")
-        let popularPostItems = [Item.popularPost(1),Item.popularPost(2),Item.popularPost(3),Item.popularPost(4)]
+        let popularPostItems = [Item.privewItem(1),Item.privewItem(2),Item.privewItem(3),Item.privewItem(4)]
         snapshot.appendSections([popularPostSection])
         snapshot.appendItems(popularPostItems, toSection: popularPostSection)
+        
+        let popularTutorSection = Section.PopularPost("지금 인기있는 강사")
+        let popularTutorItems = [Item.privewItem(5),Item.privewItem(6),Item.privewItem(7),Item.privewItem(8)]
+        snapshot.appendSections([popularTutorSection])
+        snapshot.appendItems(popularTutorItems, toSection: popularTutorSection)
         
         dataSource?.apply(snapshot)
     }
@@ -122,6 +128,8 @@ extension HomeViewController {
             case .quickHorizontal:
                 return self?.createQuickBtnSection()
             case .PopularPost:
+                return self?.createPopularHorizontalSection()
+            case .PopularTutor:
                 return self?.createPopularHorizontalSection()
             default:
                 return self?.createBannerSection()
@@ -198,7 +206,7 @@ extension HomeViewController {
         // Group
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .absolute(200),
-            heightDimension: .absolute(80)
+            heightDimension: .absolute(200)
         )
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         
@@ -248,7 +256,7 @@ extension HomeViewController {
                         title: "버튼이름"
                     )
                     return cell
-                case .popularPost(let title):
+                case .privewItem:
                     let cell = collectionView.dequeueReusableCell(
                         withReuseIdentifier: PreviewCollectionViewCell.id,
                         for: indexPath
@@ -276,6 +284,8 @@ extension HomeViewController {
             case .quickHorizontal(let title):
                 (header as? HeaderView)?.configure(title: title)
             case .PopularPost(let title):
+                (header as? HeaderView)?.configure(title: title)
+            case .PopularTutor(let title):
                 (header as? HeaderView)?.configure(title: title)
             default:
                 print("Default")
