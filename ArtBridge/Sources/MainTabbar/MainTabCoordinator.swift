@@ -49,7 +49,6 @@ final class MainTabCoordinator: BaseCoordinator<Void> {
         
         vm.routes.home
             .subscribe(onNext: {
-                print("BBB")
                 comp.viewModel.routeInputs.needUpdate.onNext(true)
             })
             .disposed(by: sceneDisposeBag)

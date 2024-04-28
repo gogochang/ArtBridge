@@ -19,7 +19,6 @@ class MainTabViewModel {
     init() {
         inputs.homeSelected
             .subscribe(onNext: { [weak self] in
-                print("AAAAA")
                 self?.changeSceneIfMember(to: 0)
             })
             .disposed(by: disposeBag)

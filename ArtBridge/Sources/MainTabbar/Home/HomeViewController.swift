@@ -10,7 +10,7 @@ import RxSwift
 
 fileprivate enum Section: Hashable {
     case banner
-    case horizontal
+    case horizontal(String)
 }
 
 fileprivate enum Item: Hashable {
@@ -33,6 +33,12 @@ class HomeViewController: UIViewController {
         collectionView.register(
             QuickBtnCollectionViewCell.self,
             forCellWithReuseIdentifier: QuickBtnCollectionViewCell.id
+        )
+        
+        collectionView.register(
+            HeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: HeaderView.id
         )
         
         return collectionView
@@ -59,7 +65,7 @@ class HomeViewController: UIViewController {
         snapshot.appendSections([bannerSection])
         snapshot.appendItems(items, toSection: bannerSection)
         
-        let horizontalSection = Section.horizontal
+        let horizontalSection = Section.horizontal("빠른 버튼")
         let quickItems = [Item.quickBtn(1),Item.quickBtn(2),Item.quickBtn(3),Item.quickBtn(4)]
         snapshot.appendSections([horizontalSection])
         snapshot.appendItems(quickItems, toSection: horizontalSection)
@@ -151,6 +157,18 @@ extension HomeViewController {
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .none
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
+        
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(44)
+        )
+        
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .topLeading
+        )
+        section.boundarySupplementaryItems = [header]
         return section
     }
 }
@@ -182,8 +200,24 @@ extension HomeViewController {
                     )
                     return cell
                 }
-                
+            })
+        
+        dataSource?.supplementaryViewProvider = {[weak self] collectionView, kind, indexPath -> UICollectionReusableView in
+            let header = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: HeaderView.id,
+                for: indexPath
+            )
+            let section = self?.dataSource?.sectionIdentifier(for: indexPath.section)
+            
+            switch section {
+            case .horizontal(let title):
+                (header as? HeaderView)?.configure(title: title)
+            default:
+                print("Default")
             }
-        )
+            
+            return header
+        }
     }
 }
