@@ -8,9 +8,11 @@
 import UIKit
 fileprivate enum Section: Hashable {
     case horizontal
+    case vertical
 }
 fileprivate enum Item: Hashable {
     case category(Int)
+    case post(Int)
 }
 
 final class CommunityViewController: UIViewController {
@@ -27,11 +29,15 @@ final class CommunityViewController: UIViewController {
     
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
         $0.showsVerticalScrollIndicator = false
-        $0.backgroundColor = .orange
         
         $0.register(
             CategoryCollectionViewCell.self,
             forCellWithReuseIdentifier: CategoryCollectionViewCell.id
+        )
+        
+        $0.register(
+            PostCollectionViewCell.self,
+            forCellWithReuseIdentifier: PostCollectionViewCell.id
         )
     }
     
@@ -75,6 +81,8 @@ extension CommunityViewController {
             switch section {
             case .horizontal:
                 return self?.createCategorySection()
+            case .vertical:
+                return self?.createVerticalSection()
             default:
                 return self?.createCategorySection()
             }
@@ -105,19 +113,48 @@ extension CommunityViewController {
         
         return section
     }
+    
+    private func createVerticalSection() -> NSCollectionLayoutSection {
+        // Item
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 4, bottom: 8, trailing: 4)
+        
+        // Group
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(120)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        // Section
+        let section = NSCollectionLayoutSection(group: group)
+        return section
+    }
 }
 
 //MARK: - DataSource
 extension CommunityViewController {
     private func createSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+        
         let categoryItems = [Item.category(1),Item.category(2),Item.category(3),Item.category(4),Item.category(5)]
         let horizontalSection = Section.horizontal
-        snapshot.appendSections([horizontalSection])
+        
+        let postITems = [Item.post(1),Item.post(2),Item.post(3),Item.post(4),Item.post(5),
+                         Item.post(6),Item.post(7),Item.post(8),Item.post(9),Item.post(10)]
+        let verticalSection = Section.vertical
+        
+        snapshot.appendSections([horizontalSection, verticalSection])
         snapshot.appendItems(categoryItems, toSection: horizontalSection)
+        snapshot.appendItems(postITems, toSection: verticalSection)
         
         dataSource?.apply(snapshot)
     }
+    
     private func setDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(
             collectionView: collectionView,
@@ -128,6 +165,14 @@ extension CommunityViewController {
                         withReuseIdentifier: CategoryCollectionViewCell.id,
                         for: indexPath
                     ) as? CategoryCollectionViewCell
+                    
+                    return cell
+                    
+                case .post:
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: PostCollectionViewCell.id,
+                        for: indexPath
+                    ) as? PostCollectionViewCell
                     
                     return cell
                 }
