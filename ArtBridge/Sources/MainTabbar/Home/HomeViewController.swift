@@ -13,6 +13,7 @@ fileprivate enum Section: Hashable {
     case quickHorizontal(String)
     case PopularPost(String)
     case PopularTutor(String)
+    case news(String)
 }
 
 fileprivate enum Item: Hashable {
@@ -27,6 +28,7 @@ class HomeViewController: UIViewController {
     
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout())
+        collectionView.showsVerticalScrollIndicator = false
         
         collectionView.register(
             BannerCollectionViewCell.self,
@@ -88,6 +90,11 @@ class HomeViewController: UIViewController {
         snapshot.appendSections([popularTutorSection])
         snapshot.appendItems(popularTutorItems, toSection: popularTutorSection)
         
+        let newsSection = Section.news("뉴스")
+        let newsItems = [Item.privewItem(9),Item.privewItem(10),Item.privewItem(11)]
+        snapshot.appendSections([newsSection])
+        snapshot.appendItems(newsItems, toSection: newsSection)
+        
         dataSource?.apply(snapshot)
     }
 }
@@ -131,6 +138,8 @@ extension HomeViewController {
                 return self?.createPopularHorizontalSection()
             case .PopularTutor:
                 return self?.createPopularHorizontalSection()
+            case .news:
+                return self?.createNewsHorizontalSection()
             default:
                 return self?.createBannerSection()
             }
@@ -228,6 +237,41 @@ extension HomeViewController {
         section.boundarySupplementaryItems = [header]
         return section
     }
+    
+    private func createNewsHorizontalSection() -> NSCollectionLayoutSection {
+        //Item
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)  // 아이템 간 간격 조정
+        
+        // Group
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(280),
+            heightDimension: .absolute(280)
+        )
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        
+        // Section
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
+        
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(44)
+        )
+        
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .topLeading
+        )
+        section.boundarySupplementaryItems = [header]
+        return section
+    }
 }
 
 //MARK: - Datasource
@@ -286,6 +330,8 @@ extension HomeViewController {
             case .PopularPost(let title):
                 (header as? HeaderView)?.configure(title: title)
             case .PopularTutor(let title):
+                (header as? HeaderView)?.configure(title: title)
+            case .news(let title):
                 (header as? HeaderView)?.configure(title: title)
             default:
                 print("Default")

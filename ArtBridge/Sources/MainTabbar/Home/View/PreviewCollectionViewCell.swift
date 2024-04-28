@@ -31,8 +31,8 @@ final class PreviewCollectionViewCell: UICollectionViewCell {
     }
     
     private let imageView = UIImageView().then {
-        $0.backgroundColor = .blue
-        $0.layer.cornerRadius = 25
+        $0.backgroundColor = .systemGray6
+        $0.layer.cornerRadius = 15
     }
     private let title = UILabel()
     private let subTitle = UILabel()
@@ -51,7 +51,7 @@ extension PreviewCollectionViewCell {
     private func initialLayout() {
         imageView.snp.makeConstraints {
             $0.top.left.right.equalToSuperview()
-            $0.height.equalTo(120)
+            $0.height.equalToSuperview().multipliedBy(0.6)
         }
         
         title.snp.makeConstraints {
