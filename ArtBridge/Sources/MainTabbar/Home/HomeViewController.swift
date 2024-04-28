@@ -26,33 +26,30 @@ class HomeViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
-    lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout())
-        collectionView.showsVerticalScrollIndicator = false
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
+        $0.showsVerticalScrollIndicator = false
         
-        collectionView.register(
+        $0.register(
             BannerCollectionViewCell.self,
             forCellWithReuseIdentifier: BannerCollectionViewCell.id
         )
         
-        collectionView.register(
+        $0.register(
             QuickBtnCollectionViewCell.self,
             forCellWithReuseIdentifier: QuickBtnCollectionViewCell.id
         )
         
-        collectionView.register(
+        $0.register(
             PreviewCollectionViewCell.self,
             forCellWithReuseIdentifier: PreviewCollectionViewCell.id
         )
         
-        collectionView.register(
+        $0.register(
             HeaderView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: HeaderView.id
         )
-        
-        return collectionView
-    }()
+    }
     
     private var navBar = ArtBridgeNavBar().then {
         $0.leftBtnItem.setImage(UIImage(systemName: "apple.logo"), for: .normal)
