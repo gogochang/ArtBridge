@@ -45,6 +45,7 @@
 		2BB515852BDE15CA0092CC72 /* CommunityCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515842BDE15CA0092CC72 /* CommunityCoordinator.swift */; };
 		2BB515882BDE86F40092CC72 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515872BDE86F40092CC72 /* CategoryCollectionViewCell.swift */; };
 		2BB5158A2BDE8DCE0092CC72 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515892BDE8DCE0092CC72 /* PostCollectionViewCell.swift */; };
+		2BB5158C2BDE998E0092CC72 /* ButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5158B2BDE998E0092CC72 /* ButtonCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,7 @@
 		2BB515842BDE15CA0092CC72 /* CommunityCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCoordinator.swift; sourceTree = "<group>"; };
 		2BB515872BDE86F40092CC72 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BB515892BDE8DCE0092CC72 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
+		2BB5158B2BDE998E0092CC72 /* ButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,6 +327,7 @@
 			children = (
 				2BB515872BDE86F40092CC72 /* CategoryCollectionViewCell.swift */,
 				2BB515892BDE8DCE0092CC72 /* PostCollectionViewCell.swift */,
+				2BB5158B2BDE998E0092CC72 /* ButtonCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				2B1469BD2BD38F8000E6483E /* AppDelegate.swift in Sources */,
 				2BB5158A2BDE8DCE0092CC72 /* PostCollectionViewCell.swift in Sources */,
 				2BB5157F2BDE15A50092CC72 /* CommunityComponent.swift in Sources */,
+				2BB5158C2BDE998E0092CC72 /* ButtonCollectionViewCell.swift in Sources */,
 				2BB5155E2BD91CE90092CC72 /* UIStackView+.swift in Sources */,
 				2BB515722BDBCE5A0092CC72 /* UIColor+.swift in Sources */,
 				2BB515612BDAA7190092CC72 /* HomeComponent.swift in Sources */,

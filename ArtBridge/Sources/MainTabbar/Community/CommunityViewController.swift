@@ -7,10 +7,12 @@
 
 import UIKit
 fileprivate enum Section: Hashable {
+    case topButtons
     case horizontal
     case vertical
 }
 fileprivate enum Item: Hashable {
+    case buttons(Int)
     case category(Int)
     case post(Int)
 }
@@ -29,6 +31,11 @@ final class CommunityViewController: UIViewController {
     
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
         $0.showsVerticalScrollIndicator = false
+        
+        $0.register(
+            ButtonCollectionViewCell.self,
+            forCellWithReuseIdentifier: ButtonCollectionViewCell.id
+        )
         
         $0.register(
             CategoryCollectionViewCell.self,
@@ -79,6 +86,8 @@ extension CommunityViewController {
             let section = self?.dataSource?.sectionIdentifier(for: sectionIndex)
             
             switch section {
+            case .topButtons:
+                return self?.createTopButtonsSection()
             case .horizontal:
                 return self?.createCategorySection()
             case .vertical:
@@ -88,6 +97,28 @@ extension CommunityViewController {
             }
             
         },configuration: config)
+    }
+    
+    private func createTopButtonsSection() -> NSCollectionLayoutSection {
+        // Item
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        // Group
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(44)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        // Section
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .none
+        
+        return section
     }
     
     private func createCategorySection() -> NSCollectionLayoutSection {
@@ -109,7 +140,7 @@ extension CommunityViewController {
         // Section
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 0, trailing: 20)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
         
         return section
     }
@@ -141,6 +172,9 @@ extension CommunityViewController {
     private func createSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         
+        let buttonItems = [Item.buttons(1)]
+        let buttonSection = Section.topButtons
+        
         let categoryItems = [Item.category(1),Item.category(2),Item.category(3),Item.category(4),Item.category(5)]
         let horizontalSection = Section.horizontal
         
@@ -148,7 +182,8 @@ extension CommunityViewController {
                          Item.post(6),Item.post(7),Item.post(8),Item.post(9),Item.post(10)]
         let verticalSection = Section.vertical
         
-        snapshot.appendSections([horizontalSection, verticalSection])
+        snapshot.appendSections([buttonSection, horizontalSection, verticalSection])
+        snapshot.appendItems(buttonItems, toSection: buttonSection)
         snapshot.appendItems(categoryItems, toSection: horizontalSection)
         snapshot.appendItems(postITems, toSection: verticalSection)
         
@@ -160,6 +195,13 @@ extension CommunityViewController {
             collectionView: collectionView,
             cellProvider: { collectionView, indexPath, item in
                 switch item {
+                case .buttons:
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: ButtonCollectionViewCell.id,
+                        for: indexPath
+                    ) as? ButtonCollectionViewCell
+                    
+                    return cell
                 case .category:
                     let cell = collectionView.dequeueReusableCell(
                         withReuseIdentifier: CategoryCollectionViewCell.id,
