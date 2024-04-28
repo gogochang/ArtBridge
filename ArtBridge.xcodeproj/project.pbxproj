@@ -39,6 +39,10 @@
 		2BB515782BDBF13D0092CC72 /* QuickBtnCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515772BDBF13D0092CC72 /* QuickBtnCollectionViewCell.swift */; };
 		2BB5157A2BDDF1E60092CC72 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515792BDDF1E60092CC72 /* HeaderView.swift */; };
 		2BB5157C2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5157B2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift */; };
+		2BB5157F2BDE15A50092CC72 /* CommunityComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5157E2BDE15A50092CC72 /* CommunityComponent.swift */; };
+		2BB515812BDE15B20092CC72 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515802BDE15B20092CC72 /* CommunityViewController.swift */; };
+		2BB515832BDE15BD0092CC72 /* CommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515822BDE15BD0092CC72 /* CommunityViewModel.swift */; };
+		2BB515852BDE15CA0092CC72 /* CommunityCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515842BDE15CA0092CC72 /* CommunityCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +94,10 @@
 		2BB515772BDBF13D0092CC72 /* QuickBtnCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickBtnCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BB515792BDDF1E60092CC72 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		2BB5157B2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCollectionViewCell.swift; sourceTree = "<group>"; };
+		2BB5157E2BDE15A50092CC72 /* CommunityComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityComponent.swift; sourceTree = "<group>"; };
+		2BB515802BDE15B20092CC72 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
+		2BB515822BDE15BD0092CC72 /* CommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewModel.swift; sourceTree = "<group>"; };
+		2BB515842BDE15CA0092CC72 /* CommunityCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +219,7 @@
 				2B1469F72BD3979700E6483E /* MainTabViewModel.swift */,
 				2B146A052BD3DC0C00E6483E /* MainTabCoordinator.swift */,
 				2BB5155F2BDAA7090092CC72 /* Home */,
+				2BB5157D2BDE15580092CC72 /* Community */,
 			);
 			path = MainTabbar;
 			sourceTree = "<group>";
@@ -293,6 +302,17 @@
 				2BB515752BDBD1800092CC72 /* ArtBridgeNavBar.swift */,
 			);
 			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		2BB5157D2BDE15580092CC72 /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				2BB5157E2BDE15A50092CC72 /* CommunityComponent.swift */,
+				2BB515802BDE15B20092CC72 /* CommunityViewController.swift */,
+				2BB515822BDE15BD0092CC72 /* CommunityViewModel.swift */,
+				2BB515842BDE15CA0092CC72 /* CommunityCoordinator.swift */,
+			);
+			path = Community;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -443,10 +463,12 @@
 				2BB5157C2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift in Sources */,
 				2B1469F62BD3974000E6483E /* MainTabController.swift in Sources */,
 				2B146A062BD3DC0C00E6483E /* MainTabCoordinator.swift in Sources */,
+				2BB515852BDE15CA0092CC72 /* CommunityCoordinator.swift in Sources */,
 				2B1469F12BD395E300E6483E /* AppComponent.swift in Sources */,
 				2BB515632BDAA7490092CC72 /* HomeViewController.swift in Sources */,
 				2B1469FF2BD399BF00E6483E /* UIView+.swift in Sources */,
 				2B1469BD2BD38F8000E6483E /* AppDelegate.swift in Sources */,
+				2BB5157F2BDE15A50092CC72 /* CommunityComponent.swift in Sources */,
 				2BB5155E2BD91CE90092CC72 /* UIStackView+.swift in Sources */,
 				2BB515722BDBCE5A0092CC72 /* UIColor+.swift in Sources */,
 				2BB515612BDAA7190092CC72 /* HomeComponent.swift in Sources */,
@@ -454,8 +476,10 @@
 				2BB5157A2BDDF1E60092CC72 /* HeaderView.swift in Sources */,
 				2B1469BF2BD38F8000E6483E /* SceneDelegate.swift in Sources */,
 				2BB515782BDBF13D0092CC72 /* QuickBtnCollectionViewCell.swift in Sources */,
+				2BB515832BDE15BD0092CC72 /* CommunityViewModel.swift in Sources */,
 				2B146A092BD3DF0000E6483E /* BaseCoordinator.swift in Sources */,
 				2BB515672BDAA85E0092CC72 /* HomeCoordinator.swift in Sources */,
+				2BB515812BDE15B20092CC72 /* CommunityViewController.swift in Sources */,
 				2BB515652BDAA75A0092CC72 /* HomeViewModel.swift in Sources */,
 				2B1469F82BD3979700E6483E /* MainTabViewModel.swift in Sources */,
 				2BB5156F2BDACA2E0092CC72 /* BannerCollectionViewCell.swift in Sources */,

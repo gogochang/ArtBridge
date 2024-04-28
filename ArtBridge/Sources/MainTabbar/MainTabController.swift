@@ -37,6 +37,10 @@ class MainTabController: UIViewController {
         homeBtn.rx.tap
             .bind(to: viewModel.inputs.homeSelected)
             .disposed(by: disposeBag)
+        
+        communityBtn.rx.tap
+            .bind(to: viewModel.inputs.communitySelected)
+            .disposed(by: disposeBag)
 
     }
     
@@ -69,7 +73,7 @@ class MainTabController: UIViewController {
         guard index < 4 else { return }
 
         homeBtn.isSelected = false
-        postBtn.isSelected = false
+        communityBtn.isSelected = false
         messageBtn.isSelected = false
         myPageBtn.isSelected = false
 
@@ -77,7 +81,7 @@ class MainTabController: UIViewController {
         case 0:
             homeBtn.isSelected = true
         case 1:
-            postBtn.isSelected = true
+            communityBtn.isSelected = true
         case 2:
             messageBtn.isSelected = true
         case 3:
@@ -108,8 +112,8 @@ class MainTabController: UIViewController {
         }
     }
     
-    private var postBtn = UIButton().then { button in
-        button.setTitle("게", for: .normal)
+    private var communityBtn = UIButton().then { button in
+        button.setTitle("커", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.snp.makeConstraints { make in
             make.width.equalTo(36)
@@ -136,7 +140,7 @@ class MainTabController: UIViewController {
     }
     
     private lazy var bottomContentHStack = UIStackView.make(
-        with: [homeBtn,postBtn, messageBtn, myPageBtn],
+        with: [homeBtn,communityBtn, messageBtn, myPageBtn],
         axis: .horizontal,
         alignment: .center,
         distribution: .equalCentering,

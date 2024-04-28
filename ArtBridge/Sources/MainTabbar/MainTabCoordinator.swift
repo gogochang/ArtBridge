@@ -30,7 +30,8 @@ final class MainTabCoordinator: BaseCoordinator<Void> {
         UITabBar.appearance().backgroundColor = UIColor.orange
         
         scene.VC.viewControllers = [
-            configureAndGetHomeScene(vm: scene.VM)
+            configureAndGetHomeScene(vm: scene.VM),
+            configureAndGetCommunityScene(vm: scene.VM)
         ]
         
         navigationController.pushViewController(scene.VC, animated: false)
@@ -48,6 +49,23 @@ final class MainTabCoordinator: BaseCoordinator<Void> {
         }
         
         vm.routes.home
+            .subscribe(onNext: {
+                comp.viewModel.routeInputs.needUpdate.onNext(true)
+            })
+            .disposed(by: sceneDisposeBag)
+        
+        return comp.scene.VC
+    }
+    
+    private func configureAndGetCommunityScene(vm: MainTabViewModel) -> UIViewController {
+        let comp = component.communityComponent
+        let coord = CommunityCoordinator(component: comp, navController: navigationController)
+        
+        coordinate(coordinator: coord, animated: false, needRelease: false) { coordResult in
+            
+        }
+        
+        vm.routes.community
             .subscribe(onNext: {
                 comp.viewModel.routeInputs.needUpdate.onNext(true)
             })
