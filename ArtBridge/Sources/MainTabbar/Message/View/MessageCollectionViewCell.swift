@@ -26,11 +26,21 @@ final class MessageCollectionViewCell: UICollectionViewCell {
     }
     
     private let userNameLabel = UILabel().then {
-        $0.text = "Post Title"
+        $0.text = "User"
+        $0.font = UIFont.systemFont(ofSize: 16)
+        $0.textColor = .black
     }
     
     private let previewLabel = UILabel().then {
-        $0.text = "Post SubTitle"
+        $0.text = "동해물과 백두산이 마르고 닳도록"
+        $0.font = UIFont.systemFont(ofSize: 12)
+        $0.textColor = .systemGray
+    }
+    
+    private let timeLabel = UILabel().then {
+        $0.text = "오후 11:08"
+        $0.font = UIFont.systemFont(ofSize: 12)
+        $0.textColor = .systemGray3
     }
 }
 
@@ -40,7 +50,8 @@ extension MessageCollectionViewCell {
         addSubviews([
             imageView,
             userNameLabel,
-            previewLabel
+            previewLabel,
+            timeLabel
         ])
     }
     
@@ -51,13 +62,17 @@ extension MessageCollectionViewCell {
         }
         
         userNameLabel.snp.makeConstraints {
-            $0.bottom.equalTo(self.snp.centerY).offset(-8)
+            $0.bottom.equalTo(self.snp.centerY).offset(-2)
             $0.left.equalTo(imageView.snp.right).offset(16)
         }
         
         previewLabel.snp.makeConstraints {
-            $0.top.equalTo(self.snp.centerY).offset(8)
+            $0.top.equalTo(self.snp.centerY).offset(2)
             $0.left.equalTo(imageView.snp.right).offset(16)
+        }
+        
+        timeLabel.snp.makeConstraints {
+            $0.top.right.equalToSuperview().inset(8)
         }
     }
 }
