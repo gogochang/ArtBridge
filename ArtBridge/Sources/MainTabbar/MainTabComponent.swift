@@ -22,4 +22,8 @@ final class MainTabComponent {
     var communityComponent: CommunityComponent {
         return CommunityComponent()
     }
+    
+    var messageComponent: MessageComponent {
+        return MessageComponent()
+    }
 }

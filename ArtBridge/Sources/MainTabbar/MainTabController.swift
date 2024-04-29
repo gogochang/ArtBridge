@@ -41,7 +41,10 @@ class MainTabController: UIViewController {
         communityBtn.rx.tap
             .bind(to: viewModel.inputs.communitySelected)
             .disposed(by: disposeBag)
-
+        
+        messageBtn.rx.tap
+            .bind(to: viewModel.inputs.messageSelected)
+            .disposed(by: disposeBag)
     }
     
     private func viewModelOutput() {

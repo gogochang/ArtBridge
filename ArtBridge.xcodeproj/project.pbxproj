@@ -46,6 +46,10 @@
 		2BB515882BDE86F40092CC72 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515872BDE86F40092CC72 /* CategoryCollectionViewCell.swift */; };
 		2BB5158A2BDE8DCE0092CC72 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515892BDE8DCE0092CC72 /* PostCollectionViewCell.swift */; };
 		2BB5158C2BDE998E0092CC72 /* ButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5158B2BDE998E0092CC72 /* ButtonCollectionViewCell.swift */; };
+		2BB5158F2BDFD53D0092CC72 /* MessageComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5158E2BDFD53D0092CC72 /* MessageComponent.swift */; };
+		2BB515912BDFD5640092CC72 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515902BDFD5640092CC72 /* MessageViewController.swift */; };
+		2BB515932BDFD56D0092CC72 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515922BDFD56D0092CC72 /* MessageViewModel.swift */; };
+		2BB515952BDFD5770092CC72 /* MessageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515942BDFD5770092CC72 /* MessageCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +108,10 @@
 		2BB515872BDE86F40092CC72 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BB515892BDE8DCE0092CC72 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BB5158B2BDE998E0092CC72 /* ButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCollectionViewCell.swift; sourceTree = "<group>"; };
+		2BB5158E2BDFD53D0092CC72 /* MessageComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComponent.swift; sourceTree = "<group>"; };
+		2BB515902BDFD5640092CC72 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		2BB515922BDFD56D0092CC72 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
+		2BB515942BDFD5770092CC72 /* MessageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +234,7 @@
 				2B146A052BD3DC0C00E6483E /* MainTabCoordinator.swift */,
 				2BB5155F2BDAA7090092CC72 /* Home */,
 				2BB5157D2BDE15580092CC72 /* Community */,
+				2BB5158D2BDFD4BB0092CC72 /* Message */,
 			);
 			path = MainTabbar;
 			sourceTree = "<group>";
@@ -330,6 +339,17 @@
 				2BB5158B2BDE998E0092CC72 /* ButtonCollectionViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2BB5158D2BDFD4BB0092CC72 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				2BB5158E2BDFD53D0092CC72 /* MessageComponent.swift */,
+				2BB515902BDFD5640092CC72 /* MessageViewController.swift */,
+				2BB515922BDFD56D0092CC72 /* MessageViewModel.swift */,
+				2BB515942BDFD5770092CC72 /* MessageCoordinator.swift */,
+			);
+			path = Message;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -476,6 +496,7 @@
 			files = (
 				2BB515762BDBD1800092CC72 /* ArtBridgeNavBar.swift in Sources */,
 				2B1469C12BD38F8000E6483E /* ViewController.swift in Sources */,
+				2BB515932BDFD56D0092CC72 /* MessageViewModel.swift in Sources */,
 				2B1469F42BD3963600E6483E /* MainTabComponent.swift in Sources */,
 				2BB5157C2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift in Sources */,
 				2BB515882BDE86F40092CC72 /* CategoryCollectionViewCell.swift in Sources */,
@@ -493,14 +514,17 @@
 				2BB515722BDBCE5A0092CC72 /* UIColor+.swift in Sources */,
 				2BB515612BDAA7190092CC72 /* HomeComponent.swift in Sources */,
 				2B146A042BD3DA6D00E6483E /* AppCoordinator.swift in Sources */,
+				2BB515952BDFD5770092CC72 /* MessageCoordinator.swift in Sources */,
 				2BB5157A2BDDF1E60092CC72 /* HeaderView.swift in Sources */,
 				2B1469BF2BD38F8000E6483E /* SceneDelegate.swift in Sources */,
 				2BB515782BDBF13D0092CC72 /* QuickBtnCollectionViewCell.swift in Sources */,
 				2BB515832BDE15BD0092CC72 /* CommunityViewModel.swift in Sources */,
 				2B146A092BD3DF0000E6483E /* BaseCoordinator.swift in Sources */,
 				2BB515672BDAA85E0092CC72 /* HomeCoordinator.swift in Sources */,
+				2BB515912BDFD5640092CC72 /* MessageViewController.swift in Sources */,
 				2BB515812BDE15B20092CC72 /* CommunityViewController.swift in Sources */,
 				2BB515652BDAA75A0092CC72 /* HomeViewModel.swift in Sources */,
+				2BB5158F2BDFD53D0092CC72 /* MessageComponent.swift in Sources */,
 				2B1469F82BD3979700E6483E /* MainTabViewModel.swift in Sources */,
 				2BB5156F2BDACA2E0092CC72 /* BannerCollectionViewCell.swift in Sources */,
 			);
