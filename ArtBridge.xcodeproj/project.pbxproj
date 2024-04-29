@@ -50,6 +50,7 @@
 		2BB515912BDFD5640092CC72 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515902BDFD5640092CC72 /* MessageViewController.swift */; };
 		2BB515932BDFD56D0092CC72 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515922BDFD56D0092CC72 /* MessageViewModel.swift */; };
 		2BB515952BDFD5770092CC72 /* MessageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515942BDFD5770092CC72 /* MessageCoordinator.swift */; };
+		2BB515982BDFDAC50092CC72 /* MessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515972BDFDAC50092CC72 /* MessageCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		2BB515902BDFD5640092CC72 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		2BB515922BDFD56D0092CC72 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		2BB515942BDFD5770092CC72 /* MessageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCoordinator.swift; sourceTree = "<group>"; };
+		2BB515972BDFDAC50092CC72 /* MessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -344,12 +346,21 @@
 		2BB5158D2BDFD4BB0092CC72 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				2BB515962BDFDAB10092CC72 /* View */,
 				2BB5158E2BDFD53D0092CC72 /* MessageComponent.swift */,
 				2BB515902BDFD5640092CC72 /* MessageViewController.swift */,
 				2BB515922BDFD56D0092CC72 /* MessageViewModel.swift */,
 				2BB515942BDFD5770092CC72 /* MessageCoordinator.swift */,
 			);
 			path = Message;
+			sourceTree = "<group>";
+		};
+		2BB515962BDFDAB10092CC72 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2BB515972BDFDAC50092CC72 /* MessageCollectionViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -496,6 +507,7 @@
 			files = (
 				2BB515762BDBD1800092CC72 /* ArtBridgeNavBar.swift in Sources */,
 				2B1469C12BD38F8000E6483E /* ViewController.swift in Sources */,
+				2BB515982BDFDAC50092CC72 /* MessageCollectionViewCell.swift in Sources */,
 				2BB515932BDFD56D0092CC72 /* MessageViewModel.swift in Sources */,
 				2B1469F42BD3963600E6483E /* MainTabComponent.swift in Sources */,
 				2BB5157C2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift in Sources */,
