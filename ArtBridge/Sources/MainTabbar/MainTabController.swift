@@ -102,44 +102,52 @@ class MainTabController: UIViewController {
     var viewControllers: [UIViewController] = []
     
     //MARK: - UI
-    private var mainContentView = UIView().then { view in
+    private let mainContentView = UIView().then { view in
         view.backgroundColor = .clear
     }
     
-    private var bottomView = UIView().then { view in
-        view.backgroundColor = .systemGray6
+    private let bottomView = UIView().then { view in
+        view.backgroundColor = .white
     }
     
-    private var homeBtn = UIButton().then { button in
-        button.setTitle("홈", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+    private let lineView = UIView().then {
+        $0.backgroundColor = .systemGray6
+    }
+    
+    private let homeBtn = UIButton().then { button in
+        button.setImage(UIImage(systemName: "house"), for: .normal)
+        button.setImage(UIImage(systemName: "house.fill"), for: .selected)
+        button.tintColor = .black
         button.snp.makeConstraints { make in
             make.width.equalTo(36)
             make.height.equalTo(36)
         }
     }
     
-    private var communityBtn = UIButton().then { button in
-        button.setTitle("커", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+    private let communityBtn = UIButton().then { button in
+        button.setImage(UIImage(systemName: "list.bullet.rectangle"), for: .normal)
+        button.setImage(UIImage(systemName: "list.bullet.rectangle.fill"), for: .selected)
+        button.tintColor = .black
         button.snp.makeConstraints { make in
             make.width.equalTo(36)
             make.height.equalTo(36)
         }
     }
     
-    private var messageBtn = UIButton().then { button in
-        button.setTitle("메", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+    private let messageBtn = UIButton().then { button in
+        button.setImage(UIImage(systemName: "message"), for: .normal)
+        button.setImage(UIImage(systemName: "message.fill"), for: .selected)
+        button.tintColor = .black
         button.snp.makeConstraints { make in
             make.width.equalTo(36)
             make.height.equalTo(36)
         }
     }
     
-    private var myPageBtn = UIButton().then { button in
-        button.setTitle("내", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+    private let myPageBtn = UIButton().then { button in
+        button.setImage(UIImage(systemName: "person"), for: .normal)
+        button.setImage(UIImage(systemName: "person.fill"), for: .selected)
+        button.tintColor = .black
         button.snp.makeConstraints { make in
             make.width.equalTo(36)
             make.height.equalTo(36)
@@ -163,7 +171,10 @@ extension MainTabController {
             bottomView,
         ])
         
-        bottomView.addSubviews([bottomContentHStack])
+        bottomView.addSubviews([
+            lineView,
+            bottomContentHStack
+        ])
     }
     
     private func initLayout() {
@@ -177,6 +188,11 @@ extension MainTabController {
             $0.left.right.equalTo(mainContentView)
             $0.bottom.equalTo(view.snp.bottom)
             $0.height.equalTo(100)//FIXME: 임시로 처리
+        }
+        
+        lineView.snp.makeConstraints {
+            $0.top.left.right.equalToSuperview()
+            $0.height.equalTo(1)
         }
         
         bottomContentHStack.snp.makeConstraints { make in
