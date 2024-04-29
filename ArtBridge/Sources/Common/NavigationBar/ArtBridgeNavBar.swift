@@ -22,8 +22,12 @@ final class ArtBridgeNavBar: UIView {
     private var contentView = UIView()
     
     //MARK: - Internal
-    var leftBtnItem = UIButton()
-    var rightBtnItem = UIButton()
+    var leftBtnItem = UIButton().then {
+        $0.tintColor = .black
+    }
+    var rightBtnItem = UIButton().then {
+        $0.tintColor = .black
+    }
 }
 //MARK: - Actions
 extension ArtBridgeNavBar {

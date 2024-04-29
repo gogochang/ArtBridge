@@ -55,6 +55,7 @@
 		2BB5159D2BDFE4F70092CC72 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5159C2BDFE4F70092CC72 /* MyPageViewController.swift */; };
 		2BB5159F2BDFE4FF0092CC72 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5159E2BDFE4FF0092CC72 /* MyPageViewModel.swift */; };
 		2BB515A12BDFE5090092CC72 /* MyPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515A02BDFE5090092CC72 /* MyPageCoordinator.swift */; };
+		2BB515A42BDFEEC00092CC72 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515A32BDFEEC00092CC72 /* ProfileCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,7 @@
 		2BB5159C2BDFE4F70092CC72 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		2BB5159E2BDFE4FF0092CC72 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
 		2BB515A02BDFE5090092CC72 /* MyPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCoordinator.swift; sourceTree = "<group>"; };
+		2BB515A32BDFEEC00092CC72 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -375,12 +377,21 @@
 		2BB515992BDFE3ED0092CC72 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				2BB515A22BDFEEB10092CC72 /* View */,
 				2BB5159A2BDFE4ED0092CC72 /* MyPageComponent.swift */,
 				2BB5159C2BDFE4F70092CC72 /* MyPageViewController.swift */,
 				2BB5159E2BDFE4FF0092CC72 /* MyPageViewModel.swift */,
 				2BB515A02BDFE5090092CC72 /* MyPageCoordinator.swift */,
 			);
 			path = MyPage;
+			sourceTree = "<group>";
+		};
+		2BB515A22BDFEEB10092CC72 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2BB515A32BDFEEC00092CC72 /* ProfileCollectionViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -559,6 +570,7 @@
 				2BB515672BDAA85E0092CC72 /* HomeCoordinator.swift in Sources */,
 				2BB515912BDFD5640092CC72 /* MessageViewController.swift in Sources */,
 				2BB515812BDE15B20092CC72 /* CommunityViewController.swift in Sources */,
+				2BB515A42BDFEEC00092CC72 /* ProfileCollectionViewCell.swift in Sources */,
 				2BB515652BDAA75A0092CC72 /* HomeViewModel.swift in Sources */,
 				2BB5158F2BDFD53D0092CC72 /* MessageComponent.swift in Sources */,
 				2B1469F82BD3979700E6483E /* MainTabViewModel.swift in Sources */,
