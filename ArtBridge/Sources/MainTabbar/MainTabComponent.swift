@@ -26,4 +26,8 @@ final class MainTabComponent {
     var messageComponent: MessageComponent {
         return MessageComponent()
     }
+    
+    var myPageComponent: MyPageComponent {
+        return MyPageComponent()
+    }
 }

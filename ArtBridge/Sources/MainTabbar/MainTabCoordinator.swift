@@ -32,7 +32,8 @@ final class MainTabCoordinator: BaseCoordinator<Void> {
         scene.VC.viewControllers = [
             configureAndGetHomeScene(vm: scene.VM),
             configureAndGetCommunityScene(vm: scene.VM),
-            configureAndGetMessageScene(vm: scene.VM)
+            configureAndGetMessageScene(vm: scene.VM),
+            configureAndGetMyPageScene(vm: scene.VM)
         ]
         
         navigationController.pushViewController(scene.VC, animated: false)
@@ -83,6 +84,21 @@ final class MainTabCoordinator: BaseCoordinator<Void> {
         }
         
         vm.routes.message
+            .subscribe(onNext: {
+                comp.viewModel.routeInputs.needUpdate.onNext(true)
+            }).disposed(by: sceneDisposeBag)
+        
+        return comp.scene.VC
+    }
+    
+    private func configureAndGetMyPageScene(vm: MainTabViewModel) -> UIViewController {
+        let comp = component.myPageComponent
+        let coord = MyPageCoordinator(component: comp, navController: navigationController)
+        
+        coordinate(coordinator: coord, animated: false, needRelease: false) { coordResult in
+        }
+        
+        vm.routes.myPage
             .subscribe(onNext: {
                 comp.viewModel.routeInputs.needUpdate.onNext(true)
             }).disposed(by: sceneDisposeBag)

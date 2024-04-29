@@ -45,6 +45,10 @@ class MainTabController: UIViewController {
         messageBtn.rx.tap
             .bind(to: viewModel.inputs.messageSelected)
             .disposed(by: disposeBag)
+        
+        myPageBtn.rx.tap
+            .bind(to: viewModel.inputs.myPageSelected)
+            .disposed(by: disposeBag)
     }
     
     private func viewModelOutput() {

@@ -33,6 +33,12 @@ class MainTabViewModel {
             .subscribe(onNext: { [weak self] in
                 self?.changeSceneIfMember(to: 2)
             }).disposed(by: disposeBag)
+        
+        inputs.myPageSelected
+            .subscribe(onNext: { [weak self] in
+                self?.changeSceneIfMember(to: 3)
+            }).disposed(by: disposeBag)
+        
     }
     
     private func changeSceneIfMember(to index: Int) {
@@ -44,6 +50,8 @@ class MainTabViewModel {
             routes.community.onNext(())
         case 2:
             routes.message.onNext(())
+        case 3:
+            routes.myPage.onNext(())
         default:
             break
         }
@@ -53,6 +61,7 @@ class MainTabViewModel {
         var homeSelected = PublishSubject<Void>()
         var communitySelected = PublishSubject<Void>()
         var messageSelected = PublishSubject<Void>()
+        var myPageSelected = PublishSubject<Void>()
     }
     
     struct Output {
@@ -63,5 +72,6 @@ class MainTabViewModel {
         var home = PublishSubject<Void>()
         var community = PublishSubject<Void>()
         var message = PublishSubject<Void>()
+        var myPage = PublishSubject<Void>()
     }
 }

@@ -51,6 +51,10 @@
 		2BB515932BDFD56D0092CC72 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515922BDFD56D0092CC72 /* MessageViewModel.swift */; };
 		2BB515952BDFD5770092CC72 /* MessageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515942BDFD5770092CC72 /* MessageCoordinator.swift */; };
 		2BB515982BDFDAC50092CC72 /* MessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515972BDFDAC50092CC72 /* MessageCollectionViewCell.swift */; };
+		2BB5159B2BDFE4ED0092CC72 /* MyPageComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5159A2BDFE4ED0092CC72 /* MyPageComponent.swift */; };
+		2BB5159D2BDFE4F70092CC72 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5159C2BDFE4F70092CC72 /* MyPageViewController.swift */; };
+		2BB5159F2BDFE4FF0092CC72 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5159E2BDFE4FF0092CC72 /* MyPageViewModel.swift */; };
+		2BB515A12BDFE5090092CC72 /* MyPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515A02BDFE5090092CC72 /* MyPageCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +118,10 @@
 		2BB515922BDFD56D0092CC72 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		2BB515942BDFD5770092CC72 /* MessageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCoordinator.swift; sourceTree = "<group>"; };
 		2BB515972BDFDAC50092CC72 /* MessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewCell.swift; sourceTree = "<group>"; };
+		2BB5159A2BDFE4ED0092CC72 /* MyPageComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageComponent.swift; sourceTree = "<group>"; };
+		2BB5159C2BDFE4F70092CC72 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		2BB5159E2BDFE4FF0092CC72 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
+		2BB515A02BDFE5090092CC72 /* MyPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +245,7 @@
 				2BB5155F2BDAA7090092CC72 /* Home */,
 				2BB5157D2BDE15580092CC72 /* Community */,
 				2BB5158D2BDFD4BB0092CC72 /* Message */,
+				2BB515992BDFE3ED0092CC72 /* MyPage */,
 			);
 			path = MainTabbar;
 			sourceTree = "<group>";
@@ -361,6 +370,17 @@
 				2BB515972BDFDAC50092CC72 /* MessageCollectionViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2BB515992BDFE3ED0092CC72 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				2BB5159A2BDFE4ED0092CC72 /* MyPageComponent.swift */,
+				2BB5159C2BDFE4F70092CC72 /* MyPageViewController.swift */,
+				2BB5159E2BDFE4FF0092CC72 /* MyPageViewModel.swift */,
+				2BB515A02BDFE5090092CC72 /* MyPageCoordinator.swift */,
+			);
+			path = MyPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -511,10 +531,12 @@
 				2BB515932BDFD56D0092CC72 /* MessageViewModel.swift in Sources */,
 				2B1469F42BD3963600E6483E /* MainTabComponent.swift in Sources */,
 				2BB5157C2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift in Sources */,
+				2BB5159F2BDFE4FF0092CC72 /* MyPageViewModel.swift in Sources */,
 				2BB515882BDE86F40092CC72 /* CategoryCollectionViewCell.swift in Sources */,
 				2B1469F62BD3974000E6483E /* MainTabController.swift in Sources */,
 				2B146A062BD3DC0C00E6483E /* MainTabCoordinator.swift in Sources */,
 				2BB515852BDE15CA0092CC72 /* CommunityCoordinator.swift in Sources */,
+				2BB515A12BDFE5090092CC72 /* MyPageCoordinator.swift in Sources */,
 				2B1469F12BD395E300E6483E /* AppComponent.swift in Sources */,
 				2BB515632BDAA7490092CC72 /* HomeViewController.swift in Sources */,
 				2B1469FF2BD399BF00E6483E /* UIView+.swift in Sources */,
@@ -524,9 +546,11 @@
 				2BB5158C2BDE998E0092CC72 /* ButtonCollectionViewCell.swift in Sources */,
 				2BB5155E2BD91CE90092CC72 /* UIStackView+.swift in Sources */,
 				2BB515722BDBCE5A0092CC72 /* UIColor+.swift in Sources */,
+				2BB5159D2BDFE4F70092CC72 /* MyPageViewController.swift in Sources */,
 				2BB515612BDAA7190092CC72 /* HomeComponent.swift in Sources */,
 				2B146A042BD3DA6D00E6483E /* AppCoordinator.swift in Sources */,
 				2BB515952BDFD5770092CC72 /* MessageCoordinator.swift in Sources */,
+				2BB5159B2BDFE4ED0092CC72 /* MyPageComponent.swift in Sources */,
 				2BB5157A2BDDF1E60092CC72 /* HeaderView.swift in Sources */,
 				2B1469BF2BD38F8000E6483E /* SceneDelegate.swift in Sources */,
 				2BB515782BDBF13D0092CC72 /* QuickBtnCollectionViewCell.swift in Sources */,
