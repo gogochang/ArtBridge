@@ -47,6 +47,10 @@ final class ProfileCollectionViewCell: UICollectionViewCell {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = .black
     }
+    
+    private let lineView = UIView().then {
+        $0.backgroundColor = .systemGray6
+    }
 }
 
 //MARK: - Layout
@@ -57,7 +61,8 @@ extension ProfileCollectionViewCell {
             userNameLabel,
             categoryLabel,
             likeIcon,
-            likeCountLabel
+            likeCountLabel,
+            lineView
         ])
     }
     
@@ -85,6 +90,11 @@ extension ProfileCollectionViewCell {
         likeCountLabel.snp.makeConstraints {
             $0.left.equalTo(likeIcon.snp.right).offset(4)
             $0.centerY.equalTo(likeIcon)
+        }
+        
+        lineView.snp.makeConstraints {
+            $0.left.bottom.right.equalToSuperview()
+            $0.height.equalTo(2)
         }
     }
 }
