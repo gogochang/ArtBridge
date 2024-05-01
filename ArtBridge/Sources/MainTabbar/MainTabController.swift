@@ -178,6 +178,8 @@ extension MainTabController {
     }
     
     private func initLayout() {
+        view.backgroundColor = .white
+        
         mainContentView.snp.makeConstraints {
             $0.top.equalTo(view.snp.top)
             $0.left.right.equalTo(view)
@@ -186,8 +188,8 @@ extension MainTabController {
         bottomView.snp.makeConstraints {
             $0.top.equalTo(mainContentView.snp.bottom)
             $0.left.right.equalTo(mainContentView)
-            $0.bottom.equalTo(view.snp.bottom)
-            $0.height.equalTo(100)//FIXME: 임시로 처리
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(49)//FIXME: 임시로 처리
         }
         
         lineView.snp.makeConstraints {
