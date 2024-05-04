@@ -6,11 +6,19 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class BannerCollectionViewCell: UICollectionViewCell {
     static let id = "BannerCollectionViewCell"
+    
+    //MARK: - Properties
     private let bannerImage = UIImageView().then {
-        $0.backgroundColor = UIColor.random
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
+    }
+    
+    private let titleLabel = UILabel().then {
+        $0.text = "BannerImage"
     }
     
     override init(frame: CGRect) {
@@ -23,8 +31,9 @@ final class BannerCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private let titleLabel = UILabel().then {
-        $0.text = "BannerImage"
+    //MARK: - Methods
+    func configure(bannerModel: BannerModel) {
+        bannerImage.backgroundColor = bannerModel.color
     }
 }
 

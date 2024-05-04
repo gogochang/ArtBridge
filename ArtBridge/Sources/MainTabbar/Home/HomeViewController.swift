@@ -17,14 +17,24 @@ fileprivate enum Section: Hashable {
 }
 
 fileprivate enum Item: Hashable {
-    case normal(Int)
+    case normal(BannerModel)
     case quickBtn(Int)
     case privewItem(Int) //TODO: 인기글 데이터 Model로 변경
+}
+
+struct BannerModel: Hashable { // TODO: 모델로 이동
+    var id = UUID()
+    var color: UIColor
 }
 
 class HomeViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
+    
+    private var autoScrollTimer: Timer?
+    private var currentAutoScrollIndex = 1
+    private var isAutoScrollEnabled = true
+    private var timeInterval = 2.0
     
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
         $0.showsVerticalScrollIndicator = false
@@ -60,17 +70,26 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         initialLayout()
-        setDatasource()
         
+        setDatasource()
         createSnapshot()
+        
+        collectionView.delegate = self
     }
     
     private func createSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section,Item>()
-        let items = [Item.normal(1),Item.normal(2),Item.normal(3),Item.normal(4)]
         let bannerSection = Section.banner
+        let bannerItems = [ //TODO: 실제 데이터에서 가공하여 사용할 수 있도록 수정
+            Item.normal(BannerModel(color: UIColor.green)),
+            Item.normal(BannerModel(color: UIColor.red)),
+            Item.normal(BannerModel(color: UIColor.orange)),
+            Item.normal(BannerModel(color: UIColor.yellow)),
+            Item.normal(BannerModel(color: UIColor.green)),
+            Item.normal(BannerModel(color: UIColor.red))
+        ]
         snapshot.appendSections([bannerSection])
-        snapshot.appendItems(items, toSection: bannerSection)
+        snapshot.appendItems(bannerItems, toSection: bannerSection)
         
         let horizontalSection = Section.quickHorizontal("빠른 버튼")
         let quickItems = [Item.quickBtn(1),Item.quickBtn(2),Item.quickBtn(3),Item.quickBtn(4)]
@@ -162,6 +181,25 @@ extension HomeViewController {
         // Section
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPagingCentered
+        
+        let pageWidth = collectionView.bounds.width
+        section.visibleItemsInvalidationHandler = { [weak self] (visibleItems, offset, env) in
+            guard let self = self else { return }
+            if let page = Int(exactly: (offset.x + pageWidth) / pageWidth) {
+                self.currentAutoScrollIndex = page
+                if page == 6 {
+                    collectionView.scrollToItem(at: IndexPath(row: 1, section: 0), at: .left, animated: false)
+                } else if page == 0 {
+                    collectionView.scrollToItem(at: IndexPath(row: 4, section: 0), at: .left, animated: false)
+                }
+                
+            }
+            
+            if self.isAutoScrollEnabled {
+                self.configAutoScroll()
+            }
+        }
+        
         return section
     }
     
@@ -279,11 +317,14 @@ extension HomeViewController {
             cellProvider: { collectionView, indexPath, item in
                 
                 switch item {
-                case .normal:
+                case .normal(let bannerModel):
                     let cell = collectionView.dequeueReusableCell(
                         withReuseIdentifier: BannerCollectionViewCell.id,
                         for: indexPath
                     ) as? BannerCollectionViewCell
+                    
+                    cell?.configure(bannerModel: bannerModel)
+                    
                     return cell
                     
                 case .quickBtn:
@@ -336,5 +377,48 @@ extension HomeViewController {
             
             return header
         }
+    }
+}
+
+//MARK: - Auto Scroll Methods
+extension HomeViewController {
+    private func configAutoScroll() {
+        resetAutoScrollTime()
+        setupAutoScrollTimer()
+    }
+    
+    private func resetAutoScrollTime() {
+        if autoScrollTimer != nil {
+            autoScrollTimer?.invalidate()
+            autoScrollTimer = nil
+        }
+    }
+    
+    private func setupAutoScrollTimer() {
+        autoScrollTimer = Timer.scheduledTimer(
+            timeInterval: self.timeInterval,
+            target: self,
+            selector: #selector(autoScrollAction(timer:)),
+            userInfo: nil,
+            repeats: true
+        )
+    }
+    
+    @objc private func autoScrollAction(timer: Timer) {
+        collectionView.scrollToItem(
+            at: IndexPath(
+                item: self.currentAutoScrollIndex,
+                section: 0
+            ),
+            at: .left,
+            animated: true
+        )
+    }
+}
+
+//MARK: - UICollectionViewDelegate
+extension HomeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("tapped cell item")
     }
 }

@@ -10,6 +10,7 @@ import Then
 import SnapKit
 import RxSwift
 import RxCocoa
+import FirebaseAnalytics
 
 class MainTabController: UIViewController {
     override func viewDidLoad() {
@@ -28,6 +29,13 @@ class MainTabController: UIViewController {
     init(viewModel: MainTabViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        
+        let className = String(describing: type(of: self))
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+          AnalyticsParameterItemID: "id-\(className)",
+          AnalyticsParameterItemName: className,
+          AnalyticsParameterContentType: "cont",
+        ])
     }
     
     required init?(coder: NSCoder) {
