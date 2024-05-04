@@ -18,6 +18,7 @@ class MainTabController: UIViewController {
         
         viewModelInput()
         viewModelOutput()
+        showSelectedVC(at: 0)
     }
     
     init(viewModel: MainTabViewModel) {
