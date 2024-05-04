@@ -18,6 +18,10 @@ class MainTabController: UIViewController {
         
         viewModelInput()
         viewModelOutput()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         showSelectedVC(at: 0)
     }
     
