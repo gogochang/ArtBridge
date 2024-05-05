@@ -10,7 +10,7 @@ import RxSwift
 
 fileprivate enum Section: Hashable {
     case banner
-    case quickHorizontal(String)
+    case quickHorizontal
     case PopularPost(String)
     case PopularTutor(String)
     case news(String)
@@ -18,7 +18,7 @@ fileprivate enum Section: Hashable {
 
 fileprivate enum Item: Hashable {
     case normal(BannerModel)
-    case quickBtn(Int)
+    case quickBtn(UIImage?, String)
     case privewItem(Int) //TODO: 인기글 데이터 Model로 변경
 }
 
@@ -110,8 +110,13 @@ final class HomeViewController: UIViewController {
         snapshot.appendSections([bannerSection])
         snapshot.appendItems(bannerItems, toSection: bannerSection)
         
-        let horizontalSection = Section.quickHorizontal("빠른 버튼")
-        let quickItems = [Item.quickBtn(1),Item.quickBtn(2),Item.quickBtn(3),Item.quickBtn(4)]
+        let horizontalSection = Section.quickHorizontal
+        let quickItems = [Item.quickBtn(UIImage(named: "piano.png"), "피아노"),
+                          Item.quickBtn(UIImage(named: "violin.png"), "바이올린"),
+                          Item.quickBtn(UIImage(named: "flute.png"),"플루트"),
+                          Item.quickBtn(UIImage(named: "horn.png"), "호른"),
+                          Item.quickBtn(UIImage(named: "harp.png"), "하프"),
+                          Item.quickBtn(UIImage(named: "more.png"), "더보기"),]
         snapshot.appendSections([horizontalSection])
         snapshot.appendItems(quickItems, toSection: horizontalSection)
         
@@ -248,17 +253,6 @@ extension HomeViewController {
         section.orthogonalScrollingBehavior = .none
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
         
-        let headerSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(44)
-        )
-        
-        let header = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: headerSize,
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .topLeading
-        )
-        section.boundarySupplementaryItems = [header]
         return section
     }
     
@@ -351,15 +345,15 @@ extension HomeViewController {
                     
                     return cell
                     
-                case .quickBtn:
+                case .quickBtn(let image, let title):
                     let cell = collectionView.dequeueReusableCell(
                         withReuseIdentifier: QuickBtnCollectionViewCell.id,
                         for: indexPath
                     ) as? QuickBtnCollectionViewCell
                     
                     cell?.configure(
-                        icon: UIImage(systemName: "doc.text.magnifyingglass"),
-                        title: "버튼이름"
+                        icon: image,
+                        title: title
                     )
                     return cell
                 case .privewItem:
@@ -387,8 +381,6 @@ extension HomeViewController {
             let section = self?.dataSource?.sectionIdentifier(for: indexPath.section)
             
             switch section {
-            case .quickHorizontal(let title):
-                (header as? HeaderView)?.configure(title: title)
             case .PopularPost(let title):
                 (header as? HeaderView)?.configure(title: title)
             case .PopularTutor(let title):

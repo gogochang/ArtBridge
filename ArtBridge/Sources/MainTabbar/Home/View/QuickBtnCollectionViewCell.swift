@@ -29,7 +29,10 @@ class QuickBtnCollectionViewCell: UICollectionViewCell {
     }
     
     private let icon = UIImageView()
-    private let titleLabel = UILabel()
+    private let titleLabel = UILabel().then {
+        $0.textColor = .darkText
+        $0.font = UIFont.systemFont(ofSize: 14)
+    }
 }
 
 //MARK: - Layout
