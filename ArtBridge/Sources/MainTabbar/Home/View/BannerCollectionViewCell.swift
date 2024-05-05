@@ -13,16 +13,14 @@ final class BannerCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Properties
     private let bannerImage = UIImageView().then {
+        $0.backgroundColor = .systemGray6
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
     }
     
-    private let titleLabel = UILabel().then {
-        $0.text = "BannerImage"
-    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setupViews()
         initialLayout()
     }
@@ -31,9 +29,15 @@ final class BannerCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        bannerImage.image = nil
+    }
+    
     //MARK: - Methods
     func configure(bannerModel: BannerModel) {
-        bannerImage.backgroundColor = bannerModel.color
+        let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
+        bannerImage.kf.setImage(with: URL(string: bannerModel.imageUrl), options: options)
     }
 }
 
@@ -42,17 +46,13 @@ final class BannerCollectionViewCell: UICollectionViewCell {
 extension BannerCollectionViewCell {
     private func setupViews() {
         self.addSubviews([
-            bannerImage,
-            titleLabel])
+            bannerImage
+        ])
     }
     
     private func initialLayout() {
         bannerImage.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
-        titleLabel.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.top.left.bottom.right.equalToSuperview()
         }
     }
 }

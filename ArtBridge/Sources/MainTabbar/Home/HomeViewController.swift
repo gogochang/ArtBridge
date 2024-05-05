@@ -24,10 +24,10 @@ fileprivate enum Item: Hashable {
 
 struct BannerModel: Hashable { // TODO: 모델로 이동
     var id = UUID()
-    var color: UIColor
+    var imageUrl: String
 }
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
@@ -36,7 +36,7 @@ class HomeViewController: UIViewController {
     private var isAutoScrollEnabled = true
     private var timeInterval = 2.0
     
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
         $0.showsVerticalScrollIndicator = false
         
         $0.register(
@@ -61,6 +61,21 @@ class HomeViewController: UIViewController {
         )
     }
     
+    private lazy var pageController = UIPageControl().then {
+        $0.frame = CGRect(x: 0,
+                          y: self.collectionView.frame.height + 160,
+                          width: self.collectionView.frame.size.width,
+                          height: 40.0)
+        $0.numberOfPages = 4
+        $0.currentPageIndicatorTintColor = .white
+        $0.pageIndicatorTintColor = .darkGray
+        $0.addTarget(self, action: #selector(changePage(_:)), for: .valueChanged)
+    }
+    
+    @objc private func changePage(_ sender: UIPageControl) {
+        collectionView.scrollToItem(at: IndexPath(item: sender.currentPage, section: 0), at: .left, animated: true)
+    }
+    
     private var navBar = ArtBridgeNavBar().then {
         $0.leftBtnItem.setImage(UIImage(systemName: "apple.logo"), for: .normal)
         $0.rightBtnItem.setImage(UIImage(systemName: "bell"), for: .normal)
@@ -77,16 +92,20 @@ class HomeViewController: UIViewController {
         collectionView.delegate = self
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        collectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .left, animated: false)
+    }
+    
     private func createSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section,Item>()
         let bannerSection = Section.banner
         let bannerItems = [ //TODO: 실제 데이터에서 가공하여 사용할 수 있도록 수정
-            Item.normal(BannerModel(color: UIColor.green)),
-            Item.normal(BannerModel(color: UIColor.red)),
-            Item.normal(BannerModel(color: UIColor.orange)),
-            Item.normal(BannerModel(color: UIColor.yellow)),
-            Item.normal(BannerModel(color: UIColor.green)),
-            Item.normal(BannerModel(color: UIColor.red))
+            Item.normal(BannerModel(imageUrl: "https://source.unsplash.com/random/100x100​​?4")),
+            Item.normal(BannerModel(imageUrl: "https://source.unsplash.com/random/100x100?1")),
+            Item.normal(BannerModel(imageUrl: "https://source.unsplash.com/random/100x10​​0?2")),
+            Item.normal(BannerModel(imageUrl: "https://source.unsplash.com/random/100x10​​0?3")),
+            Item.normal(BannerModel(imageUrl: "https://source.unsplash.com/random/100x10​​0?4")),
+            Item.normal(BannerModel(imageUrl: "https://source.unsplash.com/random/100x10​​0?1")),
         ]
         snapshot.appendSections([bannerSection])
         snapshot.appendItems(bannerItems, toSection: bannerSection)
@@ -120,8 +139,11 @@ extension HomeViewController {
     private func setupViews() {
         view.addSubviews([
             navBar,
-            collectionView
+            collectionView,
+//            pageController
         ])
+        
+        collectionView.addSubviews([pageController])
     }
     
     private func initialLayout() {
@@ -174,7 +196,7 @@ extension HomeViewController {
         // Group
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(160)
+            heightDimension: .absolute(200)
         )
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
@@ -187,12 +209,14 @@ extension HomeViewController {
             guard let self = self else { return }
             if let page = Int(exactly: (offset.x + pageWidth) / pageWidth) {
                 self.currentAutoScrollIndex = page
+                
                 if page == 6 {
                     collectionView.scrollToItem(at: IndexPath(row: 1, section: 0), at: .left, animated: false)
-                } else if page == 0 {
+                } else if page == 1 {
                     collectionView.scrollToItem(at: IndexPath(row: 4, section: 0), at: .left, animated: false)
+                } else {
+                    self.pageController.currentPage = page - 2
                 }
-                
             }
             
             if self.isAutoScrollEnabled {
