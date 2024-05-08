@@ -99,13 +99,17 @@ final class HomeViewController: UIViewController {
     private func createSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section,Item>()
         let bannerSection = Section.banner
+        let bannerImagesUrls: [String] = ["https://source.unsplash.com/random/400x400?1",
+                                          "https://source.unsplash.com/random/400x400?2",
+                                          "https://source.unsplash.com/random/400x400?3",
+                                          "https://source.unsplash.com/random/400x400?4"]
         let bannerItems = [ //TODO: 실제 데이터에서 가공하여 사용할 수 있도록 수정
-            Item.normal(BannerModel(imageUrl: "https://source.unsplash.com/random/100x100​​?4")),
-            Item.normal(BannerModel(imageUrl: "https://source.unsplash.com/random/100x100?1")),
-            Item.normal(BannerModel(imageUrl: "https://source.unsplash.com/random/100x10​​0?2")),
-            Item.normal(BannerModel(imageUrl: "https://source.unsplash.com/random/100x10​​0?3")),
-            Item.normal(BannerModel(imageUrl: "https://source.unsplash.com/random/100x10​​0?4")),
-            Item.normal(BannerModel(imageUrl: "https://source.unsplash.com/random/100x10​​0?1")),
+            Item.normal(BannerModel(imageUrl: bannerImagesUrls[3])),
+            Item.normal(BannerModel(imageUrl: bannerImagesUrls[0])),
+            Item.normal(BannerModel(imageUrl: bannerImagesUrls[1])),
+            Item.normal(BannerModel(imageUrl: bannerImagesUrls[2])),
+            Item.normal(BannerModel(imageUrl: bannerImagesUrls[3])),
+            Item.normal(BannerModel(imageUrl: bannerImagesUrls[0])),
         ]
         snapshot.appendSections([bannerSection])
         snapshot.appendItems(bannerItems, toSection: bannerSection)
@@ -145,7 +149,6 @@ extension HomeViewController {
         view.addSubviews([
             navBar,
             collectionView,
-//            pageController
         ])
         
         collectionView.addSubviews([pageController])
