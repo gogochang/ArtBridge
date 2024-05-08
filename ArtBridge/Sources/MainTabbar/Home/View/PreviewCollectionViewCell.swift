@@ -6,16 +6,34 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class PreviewCollectionViewCell: UICollectionViewCell {
     static let id = "PreviewCollectionViewCell"
     
+    //MARK: - UI
+    private let imageView = UIImageView().then {
+        $0.backgroundColor = .systemGray6
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 10
+    }
+    
+    private let title = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 14,weight: .medium)
+    }
+    
+    private let subTitle = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 12,weight: .regular)
+        $0.textColor = .systemGray
+    }
+    
     func configure(
-        previewImage: UIImage?,
+        coverImgUrl: String?,
         title: String,
         subTitle: String
     ) {
-        self.imageView.image = previewImage
+        self.imageView.kf.setImage(with: URL(string: coverImgUrl ?? ""))
         self.title.text = title
         self.subTitle.text = subTitle
     }
@@ -30,12 +48,7 @@ final class PreviewCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private let imageView = UIImageView().then {
-        $0.backgroundColor = .systemGray6
-        $0.layer.cornerRadius = 15
-    }
-    private let title = UILabel()
-    private let subTitle = UILabel()
+    
 }
 
 //MARK: - Layout
@@ -56,7 +69,7 @@ extension PreviewCollectionViewCell {
         
         title.snp.makeConstraints {
             $0.top.equalTo(imageView.snp.bottom).offset(8)
-            $0.left.equalToSuperview()
+            $0.left.right.equalToSuperview()
         }
         
         subTitle.snp.makeConstraints {

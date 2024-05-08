@@ -19,7 +19,7 @@ fileprivate enum Section: Hashable {
 fileprivate enum Item: Hashable {
     case normal(BannerModel)
     case quickBtn(UIImage?, String)
-    case privewItem(Int) //TODO: 인기글 데이터 Model로 변경
+    case privewItem(String, String, String?) //TODO: 인기글 데이터 Model로 변경
 }
 
 struct BannerModel: Hashable { // TODO: 모델로 이동
@@ -125,17 +125,29 @@ final class HomeViewController: UIViewController {
         snapshot.appendItems(quickItems, toSection: horizontalSection)
         
         let popularPostSection = Section.PopularPost("지금 인기있는 글")
-        let popularPostItems = [Item.privewItem(1),Item.privewItem(2),Item.privewItem(3),Item.privewItem(4)]
+        let popularPostItems = [Item.privewItem("제 연주 피드백 부탁드립니다.", "강호동", "https://source.unsplash.com/random/400x400?1"),
+                                Item.privewItem("바이올린 연습은 이렇게!", "이효리", "https://source.unsplash.com/random/400x400?2"),
+                                Item.privewItem("어깨가 아파요","유재석","https://source.unsplash.com/random/400x400?3"),
+                                Item.privewItem("악보 종이 vs 아이패드","홍길동", "https://source.unsplash.com/random/400x400?4"),
+                                Item.privewItem("하루에 보통 몇시간 연습하시나요?","이수근", "https://source.unsplash.com/random/400x400?5")
+        ]
+        
         snapshot.appendSections([popularPostSection])
         snapshot.appendItems(popularPostItems, toSection: popularPostSection)
         
         let popularTutorSection = Section.PopularPost("지금 인기있는 강사")
-        let popularTutorItems = [Item.privewItem(5),Item.privewItem(6),Item.privewItem(7),Item.privewItem(8)]
+        let popularTutorItems = [Item.privewItem("1","1",nil),
+                                 Item.privewItem("2","2",nil),
+                                 Item.privewItem("3","3",nil),
+                                 Item.privewItem("4","4",nil)]
         snapshot.appendSections([popularTutorSection])
         snapshot.appendItems(popularTutorItems, toSection: popularTutorSection)
         
         let newsSection = Section.news("뉴스")
-        let newsItems = [Item.privewItem(9),Item.privewItem(10),Item.privewItem(11)]
+        let newsItems = [Item.privewItem("5","5",nil),
+                         Item.privewItem("6","6",nil),
+                         Item.privewItem("7","7",nil)
+        ]
         snapshot.appendSections([newsSection])
         snapshot.appendItems(newsItems, toSection: newsSection)
         
@@ -359,16 +371,16 @@ extension HomeViewController {
                         title: title
                     )
                     return cell
-                case .privewItem:
+                case .privewItem(let title, let nickname, let coverImgUrl):
                     let cell = collectionView.dequeueReusableCell(
                         withReuseIdentifier: PreviewCollectionViewCell.id,
                         for: indexPath
                     ) as? PreviewCollectionViewCell
                     
                     cell?.configure(
-                        previewImage: UIImage(),
-                        title: "Title",
-                        subTitle: "Sub Title"
+                        coverImgUrl: coverImgUrl,
+                        title: title,
+                        subTitle: nickname
                     )
                     
                     return cell
