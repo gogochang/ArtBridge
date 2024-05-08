@@ -15,15 +15,13 @@ final class HeaderView: UICollectionReusableView {
         $0.font = .systemFont(ofSize: 20, weight: .bold)
     }
     
-    private let moreBtnLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 16, weight: .regular)
-        $0.textColor = .systemGray3
-        $0.text = "전체보기"
-    }
-    
-    private let rightIcon = UIImageView().then {
-        $0.image = UIImage(systemName: "chevron.right")
+    let moreButton = UIButton().then {
+        $0.setTitle("전체보기", for: .normal)
+        $0.setTitleColor(.systemGray3, for: .normal)
+        $0.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
+        $0.setImage(UIImage(systemName: "chevron.right"), for: .normal)
         $0.tintColor = .systemGray3
+        $0.semanticContentAttribute = .forceRightToLeft
     }
     
     override init(frame: CGRect) {
@@ -46,8 +44,7 @@ extension HeaderView {
     private func setupViews() {
         addSubviews([
             titleLabel,
-            moreBtnLabel,
-            rightIcon
+            moreButton
         ])
     }
     
@@ -56,13 +53,8 @@ extension HeaderView {
             $0.top.left.right.equalToSuperview()
         }
         
-        moreBtnLabel.snp.makeConstraints {
+        moreButton.snp.makeConstraints {
             $0.centerY.equalTo(titleLabel)
-            $0.right.equalTo(rightIcon.snp.left).offset(-4)
-        }
-        
-        rightIcon.snp.makeConstraints {
-            $0.centerY.equalTo(moreBtnLabel)
             $0.right.equalToSuperview()
         }
     }
