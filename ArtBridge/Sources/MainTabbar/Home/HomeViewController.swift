@@ -81,6 +81,17 @@ final class HomeViewController: UIViewController {
         $0.rightBtnItem.setImage(UIImage(systemName: "bell"), for: .normal)
     }
     
+    private let viewModel: HomeViewModel
+    
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -392,12 +403,13 @@ extension HomeViewController {
             })
         
         dataSource?.supplementaryViewProvider = {[weak self] collectionView, kind, indexPath -> UICollectionReusableView in
+            guard let self = self else { return UICollectionReusableView() }
             let header = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind,
                 withReuseIdentifier: HeaderView.id,
                 for: indexPath
             )
-            let section = self?.dataSource?.sectionIdentifier(for: indexPath.section)
+            let section = self.dataSource?.sectionIdentifier(for: indexPath.section)
             
             switch section {
             case .PopularPost(let title):
@@ -409,6 +421,10 @@ extension HomeViewController {
             default:
                 print("Default")
             }
+            
+            (header as? HeaderView)?.moreButton.rx.tap
+                .bind(to: self.viewModel.inputs.showPopularPostList)
+                .disposed(by: self.disposeBag)
             
             return header
         }

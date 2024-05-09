@@ -16,7 +16,7 @@ final class HeaderView: UICollectionReusableView {
     }
     
     let moreButton = UIButton().then {
-        $0.setTitle("전체보기", for: .normal)
+        $0.setTitle("더 보기", for: .normal)
         $0.setTitleColor(.systemGray3, for: .normal)
         $0.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
         $0.setImage(UIImage(systemName: "chevron.right"), for: .normal)

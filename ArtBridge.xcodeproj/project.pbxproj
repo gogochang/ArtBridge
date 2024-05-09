@@ -19,13 +19,17 @@
 		2B1469F42BD3963600E6483E /* MainTabComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1469F32BD3963600E6483E /* MainTabComponent.swift */; };
 		2B1469F62BD3974000E6483E /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1469F52BD3974000E6483E /* MainTabController.swift */; };
 		2B1469F82BD3979700E6483E /* MainTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1469F72BD3979700E6483E /* MainTabViewModel.swift */; };
-		2B1469FB2BD3991F00E6483E /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 2B1469FA2BD3991F00E6483E /* Then */; };
 		2B1469FF2BD399BF00E6483E /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1469FE2BD399BF00E6483E /* UIView+.swift */; };
 		2B146A022BD39A9A00E6483E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2B146A012BD39A9A00E6483E /* SnapKit */; };
 		2B146A042BD3DA6D00E6483E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B146A032BD3DA6D00E6483E /* AppCoordinator.swift */; };
 		2B146A062BD3DC0C00E6483E /* MainTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B146A052BD3DC0C00E6483E /* MainTabCoordinator.swift */; };
 		2B146A092BD3DF0000E6483E /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B146A082BD3DF0000E6483E /* BaseCoordinator.swift */; };
 		2B146A0C2BD3E07600E6483E /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B146A0B2BD3E07600E6483E /* RxSwift */; };
+		2B6F28A72BED326300BDA911 /* PopularPostListViewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28A62BED326300BDA911 /* PopularPostListViewcontroller.swift */; };
+		2B6F28A92BED330100BDA911 /* PopularPostListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28A82BED330100BDA911 /* PopularPostListComponent.swift */; };
+		2B6F28AB2BED33A800BDA911 /* PopularPostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28AA2BED33A800BDA911 /* PopularPostListViewModel.swift */; };
+		2B6F28AD2BED347200BDA911 /* PopularPostListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28AC2BED347200BDA911 /* PopularPostListCoordinator.swift */; };
+		2B9C4FCE2BED3B690058CE3F /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 2B9C4FCD2BED3B690058CE3F /* Then */; };
 		2BB5155E2BD91CE90092CC72 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5155D2BD91CE90092CC72 /* UIStackView+.swift */; };
 		2BB515612BDAA7190092CC72 /* HomeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515602BDAA7190092CC72 /* HomeComponent.swift */; };
 		2BB515632BDAA7490092CC72 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515622BDAA7490092CC72 /* HomeViewController.swift */; };
@@ -100,6 +104,10 @@
 		2B146A032BD3DA6D00E6483E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		2B146A052BD3DC0C00E6483E /* MainTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabCoordinator.swift; sourceTree = "<group>"; };
 		2B146A082BD3DF0000E6483E /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
+		2B6F28A62BED326300BDA911 /* PopularPostListViewcontroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListViewcontroller.swift; sourceTree = "<group>"; };
+		2B6F28A82BED330100BDA911 /* PopularPostListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListComponent.swift; sourceTree = "<group>"; };
+		2B6F28AA2BED33A800BDA911 /* PopularPostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListViewModel.swift; sourceTree = "<group>"; };
+		2B6F28AC2BED347200BDA911 /* PopularPostListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListCoordinator.swift; sourceTree = "<group>"; };
 		2BB5155D2BD91CE90092CC72 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 		2BB515602BDAA7190092CC72 /* HomeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeComponent.swift; sourceTree = "<group>"; };
 		2BB515622BDAA7490092CC72 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -140,7 +148,7 @@
 				2BB5156C2BDAB0B00092CC72 /* RxRelay in Frameworks */,
 				2B146A0C2BD3E07600E6483E /* RxSwift in Frameworks */,
 				2BC1326E2BE3D3D200F13EC4 /* Kingfisher in Frameworks */,
-				2B1469FB2BD3991F00E6483E /* Then in Frameworks */,
+				2B9C4FCE2BED3B690058CE3F /* Then in Frameworks */,
 				2BB5156A2BDAB0AB0092CC72 /* RxCocoa in Frameworks */,
 				2B146A022BD39A9A00E6483E /* SnapKit in Frameworks */,
 				2BC132702BE3D63900F13EC4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
@@ -287,9 +295,21 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		2B6F28A52BED325300BDA911 /* PopularPostList */ = {
+			isa = PBXGroup;
+			children = (
+				2B6F28A62BED326300BDA911 /* PopularPostListViewcontroller.swift */,
+				2B6F28A82BED330100BDA911 /* PopularPostListComponent.swift */,
+				2B6F28AA2BED33A800BDA911 /* PopularPostListViewModel.swift */,
+				2B6F28AC2BED347200BDA911 /* PopularPostListCoordinator.swift */,
+			);
+			path = PopularPostList;
+			sourceTree = "<group>";
+		};
 		2BB5155F2BDAA7090092CC72 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				2B6F28A52BED325300BDA911 /* PopularPostList */,
 				2BB5156D2BDAC99E0092CC72 /* View */,
 				2BB515602BDAA7190092CC72 /* HomeComponent.swift */,
 				2BB515622BDAA7490092CC72 /* HomeViewController.swift */,
@@ -421,13 +441,13 @@
 			);
 			name = ArtBridge;
 			packageProductDependencies = (
-				2B1469FA2BD3991F00E6483E /* Then */,
 				2B146A012BD39A9A00E6483E /* SnapKit */,
 				2B146A0B2BD3E07600E6483E /* RxSwift */,
 				2BB515692BDAB0AB0092CC72 /* RxCocoa */,
 				2BB5156B2BDAB0B00092CC72 /* RxRelay */,
 				2BC1326D2BE3D3D200F13EC4 /* Kingfisher */,
 				2BC1326F2BE3D63900F13EC4 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				2B9C4FCD2BED3B690058CE3F /* Then */,
 			);
 			productName = ArtBridge;
 			productReference = 2B1469B92BD38F8000E6483E /* ArtBridge.app */;
@@ -568,11 +588,14 @@
 				2B1469FF2BD399BF00E6483E /* UIView+.swift in Sources */,
 				2B1469BD2BD38F8000E6483E /* AppDelegate.swift in Sources */,
 				2BB5158A2BDE8DCE0092CC72 /* PostCollectionViewCell.swift in Sources */,
+				2B6F28A92BED330100BDA911 /* PopularPostListComponent.swift in Sources */,
 				2BB5157F2BDE15A50092CC72 /* CommunityComponent.swift in Sources */,
 				2BB5158C2BDE998E0092CC72 /* ButtonCollectionViewCell.swift in Sources */,
 				2BB5155E2BD91CE90092CC72 /* UIStackView+.swift in Sources */,
+				2B6F28AD2BED347200BDA911 /* PopularPostListCoordinator.swift in Sources */,
 				2BB515722BDBCE5A0092CC72 /* UIColor+.swift in Sources */,
 				2BB5159D2BDFE4F70092CC72 /* MyPageViewController.swift in Sources */,
+				2B6F28A72BED326300BDA911 /* PopularPostListViewcontroller.swift in Sources */,
 				2BB515612BDAA7190092CC72 /* HomeComponent.swift in Sources */,
 				2B146A042BD3DA6D00E6483E /* AppCoordinator.swift in Sources */,
 				2BB515952BDFD5770092CC72 /* MessageCoordinator.swift in Sources */,
@@ -590,6 +613,7 @@
 				2BB515652BDAA75A0092CC72 /* HomeViewModel.swift in Sources */,
 				2BB5158F2BDFD53D0092CC72 /* MessageComponent.swift in Sources */,
 				2B1469F82BD3979700E6483E /* MainTabViewModel.swift in Sources */,
+				2B6F28AB2BED33A800BDA911 /* PopularPostListViewModel.swift in Sources */,
 				2BB5156F2BDACA2E0092CC72 /* BannerCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -772,7 +796,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -801,7 +825,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -976,11 +1000,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2B1469FA2BD3991F00E6483E /* Then */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2B1469F92BD3991F00E6483E /* XCRemoteSwiftPackageReference "Then" */;
-			productName = Then;
-		};
 		2B146A012BD39A9A00E6483E /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2B146A002BD39A9A00E6483E /* XCRemoteSwiftPackageReference "SnapKit" */;
@@ -990,6 +1009,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2B146A0A2BD3E07600E6483E /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		2B9C4FCD2BED3B690058CE3F /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B1469F92BD3991F00E6483E /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
 		};
 		2BB515692BDAB0AB0092CC72 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;

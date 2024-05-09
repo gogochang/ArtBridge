@@ -22,6 +22,24 @@ final class HomeCoordinator: BaseCoordinator<Void> {
     
     override func start(animated _: Bool = true) {
         let scene = component.scene
+        
+        scene.VM.routes.popularPostList
+            .map { scene.VM }
+            .bind { [weak self] vm in
+                self?.pushPopularPostListScene(vm: vm, animated: true)
+            }.disposed(by: sceneDisposeBag)
+    }
+    
+    private func pushPopularPostListScene(vm: HomeViewModel, animated: Bool) {
+        let comp = component.popularPostListComponent
+        let coord = PopularPostListCoordinator(component: comp, navController: navigationController)
+        
+        coordinate(coordinator: coord, animated: animated) { coordResult in
+            switch coordResult {
+            case .backward:
+                vm.routeInputs.needUpdate.onNext(false)
+            }
+        }
     }
     
 }

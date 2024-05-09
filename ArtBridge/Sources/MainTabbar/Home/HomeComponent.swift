@@ -8,7 +8,11 @@
 import UIKit
 
 final class HomeComponent {
-    lazy var scene: (VC: HomeViewController, VM: HomeViewModel) = (VC: HomeViewController(), VM: viewModel)
+    lazy var scene: (VC: HomeViewController, VM: HomeViewModel) = (VC: HomeViewController(viewModel: viewModel), VM: viewModel)
     
     lazy var viewModel: HomeViewModel = .init()
+    
+    var popularPostListComponent: PopularPostListComponent {
+        return PopularPostListComponent()
+    }
 }

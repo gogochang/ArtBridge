@@ -10,9 +10,26 @@ import RxSwift
 
 final class HomeViewModel {
     //MARK: - properties
+    private var disposeBag = DisposeBag()
+    var inputs = Input()
     var routeInputs = RouteInput()
+    var routes = Route()
+    
+    init() {
+        inputs.showPopularPostList
+            .bind(to: routes.popularPostList)
+            .disposed(by: disposeBag)
+    }
     
     struct RouteInput {
         var needUpdate = PublishSubject<Bool>()
+    }
+    
+    struct Input {
+        var showPopularPostList = PublishSubject<Void>()
+    }
+    
+    struct Route {
+        var popularPostList = PublishSubject<Void>()
     }
 }
