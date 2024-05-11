@@ -19,7 +19,7 @@ fileprivate enum Section: Hashable {
 fileprivate enum Item: Hashable {
     case normal(BannerModel)
     case quickBtn(UIImage?, String)
-    case privewItem(String, String, String?) //TODO: 인기글 데이터 Model로 변경
+    case previewItem(String, String, String?) //TODO: 인기글 데이터 Model로 변경
 }
 
 struct BannerModel: Hashable { // TODO: 모델로 이동
@@ -137,11 +137,11 @@ final class HomeViewController: UIViewController {
         
         let popularPostSection = Section.PopularPost("지금 인기있는 글")
         let popularPostItems = [
-            Item.privewItem("제 연주 피드백 부탁드립니다.", "강호동", "https://source.unsplash.com/random/400x400?5"),
-            Item.privewItem("바이올린 연습은 이렇게!", "이효리", "https://source.unsplash.com/random/400x400?6"),
-            Item.privewItem("어깨가 아파요","유재석","https://source.unsplash.com/random/400x400?7"),
-            Item.privewItem("악보 종이 vs 아이패드","홍길동", "https://source.unsplash.com/random/400x400?8"),
-            Item.privewItem("하루에 보통 몇시간 연습하시나요?","이수근", "https://source.unsplash.com/random/400x400?9")
+            Item.previewItem("제 연주 피드백 부탁드립니다.", "강호동", "https://source.unsplash.com/random/400x400?5"),
+            Item.previewItem("바이올린 연습은 이렇게!", "이효리", "https://source.unsplash.com/random/400x400?6"),
+            Item.previewItem("어깨가 아파요","유재석","https://source.unsplash.com/random/400x400?7"),
+            Item.previewItem("악보 종이 vs 아이패드","홍길동", "https://source.unsplash.com/random/400x400?8"),
+            Item.previewItem("하루에 보통 몇시간 연습하시나요?","이수근", "https://source.unsplash.com/random/400x400?9")
         ]
         
         snapshot.appendSections([popularPostSection])
@@ -149,19 +149,19 @@ final class HomeViewController: UIViewController {
         
         let popularTutorSection = Section.PopularPost("지금 인기있는 강사")
         let popularTutorItems = [
-            Item.privewItem("송지효","바이올린","https://i.pravatar.cc/300?img=1"),
-            Item.privewItem("박명수","드럼","https://i.pravatar.cc/300?img=2"),
-            Item.privewItem("우원재","첼로","https://i.pravatar.cc/300?img=3​"),
-            Item.privewItem("차은우","플루트","https://i.pravatar.cc/300?img=4​")
+            Item.previewItem("송지효","바이올린","https://i.pravatar.cc/300?img=1"),
+            Item.previewItem("박명수","드럼","https://i.pravatar.cc/300?img=2"),
+            Item.previewItem("우원재","첼로","https://i.pravatar.cc/300?img=3​"),
+            Item.previewItem("차은우","플루트","https://i.pravatar.cc/300?img=4​")
         ]
         snapshot.appendSections([popularTutorSection])
         snapshot.appendItems(popularTutorItems, toSection: popularTutorSection)
         
         let newsSection = Section.news("뉴스")
         let newsItems = [
-            Item.privewItem("오늘 밤은 고고오케스트라로 채워집니다!🎉","","https://source.unsplash.com/random/400x400?10"),
-            Item.privewItem("꿈을 키우는 고고오케스트라가 있다고??😃","","https://source.unsplash.com/random/400x400?11"),
-            Item.privewItem("고고 오케스트라 나눔 연주회","","https://source.unsplash.com/random/400x400?12")
+            Item.previewItem("오늘 밤은 고고오케스트라로 채워집니다!🎉","","https://source.unsplash.com/random/400x400?10"),
+            Item.previewItem("꿈을 키우는 고고오케스트라가 있다고??😃","","https://source.unsplash.com/random/400x400?11"),
+            Item.previewItem("고고 오케스트라 나눔 연주회","","https://source.unsplash.com/random/400x400?12")
         ]
         snapshot.appendSections([newsSection])
         snapshot.appendItems(newsItems, toSection: newsSection)
@@ -386,7 +386,7 @@ extension HomeViewController {
                         title: title
                     )
                     return cell
-                case .privewItem(let title, let nickname, let coverImgUrl):
+                case .previewItem(let title, let nickname, let coverImgUrl):
                     let cell = collectionView.dequeueReusableCell(
                         withReuseIdentifier: PreviewCollectionViewCell.id,
                         for: indexPath
