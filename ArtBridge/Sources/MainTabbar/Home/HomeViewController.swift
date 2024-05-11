@@ -423,6 +423,7 @@ extension HomeViewController {
             }
             
             (header as? HeaderView)?.moreButton.rx.tap
+                .throttle(.seconds(3),latest: true, scheduler: MainScheduler.instance)
                 .bind(to: self.viewModel.inputs.showPopularPostList)
                 .disposed(by: self.disposeBag)
             
