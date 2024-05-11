@@ -9,7 +9,7 @@ import UIKit
 
 final class PopularPostListComponent {
     var scene: (VC: PopularPostListViewcontroller, VM: PopularPostListViewModel) {
-        return (VC: PopularPostListViewcontroller(), VM: viewModel)
+        return (VC: PopularPostListViewcontroller(viewModel: viewModel), VM: viewModel)
     }
     
     var viewModel: PopularPostListViewModel = .init()
