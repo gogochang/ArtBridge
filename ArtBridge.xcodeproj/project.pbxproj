@@ -306,10 +306,21 @@
 			path = PopularPostList;
 			sourceTree = "<group>";
 		};
+		2B9C4FCF2BEF79530058CE3F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2BB5156E2BDACA2E0092CC72 /* BannerCollectionViewCell.swift */,
+				2BB515772BDBF13D0092CC72 /* QuickBtnCollectionViewCell.swift */,
+				2BB5157B2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		2BB5155F2BDAA7090092CC72 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				2B6F28A52BED325300BDA911 /* PopularPostList */,
+				2B9C4FCF2BEF79530058CE3F /* Cells */,
 				2BB5156D2BDAC99E0092CC72 /* View */,
 				2BB515602BDAA7190092CC72 /* HomeComponent.swift */,
 				2BB515622BDAA7490092CC72 /* HomeViewController.swift */,
@@ -329,9 +340,6 @@
 		2BB5156D2BDAC99E0092CC72 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2BB5156E2BDACA2E0092CC72 /* BannerCollectionViewCell.swift */,
-				2BB515772BDBF13D0092CC72 /* QuickBtnCollectionViewCell.swift */,
-				2BB5157B2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift */,
 				2BB515792BDDF1E60092CC72 /* HeaderView.swift */,
 			);
 			path = View;
