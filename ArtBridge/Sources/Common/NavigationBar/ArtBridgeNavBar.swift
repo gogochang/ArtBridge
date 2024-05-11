@@ -22,12 +22,18 @@ final class ArtBridgeNavBar: UIView {
     private var contentView = UIView()
     
     //MARK: - Internal
-    var leftBtnItem = UIButton().then {
+    let leftBtnItem = UIButton().then {
         $0.tintColor = .black
     }
-    var rightBtnItem = UIButton().then {
+    
+    let rightBtnItem = UIButton().then {
         $0.tintColor = .black
     }
+    
+    let title = UILabel().then {
+        $0.font = .systemFont(ofSize: 20, weight: .bold)
+    }
+    
 }
 //MARK: - Actions
 extension ArtBridgeNavBar {
@@ -42,7 +48,8 @@ extension ArtBridgeNavBar {
         
         contentView.addSubviews([
             leftBtnItem,
-            rightBtnItem
+            rightBtnItem,
+            title
         ])
     }
     
@@ -61,6 +68,10 @@ extension ArtBridgeNavBar {
         rightBtnItem.snp.makeConstraints {
             $0.right.equalToSuperview().inset(16)
             $0.centerY.equalToSuperview()
+        }
+        
+        title.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
     }
 }

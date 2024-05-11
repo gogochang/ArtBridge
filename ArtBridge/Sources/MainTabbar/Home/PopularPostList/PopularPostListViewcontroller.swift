@@ -26,6 +26,7 @@ final class PopularPostListViewcontroller: UIViewController {
     private let navBar = ArtBridgeNavBar().then {
         $0.leftBtnItem.setImage(UIImage(systemName: "chevron.left"), for: .normal)
         $0.rightBtnItem.setImage(UIImage(systemName: "bell"), for: .normal)
+        $0.title.text = "지금 인기있는 글"
     }
     
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
