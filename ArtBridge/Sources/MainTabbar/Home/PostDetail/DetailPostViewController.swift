@@ -37,9 +37,8 @@ final class DetailPostViewController: UIViewController {
         $0.backgroundColor = .systemGray6
         
         $0.register(ContentCollectionViewCell.self, forCellWithReuseIdentifier: ContentCollectionViewCell.id)
-        
         $0.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: BannerCollectionViewCell.id)
-        
+        $0.register(CommentCollectionViewCell.self, forCellWithReuseIdentifier: CommentCollectionViewCell.id)
     }
     
     
@@ -106,6 +105,8 @@ extension DetailPostViewController {
                 return self?.createSingleSection()
             case .banner:
                 return self?.createBannerSection()
+            case .vertical:
+                return self?.createVerticalSection()
             default:
                 return nil
             }
@@ -153,7 +154,30 @@ extension DetailPostViewController {
         
         // Section
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 20, trailing: 0)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0)
+        
+        return section
+    }
+    
+    private func createVerticalSection() -> NSCollectionLayoutSection {
+        // Item
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(100)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        
+        // Group
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(100)
+        )
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        
+        // Section
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 100, trailing: 0)
         
         return section
     }
@@ -182,9 +206,13 @@ extension DetailPostViewController {
                     cell?.configure(bannerModel: BannerModel(imageUrl: "https://source.unsplash.com/random/400x400?17"))
                     
                     return cell
+                case .commentItem:
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: CommentCollectionViewCell.id,
+                        for: indexPath
+                    ) as? CommentCollectionViewCell
                     
-                default:
-                    return nil
+                    return cell
                 }
                 
             }
@@ -203,6 +231,11 @@ extension DetailPostViewController {
         let bannerItem = Item.bannerItem("testest")
         snapshot.appendSections([bannerSection])
         snapshot.appendItems([bannerItem],toSection: bannerSection)
+        
+        let verticalSection = Section.vertical
+        let commentItems = [Item.commentItem("1"), Item.commentItem("2"), Item.commentItem("3")]
+        snapshot.appendSections([verticalSection])
+        snapshot.appendItems(commentItems,toSection: verticalSection)
         
         dataSource?.apply(snapshot)
     }

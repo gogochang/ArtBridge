@@ -19,7 +19,8 @@ final class ContentCollectionViewCell: UICollectionViewCell {
     
     private let title = UILabel().then {
         $0.font = .systemFont(ofSize: 24, weight: .bold)
-        $0.text = "이것은 제목인데요."
+        $0.text = "이것은 제목인데요. 내용이 꽤 길어요."
+        $0.numberOfLines = 2
     }
     
     private let content = UILabel().then {
