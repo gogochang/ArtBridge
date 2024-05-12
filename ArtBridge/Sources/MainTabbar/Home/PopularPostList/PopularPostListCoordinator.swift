@@ -41,5 +41,25 @@ final class PopularPostListCoordinator: BaseCoordinator<PopularPostListResult> {
             .map { PopularPostListResult.backward }
             .bind(to: closeSignal)
             .disposed(by: sceneDisposeBag)
+        
+        scene.VM.routes.detailPost
+            .debug()
+            .map { scene.VM }
+            .bind { [weak self] vm in
+                self?.pushDetailPostScene(vm: vm, animated: true)
+            }.disposed(by: sceneDisposeBag)
+    }
+    
+    private func pushDetailPostScene(vm: PopularPostListViewModel, animated: Bool) {
+        let comp = component.detailPostComponent
+        let coord = DetailPostCoordinator(component: comp, navController: navigationController)
+        
+        coordinate(coordinator: coord, animated: animated) { coordResult in
+            switch coordResult {
+            case .backward:
+                vm.routeInputs.needUpdate.onNext(false)
+            }
+            
+        }
     }
 }

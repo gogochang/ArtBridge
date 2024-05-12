@@ -1,5 +1,5 @@
 //
-//  PopularPostListViewcontroller.swift
+//  PopularPostListViewController.swift
 //  ArtBridge
 //
 //  Created by 김창규 on 5/10/24.
@@ -16,7 +16,7 @@ fileprivate enum Item: Hashable {
     case previewItem(String, String, String?)
 }
 
-final class PopularPostListViewcontroller: UIViewController {
+final class PopularPostListViewController: UIViewController {
     //MARK: - Properties
     private let viewModel: PopularPostListViewModel
     private let disposeBag: DisposeBag = DisposeBag()
@@ -76,7 +76,7 @@ final class PopularPostListViewcontroller: UIViewController {
 }
 
 //MARK: - Layout
-extension PopularPostListViewcontroller {
+extension PopularPostListViewController {
     private func setupViews() {
         view.addSubviews([
             navBar,
@@ -99,7 +99,7 @@ extension PopularPostListViewcontroller {
 }
 
 //MARK: - CompositionalLayout
-extension PopularPostListViewcontroller {
+extension PopularPostListViewController {
     private func createLayout() -> UICollectionViewCompositionalLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()
         return UICollectionViewCompositionalLayout(sectionProvider: { [weak self] sectionIndex, _ in
@@ -139,7 +139,7 @@ extension PopularPostListViewcontroller {
 }
 
 //MARK: - Datasource
-extension PopularPostListViewcontroller {
+extension PopularPostListViewController {
     private func setDatasource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(
             collectionView: collectionView,
@@ -186,8 +186,10 @@ extension PopularPostListViewcontroller {
     }
 }
 
-extension PopularPostListViewcontroller: UICollectionViewDelegate {
+//MARK: - UICollectionView Delegate
+extension PopularPostListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("선택된 아이템의 상세페이지로 이동")
+        viewModel.inputs.showDetailPost.onNext(())
     }
 }

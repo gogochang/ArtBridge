@@ -25,11 +25,15 @@
 		2B146A062BD3DC0C00E6483E /* MainTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B146A052BD3DC0C00E6483E /* MainTabCoordinator.swift */; };
 		2B146A092BD3DF0000E6483E /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B146A082BD3DF0000E6483E /* BaseCoordinator.swift */; };
 		2B146A0C2BD3E07600E6483E /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B146A0B2BD3E07600E6483E /* RxSwift */; };
-		2B6F28A72BED326300BDA911 /* PopularPostListViewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28A62BED326300BDA911 /* PopularPostListViewcontroller.swift */; };
+		2B6F28A72BED326300BDA911 /* PopularPostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28A62BED326300BDA911 /* PopularPostListViewController.swift */; };
 		2B6F28A92BED330100BDA911 /* PopularPostListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28A82BED330100BDA911 /* PopularPostListComponent.swift */; };
 		2B6F28AB2BED33A800BDA911 /* PopularPostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28AA2BED33A800BDA911 /* PopularPostListViewModel.swift */; };
 		2B6F28AD2BED347200BDA911 /* PopularPostListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28AC2BED347200BDA911 /* PopularPostListCoordinator.swift */; };
 		2B9C4FCE2BED3B690058CE3F /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 2B9C4FCD2BED3B690058CE3F /* Then */; };
+		2B9C4FD22BF0B57E0058CE3F /* DetailPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C4FD12BF0B57E0058CE3F /* DetailPostViewController.swift */; };
+		2B9C4FD42BF0B58F0058CE3F /* DetailPostComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C4FD32BF0B58F0058CE3F /* DetailPostComponent.swift */; };
+		2B9C4FD62BF0B59F0058CE3F /* DetailPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C4FD52BF0B59F0058CE3F /* DetailPostViewModel.swift */; };
+		2B9C4FD82BF0B5B00058CE3F /* DetailPostCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C4FD72BF0B5B00058CE3F /* DetailPostCoordinator.swift */; };
 		2BB5155E2BD91CE90092CC72 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5155D2BD91CE90092CC72 /* UIStackView+.swift */; };
 		2BB515612BDAA7190092CC72 /* HomeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515602BDAA7190092CC72 /* HomeComponent.swift */; };
 		2BB515632BDAA7490092CC72 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515622BDAA7490092CC72 /* HomeViewController.swift */; };
@@ -104,10 +108,14 @@
 		2B146A032BD3DA6D00E6483E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		2B146A052BD3DC0C00E6483E /* MainTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabCoordinator.swift; sourceTree = "<group>"; };
 		2B146A082BD3DF0000E6483E /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
-		2B6F28A62BED326300BDA911 /* PopularPostListViewcontroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListViewcontroller.swift; sourceTree = "<group>"; };
+		2B6F28A62BED326300BDA911 /* PopularPostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListViewController.swift; sourceTree = "<group>"; };
 		2B6F28A82BED330100BDA911 /* PopularPostListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListComponent.swift; sourceTree = "<group>"; };
 		2B6F28AA2BED33A800BDA911 /* PopularPostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListViewModel.swift; sourceTree = "<group>"; };
 		2B6F28AC2BED347200BDA911 /* PopularPostListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListCoordinator.swift; sourceTree = "<group>"; };
+		2B9C4FD12BF0B57E0058CE3F /* DetailPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewController.swift; sourceTree = "<group>"; };
+		2B9C4FD32BF0B58F0058CE3F /* DetailPostComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostComponent.swift; sourceTree = "<group>"; };
+		2B9C4FD52BF0B59F0058CE3F /* DetailPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewModel.swift; sourceTree = "<group>"; };
+		2B9C4FD72BF0B5B00058CE3F /* DetailPostCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostCoordinator.swift; sourceTree = "<group>"; };
 		2BB5155D2BD91CE90092CC72 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 		2BB515602BDAA7190092CC72 /* HomeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeComponent.swift; sourceTree = "<group>"; };
 		2BB515622BDAA7490092CC72 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -298,7 +306,7 @@
 		2B6F28A52BED325300BDA911 /* PopularPostList */ = {
 			isa = PBXGroup;
 			children = (
-				2B6F28A62BED326300BDA911 /* PopularPostListViewcontroller.swift */,
+				2B6F28A62BED326300BDA911 /* PopularPostListViewController.swift */,
 				2B6F28A82BED330100BDA911 /* PopularPostListComponent.swift */,
 				2B6F28AA2BED33A800BDA911 /* PopularPostListViewModel.swift */,
 				2B6F28AC2BED347200BDA911 /* PopularPostListCoordinator.swift */,
@@ -316,9 +324,21 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
+		2B9C4FD02BF0B5590058CE3F /* PostDetail */ = {
+			isa = PBXGroup;
+			children = (
+				2B9C4FD12BF0B57E0058CE3F /* DetailPostViewController.swift */,
+				2B9C4FD32BF0B58F0058CE3F /* DetailPostComponent.swift */,
+				2B9C4FD52BF0B59F0058CE3F /* DetailPostViewModel.swift */,
+				2B9C4FD72BF0B5B00058CE3F /* DetailPostCoordinator.swift */,
+			);
+			path = PostDetail;
+			sourceTree = "<group>";
+		};
 		2BB5155F2BDAA7090092CC72 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				2B9C4FD02BF0B5590058CE3F /* PostDetail */,
 				2B6F28A52BED325300BDA911 /* PopularPostList */,
 				2B9C4FCF2BEF79530058CE3F /* Cells */,
 				2BB5156D2BDAC99E0092CC72 /* View */,
@@ -585,6 +605,7 @@
 				2BB515932BDFD56D0092CC72 /* MessageViewModel.swift in Sources */,
 				2B1469F42BD3963600E6483E /* MainTabComponent.swift in Sources */,
 				2BB5157C2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift in Sources */,
+				2B9C4FD62BF0B59F0058CE3F /* DetailPostViewModel.swift in Sources */,
 				2BB5159F2BDFE4FF0092CC72 /* MyPageViewModel.swift in Sources */,
 				2BB515882BDE86F40092CC72 /* CategoryCollectionViewCell.swift in Sources */,
 				2B1469F62BD3974000E6483E /* MainTabController.swift in Sources */,
@@ -593,17 +614,20 @@
 				2BB515A12BDFE5090092CC72 /* MyPageCoordinator.swift in Sources */,
 				2B1469F12BD395E300E6483E /* AppComponent.swift in Sources */,
 				2BB515632BDAA7490092CC72 /* HomeViewController.swift in Sources */,
+				2B9C4FD42BF0B58F0058CE3F /* DetailPostComponent.swift in Sources */,
 				2B1469FF2BD399BF00E6483E /* UIView+.swift in Sources */,
 				2B1469BD2BD38F8000E6483E /* AppDelegate.swift in Sources */,
 				2BB5158A2BDE8DCE0092CC72 /* PostCollectionViewCell.swift in Sources */,
+				2B9C4FD82BF0B5B00058CE3F /* DetailPostCoordinator.swift in Sources */,
 				2B6F28A92BED330100BDA911 /* PopularPostListComponent.swift in Sources */,
 				2BB5157F2BDE15A50092CC72 /* CommunityComponent.swift in Sources */,
 				2BB5158C2BDE998E0092CC72 /* ButtonCollectionViewCell.swift in Sources */,
 				2BB5155E2BD91CE90092CC72 /* UIStackView+.swift in Sources */,
 				2B6F28AD2BED347200BDA911 /* PopularPostListCoordinator.swift in Sources */,
+				2B9C4FD22BF0B57E0058CE3F /* DetailPostViewController.swift in Sources */,
 				2BB515722BDBCE5A0092CC72 /* UIColor+.swift in Sources */,
 				2BB5159D2BDFE4F70092CC72 /* MyPageViewController.swift in Sources */,
-				2B6F28A72BED326300BDA911 /* PopularPostListViewcontroller.swift in Sources */,
+				2B6F28A72BED326300BDA911 /* PopularPostListViewController.swift in Sources */,
 				2BB515612BDAA7190092CC72 /* HomeComponent.swift in Sources */,
 				2B146A042BD3DA6D00E6483E /* AppCoordinator.swift in Sources */,
 				2BB515952BDFD5770092CC72 /* MessageCoordinator.swift in Sources */,
