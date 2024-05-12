@@ -147,13 +147,13 @@ extension DetailPostViewController {
         // Group
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .estimated(200)
+            heightDimension: .absolute(100)
         )
-        
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         // Section
         let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 20, trailing: 0)
         
         return section
     }
@@ -179,7 +179,7 @@ extension DetailPostViewController {
                         for: indexPath
                     ) as? BannerCollectionViewCell
                     
-                    cell?.backgroundColor = .orange
+                    cell?.configure(bannerModel: BannerModel(imageUrl: "https://source.unsplash.com/random/400x400?17"))
                     
                     return cell
                     
@@ -193,14 +193,16 @@ extension DetailPostViewController {
     
     private func createSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+        
         let singleSection = Section.single
         let contentItem = Item.contentItem("test")
+        snapshot.appendSections([singleSection])
+        snapshot.appendItems([contentItem],toSection: singleSection)
         
         let bannerSection = Section.banner
         let bannerItem = Item.bannerItem("testest")
-        
-        snapshot.appendSections([singleSection])
-        snapshot.appendItems([contentItem])
+        snapshot.appendSections([bannerSection])
+        snapshot.appendItems([bannerItem],toSection: bannerSection)
         
         dataSource?.apply(snapshot)
     }
