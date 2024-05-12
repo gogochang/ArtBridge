@@ -8,11 +8,23 @@
 import UIKit
 import RxSwift
 
+fileprivate enum Section: Hashable {
+    case banner
+    case single
+    case vertical
+}
+
+fileprivate enum Item: Hashable {
+    case contentItem(String)
+    case bannerItem(String)
+    case commentItem(String)
+}
 
 final class DetailPostViewController: UIViewController {
     //MARK: - Properties
     private let viewModel: DetailPostViewModel
     private let disposeBag: DisposeBag = DisposeBag()
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
     //MARK: - UI
     private let navBar = ArtBridgeNavBar().then {
@@ -20,6 +32,16 @@ final class DetailPostViewController: UIViewController {
         $0.rightBtnItem.setImage(UIImage(systemName: "bell"), for: .normal)
         $0.title.text = "게시글 상세보기"
     }
+    
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
+        $0.backgroundColor = .systemGray6
+        
+        $0.register(ContentCollectionViewCell.self, forCellWithReuseIdentifier: ContentCollectionViewCell.id)
+        
+        $0.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: BannerCollectionViewCell.id)
+        
+    }
+    
     
     //MARK: - Init
     init(viewModel: DetailPostViewModel) {
@@ -37,6 +59,9 @@ final class DetailPostViewController: UIViewController {
         setupViews()
         initialLayout()
         
+        setDataSource()
+        createSnapshot()
+        
         viewModelInput()
     }
     
@@ -51,7 +76,8 @@ final class DetailPostViewController: UIViewController {
 extension DetailPostViewController {
     private func setupViews() {
         view.addSubviews([
-            navBar
+            navBar,
+            collectionView
         ])
     }
     
@@ -61,5 +87,121 @@ extension DetailPostViewController {
         navBar.snp.makeConstraints {
             $0.top.left.right.equalToSuperview()
         }
+        
+        collectionView.snp.makeConstraints {
+            $0.top.equalTo(navBar.snp.bottom)
+            $0.left.bottom.right.equalToSuperview()
+        }
+    }
+}
+
+//MARK: - CompositionalLayout
+extension DetailPostViewController {
+    private func createLayout() -> UICollectionViewCompositionalLayout {
+        return UICollectionViewCompositionalLayout(sectionProvider: { [weak self] sectionIndex, _ in
+            let section = self?.dataSource?.sectionIdentifier(for: sectionIndex)
+            
+            switch section {
+            case .single:
+                return self?.createSingleSection()
+            case .banner:
+                return self?.createBannerSection()
+            default:
+                return nil
+            }
+        })
+    }
+    
+    private func createSingleSection() -> NSCollectionLayoutSection {
+        // Item
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(200)
+        )
+        
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        // Group
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(200)
+        )
+        
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        
+        // Section
+        let section = NSCollectionLayoutSection(group: group)
+        
+        return section
+    }
+    
+    private func createBannerSection() -> NSCollectionLayoutSection {
+        // Item
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0)
+        )
+        
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        // Group
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(200)
+        )
+        
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        
+        // Section
+        let section = NSCollectionLayoutSection(group: group)
+        
+        return section
+    }
+}
+
+//MARK: - DataSource
+extension DetailPostViewController {
+    private func setDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Section, Item>(
+            collectionView: collectionView,
+            cellProvider: { collectionView, indexPath, item in
+                switch item {
+                case .contentItem:
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: ContentCollectionViewCell.id,
+                        for: indexPath
+                    ) as? ContentCollectionViewCell
+                    
+                    return cell
+                case .bannerItem:
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: BannerCollectionViewCell.id,
+                        for: indexPath
+                    ) as? BannerCollectionViewCell
+                    
+                    cell?.backgroundColor = .orange
+                    
+                    return cell
+                    
+                default:
+                    return nil
+                }
+                
+            }
+        )
+    }
+    
+    private func createSnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+        let singleSection = Section.single
+        let contentItem = Item.contentItem("test")
+        
+        let bannerSection = Section.banner
+        let bannerItem = Item.bannerItem("testest")
+        
+        snapshot.appendSections([singleSection])
+        snapshot.appendItems([contentItem])
+        
+        dataSource?.apply(snapshot)
     }
 }
