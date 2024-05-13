@@ -33,6 +33,10 @@ final class CommentInputView: UIView {
         $0.isHidden = true
     }
     
+    private let lineView = UIView().then {
+        $0.backgroundColor = .systemGray5
+    }
+    
     //MARK: - Init
     init() {
         super.init(frame: .zero)
@@ -100,6 +104,7 @@ extension CommentInputView {
         ])
         
         contentView.addSubviews([
+            lineView,
             textContainerView,
         ])
         
@@ -113,6 +118,11 @@ extension CommentInputView {
         contentView.snp.makeConstraints {
             $0.top.left.bottom.right.equalToSuperview()
             $0.height.equalTo(44 + 50)//TODO: safeArea bottom height
+        }
+        
+        lineView.snp.makeConstraints {
+            $0.top.left.right.equalToSuperview()
+            $0.height.equalTo(1)
         }
         
         textContainerView.snp.makeConstraints {
