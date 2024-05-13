@@ -41,6 +41,7 @@ final class DetailPostViewController: UIViewController {
         $0.register(CommentCollectionViewCell.self, forCellWithReuseIdentifier: CommentCollectionViewCell.id)
     }
     
+    private let commentInputView = CommentInputView()
     
     //MARK: - Init
     init(viewModel: DetailPostViewModel) {
@@ -62,6 +63,10 @@ final class DetailPostViewController: UIViewController {
         createSnapshot()
         
         viewModelInput()
+        
+        dismissKeyboardWhenTappedAround()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func viewModelInput() {
@@ -76,7 +81,8 @@ extension DetailPostViewController {
     private func setupViews() {
         view.addSubviews([
             navBar,
-            collectionView
+            collectionView,
+            commentInputView
         ])
     }
     
@@ -89,6 +95,12 @@ extension DetailPostViewController {
         
         collectionView.snp.makeConstraints {
             $0.top.equalTo(navBar.snp.bottom)
+            $0.left.right.equalToSuperview()
+            
+        }
+        
+        commentInputView.snp.makeConstraints {
+            $0.top.equalTo(collectionView.snp.bottom)
             $0.left.bottom.right.equalToSuperview()
         }
     }
@@ -238,5 +250,46 @@ extension DetailPostViewController {
         snapshot.appendItems(commentItems,toSection: verticalSection)
         
         dataSource?.apply(snapshot)
+    }
+}
+
+//MARK: - Extension Gesture
+extension DetailPostViewController {
+    func dismissKeyboardWhenTappedAround() {
+        let tap =
+            UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(false)
+    }
+
+    func gestureRecognizer(_: UIGestureRecognizer, shouldBeRequiredToFailBy _: UIGestureRecognizer) -> Bool {
+        dismissKeyboard() // 제스처로 뒤로가기할 때 키보드 없애야함
+        return true
+    }
+
+    @objc
+    func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            UIView.animate(withDuration: 0.3) {
+                self.commentInputView.snp.updateConstraints {
+                    $0.bottom.equalToSuperview().inset(keyboardRectangle.height)
+                }
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+
+    @objc
+    func keyboardWillHide(_ notification: Notification) {
+        UIView.animate(withDuration: 0.3) {
+            self.commentInputView.snp.updateConstraints {
+                $0.bottom.equalToSuperview().inset(0)
+            }
+            self.view.layoutIfNeeded()
+        }
     }
 }
