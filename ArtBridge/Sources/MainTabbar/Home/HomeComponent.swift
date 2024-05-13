@@ -15,4 +15,8 @@ final class HomeComponent {
     var popularPostListComponent: PopularPostListComponent {
         return PopularPostListComponent()
     }
+    
+    var detailPostComponent: DetailPostComponent {
+        return DetailPostComponent()
+    }
 }

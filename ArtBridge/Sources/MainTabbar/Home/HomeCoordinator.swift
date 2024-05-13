@@ -28,6 +28,13 @@ final class HomeCoordinator: BaseCoordinator<Void> {
             .bind { [weak self] vm in
                 self?.pushPopularPostListScene(vm: vm, animated: true)
             }.disposed(by: sceneDisposeBag)
+        
+        scene.VM.routes.detailPost
+            .map { scene.VM }
+            .bind { [weak self] vm in
+                self?.pushDetailPostScene(vm: vm, animated: true)
+                
+            }.disposed(by: sceneDisposeBag)
     }
     
     private func pushPopularPostListScene(vm: HomeViewModel, animated: Bool) {
@@ -39,6 +46,19 @@ final class HomeCoordinator: BaseCoordinator<Void> {
             case .backward:
                 vm.routeInputs.needUpdate.onNext(false)
             }
+        }
+    }
+    
+    private func pushDetailPostScene(vm: HomeViewModel, animated: Bool) {
+        let comp = component.detailPostComponent
+        let coord = DetailPostCoordinator(component: comp, navController: navigationController)
+        
+        coordinate(coordinator: coord, animated: animated) { coordResult in
+            switch coordResult {
+            case .backward:
+                vm.routeInputs.needUpdate.onNext(false)
+            }
+            
         }
     }
     

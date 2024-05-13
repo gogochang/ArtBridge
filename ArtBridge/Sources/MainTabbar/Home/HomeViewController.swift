@@ -472,5 +472,6 @@ extension HomeViewController {
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("tapped cell item")
+        self.viewModel.inputs.showDetailPost.onNext(())
     }
 }
