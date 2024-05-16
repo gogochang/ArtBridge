@@ -27,6 +27,7 @@
 		2B146A0C2BD3E07600E6483E /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B146A0B2BD3E07600E6483E /* RxSwift */; };
 		2B3851FE2BF238AE00BCF540 /* CommentInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3851FD2BF238AE00BCF540 /* CommentInputView.swift */; };
 		2B3852002BF2628900BCF540 /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3851FF2BF2628900BCF540 /* UITextView+.swift */; };
+		2B3852022BF63B8600BCF540 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3852012BF63B8600BCF540 /* UIButton+.swift */; };
 		2B6F28A72BED326300BDA911 /* PopularPostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28A62BED326300BDA911 /* PopularPostListViewController.swift */; };
 		2B6F28A92BED330100BDA911 /* PopularPostListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28A82BED330100BDA911 /* PopularPostListComponent.swift */; };
 		2B6F28AB2BED33A800BDA911 /* PopularPostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28AA2BED33A800BDA911 /* PopularPostListViewModel.swift */; };
@@ -115,6 +116,7 @@
 		2B146A082BD3DF0000E6483E /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		2B3851FD2BF238AE00BCF540 /* CommentInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputView.swift; sourceTree = "<group>"; };
 		2B3851FF2BF2628900BCF540 /* UITextView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+.swift"; sourceTree = "<group>"; };
+		2B3852012BF63B8600BCF540 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		2B6F28A62BED326300BDA911 /* PopularPostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListViewController.swift; sourceTree = "<group>"; };
 		2B6F28A82BED330100BDA911 /* PopularPostListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListComponent.swift; sourceTree = "<group>"; };
 		2B6F28AA2BED33A800BDA911 /* PopularPostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListViewModel.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 				2B1469FE2BD399BF00E6483E /* UIView+.swift */,
 				2BB5155D2BD91CE90092CC72 /* UIStackView+.swift */,
 				2B3851FF2BF2628900BCF540 /* UITextView+.swift */,
+				2B3852012BF63B8600BCF540 /* UIButton+.swift */,
 			);
 			path = "View+";
 			sourceTree = "<group>";
@@ -661,6 +664,7 @@
 				2BB515722BDBCE5A0092CC72 /* UIColor+.swift in Sources */,
 				2BB5159D2BDFE4F70092CC72 /* MyPageViewController.swift in Sources */,
 				2B6F28A72BED326300BDA911 /* PopularPostListViewController.swift in Sources */,
+				2B3852022BF63B8600BCF540 /* UIButton+.swift in Sources */,
 				2BB515612BDAA7190092CC72 /* HomeComponent.swift in Sources */,
 				2B146A042BD3DA6D00E6483E /* AppCoordinator.swift in Sources */,
 				2BB515952BDFD5770092CC72 /* MessageCoordinator.swift in Sources */,

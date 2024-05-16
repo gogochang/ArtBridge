@@ -130,7 +130,11 @@ class MainTabController: UIViewController {
     private let homeBtn = UIButton().then { button in
         button.setImage(UIImage(systemName: "house"), for: .normal)
         button.setImage(UIImage(systemName: "house.fill"), for: .selected)
-        button.tintColor = .black
+        button.setTitle("홈", for: .normal)
+        button.setTitleColor(.darkGray, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 12)
+        button.tintColor = .darkGray
+        button.alignTextBelow()
         button.snp.makeConstraints { make in
             make.width.equalTo(36)
             make.height.equalTo(36)
@@ -140,7 +144,11 @@ class MainTabController: UIViewController {
     private let communityBtn = UIButton().then { button in
         button.setImage(UIImage(systemName: "list.bullet.rectangle"), for: .normal)
         button.setImage(UIImage(systemName: "list.bullet.rectangle.fill"), for: .selected)
-        button.tintColor = .black
+        button.setTitle("게시판", for: .normal)
+        button.setTitleColor(.darkGray, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 12)
+        button.tintColor = .darkGray
+        button.alignTextBelow()
         button.snp.makeConstraints { make in
             make.width.equalTo(36)
             make.height.equalTo(36)
@@ -150,7 +158,11 @@ class MainTabController: UIViewController {
     private let messageBtn = UIButton().then { button in
         button.setImage(UIImage(systemName: "message"), for: .normal)
         button.setImage(UIImage(systemName: "message.fill"), for: .selected)
-        button.tintColor = .black
+        button.setTitle("대화", for: .normal)
+        button.setTitleColor(.darkGray, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 12)
+        button.tintColor = .darkGray
+        button.alignTextBelow()
         button.snp.makeConstraints { make in
             make.width.equalTo(36)
             make.height.equalTo(36)
@@ -160,7 +172,11 @@ class MainTabController: UIViewController {
     private let myPageBtn = UIButton().then { button in
         button.setImage(UIImage(systemName: "person"), for: .normal)
         button.setImage(UIImage(systemName: "person.fill"), for: .selected)
-        button.tintColor = .black
+        button.setTitle("내정보", for: .normal)
+        button.setTitleColor(.darkGray, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 12)
+        button.tintColor = .darkGray
+        button.alignTextBelow()
         button.snp.makeConstraints { make in
             make.width.equalTo(36)
             make.height.equalTo(36)
