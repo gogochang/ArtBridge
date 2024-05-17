@@ -33,7 +33,12 @@ final class HomeCoordinator: BaseCoordinator<Void> {
             .map { scene.VM }
             .bind { [weak self] vm in
                 self?.pushDetailPostScene(vm: vm, animated: true)
-                
+            }.disposed(by: sceneDisposeBag)
+        
+        scene.VM.routes.detailTutor
+            .map { scene.VM }
+            .bind { [weak self] vm in
+                self?.pushDetailTutorScene(vm: vm, animated: true)
             }.disposed(by: sceneDisposeBag)
     }
     
@@ -59,6 +64,18 @@ final class HomeCoordinator: BaseCoordinator<Void> {
                 vm.routeInputs.needUpdate.onNext(false)
             }
             
+        }
+    }
+    
+    private func pushDetailTutorScene(vm: HomeViewModel, animated: Bool) {
+        let comp = component.detailTutorComponent
+        let coord = DetailTutorCoordinator(component: comp, navController: navigationController)
+        
+        coordinate(coordinator: coord, animated: animated) { coordResult in
+            switch coordResult {
+            case .backward:
+                vm.routeInputs.needUpdate.onNext(false)
+            }
         }
     }
     

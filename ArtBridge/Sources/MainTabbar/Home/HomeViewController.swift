@@ -147,7 +147,7 @@ final class HomeViewController: UIViewController {
         snapshot.appendSections([popularPostSection])
         snapshot.appendItems(popularPostItems, toSection: popularPostSection)
         
-        let popularTutorSection = Section.PopularPost("지금 인기있는 강사")
+        let popularTutorSection = Section.PopularTutor("지금 인기있는 강사")
         let popularTutorItems = [
             Item.previewItem("송지효","바이올린","https://i.pravatar.cc/300?img=1"),
             Item.previewItem("박명수","드럼","https://i.pravatar.cc/300?img=2"),
@@ -471,7 +471,21 @@ extension HomeViewController {
 //MARK: - UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("tapped cell item")
-        self.viewModel.inputs.showDetailPost.onNext(())
+        let section = dataSource?.sectionIdentifier(for: indexPath.section)
+        print("clicked section : \(section)")
+        switch section {
+        case .banner:
+            print("A")
+        case .quickHorizontal:
+            print("클릭된 악기 검색페이지로 이동")
+        case .PopularPost:
+            self.viewModel.inputs.showDetailPost.onNext(())
+        case .PopularTutor:
+            self.viewModel.inputs.showDetailTutor.onNext(())
+        case .news:
+            print("News상세보기 페이지로 이동")
+        case .none:
+            print("none")
+        }
     }
 }

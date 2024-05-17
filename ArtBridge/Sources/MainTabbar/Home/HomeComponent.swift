@@ -19,4 +19,8 @@ final class HomeComponent {
     var detailPostComponent: DetailPostComponent {
         return DetailPostComponent()
     }
+    
+    var detailTutorComponent: DetailTutorComponent {
+        return DetailTutorComponent()
+    }
 }

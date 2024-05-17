@@ -23,6 +23,10 @@ final class HomeViewModel {
         inputs.showDetailPost
             .bind(to: routes.detailPost)
             .disposed(by: disposeBag)
+        
+        inputs.showDetailTutor
+            .bind(to: routes.detailTutor)
+            .disposed(by: disposeBag)
     }
     
     struct RouteInput {
@@ -32,10 +36,12 @@ final class HomeViewModel {
     struct Input {
         var showPopularPostList = PublishSubject<Void>()
         var showDetailPost = PublishSubject<Void>()
+        var showDetailTutor = PublishSubject<Void>()
     }
     
     struct Route {
         var popularPostList = PublishSubject<Void>()
         var detailPost = PublishSubject<Void>()
+        var detailTutor = PublishSubject<Void>()
     }
 }
