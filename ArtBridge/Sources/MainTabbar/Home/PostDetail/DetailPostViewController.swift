@@ -96,7 +96,6 @@ extension DetailPostViewController {
         collectionView.snp.makeConstraints {
             $0.top.equalTo(navBar.snp.bottom)
             $0.left.right.equalToSuperview()
-            
         }
         
         commentInputView.snp.makeConstraints {

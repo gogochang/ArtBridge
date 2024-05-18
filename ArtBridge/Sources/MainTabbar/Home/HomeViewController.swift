@@ -472,7 +472,6 @@ extension HomeViewController {
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let section = dataSource?.sectionIdentifier(for: indexPath.section)
-        print("clicked section : \(section)")
         switch section {
         case .banner:
             print("A")

@@ -17,7 +17,7 @@ fileprivate enum Section: Hashable {
 }
 
 fileprivate enum Item: Hashable {
-    case bannerItem
+    case bannerItem(String) // ImageURL
 }
 
 final class DetailTutorViewController: UIViewController {
@@ -33,8 +33,11 @@ final class DetailTutorViewController: UIViewController {
     }
     
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
-        $0.backgroundColor = .orange
+        
+        $0.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: BannerCollectionViewCell.id)
     }
+    
+    private lazy var bannerCounter = ScrollCounter(maxPage: 5)
     
     //MARK: - Init
     init(viewModel: DetailTutorViewModel) {
@@ -51,6 +54,9 @@ final class DetailTutorViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         initialLayout()
+        
+        setDataSource()
+        createSnapshot()
         
         viewModelInput()
     }
@@ -69,12 +75,24 @@ extension DetailTutorViewController {
             navBar,
             collectionView
         ])
+        
+        collectionView.addSubviews([bannerCounter])
     }
     
     private func initialLayout() {
         self.view.backgroundColor = .white
         navBar.snp.makeConstraints {
             $0.top.left.right.equalToSuperview()
+        }
+        
+        collectionView.snp.makeConstraints {
+            $0.top.equalTo(navBar.snp.bottom)
+            $0.left.bottom.right.equalToSuperview()
+        }
+        
+        bannerCounter.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(270)
+            $0.left.equalToSuperview().inset(12)
         }
     }
 }
@@ -99,7 +117,6 @@ extension DetailTutorViewController {
             default:
                 return nil
             }
-        
         },configuration: config)
     }
     
@@ -114,14 +131,59 @@ extension DetailTutorViewController {
         //Group
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(400)
+            heightDimension: .absolute(300)
         )
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         //Section
         let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .groupPagingCentered
         
+        let pageWidth = collectionView.bounds.width
+        section.visibleItemsInvalidationHandler = { [weak self] (visibleItem, offset, env) in
+            guard let self = self else { return }
+            if let page = Int(exactly: (offset.x + pageWidth) / pageWidth) {
+                print("DetailTutorViewController Banner Page : \(page)")
+                self.bannerCounter.currentPage = page
+            }
+        }
         return section
     }
 }
 
+//MARK: - DataSource
+extension DetailTutorViewController {
+    private func setDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Section, Item>(
+            collectionView: collectionView,
+            cellProvider: { collectionView, indexPath, item in
+                switch item {
+                case .bannerItem:
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: BannerCollectionViewCell.id,
+                        for: indexPath
+                    ) as? BannerCollectionViewCell
+                    
+                    cell?.configure(bannerModel: BannerModel(imageUrl: "https://source.unsplash.com/random/400x400?17"))
+                    
+                    return cell
+                }
+            }
+        )
+    }
+    
+    private func createSnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+        let bannerSection = Section.banner
+        let bannerItems = [
+            Item.bannerItem("https://source.unsplash.com/random/400x400?21"),
+            Item.bannerItem("https://source.unsplash.com/random/400x400?22"),
+            Item.bannerItem("https://source.unsplash.com/random/400x400?23"),
+            Item.bannerItem("https://source.unsplash.com/random/400x400?24"),
+            Item.bannerItem("https://source.unsplash.com/random/400x400?25")
+        ]
+        snapshot.appendSections([bannerSection])
+        snapshot.appendItems(bannerItems,toSection: bannerSection)
+        dataSource?.apply(snapshot)
+    }
+}
