@@ -18,6 +18,7 @@ fileprivate enum Section: Hashable {
 
 fileprivate enum Item: Hashable {
     case bannerItem(String) // ImageURL
+    case profile
 }
 
 final class DetailTutorViewController: UIViewController {
@@ -35,6 +36,7 @@ final class DetailTutorViewController: UIViewController {
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
         
         $0.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: BannerCollectionViewCell.id)
+        $0.register(TutorProfileCollectionViewCell.self, forCellWithReuseIdentifier: TutorProfileCollectionViewCell.id)
     }
     
     private lazy var bannerCounter = ScrollCounter(maxPage: 5)
@@ -109,7 +111,7 @@ extension DetailTutorViewController {
             case .title:
                 return nil
             case .profile:
-                return nil
+                return self?.createBannerSection()
             case .detailInfo:
                 return nil
             case .description:
@@ -149,6 +151,27 @@ extension DetailTutorViewController {
         }
         return section
     }
+    
+    private func createProfileSection() -> NSCollectionLayoutSection {
+        //Item
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        //Group
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(100)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        //Section
+        let section = NSCollectionLayoutSection(group: group)
+        
+        return section
+    }
 }
 
 //MARK: - DataSource
@@ -167,6 +190,14 @@ extension DetailTutorViewController {
                     cell?.configure(bannerModel: BannerModel(imageUrl: "https://source.unsplash.com/random/400x400?17"))
                     
                     return cell
+                    
+                case .profile:
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: TutorProfileCollectionViewCell.id,
+                        for: indexPath
+                    ) as? TutorProfileCollectionViewCell
+                    
+                    return cell
                 }
             }
         )
@@ -174,6 +205,7 @@ extension DetailTutorViewController {
     
     private func createSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+        
         let bannerSection = Section.banner
         let bannerItems = [
             Item.bannerItem("https://source.unsplash.com/random/400x400?21"),
@@ -184,6 +216,13 @@ extension DetailTutorViewController {
         ]
         snapshot.appendSections([bannerSection])
         snapshot.appendItems(bannerItems,toSection: bannerSection)
+        
+        let profileSection = Section.profile
+        let profileItem = Item.profile
+        
+        snapshot.appendSections([profileSection])
+        snapshot.appendItems([profileItem], toSection: profileSection)
+        
         dataSource?.apply(snapshot)
     }
 }
