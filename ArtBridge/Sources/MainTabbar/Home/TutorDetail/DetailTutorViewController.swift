@@ -111,7 +111,7 @@ extension DetailTutorViewController {
             case .title:
                 return nil
             case .profile:
-                return self?.createBannerSection()
+                return self?.createProfileSection()
             case .detailInfo:
                 return nil
             case .description:
@@ -163,7 +163,7 @@ extension DetailTutorViewController {
         //Group
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(100)
+            heightDimension: .absolute(80)
         )
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
