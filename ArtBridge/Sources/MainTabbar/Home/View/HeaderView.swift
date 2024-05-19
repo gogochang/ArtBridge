@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import RxSwift
 
 final class HeaderView: UICollectionReusableView {
     static let id = "HeaderView"
+    var disposeBag = DisposeBag()
     
     //MARK: - UI
     private let titleLabel = UILabel().then {
@@ -35,6 +37,7 @@ final class HeaderView: UICollectionReusableView {
     }
     //MARK: - Internal
     func configure(title: String) {
+        disposeBag = DisposeBag()
         titleLabel.text = title
     }
 }

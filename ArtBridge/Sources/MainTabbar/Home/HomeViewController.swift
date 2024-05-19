@@ -414,10 +414,6 @@ extension HomeViewController {
             switch section {
             case .PopularPost(let title):
                 (header as? HeaderView)?.configure(title: title)
-                (header as? HeaderView)?.moreButton.rx.tap
-                    .throttle(.seconds(3),latest: true, scheduler: MainScheduler.instance)
-                    .bind(to: self.viewModel.inputs.showPopularPostList)
-                    .disposed(by: self.disposeBag)
             case .PopularTutor(let title):
                 (header as? HeaderView)?.configure(title: title)
             case .news(let title):
@@ -425,6 +421,10 @@ extension HomeViewController {
             default:
                 print("Default")
             }
+            
+            (header as? HeaderView)?.moreButton.rx.tap
+                .bind(to: self.viewModel.inputs.showPopularPostList)
+                .disposed(by: (header as? HeaderView)?.disposeBag ?? DisposeBag())
             
             return header
         }
