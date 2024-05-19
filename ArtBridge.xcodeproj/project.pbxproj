@@ -34,6 +34,7 @@
 		2B38520B2BF77D4F00BCF540 /* DetailTutorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B38520A2BF77D4F00BCF540 /* DetailTutorCoordinator.swift */; };
 		2B5C6C9B2BF845AC004800CC /* ScrollCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C6C9A2BF845AC004800CC /* ScrollCounter.swift */; };
 		2B5C6C9E2BF84E1E004800CC /* TutorProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C6C9D2BF84E1E004800CC /* TutorProfileCollectionViewCell.swift */; };
+		2B5C6CA02BFA0251004800CC /* TutorInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C6C9F2BFA0251004800CC /* TutorInfoCollectionViewCell.swift */; };
 		2B6F28A72BED326300BDA911 /* PopularPostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28A62BED326300BDA911 /* PopularPostListViewController.swift */; };
 		2B6F28A92BED330100BDA911 /* PopularPostListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28A82BED330100BDA911 /* PopularPostListComponent.swift */; };
 		2B6F28AB2BED33A800BDA911 /* PopularPostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28AA2BED33A800BDA911 /* PopularPostListViewModel.swift */; };
@@ -129,6 +130,7 @@
 		2B38520A2BF77D4F00BCF540 /* DetailTutorCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTutorCoordinator.swift; sourceTree = "<group>"; };
 		2B5C6C9A2BF845AC004800CC /* ScrollCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollCounter.swift; sourceTree = "<group>"; };
 		2B5C6C9D2BF84E1E004800CC /* TutorProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorProfileCollectionViewCell.swift; sourceTree = "<group>"; };
+		2B5C6C9F2BFA0251004800CC /* TutorInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		2B6F28A62BED326300BDA911 /* PopularPostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListViewController.swift; sourceTree = "<group>"; };
 		2B6F28A82BED330100BDA911 /* PopularPostListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListComponent.swift; sourceTree = "<group>"; };
 		2B6F28AA2BED33A800BDA911 /* PopularPostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListViewModel.swift; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 			isa = PBXGroup;
 			children = (
 				2B5C6C9D2BF84E1E004800CC /* TutorProfileCollectionViewCell.swift */,
+				2B5C6C9F2BFA0251004800CC /* TutorInfoCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -694,6 +697,7 @@
 				2B1469F12BD395E300E6483E /* AppComponent.swift in Sources */,
 				2BB515632BDAA7490092CC72 /* HomeViewController.swift in Sources */,
 				2B3852002BF2628900BCF540 /* UITextView+.swift in Sources */,
+				2B5C6CA02BFA0251004800CC /* TutorInfoCollectionViewCell.swift in Sources */,
 				2B9C4FD42BF0B58F0058CE3F /* DetailPostComponent.swift in Sources */,
 				2B1469FF2BD399BF00E6483E /* UIView+.swift in Sources */,
 				2B1469BD2BD38F8000E6483E /* AppDelegate.swift in Sources */,

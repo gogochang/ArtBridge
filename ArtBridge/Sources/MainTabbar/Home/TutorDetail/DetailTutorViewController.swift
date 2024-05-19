@@ -19,6 +19,7 @@ fileprivate enum Section: Hashable {
 fileprivate enum Item: Hashable {
     case bannerItem(String) // ImageURL
     case profile
+    case detailInfo
 }
 
 final class DetailTutorViewController: UIViewController {
@@ -37,6 +38,7 @@ final class DetailTutorViewController: UIViewController {
         
         $0.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: BannerCollectionViewCell.id)
         $0.register(TutorProfileCollectionViewCell.self, forCellWithReuseIdentifier: TutorProfileCollectionViewCell.id)
+        $0.register(TutorInfoCollectionViewCell.self, forCellWithReuseIdentifier: TutorInfoCollectionViewCell.id)
     }
     
     private lazy var bannerCounter = ScrollCounter(maxPage: 5)
@@ -113,7 +115,7 @@ extension DetailTutorViewController {
             case .profile:
                 return self?.createProfileSection()
             case .detailInfo:
-                return nil
+                return self?.createInfoSection()
             case .description:
                 return nil
             default:
@@ -172,6 +174,28 @@ extension DetailTutorViewController {
         
         return section
     }
+    
+    private func createInfoSection() -> NSCollectionLayoutSection {
+        //Item
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        //Group
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(200)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        //Section
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
+        return section
+    }
+
 }
 
 //MARK: - DataSource
@@ -198,6 +222,14 @@ extension DetailTutorViewController {
                     ) as? TutorProfileCollectionViewCell
                     
                     return cell
+                    
+                case .detailInfo:
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: TutorInfoCollectionViewCell.id,
+                        for: indexPath
+                    ) as? TutorInfoCollectionViewCell
+                    
+                    return cell
                 }
             }
         )
@@ -219,9 +251,14 @@ extension DetailTutorViewController {
         
         let profileSection = Section.profile
         let profileItem = Item.profile
-        
         snapshot.appendSections([profileSection])
         snapshot.appendItems([profileItem], toSection: profileSection)
+        
+        let infoSection = Section.detailInfo
+        let infoItem = Item.detailInfo
+        snapshot.appendSections([infoSection])
+        snapshot.appendItems([infoItem], toSection: infoSection)
+        
         
         dataSource?.apply(snapshot)
     }
