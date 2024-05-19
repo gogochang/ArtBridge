@@ -35,6 +35,8 @@
 		2B5C6C9B2BF845AC004800CC /* ScrollCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C6C9A2BF845AC004800CC /* ScrollCounter.swift */; };
 		2B5C6C9E2BF84E1E004800CC /* TutorProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C6C9D2BF84E1E004800CC /* TutorProfileCollectionViewCell.swift */; };
 		2B5C6CA02BFA0251004800CC /* TutorInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C6C9F2BFA0251004800CC /* TutorInfoCollectionViewCell.swift */; };
+		2B5C6CA22BFA3355004800CC /* TutorDescCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C6CA12BFA3355004800CC /* TutorDescCollectionViewCell.swift */; };
+		2B6B20D02BFA3740002D9E79 /* BottomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B20CF2BFA3740002D9E79 /* BottomButton.swift */; };
 		2B6F28A72BED326300BDA911 /* PopularPostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28A62BED326300BDA911 /* PopularPostListViewController.swift */; };
 		2B6F28A92BED330100BDA911 /* PopularPostListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28A82BED330100BDA911 /* PopularPostListComponent.swift */; };
 		2B6F28AB2BED33A800BDA911 /* PopularPostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28AA2BED33A800BDA911 /* PopularPostListViewModel.swift */; };
@@ -131,6 +133,8 @@
 		2B5C6C9A2BF845AC004800CC /* ScrollCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollCounter.swift; sourceTree = "<group>"; };
 		2B5C6C9D2BF84E1E004800CC /* TutorProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		2B5C6C9F2BFA0251004800CC /* TutorInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorInfoCollectionViewCell.swift; sourceTree = "<group>"; };
+		2B5C6CA12BFA3355004800CC /* TutorDescCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorDescCollectionViewCell.swift; sourceTree = "<group>"; };
+		2B6B20CF2BFA3740002D9E79 /* BottomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButton.swift; sourceTree = "<group>"; };
 		2B6F28A62BED326300BDA911 /* PopularPostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListViewController.swift; sourceTree = "<group>"; };
 		2B6F28A82BED330100BDA911 /* PopularPostListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListComponent.swift; sourceTree = "<group>"; };
 		2B6F28AA2BED33A800BDA911 /* PopularPostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListViewModel.swift; sourceTree = "<group>"; };
@@ -334,8 +338,8 @@
 		2B3852032BF77CAF00BCF540 /* TutorDetail */ = {
 			isa = PBXGroup;
 			children = (
-				2B5C6C9C2BF84DEF004800CC /* Cells */,
 				2B5C6C992BF84591004800CC /* Views */,
+				2B5C6C9C2BF84DEF004800CC /* Cells */,
 				2B3852042BF77D2800BCF540 /* DetailTutorViewController.swift */,
 				2B3852062BF77D3700BCF540 /* DetailTutorViewModel.swift */,
 				2B3852082BF77D4400BCF540 /* DetailTutorComponent.swift */,
@@ -348,6 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				2B5C6C9A2BF845AC004800CC /* ScrollCounter.swift */,
+				2B6B20CF2BFA3740002D9E79 /* BottomButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -357,6 +362,7 @@
 			children = (
 				2B5C6C9D2BF84E1E004800CC /* TutorProfileCollectionViewCell.swift */,
 				2B5C6C9F2BFA0251004800CC /* TutorInfoCollectionViewCell.swift */,
+				2B5C6CA12BFA3355004800CC /* TutorDescCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -690,6 +696,7 @@
 				2BB515882BDE86F40092CC72 /* CategoryCollectionViewCell.swift in Sources */,
 				2B3852092BF77D4400BCF540 /* DetailTutorComponent.swift in Sources */,
 				2B1469F62BD3974000E6483E /* MainTabController.swift in Sources */,
+				2B6B20D02BFA3740002D9E79 /* BottomButton.swift in Sources */,
 				2B3852052BF77D2800BCF540 /* DetailTutorViewController.swift in Sources */,
 				2B146A062BD3DC0C00E6483E /* MainTabCoordinator.swift in Sources */,
 				2BB515852BDE15CA0092CC72 /* CommunityCoordinator.swift in Sources */,
@@ -702,6 +709,7 @@
 				2B1469FF2BD399BF00E6483E /* UIView+.swift in Sources */,
 				2B1469BD2BD38F8000E6483E /* AppDelegate.swift in Sources */,
 				2BB5158A2BDE8DCE0092CC72 /* PostCollectionViewCell.swift in Sources */,
+				2B5C6CA22BFA3355004800CC /* TutorDescCollectionViewCell.swift in Sources */,
 				2B38520B2BF77D4F00BCF540 /* DetailTutorCoordinator.swift in Sources */,
 				2B9C4FD82BF0B5B00058CE3F /* DetailPostCoordinator.swift in Sources */,
 				2B9C4FDB2BF0CA5C0058CE3F /* CommentCollectionViewCell.swift in Sources */,

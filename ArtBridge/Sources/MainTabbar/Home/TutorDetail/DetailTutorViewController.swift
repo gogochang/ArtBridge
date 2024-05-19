@@ -20,6 +20,7 @@ fileprivate enum Item: Hashable {
     case bannerItem(String) // ImageURL
     case profile
     case detailInfo
+    case descItem
 }
 
 final class DetailTutorViewController: UIViewController {
@@ -35,13 +36,15 @@ final class DetailTutorViewController: UIViewController {
     }
     
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
-        
         $0.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: BannerCollectionViewCell.id)
         $0.register(TutorProfileCollectionViewCell.self, forCellWithReuseIdentifier: TutorProfileCollectionViewCell.id)
         $0.register(TutorInfoCollectionViewCell.self, forCellWithReuseIdentifier: TutorInfoCollectionViewCell.id)
+        $0.register(TutorDescCollectionViewCell.self, forCellWithReuseIdentifier: TutorDescCollectionViewCell.id)
     }
     
     private lazy var bannerCounter = ScrollCounter(maxPage: 5)
+    
+    private let bottomButtonView = BottomButton()
     
     //MARK: - Init
     init(viewModel: DetailTutorViewModel) {
@@ -77,7 +80,8 @@ extension DetailTutorViewController {
     private func setupViews() {
         view.addSubviews([
             navBar,
-            collectionView
+            collectionView,
+            bottomButtonView
         ])
         
         collectionView.addSubviews([bannerCounter])
@@ -91,12 +95,17 @@ extension DetailTutorViewController {
         
         collectionView.snp.makeConstraints {
             $0.top.equalTo(navBar.snp.bottom)
-            $0.left.bottom.right.equalToSuperview()
+            $0.left.right.equalToSuperview()
         }
         
         bannerCounter.snp.makeConstraints {
             $0.top.equalToSuperview().inset(270)
             $0.left.equalToSuperview().inset(12)
+        }
+        
+        bottomButtonView.snp.makeConstraints {
+            $0.top.equalTo(collectionView.snp.bottom)
+            $0.left.bottom.right.equalToSuperview()
         }
     }
 }
@@ -117,7 +126,7 @@ extension DetailTutorViewController {
             case .detailInfo:
                 return self?.createInfoSection()
             case .description:
-                return nil
+                return self?.createDescSection()
             default:
                 return nil
             }
@@ -195,7 +204,29 @@ extension DetailTutorViewController {
         section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
         return section
     }
-
+    
+    
+    private func createDescSection() -> NSCollectionLayoutSection {
+        //Item
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        //Group
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalWidth(1.0)
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        //Section
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
+        return section
+    }
 }
 
 //MARK: - DataSource
@@ -230,6 +261,14 @@ extension DetailTutorViewController {
                     ) as? TutorInfoCollectionViewCell
                     
                     return cell
+                    
+                case .descItem:
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: TutorDescCollectionViewCell.id,
+                        for: indexPath
+                    ) as? TutorDescCollectionViewCell
+                    
+                    return cell
                 }
             }
         )
@@ -259,6 +298,10 @@ extension DetailTutorViewController {
         snapshot.appendSections([infoSection])
         snapshot.appendItems([infoItem], toSection: infoSection)
         
+        let descSection = Section.description
+        let descItem = Item.descItem
+        snapshot.appendSections([descSection])
+        snapshot.appendItems([descItem], toSection: descSection)
         
         dataSource?.apply(snapshot)
     }
