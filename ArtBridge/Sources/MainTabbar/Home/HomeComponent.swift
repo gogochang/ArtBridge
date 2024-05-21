@@ -23,4 +23,8 @@ final class HomeComponent {
     var detailTutorComponent: DetailTutorComponent {
         return DetailTutorComponent()
     }
+    
+    var detailNewsComponent: DetailNewsComponent {
+        return DetailNewsComponent()
+    }
 }

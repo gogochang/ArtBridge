@@ -481,7 +481,7 @@ extension HomeViewController: UICollectionViewDelegate {
         case .PopularTutor:
             self.viewModel.inputs.showDetailTutor.onNext(())
         case .news:
-            print("News상세보기 페이지로 이동")
+            self.viewModel.inputs.showDetailNews.onNext(())
         case .none:
             print("none")
         }
