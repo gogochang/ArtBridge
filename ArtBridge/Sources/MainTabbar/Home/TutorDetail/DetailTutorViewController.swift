@@ -65,12 +65,20 @@ final class DetailTutorViewController: UIViewController {
         setDataSource()
         createSnapshot()
         
-        viewModelInput()
+        viewModelInputs()
+        
+        viewInputs()
     }
     
-    private func viewModelInput() {
+    private func viewModelInputs() {
         navBar.leftBtnItem.rx.tap
             .bind(to: viewModel.inputs.backward)
+            .disposed(by: disposeBag)
+    }
+    
+    private func viewInputs() {
+        bottomButtonView.button.rx.tap
+            .bind(to: viewModel.inputs.message)
             .disposed(by: disposeBag)
     }
 }

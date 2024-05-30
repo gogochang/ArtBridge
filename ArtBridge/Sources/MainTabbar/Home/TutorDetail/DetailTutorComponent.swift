@@ -13,4 +13,8 @@ final class DetailTutorComponent {
     }
     
     var viewModel: DetailTutorViewModel = .init()
+    
+    var messageComponent: MessageComponent {
+        return MessageComponent()
+    }
 }

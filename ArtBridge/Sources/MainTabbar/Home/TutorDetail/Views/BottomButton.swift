@@ -13,7 +13,7 @@ final class BottomButton: UIView {
         $0.backgroundColor = .white
     }
     
-    private let bottomButton = UIButton().then {
+    let button = UIButton().then {
         $0.layer.cornerRadius = 5
         $0.backgroundColor = .systemBrown
         $0.setTitle("메시지 보내기", for: .normal)
@@ -39,7 +39,7 @@ extension BottomButton {
             contentView
         ])
         
-        contentView.addSubview(bottomButton)
+        contentView.addSubview(button)
     }
     
     private func initialLayout() {
@@ -48,7 +48,7 @@ extension BottomButton {
             $0.height.equalTo(44 + 50)//TODO: safeArea bottom height
         }
         
-        bottomButton.snp.makeConstraints {
+        button.snp.makeConstraints {
             $0.top.equalToSuperview().inset(10)
             $0.left.right.equalToSuperview().inset(20)
             $0.height.equalTo(50)

@@ -17,13 +17,19 @@ final class DetailTutorViewModel {
         inputs.backward
             .bind(to: routes.backward)
             .disposed(by: disposeBag)
+        
+        inputs.message
+            .bind(to: routes.showmMssage)
+            .disposed(by: disposeBag)
     }
     
     struct Input {
         var backward = PublishSubject<Void>()
+        var message = PublishSubject<Void>()
     }
     
     struct Route {
         var backward = PublishSubject<Void>()
+        var showmMssage = PublishSubject<Void>()
     }
 }

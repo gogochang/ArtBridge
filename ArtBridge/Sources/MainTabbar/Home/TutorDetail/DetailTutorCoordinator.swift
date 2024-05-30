@@ -40,5 +40,23 @@ final class DetailTutorCoordinator: BaseCoordinator<DetailTutorResult> {
             .map { DetailTutorResult.backward }
             .bind(to: closeSignal)
             .disposed(by: sceneDisposeBag)
+        
+        scene.VM.routes.showmMssage
+            .debug()
+            .map { scene.VM }
+            .bind { [weak self] vm in
+                self?.configureAndGetMessageScene(vm: vm)
+            }
+            .disposed(by: sceneDisposeBag)
+    }
+    
+    private func configureAndGetMessageScene(vm: DetailTutorViewModel) {
+        print("1:1 대화 View로 이동!")
+//        let comp = component.messageComponent
+//        let coord = MessageCoordinator(component: comp, navController: navigationController)
+//
+//        coordinate(coordinator: coord, animated: false, needRelease: false)
+//        
+//        comp.scene.VM.routeInputs.needUpdate.onNext(true)
     }
 }
