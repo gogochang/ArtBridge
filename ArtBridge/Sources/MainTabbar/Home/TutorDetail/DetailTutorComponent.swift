@@ -14,7 +14,7 @@ final class DetailTutorComponent {
     
     var viewModel: DetailTutorViewModel = .init()
     
-    var messageComponent: MessageComponent {
-        return MessageComponent()
+    var chatComponent: ChatComponent {
+        return ChatComponent()
     }
 }

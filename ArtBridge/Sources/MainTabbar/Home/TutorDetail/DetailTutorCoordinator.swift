@@ -45,18 +45,22 @@ final class DetailTutorCoordinator: BaseCoordinator<DetailTutorResult> {
             .debug()
             .map { scene.VM }
             .bind { [weak self] vm in
-                self?.configureAndGetMessageScene(vm: vm)
+                self?.configureAndGetChatScene(vm: vm, animated: true)
             }
             .disposed(by: sceneDisposeBag)
     }
     
-    private func configureAndGetMessageScene(vm: DetailTutorViewModel) {
+    private func configureAndGetChatScene(vm: DetailTutorViewModel, animated: Bool) {
         print("1:1 대화 View로 이동!")
-//        let comp = component.messageComponent
-//        let coord = MessageCoordinator(component: comp, navController: navigationController)
-//
-//        coordinate(coordinator: coord, animated: false, needRelease: false)
-//        
-//        comp.scene.VM.routeInputs.needUpdate.onNext(true)
+        let comp = component.chatComponent
+        let coord = ChatCoordinator(component: comp, navController: navigationController)
+        
+        coordinate(coordinator: coord, animated: animated) { coordResult in
+            switch coordResult {
+            case .backward:
+                vm.routeInputs.needUpdate.onNext(false)
+            }
+            
+        }
     }
 }

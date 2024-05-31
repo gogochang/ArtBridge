@@ -11,6 +11,7 @@ import RxSwift
 final class DetailTutorViewModel {
     private var disposeBag = DisposeBag()
     var inputs = Input()
+    var routeInputs = RouteInput()
     var routes = Route()
     
     init() {
@@ -21,6 +22,10 @@ final class DetailTutorViewModel {
         inputs.message
             .bind(to: routes.showmMssage)
             .disposed(by: disposeBag)
+    }
+    
+    struct RouteInput {
+        var needUpdate = PublishSubject<Bool>()
     }
     
     struct Input {
