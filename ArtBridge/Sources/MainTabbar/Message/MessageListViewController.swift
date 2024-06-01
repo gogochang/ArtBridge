@@ -1,5 +1,5 @@
 //
-//  MessageViewController.swift
+//  MessageListViewController.swift
 //  ArtBridge
 //
 //  Created by 김창규 on 4/29/24.
@@ -17,7 +17,7 @@ fileprivate enum Item: Hashable {
     case preview(Int)
 }
 
-final class MessageViewController: UIViewController {
+final class MessageListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -37,8 +37,8 @@ final class MessageViewController: UIViewController {
         )
         
         $0.register(
-            MessageCollectionViewCell.self,
-            forCellWithReuseIdentifier: MessageCollectionViewCell.id
+            MessageListCollectionViewCell.self,
+            forCellWithReuseIdentifier: MessageListCollectionViewCell.id
         )
     }
     
@@ -49,7 +49,7 @@ final class MessageViewController: UIViewController {
 }
 
 //MARK: - Layout
-extension MessageViewController {
+extension MessageListViewController {
     private func setupViews() {
         view.addSubviews([
             navBar,
@@ -72,7 +72,7 @@ extension MessageViewController {
 }
 
 //MARK: - CompositionalLayout
-extension MessageViewController {
+extension MessageListViewController {
     private func createLayout() -> UICollectionViewCompositionalLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()
         config.interSectionSpacing = 20
@@ -139,7 +139,7 @@ extension MessageViewController {
 }
 
 //MARK: - DataSource
-extension MessageViewController {
+extension MessageListViewController {
     private func createSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         
@@ -173,9 +173,9 @@ extension MessageViewController {
                     
                 case .preview:
                     let cell = collectionView.dequeueReusableCell(
-                        withReuseIdentifier: MessageCollectionViewCell.id,
+                        withReuseIdentifier: MessageListCollectionViewCell.id,
                         for: indexPath
-                    ) as? MessageCollectionViewCell
+                    ) as? MessageListCollectionViewCell
                     
                     return cell
                 }

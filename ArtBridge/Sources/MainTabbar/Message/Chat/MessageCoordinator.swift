@@ -1,5 +1,5 @@
 //
-//  ChatCoordinator.swift
+//  MessageCoordinator.swift
 //  ArtBridge
 //
 //  Created by 김창규 on 5/31/24.
@@ -11,12 +11,12 @@ enum ChatResult {
     case backward
 }
 
-final class ChatCoordinator: BaseCoordinator<ChatResult> {
+final class MessageCoordinator: BaseCoordinator<ChatResult> {
     //MARK: - Properties
-    var component: ChatComponent
+    var component: MessageComponent
     
     //MARK: - Init
-    init(component: ChatComponent,
+    init(component: MessageComponent,
          navController: UINavigationController
     ) {
         self.component = component

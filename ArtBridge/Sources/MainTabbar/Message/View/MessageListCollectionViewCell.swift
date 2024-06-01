@@ -1,5 +1,5 @@
 //
-//  MessageCollectionViewCell.swift
+//  MessageListCollectionViewCell.swift
 //  ArtBridge
 //
 //  Created by 김창규 on 4/29/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MessageCollectionViewCell: UICollectionViewCell {
+final class MessageListCollectionViewCell: UICollectionViewCell {
     static let id = "MessageCollectionViewCell"
     
     override init(frame: CGRect) {
@@ -45,7 +45,7 @@ final class MessageCollectionViewCell: UICollectionViewCell {
 }
 
 //MARK: - Layout
-extension MessageCollectionViewCell {
+extension MessageListCollectionViewCell {
     private func setupViews() {
         addSubviews([
             imageView,

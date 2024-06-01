@@ -41,7 +41,7 @@ final class DetailPostViewController: UIViewController {
         $0.register(CommentCollectionViewCell.self, forCellWithReuseIdentifier: CommentCollectionViewCell.id)
     }
     
-    private let commentInputView = CommentInputView()
+    private let commentInputView = CommentInputView(placeHolder: "댓글을 입력해주세요.")
     
     //MARK: - Init
     init(viewModel: DetailPostViewModel) {

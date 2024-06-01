@@ -7,7 +7,11 @@
 
 import UIKit
 
+//TODO: 이름 변경 (댓글, 채팅 등등 여러환경에서 사용하기 때문에 좀 더 포괄적인 의미를 담은 이름 필요)
 final class CommentInputView: UIView {
+    //MARK: - Properties
+    private var placeHolder: String?
+    
     //MARK: - UI
     private let contentView = UIView().then {
         $0.backgroundColor = .white
@@ -20,7 +24,6 @@ final class CommentInputView: UIView {
     
     let textView = UITextView().then {
         $0.backgroundColor = .clear
-        $0.text = "댓글을 입력해주세요."
         $0.textColor = .systemGray
         $0.font = .systemFont(ofSize: 16)
     }
@@ -38,8 +41,11 @@ final class CommentInputView: UIView {
     }
     
     //MARK: - Init
-    init() {
+    init(placeHolder: String) {
         super.init(frame: .zero)
+        
+        self.placeHolder = placeHolder
+        textView.text = placeHolder
         
         setupViews()
         initialLayout()
@@ -54,7 +60,7 @@ final class CommentInputView: UIView {
 //MARK: - TextView Delegate
 extension CommentInputView: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "댓글을 입력해주세요." {
+        if textView.text == self.placeHolder {
             textView.text = nil
             textView.textColor = .darkText
         }
@@ -62,7 +68,6 @@ extension CommentInputView: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         let fixedWidth = textView.frame.size.width
-        let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
         let numberOfLine = textView.numberOfLine()
         
         createButton.isHidden = textView.text.isEmpty
@@ -90,7 +95,7 @@ extension CommentInputView: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "댓글을 입력해주세요."
+            textView.text = self.placeHolder
             textView.textColor = .systemGray
         }
     }

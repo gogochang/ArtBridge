@@ -1,5 +1,5 @@
 //
-//  MessageCoordinator.swift
+//  MessageListCoordinator.swift
 //  ArtBridge
 //
 //  Created by 김창규 on 4/29/24.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-final class MessageCoordinator: BaseCoordinator<Void> {
-    var component: MessageComponent
+final class MessageListCoordinator: BaseCoordinator<Void> {
+    var component: MessageListComponent
     
     init(
-        component: MessageComponent,
+        component: MessageListComponent,
         navController: UINavigationController
     ) {
         self.component = component

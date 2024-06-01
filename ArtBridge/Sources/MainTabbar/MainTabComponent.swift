@@ -23,8 +23,8 @@ final class MainTabComponent {
         return CommunityComponent()
     }
     
-    var messageComponent: MessageComponent {
-        return MessageComponent()
+    var messageComponent: MessageListComponent {
+        return MessageListComponent()
     }
     
     var myPageComponent: MyPageComponent {

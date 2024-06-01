@@ -51,9 +51,8 @@ final class DetailTutorCoordinator: BaseCoordinator<DetailTutorResult> {
     }
     
     private func configureAndGetChatScene(vm: DetailTutorViewModel, animated: Bool) {
-        print("1:1 대화 View로 이동!")
         let comp = component.chatComponent
-        let coord = ChatCoordinator(component: comp, navController: navigationController)
+        let coord = MessageCoordinator(component: comp, navController: navigationController)
         
         coordinate(coordinator: coord, animated: animated) { coordResult in
             switch coordResult {
