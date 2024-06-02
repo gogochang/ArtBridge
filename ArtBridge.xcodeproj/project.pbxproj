@@ -365,7 +365,7 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
-		2B3852032BF77CAF00BCF540 /* TutorDetail */ = {
+		2B3852032BF77CAF00BCF540 /* DetailTutor */ = {
 			isa = PBXGroup;
 			children = (
 				2B5C6C992BF84591004800CC /* Views */,
@@ -375,7 +375,7 @@
 				2B3852082BF77D4400BCF540 /* DetailTutorComponent.swift */,
 				2B38520A2BF77D4F00BCF540 /* DetailTutorCoordinator.swift */,
 			);
-			path = TutorDetail;
+			path = DetailTutor;
 			sourceTree = "<group>";
 		};
 		2B416FFF2C0AEBF600F31881 /* Cells */ = {
@@ -437,7 +437,7 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
-		2B9C4FD02BF0B5590058CE3F /* PostDetail */ = {
+		2B9C4FD02BF0B5590058CE3F /* DetailPost */ = {
 			isa = PBXGroup;
 			children = (
 				2B9C4FDE2BF0CB4C0058CE3F /* Views */,
@@ -447,7 +447,7 @@
 				2B9C4FD52BF0B59F0058CE3F /* DetailPostViewModel.swift */,
 				2B9C4FD72BF0B5B00058CE3F /* DetailPostCoordinator.swift */,
 			);
-			path = PostDetail;
+			path = DetailPost;
 			sourceTree = "<group>";
 		};
 		2B9C4FD92BF0CA490058CE3F /* Cells */ = {
@@ -472,8 +472,8 @@
 			isa = PBXGroup;
 			children = (
 				2B6B20D12BFCBB82002D9E79 /* DetailNews */,
-				2B3852032BF77CAF00BCF540 /* TutorDetail */,
-				2B9C4FD02BF0B5590058CE3F /* PostDetail */,
+				2B3852032BF77CAF00BCF540 /* DetailTutor */,
+				2B9C4FD02BF0B5590058CE3F /* DetailPost */,
 				2B6F28A52BED325300BDA911 /* PopularPostList */,
 				2B9C4FCF2BEF79530058CE3F /* Cells */,
 				2BB5156D2BDAC99E0092CC72 /* View */,
