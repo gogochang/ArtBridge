@@ -28,7 +28,8 @@ final class AppCoordinator: BaseCoordinator<Void> {
     override func start(animated _: Bool = true) {
 //        BasicLoginKeyChainService.shared.clearIfFirstLaunched()
         window.makeKeyAndVisible()
-        self.showMain(animated: false)
+        self.showLogin(animated: false)
+//        self.showMain(animated: false)
 //        component.loginService.checkLogin()
 //            .subscribe(onNext: { result in
 //                switch result {
@@ -57,6 +58,18 @@ final class AppCoordinator: BaseCoordinator<Void> {
 //            case .logout:
 //                self?.showLoggedOut(animated: false)
 //            }
+        }
+    }
+    
+    func showLogin(animated: Bool) {
+        let comp = component.loginComponent
+        let coord = LoginCoordinator(component: comp, navController: navigationController)
+        
+        coordinate(coordinator: coord, animated: animated) { [weak self] coordResult in
+            switch coordResult {
+            case .loginSuccess:
+                self?.showMain(animated: false)
+            }
         }
     }
 }

@@ -8,6 +8,10 @@
 import UIKit
 
 final class AppComponent {
+    var loginComponent: LoginComponent {
+        return LoginComponent()
+    }
+    
     var mainTabComponent: MainTabComponent {
         return MainTabComponent()
     }

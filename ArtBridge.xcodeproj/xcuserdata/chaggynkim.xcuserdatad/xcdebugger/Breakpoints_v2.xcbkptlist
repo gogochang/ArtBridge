@@ -20,5 +20,83 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6ECC661C-1802-4ECB-88B4-3F873EF4956F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ArtBridge/Sources/App/AppCoordinator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "showMain(animated:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6ECC661C-1802-4ECB-88B4-3F873EF4956F - 1ebd4237f55f87fc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[1] = [Constant Propagated Function : closure #1 (()) -&gt; () in ArtBridge.AppCoordinator.showMain(animated: Swift.Bool) -&gt; ()]&gt; of reabstraction thunk helper from @escaping @callee_guaranteed () -&gt; () to @escaping @callee_guaranteed (@in_guaranteed ()) -&gt; ()"
+                  moduleName = "ArtBridge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chaggynkim/Desktop/Projects/ArtBridge/ArtBridge/Sources/App/AppCoordinator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56">
+               </Location>
+               <Location
+                  uuid = "6ECC661C-1802-4ECB-88B4-3F873EF4956F - 9e83e6f9f886af63"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (ArtBridge.LoginResult) -&gt; () in ArtBridge.AppCoordinator.showLogin(animated: Swift.Bool) -&gt; ()"
+                  moduleName = "ArtBridge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chaggynkim/Desktop/Projects/ArtBridge/ArtBridge/Sources/App/AppCoordinator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C9592706-F08C-4F5A-9003-6703F78AE267"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ArtBridge/Sources/App/AppCoordinator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "showMain(animated:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F8D7C7EC-0D3A-470D-A0CB-91CAE99AA3F2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ArtBridge/Sources/App/AppCoordinator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "showLogin(animated:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

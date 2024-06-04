@@ -94,6 +94,10 @@
 		2BEDD4B92BE23DA300C12E17 /* MenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEDD4B82BE23DA300C12E17 /* MenuItemCollectionViewCell.swift */; };
 		2BFA9C4B2C0DD42400E72C99 /* NewsInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFA9C4A2C0DD42400E72C99 /* NewsInfoCollectionViewCell.swift */; };
 		2BFA9C4D2C0DDD5600E72C99 /* NewsContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFA9C4C2C0DDD5600E72C99 /* NewsContentCollectionViewCell.swift */; };
+		2BFA9C502C0F340300E72C99 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFA9C4F2C0F340300E72C99 /* LoginViewController.swift */; };
+		2BFA9C522C0F340B00E72C99 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFA9C512C0F340B00E72C99 /* LoginViewModel.swift */; };
+		2BFA9C542C0F341600E72C99 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFA9C532C0F341600E72C99 /* LoginCoordinator.swift */; };
+		2BFA9C562C0F341E00E72C99 /* LoginComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFA9C552C0F341E00E72C99 /* LoginComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -198,6 +202,10 @@
 		2BEDD4B82BE23DA300C12E17 /* MenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BFA9C4A2C0DD42400E72C99 /* NewsInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BFA9C4C2C0DDD5600E72C99 /* NewsContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsContentCollectionViewCell.swift; sourceTree = "<group>"; };
+		2BFA9C4F2C0F340300E72C99 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2BFA9C512C0F340B00E72C99 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		2BFA9C532C0F341600E72C99 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		2BFA9C552C0F341E00E72C99 /* LoginComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +308,7 @@
 			children = (
 				2B146A072BD3DEF000E6483E /* Base */,
 				2B1469EF2BD3922100E6483E /* App */,
+				2BFA9C4E2C0F313D00E72C99 /* Login */,
 				2B1469F22BD3961200E6483E /* MainTabbar */,
 				2B1469FC2BD3999500E6483E /* Extensions */,
 				2BB515732BDBD14C0092CC72 /* Common */,
@@ -602,6 +611,17 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		2BFA9C4E2C0F313D00E72C99 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				2BFA9C4F2C0F340300E72C99 /* LoginViewController.swift */,
+				2BFA9C512C0F340B00E72C99 /* LoginViewModel.swift */,
+				2BFA9C532C0F341600E72C99 /* LoginCoordinator.swift */,
+				2BFA9C552C0F341E00E72C99 /* LoginComponent.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -784,7 +804,10 @@
 				2B38520B2BF77D4F00BCF540 /* DetailTutorCoordinator.swift in Sources */,
 				2B9C4FD82BF0B5B00058CE3F /* DetailPostCoordinator.swift in Sources */,
 				2B9C4FDB2BF0CA5C0058CE3F /* CommentCollectionViewCell.swift in Sources */,
+				2BFA9C562C0F341E00E72C99 /* LoginComponent.swift in Sources */,
 				2B6F28A92BED330100BDA911 /* PopularPostListComponent.swift in Sources */,
+				2BFA9C522C0F340B00E72C99 /* LoginViewModel.swift in Sources */,
+				2BFA9C542C0F341600E72C99 /* LoginCoordinator.swift in Sources */,
 				2BB5157F2BDE15A50092CC72 /* CommunityComponent.swift in Sources */,
 				2BB5158C2BDE998E0092CC72 /* ButtonCollectionViewCell.swift in Sources */,
 				2BB5155E2BD91CE90092CC72 /* UIStackView+.swift in Sources */,
@@ -812,6 +835,7 @@
 				2B146A092BD3DF0000E6483E /* BaseCoordinator.swift in Sources */,
 				2BB515672BDAA85E0092CC72 /* HomeCoordinator.swift in Sources */,
 				2BB515912BDFD5640092CC72 /* MessageListViewController.swift in Sources */,
+				2BFA9C502C0F340300E72C99 /* LoginViewController.swift in Sources */,
 				2BB515812BDE15B20092CC72 /* CommunityViewController.swift in Sources */,
 				2B9C4FE02BF0CB5C0058CE3F /* ProfileView.swift in Sources */,
 				2BEDD4B92BE23DA300C12E17 /* MenuItemCollectionViewCell.swift in Sources */,

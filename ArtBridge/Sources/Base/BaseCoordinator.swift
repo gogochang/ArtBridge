@@ -64,7 +64,19 @@ class BaseCoordinator<ResultType>: Coordinator {
         needRelease: Bool = true,
         onCloseSignal: ((T) -> Void)? = nil
     ) {
+//        let disposable = coordinate(coordinator: coordinator, animated: animated)
+//        
         let disposable = coordinate(coordinator: coordinator, animated: animated)
+            .subscribe(onNext: { [weak self] coordResult in
+                defer {
+                    if needRelease {
+                        self?.releaseChild(coordinator: coordinator)
+                    }
+                }
+                onCloseSignal?(coordResult)
+            })
+
+        addChildDisposable(id: coordinator.identifier, disposable: disposable)
     }
     
     //MARK: - Private
@@ -76,5 +88,9 @@ class BaseCoordinator<ResultType>: Coordinator {
         childCoordinators[coordinator.identifier] = coordinator
         coordinator.start(animated: animated)
         return coordinator.closeSignal
+    }
+    
+    private func addChildDisposable(id: String, disposable: Disposable) {
+        childCloseSignalBags[id, default: []].append(disposable)
     }
 }
