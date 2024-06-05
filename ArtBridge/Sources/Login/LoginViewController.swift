@@ -14,8 +14,10 @@ final class LoginViewController: UIViewController {
     private var viewModel: LoginViewModel
     
     //MARK: - UI
-    private var backgroundView = UIView().then {
+    private var backgroundImageView = UIImageView().then {
         $0.backgroundColor = .systemBrown
+        $0.image = UIImage(named: "login_background_img")
+        $0.contentMode = .scaleAspectFill
     }
     
     private var loginButtonVStackView = UIStackView.make(
@@ -26,19 +28,21 @@ final class LoginViewController: UIViewController {
         spacing: 16
     )
     
-    private var kakaoLoginButton = UIButton().then {
-        $0.backgroundColor = .systemYellow
+    private var kakaoLoginButton = UIImageView().then {
+        $0.image = UIImage(named: "Kakao_login")
+        $0.contentMode = .scaleAspectFit
         $0.layer.cornerRadius = 5
     }
     
-    private var naverLoginButton = UIButton().then {
-        $0.backgroundColor = .systemGreen
+    private var naverLoginButton = UIImageView().then {
+        $0.image = UIImage(named: "Naver_login")
+        $0.contentMode = .scaleAspectFit
         $0.layer.cornerRadius = 5
     }
     
-    private var appleLoginButton = UIButton().then {
-        $0.backgroundColor = .black
-        $0.layer.cornerRadius = 5
+    private var appleLoginButton = UIImageView().then {
+        $0.image = UIImage(named: "Apple_login")
+        $0.contentMode = .scaleAspectFit
     }
     
     //MARK: - Init
@@ -61,17 +65,17 @@ final class LoginViewController: UIViewController {
     }
     
     private func viewModelInputs() {
-        kakaoLoginButton.rx.tap
-            .bind(to: viewModel.inputs.kakaoLogin)
-            .disposed(by: disposeBag)
-        
-        naverLoginButton.rx.tap
-            .bind(to: viewModel.inputs.kakaoLogin)
-            .disposed(by: disposeBag)
-        
-        appleLoginButton.rx.tap
-            .bind(to: viewModel.inputs.kakaoLogin)
-            .disposed(by: disposeBag)
+//        kakaoLoginButton.rx.tap
+//            .bind(to: viewModel.inputs.kakaoLogin)
+//            .disposed(by: disposeBag)
+//        
+//        naverLoginButton.rx.tap
+//            .bind(to: viewModel.inputs.kakaoLogin)
+//            .disposed(by: disposeBag)
+//        
+//        appleLoginButton.rx.tap
+//            .bind(to: viewModel.inputs.kakaoLogin)
+//            .disposed(by: disposeBag)
     }
 }
 
@@ -79,7 +83,7 @@ final class LoginViewController: UIViewController {
 extension LoginViewController {
     private func setupViews() {
         self.view.addSubviews([
-            backgroundView,
+            backgroundImageView,
             loginButtonVStackView
         ])
         loginButtonVStackView.addArrangedSubview(kakaoLoginButton)
@@ -89,7 +93,7 @@ extension LoginViewController {
     
     private func initialLayout() {
         self.view.backgroundColor = .systemBrown
-        backgroundView.snp.makeConstraints {
+        backgroundImageView.snp.makeConstraints {
             $0.top.left.bottom.right.equalToSuperview()
         }
         
