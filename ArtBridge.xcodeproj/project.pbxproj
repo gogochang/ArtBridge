@@ -11,6 +11,7 @@
 		2B0024692C0A094D00C4C276 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0024682C0A094D00C4C276 /* MessageViewModel.swift */; };
 		2B00246B2C0A095800C4C276 /* MessageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00246A2C0A095800C4C276 /* MessageCoordinator.swift */; };
 		2B00246D2C0A096200C4C276 /* MessageComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00246C2C0A096200C4C276 /* MessageComponent.swift */; };
+		2B0BCF0F2C11FF270053ACAD /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0BCF0E2C11FF270053ACAD /* RxGesture */; };
 		2B1469BD2BD38F8000E6483E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1469BC2BD38F8000E6483E /* AppDelegate.swift */; };
 		2B1469BF2BD38F8000E6483E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1469BE2BD38F8000E6483E /* SceneDelegate.swift */; };
 		2B1469C12BD38F8000E6483E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1469C02BD38F8000E6483E /* ViewController.swift */; };
@@ -215,6 +216,7 @@
 			files = (
 				2BB5156C2BDAB0B00092CC72 /* RxRelay in Frameworks */,
 				2B146A0C2BD3E07600E6483E /* RxSwift in Frameworks */,
+				2B0BCF0F2C11FF270053ACAD /* RxGesture in Frameworks */,
 				2BC1326E2BE3D3D200F13EC4 /* Kingfisher in Frameworks */,
 				2B9C4FCE2BED3B690058CE3F /* Then in Frameworks */,
 				2BB5156A2BDAB0AB0092CC72 /* RxCocoa in Frameworks */,
@@ -646,6 +648,7 @@
 				2BC1326D2BE3D3D200F13EC4 /* Kingfisher */,
 				2BC1326F2BE3D63900F13EC4 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				2B9C4FCD2BED3B690058CE3F /* Then */,
+				2B0BCF0E2C11FF270053ACAD /* RxGesture */,
 			);
 			productName = ArtBridge;
 			productReference = 2B1469B92BD38F8000E6483E /* ArtBridge.app */;
@@ -725,6 +728,7 @@
 				2B146A0A2BD3E07600E6483E /* XCRemoteSwiftPackageReference "RxSwift" */,
 				2BEDD4BC2BE2AB1300C12E17 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				2BC1326C2BE3D3D200F13EC4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				2B0BCF0D2C11FF270053ACAD /* XCRemoteSwiftPackageReference "RxGesture" */,
 			);
 			productRefGroup = 2B1469BA2BD38F8000E6483E /* Products */;
 			projectDirPath = "";
@@ -1189,6 +1193,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2B0BCF0D2C11FF270053ACAD /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.4;
+			};
+		};
 		2B1469F92BD3991F00E6483E /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then.git";
@@ -1232,6 +1244,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2B0BCF0E2C11FF270053ACAD /* RxGesture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B0BCF0D2C11FF270053ACAD /* XCRemoteSwiftPackageReference "RxGesture" */;
+			productName = RxGesture;
+		};
 		2B146A012BD39A9A00E6483E /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2B146A002BD39A9A00E6483E /* XCRemoteSwiftPackageReference "SnapKit" */;

@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxGesture
 
 final class LoginViewController: UIViewController {
     //MARK: - Properties
@@ -65,17 +66,23 @@ final class LoginViewController: UIViewController {
     }
     
     private func viewModelInputs() {
-//        kakaoLoginButton.rx.tap
-//            .bind(to: viewModel.inputs.kakaoLogin)
-//            .disposed(by: disposeBag)
-//        
-//        naverLoginButton.rx.tap
-//            .bind(to: viewModel.inputs.kakaoLogin)
-//            .disposed(by: disposeBag)
-//        
-//        appleLoginButton.rx.tap
-//            .bind(to: viewModel.inputs.kakaoLogin)
-//            .disposed(by: disposeBag)
+        kakaoLoginButton.rx.tapGesture()
+            .debug()
+            .when(.recognized).map { _ in }
+            .bind(to: viewModel.inputs.kakaoLogin)
+            .disposed(by: disposeBag)
+        
+        naverLoginButton.rx.tapGesture()
+            .debug()
+            .when(.recognized).map { _ in }
+            .bind(to: viewModel.inputs.kakaoLogin)
+            .disposed(by: disposeBag)
+        
+        appleLoginButton.rx.tapGesture()
+            .debug()
+            .when(.recognized).map { _ in }
+            .bind(to: viewModel.inputs.kakaoLogin)
+            .disposed(by: disposeBag)
     }
 }
 
