@@ -20,5 +20,22 @@ final class MyPageCoordinator: BaseCoordinator<Void> {
     
     override func start(animated _: Bool = true) {
         let scene = component.scene
+        
+        scene.VM.routes.setting
+            .map { scene.VM }
+            .bind { [weak self] vm in
+                self?.pushSettingScene(vm: vm, animated: true)
+            }.disposed(by: sceneDisposeBag)
+    }
+    
+    private func pushSettingScene(vm: MyPageViewModel, animated: Bool) {
+        let comp = component.settingComponent
+        let coord = SettingCoordinator(component: comp, navController: navigationController)
+        
+        coordinate(coordinator: coord, animated: animated) { coordResult in
+            switch coordResult {
+            case .backward:
+                vm.routeInputs.needUpdate.onNext(false)
+            }}
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 fileprivate enum Section: Hashable {
     case topProfile
@@ -21,6 +22,20 @@ fileprivate enum Item: Hashable {
 }
 
 final class MyPageViewController: UIViewController {
+    //MARK: - Properties
+    private let viewModel: MyPageViewModel
+    private var disposeBag = DisposeBag()
+    
+    //MARK: - Init
+    init(viewModel: MyPageViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -28,6 +43,8 @@ final class MyPageViewController: UIViewController {
         
         setDataSource()
         createSnapshot()
+        
+        viewModelInputs()
     }
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
@@ -54,6 +71,12 @@ final class MyPageViewController: UIViewController {
     private let navBar = ArtBridgeNavBar().then {
         $0.leftBtnItem.setImage(UIImage(systemName: "apple.logo"), for: .normal)
         $0.rightBtnItem.setImage(UIImage(systemName: "gearshape"), for: .normal)
+    }
+    
+    private func viewModelInputs() {
+        navBar.rightBtnItem.rx.tap
+            .bind(to: viewModel.inputs.showSetting)
+            .disposed(by: disposeBag)
     }
 }
 

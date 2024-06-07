@@ -9,9 +9,28 @@ import UIKit
 import RxSwift
 
 final class MyPageViewModel {
+    //MARK: - Properties
+    private var disposeBag = DisposeBag()
+    var inputs = Input()
     var routeInputs = RouteInput()
+    var routes = Route()
+    
+    //MARK: - Init
+    init() {
+        inputs.showSetting
+            .bind(to: routes.setting)
+            .disposed(by: disposeBag)
+    }
     
     struct RouteInput {
         var needUpdate = PublishSubject<Bool>()
+    }
+    
+    struct Input {
+        var showSetting = PublishSubject<Void>()
+    }
+    
+    struct Route {
+        var setting = PublishSubject<Void>()
     }
 }

@@ -8,7 +8,11 @@
 import Foundation
 
 final class MyPageComponent {
-    lazy var scene: (VC: MyPageViewController, VM: MyPageViewModel) = (VC: MyPageViewController(), VM: viewModel)
+    lazy var scene: (VC: MyPageViewController, VM: MyPageViewModel) = (VC: MyPageViewController(viewModel: viewModel), VM: viewModel)
     
     lazy var viewModel: MyPageViewModel = .init()
+    
+    var settingComponent: SettingComponent {
+        return SettingComponent()
+    }
 }

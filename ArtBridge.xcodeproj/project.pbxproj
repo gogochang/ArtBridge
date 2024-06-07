@@ -12,6 +12,10 @@
 		2B00246B2C0A095800C4C276 /* MessageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00246A2C0A095800C4C276 /* MessageCoordinator.swift */; };
 		2B00246D2C0A096200C4C276 /* MessageComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00246C2C0A096200C4C276 /* MessageComponent.swift */; };
 		2B0BCF0F2C11FF270053ACAD /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0BCF0E2C11FF270053ACAD /* RxGesture */; };
+		2B0BCF122C1320940053ACAD /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0BCF112C1320940053ACAD /* SettingViewController.swift */; };
+		2B0BCF142C13209C0053ACAD /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0BCF132C13209C0053ACAD /* SettingViewModel.swift */; };
+		2B0BCF162C1320A60053ACAD /* SettingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0BCF152C1320A60053ACAD /* SettingComponent.swift */; };
+		2B0BCF182C1320AE0053ACAD /* SettingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0BCF172C1320AE0053ACAD /* SettingCoordinator.swift */; };
 		2B1469BD2BD38F8000E6483E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1469BC2BD38F8000E6483E /* AppDelegate.swift */; };
 		2B1469BF2BD38F8000E6483E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1469BE2BD38F8000E6483E /* SceneDelegate.swift */; };
 		2B1469C12BD38F8000E6483E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1469C02BD38F8000E6483E /* ViewController.swift */; };
@@ -123,6 +127,10 @@
 		2B0024682C0A094D00C4C276 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		2B00246A2C0A095800C4C276 /* MessageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCoordinator.swift; sourceTree = "<group>"; };
 		2B00246C2C0A096200C4C276 /* MessageComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComponent.swift; sourceTree = "<group>"; };
+		2B0BCF112C1320940053ACAD /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		2B0BCF132C13209C0053ACAD /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		2B0BCF152C1320A60053ACAD /* SettingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingComponent.swift; sourceTree = "<group>"; };
+		2B0BCF172C1320AE0053ACAD /* SettingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCoordinator.swift; sourceTree = "<group>"; };
 		2B1469B92BD38F8000E6483E /* ArtBridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArtBridge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B1469BC2BD38F8000E6483E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B1469BE2BD38F8000E6483E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -252,6 +260,17 @@
 				2B00246A2C0A095800C4C276 /* MessageCoordinator.swift */,
 			);
 			path = Chat;
+			sourceTree = "<group>";
+		};
+		2B0BCF102C1320800053ACAD /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				2B0BCF112C1320940053ACAD /* SettingViewController.swift */,
+				2B0BCF132C13209C0053ACAD /* SettingViewModel.swift */,
+				2B0BCF152C1320A60053ACAD /* SettingComponent.swift */,
+				2B0BCF172C1320AE0053ACAD /* SettingCoordinator.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		2B1469B02BD38F7F00E6483E = {
@@ -586,6 +605,7 @@
 		2BB515992BDFE3ED0092CC72 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				2B0BCF102C1320800053ACAD /* Setting */,
 				2BB515A22BDFEEB10092CC72 /* View */,
 				2BB5159A2BDFE4ED0092CC72 /* MyPageComponent.swift */,
 				2BB5159C2BDFE4F70092CC72 /* MyPageViewController.swift */,
@@ -784,6 +804,7 @@
 				2BB5157C2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift in Sources */,
 				2B9C4FD62BF0B59F0058CE3F /* DetailPostViewModel.swift in Sources */,
 				2B00246D2C0A096200C4C276 /* MessageComponent.swift in Sources */,
+				2B0BCF182C1320AE0053ACAD /* SettingCoordinator.swift in Sources */,
 				2BB5159F2BDFE4FF0092CC72 /* MyPageViewModel.swift in Sources */,
 				2BB515882BDE86F40092CC72 /* CategoryCollectionViewCell.swift in Sources */,
 				2B3852092BF77D4400BCF540 /* DetailTutorComponent.swift in Sources */,
@@ -791,6 +812,7 @@
 				2B1469F62BD3974000E6483E /* MainTabController.swift in Sources */,
 				2B6B20D02BFA3740002D9E79 /* BottomButton.swift in Sources */,
 				2B3852052BF77D2800BCF540 /* DetailTutorViewController.swift in Sources */,
+				2B0BCF122C1320940053ACAD /* SettingViewController.swift in Sources */,
 				2B00246B2C0A095800C4C276 /* MessageCoordinator.swift in Sources */,
 				2B146A062BD3DC0C00E6483E /* MainTabCoordinator.swift in Sources */,
 				2BB515852BDE15CA0092CC72 /* CommunityCoordinator.swift in Sources */,
@@ -826,6 +848,7 @@
 				2BB515612BDAA7190092CC72 /* HomeComponent.swift in Sources */,
 				2B146A042BD3DA6D00E6483E /* AppCoordinator.swift in Sources */,
 				2BB515952BDFD5770092CC72 /* MessageListCoordinator.swift in Sources */,
+				2B0BCF162C1320A60053ACAD /* SettingComponent.swift in Sources */,
 				2B6B20D52BFCBBA7002D9E79 /* DetailNewsViewModel.swift in Sources */,
 				2BB5159B2BDFE4ED0092CC72 /* MyPageComponent.swift in Sources */,
 				2B9C4FDD2BF0CA740058CE3F /* ContentCollectionViewCell.swift in Sources */,
@@ -847,6 +870,7 @@
 				2BB515652BDAA75A0092CC72 /* HomeViewModel.swift in Sources */,
 				2B0024672C0A094500C4C276 /* MessageViewController.swift in Sources */,
 				2BB5158F2BDFD53D0092CC72 /* MessageListComponent.swift in Sources */,
+				2B0BCF142C13209C0053ACAD /* SettingViewModel.swift in Sources */,
 				2B1469F82BD3979700E6483E /* MainTabViewModel.swift in Sources */,
 				2B6F28AB2BED33A800BDA911 /* PopularPostListViewModel.swift in Sources */,
 				2BB5156F2BDACA2E0092CC72 /* BannerCollectionViewCell.swift in Sources */,
