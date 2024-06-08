@@ -20,9 +20,7 @@ class MainTabController: UIViewController {
         viewModelInput()
         viewModelOutput()
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
+        // 첫 화면을 홈화면으로 설정
         showSelectedVC(at: 0)
     }
     
