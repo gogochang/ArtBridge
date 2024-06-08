@@ -15,7 +15,7 @@ final class SettingViewController: UIViewController {
     
     //MARK: - UI
     private var navBar = ArtBridgeNavBar().then {
-        $0.leftBtnItem.setImage(UIImage(systemName: "apple.logo"), for: .normal)
+        $0.leftBtnItem.setImage(UIImage(systemName: "chevron.left"), for: .normal)
         $0.title.text = "설정하기"
     }
     
