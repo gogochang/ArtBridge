@@ -21,6 +21,11 @@ final class LoginViewController: UIViewController {
         $0.contentMode = .scaleAspectFill
     }
     
+    private let iconImageView = UIImageView().then {
+        $0.backgroundColor = .systemBrown
+        $0.contentMode = .scaleAspectFill
+    }
+    
     private var loginButtonVStackView = UIStackView.make(
         with: [],
         axis: .vertical,
@@ -91,6 +96,7 @@ extension LoginViewController {
     private func setupViews() {
         self.view.addSubviews([
             backgroundImageView,
+            iconImageView,
             loginButtonVStackView
         ])
         loginButtonVStackView.addArrangedSubview(kakaoLoginButton)
@@ -102,6 +108,12 @@ extension LoginViewController {
         self.view.backgroundColor = .systemBrown
         backgroundImageView.snp.makeConstraints {
             $0.top.left.bottom.right.equalToSuperview()
+        }
+        
+        iconImageView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(200)
+            $0.width.centerX.equalToSuperview()
+            $0.height.equalTo(100)
         }
         
         loginButtonVStackView.snp.makeConstraints { make in

@@ -39,6 +39,12 @@ final class SettingViewController: UIViewController {
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: HeaderView.id
         )
+        
+        $0.register(
+            HeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+            withReuseIdentifier: HeaderView.id
+        )
     }
     
     //MARK: - Init
@@ -142,7 +148,13 @@ extension SettingViewController {
             alignment: .topLeading
         )
         
-        section.boundarySupplementaryItems = [header]
+        let footer = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionFooter,
+            alignment: .bottomLeading
+        )
+        
+        section.boundarySupplementaryItems = [header, footer]
         return section
     }
 }
