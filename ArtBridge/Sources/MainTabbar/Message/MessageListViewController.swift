@@ -25,6 +25,8 @@ final class MessageListViewController: UIViewController {
         
         setDataSource()
         createSnapshot()
+        
+        collectionView.delegate = self
     }
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
@@ -183,5 +185,20 @@ extension MessageListViewController {
             }
         )
         
+    }
+}
+
+//MARK: - UICollectionViewDelegate
+extension MessageListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let section = dataSource?.sectionIdentifier(for: indexPath.section)
+        switch section {
+        case .horizontal:
+            print("카테고리 버튼 클릭")
+        case .vertical:
+            print("채팅 목록 아이템 클릭")
+        case .none:
+            print("none")
+        }
     }
 }
