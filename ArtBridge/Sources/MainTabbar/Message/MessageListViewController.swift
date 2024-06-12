@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 fileprivate enum Section: Hashable {
     case horizontal
@@ -18,19 +19,12 @@ fileprivate enum Item: Hashable {
 }
 
 final class MessageListViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupViews()
-        initialLayout()
-        
-        setDataSource()
-        createSnapshot()
-        
-        collectionView.delegate = self
-    }
-    
+    //MARK: - Properties
+    private let viewModel: MessageListViewModel
+    private let disposeBag = DisposeBag()
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
+    //MARK: - UI
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
         
         $0.register(
@@ -47,6 +41,28 @@ final class MessageListViewController: UIViewController {
     private let navBar = ArtBridgeNavBar().then {
         $0.leftBtnItem.setImage(UIImage(systemName: "apple.logo"), for: .normal)
         $0.rightBtnItem.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+    }
+    
+    //MARK: - Init
+    init(viewModel: MessageListViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - LifeCycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupViews()
+        initialLayout()
+        
+        setDataSource()
+        createSnapshot()
+        
+        collectionView.delegate = self
     }
 }
 
@@ -197,6 +213,7 @@ extension MessageListViewController: UICollectionViewDelegate {
             print("카테고리 버튼 클릭")
         case .vertical:
             print("채팅 목록 아이템 클릭")
+            self.viewModel.input.message.onNext(())
         case .none:
             print("none")
         }

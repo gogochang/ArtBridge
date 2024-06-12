@@ -8,7 +8,11 @@
 import Foundation
 
 final class MessageListComponent {
-    lazy var scene: (VC: MessageListViewController, VM: MessageListViewModel) = (VC: MessageListViewController(), VM: viewModel)
+    lazy var scene: (VC: MessageListViewController, VM: MessageListViewModel) = (VC: MessageListViewController(viewModel: viewModel), VM: viewModel)
     
     lazy var viewModel: MessageListViewModel = .init()
+    
+    var chatComponent: MessageComponent {
+        return MessageComponent()
+    }
 }

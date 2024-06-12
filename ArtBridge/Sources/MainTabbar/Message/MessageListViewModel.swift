@@ -10,8 +10,9 @@ import RxSwift
 
 final class MessageListViewModel {
     private var disposeBag = DisposeBag()
-    
+    var input = Input()
     var routeInputs = RouteInput()
+    var routes = Route()
     
     init() {
         routeInputs.needUpdate
@@ -19,8 +20,20 @@ final class MessageListViewModel {
             .bind { result in
                 print("EEEEEE")
             }.disposed(by: disposeBag)
+        
+        input.message
+            .bind(to: routes.showMessage)
+            .disposed(by: disposeBag)
     }
     struct RouteInput {
         var needUpdate = PublishSubject<Bool>()
+    }
+    
+    struct Input {
+        var message = PublishSubject<Void>()
+    }
+    
+    struct Route {
+        var showMessage = PublishSubject<Void>()
     }
 }
