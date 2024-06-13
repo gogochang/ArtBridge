@@ -475,7 +475,7 @@ extension HomeViewController: UICollectionViewDelegate {
         case .banner:
             print("A")
         case .quickHorizontal:
-            print("클릭된 악기 검색페이지로 이동")
+            self.viewModel.inputs.showDetailInstrument.onNext(())
         case .PopularPost:
             self.viewModel.inputs.showDetailPost.onNext(())
         case .PopularTutor:

@@ -31,6 +31,10 @@ final class HomeViewModel {
         inputs.showDetailNews
             .bind(to: routes.detailNews)
             .disposed(by: disposeBag)
+        
+        inputs.showDetailInstrument
+            .bind(to: routes.detailInstrument)
+            .disposed(by: disposeBag)
     }
     
     struct RouteInput {
@@ -38,6 +42,7 @@ final class HomeViewModel {
     }
     
     struct Input {
+        var showDetailInstrument = PublishSubject<Void>()
         var showPopularPostList = PublishSubject<Void>()
         var showDetailPost = PublishSubject<Void>()
         var showDetailTutor = PublishSubject<Void>()
@@ -45,6 +50,7 @@ final class HomeViewModel {
     }
     
     struct Route {
+        var detailInstrument = PublishSubject<Void>()
         var popularPostList = PublishSubject<Void>()
         var detailPost = PublishSubject<Void>()
         var detailTutor = PublishSubject<Void>()

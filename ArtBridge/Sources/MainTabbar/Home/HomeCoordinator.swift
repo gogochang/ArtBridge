@@ -23,6 +23,12 @@ final class HomeCoordinator: BaseCoordinator<Void> {
     override func start(animated _: Bool = true) {
         let scene = component.scene
         
+        scene.VM.routes.detailInstrument
+            .map { scene.VM }
+            .bind { [weak self] vm in
+                self?.pushDetailInstrumentScene(vm: vm, animated: true)
+            }.disposed(by: sceneDisposeBag)
+        
         scene.VM.routes.popularPostList
             .map { scene.VM }
             .bind { [weak self] vm in
@@ -46,6 +52,18 @@ final class HomeCoordinator: BaseCoordinator<Void> {
             .bind { [weak self] vm in
                 self?.pushDetailNewsScene(vm: vm, animated: true)
             }.disposed(by: sceneDisposeBag)
+    }
+    
+    private func pushDetailInstrumentScene(vm: HomeViewModel, animated: Bool) {
+        let comp = component.detailInstrumentComponent
+        let coord = DetailInstrumentCoordinator(component: comp, navController: navigationController)
+        
+        coordinate(coordinator: coord, animated: animated) { coordResult in
+            switch coordResult {
+            case .backward:
+                vm.routeInputs.needUpdate.onNext(false)
+            }
+        }
     }
     
     private func pushPopularPostListScene(vm: HomeViewModel, animated: Bool) {

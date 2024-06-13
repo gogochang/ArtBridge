@@ -42,6 +42,10 @@
 		2B3852092BF77D4400BCF540 /* DetailTutorComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3852082BF77D4400BCF540 /* DetailTutorComponent.swift */; };
 		2B38520B2BF77D4F00BCF540 /* DetailTutorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B38520A2BF77D4F00BCF540 /* DetailTutorCoordinator.swift */; };
 		2B4170012C0AEC1000F31881 /* MessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4170002C0AEC1000F31881 /* MessageCollectionViewCell.swift */; };
+		2B54ADD32C1B35B3002BD5C5 /* DetailInstrumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54ADD22C1B35B3002BD5C5 /* DetailInstrumentViewController.swift */; };
+		2B54ADD92C1B35DA002BD5C5 /* DetailInstrumentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54ADD82C1B35DA002BD5C5 /* DetailInstrumentCoordinator.swift */; };
+		2B54ADDD2C1B35F6002BD5C5 /* DetailInstrumentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54ADDC2C1B35F6002BD5C5 /* DetailInstrumentViewModel.swift */; };
+		2B54ADDF2C1B3603002BD5C5 /* DetailInstrumentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54ADDE2C1B3603002BD5C5 /* DetailInstrumentComponent.swift */; };
 		2B5C6C9B2BF845AC004800CC /* ScrollCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C6C9A2BF845AC004800CC /* ScrollCounter.swift */; };
 		2B5C6C9E2BF84E1E004800CC /* TutorProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C6C9D2BF84E1E004800CC /* TutorProfileCollectionViewCell.swift */; };
 		2B5C6CA02BFA0251004800CC /* TutorInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C6C9F2BFA0251004800CC /* TutorInfoCollectionViewCell.swift */; };
@@ -159,6 +163,10 @@
 		2B3852082BF77D4400BCF540 /* DetailTutorComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTutorComponent.swift; sourceTree = "<group>"; };
 		2B38520A2BF77D4F00BCF540 /* DetailTutorCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTutorCoordinator.swift; sourceTree = "<group>"; };
 		2B4170002C0AEC1000F31881 /* MessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewCell.swift; sourceTree = "<group>"; };
+		2B54ADD22C1B35B3002BD5C5 /* DetailInstrumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInstrumentViewController.swift; sourceTree = "<group>"; };
+		2B54ADD82C1B35DA002BD5C5 /* DetailInstrumentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInstrumentCoordinator.swift; sourceTree = "<group>"; };
+		2B54ADDC2C1B35F6002BD5C5 /* DetailInstrumentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInstrumentViewModel.swift; sourceTree = "<group>"; };
+		2B54ADDE2C1B3603002BD5C5 /* DetailInstrumentComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInstrumentComponent.swift; sourceTree = "<group>"; };
 		2B5C6C9A2BF845AC004800CC /* ScrollCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollCounter.swift; sourceTree = "<group>"; };
 		2B5C6C9D2BF84E1E004800CC /* TutorProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		2B5C6C9F2BFA0251004800CC /* TutorInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorInfoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -420,6 +428,17 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		2B54ADD12C1B35A1002BD5C5 /* DetailInstrument */ = {
+			isa = PBXGroup;
+			children = (
+				2B54ADD22C1B35B3002BD5C5 /* DetailInstrumentViewController.swift */,
+				2B54ADDC2C1B35F6002BD5C5 /* DetailInstrumentViewModel.swift */,
+				2B54ADDE2C1B3603002BD5C5 /* DetailInstrumentComponent.swift */,
+				2B54ADD82C1B35DA002BD5C5 /* DetailInstrumentCoordinator.swift */,
+			);
+			path = DetailInstrument;
+			sourceTree = "<group>";
+		};
 		2B5C6C992BF84591004800CC /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -506,6 +525,7 @@
 		2BB5155F2BDAA7090092CC72 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				2B54ADD12C1B35A1002BD5C5 /* DetailInstrument */,
 				2B6B20D12BFCBB82002D9E79 /* DetailNews */,
 				2B3852032BF77CAF00BCF540 /* DetailTutor */,
 				2B9C4FD02BF0B5590058CE3F /* DetailPost */,
@@ -810,6 +830,7 @@
 				2B3852092BF77D4400BCF540 /* DetailTutorComponent.swift in Sources */,
 				2B6B20D72BFCBBB0002D9E79 /* DetailNewsComponent.swift in Sources */,
 				2B1469F62BD3974000E6483E /* MainTabController.swift in Sources */,
+				2B54ADDF2C1B3603002BD5C5 /* DetailInstrumentComponent.swift in Sources */,
 				2B6B20D02BFA3740002D9E79 /* BottomButton.swift in Sources */,
 				2B3852052BF77D2800BCF540 /* DetailTutorViewController.swift in Sources */,
 				2B0BCF122C1320940053ACAD /* SettingViewController.swift in Sources */,
@@ -851,9 +872,11 @@
 				2B0BCF162C1320A60053ACAD /* SettingComponent.swift in Sources */,
 				2B6B20D52BFCBBA7002D9E79 /* DetailNewsViewModel.swift in Sources */,
 				2BB5159B2BDFE4ED0092CC72 /* MyPageComponent.swift in Sources */,
+				2B54ADD92C1B35DA002BD5C5 /* DetailInstrumentCoordinator.swift in Sources */,
 				2B9C4FDD2BF0CA740058CE3F /* ContentCollectionViewCell.swift in Sources */,
 				2BB5157A2BDDF1E60092CC72 /* HeaderView.swift in Sources */,
 				2B1469BF2BD38F8000E6483E /* SceneDelegate.swift in Sources */,
+				2B54ADD32C1B35B3002BD5C5 /* DetailInstrumentViewController.swift in Sources */,
 				2BB515782BDBF13D0092CC72 /* QuickBtnCollectionViewCell.swift in Sources */,
 				2B0024692C0A094D00C4C276 /* MessageViewModel.swift in Sources */,
 				2BB515832BDE15BD0092CC72 /* CommunityViewModel.swift in Sources */,
@@ -866,6 +889,7 @@
 				2BB515812BDE15B20092CC72 /* CommunityViewController.swift in Sources */,
 				2B9C4FE02BF0CB5C0058CE3F /* ProfileView.swift in Sources */,
 				2BEDD4B92BE23DA300C12E17 /* MenuItemCollectionViewCell.swift in Sources */,
+				2B54ADDD2C1B35F6002BD5C5 /* DetailInstrumentViewModel.swift in Sources */,
 				2BB515A42BDFEEC00092CC72 /* ProfileCollectionViewCell.swift in Sources */,
 				2BB515652BDAA75A0092CC72 /* HomeViewModel.swift in Sources */,
 				2B0024672C0A094500C4C276 /* MessageViewController.swift in Sources */,
