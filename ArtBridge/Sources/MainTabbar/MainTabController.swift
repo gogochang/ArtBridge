@@ -12,16 +12,28 @@ import RxSwift
 import RxCocoa
 import FirebaseAnalytics
 
-class MainTabController: UIViewController {
+final class MainTabController: UIViewController {
+    //MARK: - Properties
+    private var isInitialized = false
+    
     override func viewDidLoad() {
         setupViews()
         initLayout()
         
         viewModelInput()
         viewModelOutput()
-        
-        // 첫 화면을 홈화면으로 설정
-        showSelectedVC(at: 0)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        /// [#00] 다른 페이지에서 이전 페이지로 이동 시 무조건 홈 화면으로 변경되는 문제 수정
+        /// - viewDidload()에서 설정하면 safeArea가 없는상태(레이아웃이 만들어지기 전)이기 때문에 레이아웃 위치가 잘못 됨
+        /// - 현재 viewDidAppear가 호출되는 시점을 설정하고, 최초 1회만 실행하도록 플래그 설정하여 문제 해결
+        if !isInitialized {
+            // 첫 화면을 홈화면으로 설정
+            showSelectedVC(at: 0)
+            self.viewModel.inputs.homeSelected.onNext(())
+            isInitialized = true
+        }
     }
     
     init(viewModel: MainTabViewModel) {
