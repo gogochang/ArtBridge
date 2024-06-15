@@ -8,8 +8,11 @@
 import Foundation
 
 final class CommunityComponent {
-    lazy var scene: (VC: CommunityViewController, VM: CommunityViewModel) = (VC: CommunityViewController(), VM: viewModel)
+    lazy var scene: (VC: CommunityViewController, VM: CommunityViewModel) = (VC: CommunityViewController(viewModel: viewModel), VM: viewModel)
     
     lazy var viewModel: CommunityViewModel = .init()
     
+    var detailPostComponent: DetailPostComponent {
+        return DetailPostComponent()
+    }
 }

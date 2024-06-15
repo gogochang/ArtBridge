@@ -18,6 +18,20 @@ fileprivate enum Item: Hashable {
 }
 
 final class CommunityViewController: UIViewController {
+    //MARK: - Properties
+    private let viewModel: CommunityViewModel
+    
+    //MARK: - Init
+    init(viewModel: CommunityViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -25,6 +39,8 @@ final class CommunityViewController: UIViewController {
         
         setDataSource()
         createSnapshot()
+        
+        collectionView.delegate = self
     }
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
@@ -220,5 +236,20 @@ extension CommunityViewController {
                 }
             }
         )
+    }
+}
+
+//MARK: - UICollectionViewDelegate
+extension CommunityViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let section = dataSource?.sectionIdentifier(for: indexPath.section)
+        switch section {
+        case .vertical:
+            self.viewModel.inputs.showDetailPost.onNext(())
+        case .horizontal:
+            print("카테고리 버튼 클릭")
+        default:
+            break
+        }
     }
 }

@@ -10,9 +10,27 @@ import RxSwift
 
 final class CommunityViewModel {
     //MARK: - properties
+    private var disposeBag = DisposeBag()
+    var inputs = Input()
+    var routes = Route()
+    
+    init() {
+        inputs.showDetailPost
+            .bind(to: routes.detailPost)
+            .disposed(by: disposeBag)
+    }
+    
     var routeInputs = RouteInput()
     
     struct RouteInput {
         var needUpdate = PublishSubject<Bool>()
+    }
+    
+    struct Input {
+        var showDetailPost = PublishSubject<Void>()
+    }
+    
+    struct Route {
+        var detailPost = PublishSubject<Void>()
     }
 }
