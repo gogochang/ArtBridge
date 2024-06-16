@@ -82,6 +82,36 @@
             endingLineNumber = "107"
             landmarkName = "createLayout()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "96A208BF-D8F1-4047-97AF-CFE75BEEC05C - e2a5b48d77f3cd5b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ArtBridge.SettingViewController.createLayout() -&gt; __C.UICollectionViewCompositionalLayout"
+                  moduleName = "ArtBridge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chaggynkim/Desktop/Projects/ArtBridge/ArtBridge/Sources/MainTabbar/MyPage/Setting/SettingViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108">
+               </Location>
+               <Location
+                  uuid = "96A208BF-D8F1-4047-97AF-CFE75BEEC05C - c3bda96a074c3d73"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Int, __C.NSCollectionLayoutEnvironment) -&gt; Swift.Optional&lt;__C.NSCollectionLayoutSection&gt; in ArtBridge.SettingViewController.createLayout() -&gt; __C.UICollectionViewCompositionalLayout"
+                  moduleName = "ArtBridge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chaggynkim/Desktop/Projects/ArtBridge/ArtBridge/Sources/MainTabbar/MyPage/Setting/SettingViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -97,6 +127,22 @@
             startingLineNumber = "110"
             endingLineNumber = "110"
             landmarkName = "createLayout()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EA2A36BB-59DA-47CD-BCA6-1CBE50ADDF9F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ArtBridge/Sources/MainTabbar/Alarm/AlarmCoordinator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "start(animated:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

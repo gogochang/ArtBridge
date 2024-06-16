@@ -16,6 +16,10 @@ final class HomeViewModel {
     var routes = Route()
     
     init() {
+        inputs.showAlarm
+            .bind(to: routes.alarm)
+            .disposed(by: disposeBag)
+        
         inputs.showPopularPostList
             .bind(to: routes.popularPostList)
             .disposed(by: disposeBag)
@@ -42,6 +46,9 @@ final class HomeViewModel {
     }
     
     struct Input {
+        //Navbar
+        var showAlarm = PublishSubject<Void>()
+        
         var showDetailInstrument = PublishSubject<Void>()
         var showPopularPostList = PublishSubject<Void>()
         var showDetailPost = PublishSubject<Void>()
@@ -50,6 +57,9 @@ final class HomeViewModel {
     }
     
     struct Route {
+        //Navbar
+        var alarm = PublishSubject<Void>()
+        
         var detailInstrument = PublishSubject<Void>()
         var popularPostList = PublishSubject<Void>()
         var detailPost = PublishSubject<Void>()

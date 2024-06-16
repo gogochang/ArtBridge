@@ -67,6 +67,10 @@
 		2B9C4FDB2BF0CA5C0058CE3F /* CommentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C4FDA2BF0CA5C0058CE3F /* CommentCollectionViewCell.swift */; };
 		2B9C4FDD2BF0CA740058CE3F /* ContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C4FDC2BF0CA740058CE3F /* ContentCollectionViewCell.swift */; };
 		2B9C4FE02BF0CB5C0058CE3F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C4FDF2BF0CB5C0058CE3F /* ProfileView.swift */; };
+		2BB084A62C1E9924005E7221 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB084A52C1E9924005E7221 /* AlarmViewController.swift */; };
+		2BB084A82C1E9930005E7221 /* AlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB084A72C1E9930005E7221 /* AlarmViewModel.swift */; };
+		2BB084AA2C1E993E005E7221 /* AlarmComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB084A92C1E993E005E7221 /* AlarmComponent.swift */; };
+		2BB084AC2C1E9948005E7221 /* AlarmCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB084AB2C1E9948005E7221 /* AlarmCoordinator.swift */; };
 		2BB5155E2BD91CE90092CC72 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5155D2BD91CE90092CC72 /* UIStackView+.swift */; };
 		2BB515612BDAA7190092CC72 /* HomeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515602BDAA7190092CC72 /* HomeComponent.swift */; };
 		2BB515632BDAA7490092CC72 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515622BDAA7490092CC72 /* HomeViewController.swift */; };
@@ -187,6 +191,10 @@
 		2B9C4FDA2BF0CA5C0058CE3F /* CommentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCollectionViewCell.swift; sourceTree = "<group>"; };
 		2B9C4FDC2BF0CA740058CE3F /* ContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		2B9C4FDF2BF0CB5C0058CE3F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		2BB084A52C1E9924005E7221 /* AlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
+		2BB084A72C1E9930005E7221 /* AlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewModel.swift; sourceTree = "<group>"; };
+		2BB084A92C1E993E005E7221 /* AlarmComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmComponent.swift; sourceTree = "<group>"; };
+		2BB084AB2C1E9948005E7221 /* AlarmCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmCoordinator.swift; sourceTree = "<group>"; };
 		2BB5155D2BD91CE90092CC72 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 		2BB515602BDAA7190092CC72 /* HomeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeComponent.swift; sourceTree = "<group>"; };
 		2BB515622BDAA7490092CC72 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -375,6 +383,7 @@
 				2BB5157D2BDE15580092CC72 /* Community */,
 				2BB5158D2BDFD4BB0092CC72 /* Message */,
 				2BB515992BDFE3ED0092CC72 /* MyPage */,
+				2BB084A42C1E9912005E7221 /* Alarm */,
 			);
 			path = MainTabbar;
 			sourceTree = "<group>";
@@ -520,6 +529,17 @@
 				2B3851FD2BF238AE00BCF540 /* CommentInputView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		2BB084A42C1E9912005E7221 /* Alarm */ = {
+			isa = PBXGroup;
+			children = (
+				2BB084A52C1E9924005E7221 /* AlarmViewController.swift */,
+				2BB084A72C1E9930005E7221 /* AlarmViewModel.swift */,
+				2BB084A92C1E993E005E7221 /* AlarmComponent.swift */,
+				2BB084AB2C1E9948005E7221 /* AlarmCoordinator.swift */,
+			);
+			path = Alarm;
 			sourceTree = "<group>";
 		};
 		2BB5155F2BDAA7090092CC72 /* Home */ = {
@@ -821,13 +841,16 @@
 				2BFA9C4D2C0DDD5600E72C99 /* NewsContentCollectionViewCell.swift in Sources */,
 				2BB515932BDFD56D0092CC72 /* MessageListViewModel.swift in Sources */,
 				2B1469F42BD3963600E6483E /* MainTabComponent.swift in Sources */,
+				2BB084AA2C1E993E005E7221 /* AlarmComponent.swift in Sources */,
 				2BB5157C2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift in Sources */,
 				2B9C4FD62BF0B59F0058CE3F /* DetailPostViewModel.swift in Sources */,
 				2B00246D2C0A096200C4C276 /* MessageComponent.swift in Sources */,
+				2BB084A62C1E9924005E7221 /* AlarmViewController.swift in Sources */,
 				2B0BCF182C1320AE0053ACAD /* SettingCoordinator.swift in Sources */,
 				2BB5159F2BDFE4FF0092CC72 /* MyPageViewModel.swift in Sources */,
 				2BB515882BDE86F40092CC72 /* CategoryCollectionViewCell.swift in Sources */,
 				2B3852092BF77D4400BCF540 /* DetailTutorComponent.swift in Sources */,
+				2BB084A82C1E9930005E7221 /* AlarmViewModel.swift in Sources */,
 				2B6B20D72BFCBBB0002D9E79 /* DetailNewsComponent.swift in Sources */,
 				2B1469F62BD3974000E6483E /* MainTabController.swift in Sources */,
 				2B54ADDF2C1B3603002BD5C5 /* DetailInstrumentComponent.swift in Sources */,
@@ -864,6 +887,7 @@
 				2B5C6C9E2BF84E1E004800CC /* TutorProfileCollectionViewCell.swift in Sources */,
 				2BB5159D2BDFE4F70092CC72 /* MyPageViewController.swift in Sources */,
 				2B6F28A72BED326300BDA911 /* PopularPostListViewController.swift in Sources */,
+				2BB084AC2C1E9948005E7221 /* AlarmCoordinator.swift in Sources */,
 				2B3852022BF63B8600BCF540 /* UIButton+.swift in Sources */,
 				2B6B20D32BFCBB9E002D9E79 /* DetailNewsViewController.swift in Sources */,
 				2BB515612BDAA7190092CC72 /* HomeComponent.swift in Sources */,

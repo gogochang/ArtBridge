@@ -12,6 +12,10 @@ final class HomeComponent {
     
     lazy var viewModel: HomeViewModel = .init()
     
+    var alarmComponent: AlarmComponent {
+        return AlarmComponent()
+    }
+    
     var detailInstrumentComponent: DetailInstrumentComponent {
         return DetailInstrumentComponent()
     }

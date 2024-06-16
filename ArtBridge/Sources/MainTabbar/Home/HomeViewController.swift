@@ -100,7 +100,15 @@ final class HomeViewController: UIViewController {
         setDatasource()
         createSnapshot()
         
+        viewModelInputs()
+        
         collectionView.delegate = self
+    }
+    
+    private func viewModelInputs() {
+        navBar.rightBtnItem.rx.tap
+            .bind(to: viewModel.inputs.showAlarm)
+            .disposed(by: disposeBag)
     }
     
     override func viewDidAppear(_ animated: Bool) {

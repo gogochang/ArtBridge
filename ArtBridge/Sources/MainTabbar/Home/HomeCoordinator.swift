@@ -23,6 +23,12 @@ final class HomeCoordinator: BaseCoordinator<Void> {
     override func start(animated _: Bool = true) {
         let scene = component.scene
         
+        scene.VM.routes.alarm
+            .map { scene.VM }
+            .bind { [weak self] vm in
+                self?.pushAlarmScene(vm: vm, animated: true)
+            }.disposed(by: sceneDisposeBag)
+        
         scene.VM.routes.detailInstrument
             .map { scene.VM }
             .bind { [weak self] vm in
@@ -52,6 +58,18 @@ final class HomeCoordinator: BaseCoordinator<Void> {
             .bind { [weak self] vm in
                 self?.pushDetailNewsScene(vm: vm, animated: true)
             }.disposed(by: sceneDisposeBag)
+    }
+    
+    private func pushAlarmScene(vm: HomeViewModel, animated: Bool) {
+        let comp = component.alarmComponent
+        let coord = AlarmCoordinator(component: comp, navController: navigationController)
+        
+        coordinate(coordinator: coord, animated: animated) { coordResult in
+            switch coordResult {
+            case .backward:
+                vm.routeInputs.needUpdate.onNext(false)
+            }
+        }
     }
     
     private func pushDetailInstrumentScene(vm: HomeViewModel, animated: Bool) {
