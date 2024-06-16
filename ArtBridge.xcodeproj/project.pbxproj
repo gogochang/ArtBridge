@@ -71,6 +71,7 @@
 		2BB084A82C1E9930005E7221 /* AlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB084A72C1E9930005E7221 /* AlarmViewModel.swift */; };
 		2BB084AA2C1E993E005E7221 /* AlarmComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB084A92C1E993E005E7221 /* AlarmComponent.swift */; };
 		2BB084AC2C1E9948005E7221 /* AlarmCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB084AB2C1E9948005E7221 /* AlarmCoordinator.swift */; };
+		2BB084AF2C1EA7D5005E7221 /* AlarmCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB084AE2C1EA7D5005E7221 /* AlarmCollectionViewCell.swift */; };
 		2BB5155E2BD91CE90092CC72 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5155D2BD91CE90092CC72 /* UIStackView+.swift */; };
 		2BB515612BDAA7190092CC72 /* HomeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515602BDAA7190092CC72 /* HomeComponent.swift */; };
 		2BB515632BDAA7490092CC72 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515622BDAA7490092CC72 /* HomeViewController.swift */; };
@@ -195,6 +196,7 @@
 		2BB084A72C1E9930005E7221 /* AlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewModel.swift; sourceTree = "<group>"; };
 		2BB084A92C1E993E005E7221 /* AlarmComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmComponent.swift; sourceTree = "<group>"; };
 		2BB084AB2C1E9948005E7221 /* AlarmCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmCoordinator.swift; sourceTree = "<group>"; };
+		2BB084AE2C1EA7D5005E7221 /* AlarmCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BB5155D2BD91CE90092CC72 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 		2BB515602BDAA7190092CC72 /* HomeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeComponent.swift; sourceTree = "<group>"; };
 		2BB515622BDAA7490092CC72 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -534,12 +536,21 @@
 		2BB084A42C1E9912005E7221 /* Alarm */ = {
 			isa = PBXGroup;
 			children = (
+				2BB084AD2C1EA7C1005E7221 /* Cells */,
 				2BB084A52C1E9924005E7221 /* AlarmViewController.swift */,
 				2BB084A72C1E9930005E7221 /* AlarmViewModel.swift */,
 				2BB084A92C1E993E005E7221 /* AlarmComponent.swift */,
 				2BB084AB2C1E9948005E7221 /* AlarmCoordinator.swift */,
 			);
 			path = Alarm;
+			sourceTree = "<group>";
+		};
+		2BB084AD2C1EA7C1005E7221 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2BB084AE2C1EA7D5005E7221 /* AlarmCollectionViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		2BB5155F2BDAA7090092CC72 /* Home */ = {
@@ -852,6 +863,7 @@
 				2B3852092BF77D4400BCF540 /* DetailTutorComponent.swift in Sources */,
 				2BB084A82C1E9930005E7221 /* AlarmViewModel.swift in Sources */,
 				2B6B20D72BFCBBB0002D9E79 /* DetailNewsComponent.swift in Sources */,
+				2BB084AF2C1EA7D5005E7221 /* AlarmCollectionViewCell.swift in Sources */,
 				2B1469F62BD3974000E6483E /* MainTabController.swift in Sources */,
 				2B54ADDF2C1B3603002BD5C5 /* DetailInstrumentComponent.swift in Sources */,
 				2B6B20D02BFA3740002D9E79 /* BottomButton.swift in Sources */,
