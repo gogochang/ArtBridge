@@ -59,6 +59,8 @@
 		2B6F28A92BED330100BDA911 /* PopularPostListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28A82BED330100BDA911 /* PopularPostListComponent.swift */; };
 		2B6F28AB2BED33A800BDA911 /* PopularPostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28AA2BED33A800BDA911 /* PopularPostListViewModel.swift */; };
 		2B6F28AD2BED347200BDA911 /* PopularPostListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28AC2BED347200BDA911 /* PopularPostListCoordinator.swift */; };
+		2B9705C72C21DBDC00B94E8B /* PostAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9705C62C21DBDC00B94E8B /* PostAPIService.swift */; };
+		2B9705C92C21DE4400B94E8B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2B9705C82C21DE4400B94E8B /* FirebaseFirestore */; };
 		2B9C4FCE2BED3B690058CE3F /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 2B9C4FCD2BED3B690058CE3F /* Then */; };
 		2B9C4FD22BF0B57E0058CE3F /* DetailPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C4FD12BF0B57E0058CE3F /* DetailPostViewController.swift */; };
 		2B9C4FD42BF0B58F0058CE3F /* DetailPostComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C4FD32BF0B58F0058CE3F /* DetailPostComponent.swift */; };
@@ -185,6 +187,7 @@
 		2B6F28A82BED330100BDA911 /* PopularPostListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListComponent.swift; sourceTree = "<group>"; };
 		2B6F28AA2BED33A800BDA911 /* PopularPostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListViewModel.swift; sourceTree = "<group>"; };
 		2B6F28AC2BED347200BDA911 /* PopularPostListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListCoordinator.swift; sourceTree = "<group>"; };
+		2B9705C62C21DBDC00B94E8B /* PostAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAPIService.swift; sourceTree = "<group>"; };
 		2B9C4FD12BF0B57E0058CE3F /* DetailPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewController.swift; sourceTree = "<group>"; };
 		2B9C4FD32BF0B58F0058CE3F /* DetailPostComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostComponent.swift; sourceTree = "<group>"; };
 		2B9C4FD52BF0B59F0058CE3F /* DetailPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewModel.swift; sourceTree = "<group>"; };
@@ -245,6 +248,7 @@
 				2B0BCF0F2C11FF270053ACAD /* RxGesture in Frameworks */,
 				2BC1326E2BE3D3D200F13EC4 /* Kingfisher in Frameworks */,
 				2B9C4FCE2BED3B690058CE3F /* Then in Frameworks */,
+				2B9705C92C21DE4400B94E8B /* FirebaseFirestore in Frameworks */,
 				2BB5156A2BDAB0AB0092CC72 /* RxCocoa in Frameworks */,
 				2B146A022BD39A9A00E6483E /* SnapKit in Frameworks */,
 				2BC132702BE3D63900F13EC4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
@@ -492,6 +496,14 @@
 			path = PopularPostList;
 			sourceTree = "<group>";
 		};
+		2B9705C52C21D89900B94E8B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				2B9705C62C21DBDC00B94E8B /* PostAPIService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		2B9C4FCF2BEF79530058CE3F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -597,6 +609,7 @@
 		2BB515732BDBD14C0092CC72 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				2B9705C52C21D89900B94E8B /* Service */,
 				2BB515742BDBD1620092CC72 /* NavigationBar */,
 			);
 			path = Common;
@@ -720,6 +733,7 @@
 				2BC1326F2BE3D63900F13EC4 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				2B9C4FCD2BED3B690058CE3F /* Then */,
 				2B0BCF0E2C11FF270053ACAD /* RxGesture */,
+				2B9705C82C21DE4400B94E8B /* FirebaseFirestore */,
 			);
 			productName = ArtBridge;
 			productReference = 2B1469B92BD38F8000E6483E /* ArtBridge.app */;
@@ -916,6 +930,7 @@
 				2BB515782BDBF13D0092CC72 /* QuickBtnCollectionViewCell.swift in Sources */,
 				2B0024692C0A094D00C4C276 /* MessageViewModel.swift in Sources */,
 				2BB515832BDE15BD0092CC72 /* CommunityViewModel.swift in Sources */,
+				2B9705C72C21DBDC00B94E8B /* PostAPIService.swift in Sources */,
 				2BFA9C4B2C0DD42400E72C99 /* NewsInfoCollectionViewCell.swift in Sources */,
 				2B3852072BF77D3700BCF540 /* DetailTutorViewModel.swift in Sources */,
 				2B146A092BD3DF0000E6483E /* BaseCoordinator.swift in Sources */,
@@ -1342,6 +1357,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2B146A0A2BD3E07600E6483E /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		2B9705C82C21DE4400B94E8B /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BEDD4BC2BE2AB1300C12E17 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 		2B9C4FCD2BED3B690058CE3F /* Then */ = {
 			isa = XCSwiftPackageProductDependency;

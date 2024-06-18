@@ -15,7 +15,9 @@ final class HomeViewModel {
     var routeInputs = RouteInput()
     var routes = Route()
     
-    init() {
+    init(
+        postAPIService: PostAPIService = PostAPIService()
+    ) {
         inputs.showAlarm
             .bind(to: routes.alarm)
             .disposed(by: disposeBag)
