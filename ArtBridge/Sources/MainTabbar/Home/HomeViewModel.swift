@@ -5,6 +5,7 @@
 //  Created by 김창규 on 4/25/24.
 //
 
+
 import UIKit
 import RxSwift
 
@@ -12,12 +13,20 @@ final class HomeViewModel {
     //MARK: - properties
     private var disposeBag = DisposeBag()
     var inputs = Input()
+    var outputs = Output()
     var routeInputs = RouteInput()
     var routes = Route()
     
     init(
-        postAPIService: PostAPIService = PostAPIService()
+        homeAPIService: HomeAPIService = HomeAPIService()
     ) {
+        homeAPIService.fetchHomeData()
+            .subscribe(onNext: { homeData in
+                self.outputs.homeData.onNext(homeData)
+            }, onError: { error in
+                print("Error: \(error.localizedDescription)")
+            }).disposed(by: disposeBag)
+        
         inputs.showAlarm
             .bind(to: routes.alarm)
             .disposed(by: disposeBag)
@@ -56,6 +65,10 @@ final class HomeViewModel {
         var showDetailPost = PublishSubject<Void>()
         var showDetailTutor = PublishSubject<Void>()
         var showDetailNews = PublishSubject<Void>()
+    }
+    
+    struct Output {
+        var homeData = PublishSubject<HomeDataModel>()
     }
     
     struct Route {

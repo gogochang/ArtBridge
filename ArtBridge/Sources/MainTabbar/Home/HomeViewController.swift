@@ -33,7 +33,7 @@ final class HomeViewController: UIViewController {
     
     private var autoScrollTimer: Timer?
     private var currentAutoScrollIndex = 1
-    private var isAutoScrollEnabled = true
+    private var isAutoScrollEnabled = false
     private var timeInterval = 2.0
     
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
@@ -101,6 +101,7 @@ final class HomeViewController: UIViewController {
         createSnapshot()
         
         viewModelInputs()
+        viewModelOutput()
         
         collectionView.delegate = self
     }
@@ -111,25 +112,40 @@ final class HomeViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
+    
+    private func viewModelOutput() {
+        viewModel.outputs.homeData
+            .bind(onNext: { [weak self] homeData in
+                self?.updateBannerSection(with: homeData)
+            }).disposed(by: disposeBag)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
-        collectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .left, animated: false)
+        //FIXME: 리팩토링 후 활성화
+//        collectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .left, animated: false)
+    }
+    
+    //TODO: 여러 섹션을 업데이트 가능하도록 재사용을 고려한 메서드로 수정
+    private func updateBannerSection(with homeData: HomeDataModel) {
+        guard var currentSnapshot = self.dataSource?.snapshot() else { return }
+
+        let bannerSection = Section.banner
+        let bannerItems = homeData.bannerUrls.map { BannerModel(imageUrl: $0) }
+
+        // 현재 스냅샷의 복사본을 만들어서 작업
+        currentSnapshot.deleteItems(currentSnapshot.itemIdentifiers(inSection: bannerSection))
+        currentSnapshot.appendItems(bannerItems.map { Item.normal($0) }, toSection: bannerSection)
+
+        // 메인 스레드에서 스냅샷을 적용
+        DispatchQueue.main.async {
+            self.dataSource?.apply(currentSnapshot)
+        }
     }
     
     private func createSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section,Item>()
         let bannerSection = Section.banner
-        let bannerImagesUrls: [String] = ["https://source.unsplash.com/random/400x400?1",
-                                          "https://source.unsplash.com/random/400x400?2",
-                                          "https://source.unsplash.com/random/400x400?3",
-                                          "https://source.unsplash.com/random/400x400?4"]
-        let bannerItems = [ //TODO: 실제 데이터에서 가공하여 사용할 수 있도록 수정
-            Item.normal(BannerModel(imageUrl: bannerImagesUrls[3])),
-            Item.normal(BannerModel(imageUrl: bannerImagesUrls[0])),
-            Item.normal(BannerModel(imageUrl: bannerImagesUrls[1])),
-            Item.normal(BannerModel(imageUrl: bannerImagesUrls[2])),
-            Item.normal(BannerModel(imageUrl: bannerImagesUrls[3])),
-            Item.normal(BannerModel(imageUrl: bannerImagesUrls[0])),
-        ]
+        let bannerItems = [Item.normal(BannerModel(imageUrl: ""))]
         snapshot.appendSections([bannerSection])
         snapshot.appendItems(bannerItems, toSection: bannerSection)
         
@@ -247,25 +263,26 @@ extension HomeViewController {
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPagingCentered
         
-        let pageWidth = collectionView.bounds.width
-        section.visibleItemsInvalidationHandler = { [weak self] (visibleItems, offset, env) in
-            guard let self = self else { return }
-            if let page = Int(exactly: (offset.x + pageWidth) / pageWidth) {
-                self.currentAutoScrollIndex = page
-                
-                if page == 6 {
-                    collectionView.scrollToItem(at: IndexPath(row: 1, section: 0), at: .left, animated: false)
-                } else if page == 1 {
-                    collectionView.scrollToItem(at: IndexPath(row: 4, section: 0), at: .left, animated: false)
-                } else {
-                    self.pageController.currentPage = page - 2
-                }
-            }
-            
-            if self.isAutoScrollEnabled {
-                self.configAutoScroll()
-            }
-        }
+        //FIXME: 리팩토링 후 활성화
+//        let pageWidth = collectionView.bounds.width
+//        section.visibleItemsInvalidationHandler = { [weak self] (visibleItems, offset, env) in
+//            guard let self = self else { return }
+//            if let page = Int(exactly: (offset.x + pageWidth) / pageWidth) {
+//                self.currentAutoScrollIndex = page
+//                
+//                if page == 6 {
+//                    collectionView.scrollToItem(at: IndexPath(row: 1, section: 0), at: .left, animated: false)
+//                } else if page == 1 {
+//                    collectionView.scrollToItem(at: IndexPath(row: 4, section: 0), at: .left, animated: false)
+//                } else {
+//                    self.pageController.currentPage = page - 2
+//                }
+//            }
+//            
+//            if self.isAutoScrollEnabled {
+//                self.configAutoScroll()
+//            }
+//        }
         
         return section
     }
@@ -278,7 +295,7 @@ extension HomeViewController {
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)  // 아이템 간 간격 조정
-
+        
         // Group
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),

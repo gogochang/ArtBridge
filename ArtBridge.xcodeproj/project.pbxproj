@@ -42,6 +42,8 @@
 		2B3852092BF77D4400BCF540 /* DetailTutorComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3852082BF77D4400BCF540 /* DetailTutorComponent.swift */; };
 		2B38520B2BF77D4F00BCF540 /* DetailTutorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B38520A2BF77D4F00BCF540 /* DetailTutorCoordinator.swift */; };
 		2B4170012C0AEC1000F31881 /* MessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4170002C0AEC1000F31881 /* MessageCollectionViewCell.swift */; };
+		2B455FD12C22F2FB00C29F0B /* HomeAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B455FD02C22F2FB00C29F0B /* HomeAPIService.swift */; };
+		2B455FD32C22F61400C29F0B /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B455FD22C22F61400C29F0B /* FirestoreService.swift */; };
 		2B54ADD32C1B35B3002BD5C5 /* DetailInstrumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54ADD22C1B35B3002BD5C5 /* DetailInstrumentViewController.swift */; };
 		2B54ADD92C1B35DA002BD5C5 /* DetailInstrumentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54ADD82C1B35DA002BD5C5 /* DetailInstrumentCoordinator.swift */; };
 		2B54ADDD2C1B35F6002BD5C5 /* DetailInstrumentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54ADDC2C1B35F6002BD5C5 /* DetailInstrumentViewModel.swift */; };
@@ -170,6 +172,8 @@
 		2B3852082BF77D4400BCF540 /* DetailTutorComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTutorComponent.swift; sourceTree = "<group>"; };
 		2B38520A2BF77D4F00BCF540 /* DetailTutorCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTutorCoordinator.swift; sourceTree = "<group>"; };
 		2B4170002C0AEC1000F31881 /* MessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewCell.swift; sourceTree = "<group>"; };
+		2B455FD02C22F2FB00C29F0B /* HomeAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPIService.swift; sourceTree = "<group>"; };
+		2B455FD22C22F61400C29F0B /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		2B54ADD22C1B35B3002BD5C5 /* DetailInstrumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInstrumentViewController.swift; sourceTree = "<group>"; };
 		2B54ADD82C1B35DA002BD5C5 /* DetailInstrumentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInstrumentCoordinator.swift; sourceTree = "<group>"; };
 		2B54ADDC2C1B35F6002BD5C5 /* DetailInstrumentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInstrumentViewModel.swift; sourceTree = "<group>"; };
@@ -500,6 +504,8 @@
 			isa = PBXGroup;
 			children = (
 				2B9705C62C21DBDC00B94E8B /* PostAPIService.swift */,
+				2B455FD02C22F2FB00C29F0B /* HomeAPIService.swift */,
+				2B455FD22C22F61400C29F0B /* FirestoreService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -862,11 +868,13 @@
 				2BB515762BDBD1800092CC72 /* ArtBridgeNavBar.swift in Sources */,
 				2B1469C12BD38F8000E6483E /* ViewController.swift in Sources */,
 				2B5C6C9B2BF845AC004800CC /* ScrollCounter.swift in Sources */,
+				2B455FD32C22F61400C29F0B /* FirestoreService.swift in Sources */,
 				2BB515982BDFDAC50092CC72 /* MessageListCollectionViewCell.swift in Sources */,
 				2BFA9C4D2C0DDD5600E72C99 /* NewsContentCollectionViewCell.swift in Sources */,
 				2BB515932BDFD56D0092CC72 /* MessageListViewModel.swift in Sources */,
 				2B1469F42BD3963600E6483E /* MainTabComponent.swift in Sources */,
 				2BB084AA2C1E993E005E7221 /* AlarmComponent.swift in Sources */,
+				2B455FD12C22F2FB00C29F0B /* HomeAPIService.swift in Sources */,
 				2BB5157C2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift in Sources */,
 				2B9C4FD62BF0B59F0058CE3F /* DetailPostViewModel.swift in Sources */,
 				2B00246D2C0A096200C4C276 /* MessageComponent.swift in Sources */,
