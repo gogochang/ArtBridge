@@ -112,11 +112,11 @@ final class HomeViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    
     private func viewModelOutput() {
         viewModel.outputs.homeData
             .bind(onNext: { [weak self] homeData in
-                self?.updateBannerSection(with: homeData)
+                print("esj9f0sjf09sf: \(homeData)")
+                self?.updateHomeData(with: homeData)
             }).disposed(by: disposeBag)
     }
     
@@ -126,16 +126,28 @@ final class HomeViewController: UIViewController {
     }
     
     //TODO: 여러 섹션을 업데이트 가능하도록 재사용을 고려한 메서드로 수정
-    private func updateBannerSection(with homeData: HomeDataModel) {
+    private func updateHomeData(with homeData: HomeDataModel) {
         guard var currentSnapshot = self.dataSource?.snapshot() else { return }
-
+        
         let bannerSection = Section.banner
-        let bannerItems = homeData.bannerUrls.map { BannerModel(imageUrl: $0) }
-
+        let bannerItems = homeData.bannerUrls.map { BannerModel(imageUrl: $0.URL) }
+        
         // 현재 스냅샷의 복사본을 만들어서 작업
         currentSnapshot.deleteItems(currentSnapshot.itemIdentifiers(inSection: bannerSection))
         currentSnapshot.appendItems(bannerItems.map { Item.normal($0) }, toSection: bannerSection)
-
+        
+        let popularPostSection = Section.PopularPost("지금 인기있는 글")
+        let popularPostItems = homeData.popularPosts.compactMap { postData in
+            return Item.previewItem(
+                postData.title,
+                postData.id,
+                postData.coverURLs)
+        }
+        
+        // 현재 스냅샷의 복사본을 만들어서 작업
+        currentSnapshot.deleteItems(currentSnapshot.itemIdentifiers(inSection: popularPostSection))
+        currentSnapshot.appendItems(popularPostItems, toSection: popularPostSection)
+        
         // 메인 스레드에서 스냅샷을 적용
         DispatchQueue.main.async {
             self.dataSource?.apply(currentSnapshot)
@@ -160,14 +172,7 @@ final class HomeViewController: UIViewController {
         snapshot.appendItems(quickItems, toSection: horizontalSection)
         
         let popularPostSection = Section.PopularPost("지금 인기있는 글")
-        let popularPostItems = [
-            Item.previewItem("제 연주 피드백 부탁드립니다.", "강호동", "https://source.unsplash.com/random/400x400?5"),
-            Item.previewItem("바이올린 연습은 이렇게!", "이효리", "https://source.unsplash.com/random/400x400?6"),
-            Item.previewItem("어깨가 아파요","유재석","https://source.unsplash.com/random/400x400?7"),
-            Item.previewItem("악보 종이 vs 아이패드","홍길동", "https://source.unsplash.com/random/400x400?8"),
-            Item.previewItem("하루에 보통 몇시간 연습하시나요?","이수근", "https://source.unsplash.com/random/400x400?9")
-        ]
-        
+        let popularPostItems = [Item.previewItem("", "", "")]
         snapshot.appendSections([popularPostSection])
         snapshot.appendItems(popularPostItems, toSection: popularPostSection)
         
