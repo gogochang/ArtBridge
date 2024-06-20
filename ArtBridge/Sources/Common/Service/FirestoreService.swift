@@ -82,7 +82,7 @@ class FirestoreService {
                     let decodedData = try decoder.decode(T.self, from: jsonData)
                     return decodedData
                 } catch {
-                    print()
+                    print("Error decoding data: \(error)")
                     return nil
                 }
             }

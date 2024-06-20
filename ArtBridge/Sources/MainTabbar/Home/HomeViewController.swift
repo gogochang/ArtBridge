@@ -115,7 +115,6 @@ final class HomeViewController: UIViewController {
     private func viewModelOutput() {
         viewModel.outputs.homeData
             .bind(onNext: { [weak self] homeData in
-                print("esj9f0sjf09sf: \(homeData)")
                 self?.updateHomeData(with: homeData)
             }).disposed(by: disposeBag)
     }
@@ -147,6 +146,18 @@ final class HomeViewController: UIViewController {
         // 현재 스냅샷의 복사본을 만들어서 작업
         currentSnapshot.deleteItems(currentSnapshot.itemIdentifiers(inSection: popularPostSection))
         currentSnapshot.appendItems(popularPostItems, toSection: popularPostSection)
+
+        let popularTutorSection = Section.PopularTutor("지금 인기있는 강사")
+        let popularTutorItems = homeData.popularTutors.compactMap { tutorData in
+            return Item.previewItem(
+                tutorData.nickname,
+                "\(tutorData.categoryType)",
+                tutorData.profileImgURL)
+        }
+        
+        // 현재 스냅샷의 복사본을 만들어서 작업
+        currentSnapshot.deleteItems(currentSnapshot.itemIdentifiers(inSection: popularTutorSection))
+        currentSnapshot.appendItems(popularTutorItems, toSection: popularTutorSection)
         
         // 메인 스레드에서 스냅샷을 적용
         DispatchQueue.main.async {
