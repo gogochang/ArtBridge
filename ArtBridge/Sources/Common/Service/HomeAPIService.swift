@@ -14,11 +14,13 @@ struct HomeDataModel: Decodable {
     var bannerUrls: [HomeBannerDataModel]
     var popularPosts: [PostDataModel]
     var popularTutors: [TutorDataModel]
+    var news: [NewsDataModel]
     
     enum CodingKeys: String, CodingKey {
         case bannerUrls = "bannerUrls"
         case popularPosts = "popularPosts"
         case popularTutors = "popularTutors"
+        case news = "news"
     }
 }
 
@@ -38,6 +40,15 @@ struct TutorDataModel: Decodable {
     let likeCount: Int
 }
 
+struct NewsDataModel: Decodable {
+    let index: Int
+    let title: String
+    let content: String
+    let author: String
+    let likeCount: Int
+    let coverImgURL: String
+}
+
 struct HomeBannerDataModel: Decodable {
     let URL: String
 }
@@ -54,16 +65,19 @@ final class HomeAPIService {
         let homeDataObservable = fetchBannerData()
         let popularPostsObservable = fetchHomePopularPostsData()
         let popularTutorsObservable = fetchHomePopularTutorsData()
+        let popularNewsObservable = fetchHomeNewsData()
         
         return Observable.zip(
             homeDataObservable,
             popularPostsObservable,
-            popularTutorsObservable
-        ) { homeBanners, popularPosts, popularTutors in
+            popularTutorsObservable,
+            popularNewsObservable
+        ) { homeBanners, popularPosts, popularTutors, news in
             return HomeDataModel(
-                bannerUrls: homeBanners,
-                popularPosts: popularPosts,
-                popularTutors: popularTutors
+                bannerUrls      : homeBanners,
+                popularPosts    : popularPosts,
+                popularTutors   : popularTutors,
+                news            : news
             )
         }
     }
@@ -129,6 +143,29 @@ final class HomeAPIService {
                         userInfo: [NSLocalizedDescriptionKey: "Failed to fetch home data"])
                     )
                 }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func fetchHomeNewsData() -> Observable<[NewsDataModel]> {
+        return Observable.create { observer in
+            FirestoreService.shared.fetchDocuments(
+                collection: "news",
+                type: NewsDataModel.self,
+                limit: 5
+            ) { newsData in
+                if let newsData = newsData {
+                    observer.onNext(newsData)
+                    observer.onCompleted()
+                } else {
+                    observer.onError(NSError(
+                        domain: "HomeAPIService",
+                        code: -1,
+                        userInfo: [NSLocalizedDescriptionKey: "Failed to fetch home data"])
+                    )
+                }
+                
             }
             return Disposables.create()
         }

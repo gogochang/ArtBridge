@@ -159,6 +159,17 @@ final class HomeViewController: UIViewController {
         currentSnapshot.deleteItems(currentSnapshot.itemIdentifiers(inSection: popularTutorSection))
         currentSnapshot.appendItems(popularTutorItems, toSection: popularTutorSection)
         
+        let newsSection = Section.news("뉴스")
+        let newsItems = homeData.news.compactMap { newsData in
+            return Item.previewItem(
+                newsData.title,
+                "",
+                newsData.coverImgURL)
+        }
+        
+        currentSnapshot.deleteItems(currentSnapshot.itemIdentifiers(inSection: newsSection))
+        currentSnapshot.appendItems(newsItems, toSection: newsSection)
+        
         // 메인 스레드에서 스냅샷을 적용
         DispatchQueue.main.async {
             self.dataSource?.apply(currentSnapshot)
@@ -188,21 +199,12 @@ final class HomeViewController: UIViewController {
         snapshot.appendItems(popularPostItems, toSection: popularPostSection)
         
         let popularTutorSection = Section.PopularTutor("지금 인기있는 강사")
-        let popularTutorItems = [
-            Item.previewItem("송지효","바이올린","https://i.pravatar.cc/300?img=1"),
-            Item.previewItem("박명수","드럼","https://i.pravatar.cc/300?img=2"),
-            Item.previewItem("우원재","첼로","https://i.pravatar.cc/300?img=3​"),
-            Item.previewItem("차은우","플루트","https://i.pravatar.cc/300?img=4​")
-        ]
+        let popularTutorItems = [Item.previewItem("","","")]
         snapshot.appendSections([popularTutorSection])
         snapshot.appendItems(popularTutorItems, toSection: popularTutorSection)
         
         let newsSection = Section.news("뉴스")
-        let newsItems = [
-            Item.previewItem("오늘 밤은 고고오케스트라로 채워집니다!🎉","","https://source.unsplash.com/random/400x400?10"),
-            Item.previewItem("꿈을 키우는 고고오케스트라가 있다고??😃","","https://source.unsplash.com/random/400x400?11"),
-            Item.previewItem("고고 오케스트라 나눔 연주회","","https://source.unsplash.com/random/400x400?12")
-        ]
+        let newsItems = [Item.previewItem("","","")]
         snapshot.appendSections([newsSection])
         snapshot.appendItems(newsItems, toSection: newsSection)
         
