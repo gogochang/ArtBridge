@@ -64,14 +64,44 @@ final class PopularPostListViewController: UIViewController {
         createSnapshot()
         
         viewModelInput()
+        viewModelOutput()
         
         collectionView.delegate = self
     }
     
+    //MARK: - Private Methods
     private func viewModelInput() {
         navBar.leftBtnItem.rx.tap
             .bind (to: viewModel.inputs.backward )
             .disposed(by: disposeBag)
+    }
+    
+    private func viewModelOutput() {
+        viewModel.outputs.postListData
+            .subscribe(onNext: { [weak self] postData in
+                self?.updatePostData(with: postData)
+            }).disposed(by: disposeBag)
+    }
+    
+    private func updatePostData(with postData: [PostDataModel]) {
+        guard var currentSnapshot = self.dataSource?.snapshot() else { return }
+        
+        let doubleSection = Section.double("지금 인기있는 글")
+        let popularPostItems = postData.map {
+            Item.previewItem(
+                $0.title,
+                "\($0.id)",
+                $0.coverURLs
+            )
+        }
+        
+        currentSnapshot.deleteItems(currentSnapshot.itemIdentifiers(inSection: doubleSection))
+        currentSnapshot.appendItems(popularPostItems, toSection: doubleSection)
+        
+        // 메인 스레드에서 스냅샷을 적용
+        DispatchQueue.main.async {
+            self.dataSource?.apply(currentSnapshot)
+        }
     }
 }
 
@@ -169,16 +199,7 @@ extension PopularPostListViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         let doubleSection = Section.double("지금 인기있는 글")
         let popularPostItems = [
-            Item.previewItem("제 연주 피드백 부탁드립니다.", "강호동", "https://source.unsplash.com/random/400x400?5"),
-            Item.previewItem("바이올린 연습은 이렇게!", "이효리", "https://source.unsplash.com/random/400x400?6"),
-            Item.previewItem("어깨가 아파요","유재석","https://source.unsplash.com/random/400x400?7"),
-            Item.previewItem("악보 종이 vs 아이패드","홍길동", "https://source.unsplash.com/random/400x400?8"),
-            Item.previewItem("하루에 보통 몇시간 연습하시나요?","이수근", "https://source.unsplash.com/random/400x400?9"),
-            Item.previewItem("제 연주 피드백 부탁드립니다.2", "강호동2", "https://source.unsplash.com/random/400x400?10"),
-            Item.previewItem("바이올린 연습은 이렇게!2", "이효리2", "https://source.unsplash.com/random/400x400?11"),
-            Item.previewItem("어깨가 아파요2","유재석2","https://source.unsplash.com/random/400x400?12"),
-            Item.previewItem("악보 종이 vs 아이패드2","홍길동2", "https://source.unsplash.com/random/400x400?13"),
-            Item.previewItem("하루에 보통 몇시간 연습하시나요?2","이수근2", "https://source.unsplash.com/random/400x400?14")
+            Item.previewItem("제 연주 피드백 부탁드립니다.", "강호동", "https://source.unsplash.com/random/400x400?5")
         ]
         
         snapshot.appendSections([doubleSection])

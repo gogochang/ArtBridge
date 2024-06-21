@@ -6,25 +6,35 @@
 //
 
 import Foundation
-import FirebaseFirestore
+import RxSwift
 
 final class PostAPIService {
-    let db = Firestore.firestore()
+    //MARK: - Properties
+    private let disposeBag = DisposeBag()
     
-    init() {
-//        Firestore에 데이터 작성
-//        let newPostDoc = db.collection("post").document()
-//        newPostDoc.setData(["id":newPostDoc.documentID, "title":"Title01", "content":"Content01"])
-        
-        // FireStore으로부터 "post"컬렉션의 모든 데이터 조회
-        db.collection("post").getDocuments { snapshot, error in
-            if error == nil && snapshot != nil {
-                for document in snapshot!.documents {
-                    print(document.documentID)
+    //MARK: - Init
+    init() {}
+    
+    func fetchPopularPostList() -> Observable<[PostDataModel]> {
+        return Observable.create { observer in
+            FirestoreService.shared.fetchDocuments(
+                collection: "post",
+                type: PostDataModel.self,
+                limit: 10
+            ) { postData in
+                if let postData = postData {
+                    observer.onNext(postData)
+                    observer.onCompleted()
+                } else {
+                    observer.onError(NSError(
+                        domain: "HomeAPIService",
+                        code: -1,
+                        userInfo: [NSLocalizedDescriptionKey: "Failed to fetch home data"])
+                    )
                 }
-            } else {
-                print("ERROR")
             }
+            return Disposables.create()
+            
         }
     }
 }

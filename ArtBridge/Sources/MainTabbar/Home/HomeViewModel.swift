@@ -69,7 +69,6 @@ final class HomeViewModel {
     
     struct Output {
         var homeData = PublishSubject<HomeDataModel>()
-        var postData = PublishSubject<[PostDataModel]>()
     }
     
     struct Route {

@@ -13,8 +13,22 @@ final class PopularPostListViewModel {
     var routeInputs = RouteInput()
     var routes = Route()
     var inputs = Input()
+    var outputs = Output()
     
-    init() {
+    init(
+        postAPIService: PostAPIService = PostAPIService()
+    ) {
+        postAPIService.fetchPopularPostList()
+            .subscribe(onNext: { [weak self] postData in
+                self?.outputs.postListData.onNext(postData)
+            }, onError: { error in
+                print("Error: \(error.localizedDescription)")
+            }).disposed(by: disposeBag)
+        
+        routeInputs.needUpdate
+            .bind { _ in
+                print("PopulartPostListViewModel: needUdpate is Called")
+            }.disposed(by: disposeBag)
         inputs.backward
             .bind(to: routes.backward)
             .disposed(by: disposeBag)
@@ -31,6 +45,10 @@ final class PopularPostListViewModel {
     struct Input {
         var backward = PublishSubject<Void>()
         var showDetailPost = PublishSubject<Void>()
+    }
+    
+    struct Output {
+        var postListData = PublishSubject<[PostDataModel]>()
     }
     
     struct Route {
