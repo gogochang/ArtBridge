@@ -24,6 +24,7 @@ final class LoginViewController: UIViewController {
     private let iconImageView = UIImageView().then {
         $0.backgroundColor = .systemBrown
         $0.contentMode = .scaleAspectFill
+        $0.isHidden = true
     }
     
     private var loginButtonVStackView = UIStackView.make(
