@@ -16,9 +16,10 @@ final class PopularPostListViewModel {
     var outputs = Output()
     
     init(
+        listType: HeaderType,
         postAPIService: PostAPIService = PostAPIService()
     ) {
-        postAPIService.fetchPopularPostList()
+        postAPIService.fetchPopularPostList(listType: listType)
             .subscribe(onNext: { [weak self] postData in
                 self?.outputs.postListData.onNext(postData)
             }, onError: { error in
@@ -29,6 +30,7 @@ final class PopularPostListViewModel {
             .bind { _ in
                 print("PopulartPostListViewModel: needUdpate is Called")
             }.disposed(by: disposeBag)
+        
         inputs.backward
             .bind(to: routes.backward)
             .disposed(by: disposeBag)

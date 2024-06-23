@@ -456,16 +456,17 @@ extension HomeViewController {
             
             switch section {
             case .PopularPost(let title):
-                (header as? HeaderView)?.configure(title: title)
+                (header as? HeaderView)?.configure(type: .post, title: title)
             case .PopularTutor(let title):
-                (header as? HeaderView)?.configure(title: title)
+                (header as? HeaderView)?.configure(type: .tutors, title: title)
             case .news(let title):
-                (header as? HeaderView)?.configure(title: title)
+                (header as? HeaderView)?.configure(type: .news, title: title)
             default:
                 print("Default")
             }
             
             (header as? HeaderView)?.moreButton.rx.tap
+                .map { (header as? HeaderView)?.type ?? .none }
                 .bind(to: self.viewModel.inputs.showPopularPostList)
                 .disposed(by: (header as? HeaderView)?.disposeBag ?? DisposeBag())
             

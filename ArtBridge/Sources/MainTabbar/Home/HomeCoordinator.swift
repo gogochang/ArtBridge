@@ -36,9 +36,9 @@ final class HomeCoordinator: BaseCoordinator<Void> {
             }.disposed(by: sceneDisposeBag)
         
         scene.VM.routes.popularPostList
-            .map { scene.VM }
-            .bind { [weak self] vm in
-                self?.pushPopularPostListScene(vm: vm, animated: true)
+            .map { (vm: scene.VM, listType: $0) }
+            .bind { [weak self] inputs in
+                self?.pushPopularPostListScene(vm: inputs.vm, listType: inputs.listType, animated: true)
             }.disposed(by: sceneDisposeBag)
         
         scene.VM.routes.detailPost
@@ -84,8 +84,12 @@ final class HomeCoordinator: BaseCoordinator<Void> {
         }
     }
     
-    private func pushPopularPostListScene(vm: HomeViewModel, animated: Bool) {
-        let comp = component.popularPostListComponent
+    private func pushPopularPostListScene(
+        vm: HomeViewModel,
+        listType: HeaderType,
+        animated: Bool
+    ) {
+        let comp = component.popularPostListComponent(listType: listType)
         let coord = PopularPostListCoordinator(component: comp, navController: navigationController)
         
         coordinate(coordinator: coord, animated: animated) { coordResult in

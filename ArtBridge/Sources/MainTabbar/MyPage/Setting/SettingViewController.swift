@@ -202,7 +202,7 @@ extension SettingViewController {
             
             switch section {
             case .menu(let title):
-                (header as? HeaderView)?.configure(title: title)
+                (header as? HeaderView)?.configure(type: .none, title: title)
             default:
                 print("Default")
             }

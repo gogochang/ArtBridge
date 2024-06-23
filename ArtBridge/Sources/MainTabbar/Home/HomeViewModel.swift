@@ -61,7 +61,7 @@ final class HomeViewModel {
         var showAlarm = PublishSubject<Void>()
         
         var showDetailInstrument = PublishSubject<Void>()
-        var showPopularPostList = PublishSubject<Void>()
+        var showPopularPostList = PublishSubject<HeaderType>()
         var showDetailPost = PublishSubject<Void>()
         var showDetailTutor = PublishSubject<Void>()
         var showDetailNews = PublishSubject<Void>()
@@ -76,7 +76,7 @@ final class HomeViewModel {
         var alarm = PublishSubject<Void>()
         
         var detailInstrument = PublishSubject<Void>()
-        var popularPostList = PublishSubject<Void>()
+        var popularPostList = PublishSubject<HeaderType>()
         var detailPost = PublishSubject<Void>()
         var detailTutor = PublishSubject<Void>()
         var detailNews = PublishSubject<Void>()

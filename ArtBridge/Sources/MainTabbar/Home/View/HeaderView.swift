@@ -8,9 +8,17 @@
 import UIKit
 import RxSwift
 
+enum HeaderType: String {
+    case post
+    case tutors
+    case news
+    case none
+}
+
 final class HeaderView: UICollectionReusableView {
     static let id = "HeaderView"
     var disposeBag = DisposeBag()
+    var type: HeaderType = .none
     
     //MARK: - UI
     private let titleLabel = UILabel().then {
@@ -36,9 +44,13 @@ final class HeaderView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     //MARK: - Internal
-    func configure(title: String) {
+    func configure(
+        type: HeaderType,
+        title: String
+    ) {
         disposeBag = DisposeBag()
         titleLabel.text = title
+        self.type = type
     }
 }
 

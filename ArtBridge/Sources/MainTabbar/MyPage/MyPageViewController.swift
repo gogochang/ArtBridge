@@ -245,13 +245,13 @@ extension MyPageViewController {
             
             switch section {
             case .menu(let title):
-                (header as? HeaderView)?.configure(title: title)
+                (header as? HeaderView)?.configure(type: .none, title: title)
             case .menu2(let title):
-                (header as? HeaderView)?.configure(title: title)
+                (header as? HeaderView)?.configure(type: .none, title: title)
             case .menu3(let title):
-                (header as? HeaderView)?.configure(title: title)
+                (header as? HeaderView)?.configure(type: .none, title: title)
             case .menu4(let title):
-                (header as? HeaderView)?.configure(title: title)
+                (header as? HeaderView)?.configure(type: .none, title: title)
             default:
                 print("Default")
             }
