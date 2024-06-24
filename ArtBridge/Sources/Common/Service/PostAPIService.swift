@@ -15,12 +15,11 @@ final class PostAPIService {
     //MARK: - Init
     init() {}
     
-    func fetchPopularPostList(listType: HeaderType) -> Observable<[PostDataModel]> {
-        print("listType:::: \(listType)")
+    func fetchPopularPostList(listType: HeaderType) -> Observable<[ContentDataModel]> {
         return Observable.create { observer in
             FirestoreService.shared.fetchDocuments(
                 collection: listType.rawValue,
-                type: PostDataModel.self,
+                type: ContentDataModel.self,
                 limit: 10
             ) { postData in
                 if let postData = postData {

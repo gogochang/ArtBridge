@@ -83,7 +83,7 @@ final class PopularPostListViewController: UIViewController {
             }).disposed(by: disposeBag)
     }
     
-    private func updatePostData(with postData: [PostDataModel]) {
+    private func updatePostData(with postData: [ContentDataModel]) {
         guard var currentSnapshot = self.dataSource?.snapshot() else { return }
         
         let doubleSection = Section.double("지금 인기있는 글")
@@ -91,7 +91,7 @@ final class PopularPostListViewController: UIViewController {
             Item.previewItem(
                 $0.title,
                 "\($0.id)",
-                $0.coverURLs
+                $0.coverURL
             )
         }
         

@@ -19,7 +19,7 @@ fileprivate enum Section: Hashable {
 fileprivate enum Item: Hashable {
     case normal(BannerModel)
     case quickBtn(UIImage?, String)
-    case previewItem(String, String, String?) //TODO: 인기글 데이터 Model로 변경
+    case previewItem(ContentDataModel) //TODO: 인기글 데이터 Model로 변경
 }
 
 struct BannerModel: Hashable { // TODO: 모델로 이동
@@ -137,10 +137,7 @@ final class HomeViewController: UIViewController {
         
         let popularPostSection = Section.PopularPost("지금 인기있는 글")
         let popularPostItems = homeData.popularPosts.compactMap { postData in
-            return Item.previewItem(
-                postData.title,
-                postData.id,
-                postData.coverURLs)
+            return Item.previewItem(postData)
         }
         
         // 현재 스냅샷의 복사본을 만들어서 작업
@@ -149,10 +146,7 @@ final class HomeViewController: UIViewController {
 
         let popularTutorSection = Section.PopularTutor("지금 인기있는 강사")
         let popularTutorItems = homeData.popularTutors.compactMap { tutorData in
-            return Item.previewItem(
-                tutorData.nickname,
-                "\(tutorData.categoryType)",
-                tutorData.profileImgURL)
+            return Item.previewItem(tutorData)
         }
         
         // 현재 스냅샷의 복사본을 만들어서 작업
@@ -161,10 +155,7 @@ final class HomeViewController: UIViewController {
         
         let newsSection = Section.news("뉴스")
         let newsItems = homeData.news.compactMap { newsData in
-            return Item.previewItem(
-                newsData.title,
-                "",
-                newsData.coverImgURL)
+            return Item.previewItem(newsData)
         }
         
         currentSnapshot.deleteItems(currentSnapshot.itemIdentifiers(inSection: newsSection))
@@ -194,19 +185,13 @@ final class HomeViewController: UIViewController {
         snapshot.appendItems(quickItems, toSection: horizontalSection)
         
         let popularPostSection = Section.PopularPost("지금 인기있는 글")
-        let popularPostItems = [Item.previewItem("", "", "")]
         snapshot.appendSections([popularPostSection])
-        snapshot.appendItems(popularPostItems, toSection: popularPostSection)
         
         let popularTutorSection = Section.PopularTutor("지금 인기있는 강사")
-        let popularTutorItems = [Item.previewItem("","","")]
         snapshot.appendSections([popularTutorSection])
-        snapshot.appendItems(popularTutorItems, toSection: popularTutorSection)
         
         let newsSection = Section.news("뉴스")
-        let newsItems = [Item.previewItem("","","")]
         snapshot.appendSections([newsSection])
-        snapshot.appendItems(newsItems, toSection: newsSection)
         
         dataSource?.apply(snapshot)
     }
@@ -429,16 +414,16 @@ extension HomeViewController {
                         title: title
                     )
                     return cell
-                case .previewItem(let title, let nickname, let coverImgUrl):
+                case .previewItem(let contentData):
                     let cell = collectionView.dequeueReusableCell(
                         withReuseIdentifier: PreviewCollectionViewCell.id,
                         for: indexPath
                     ) as? PreviewCollectionViewCell
                     
                     cell?.configure(
-                        coverImgUrl: coverImgUrl,
-                        title: title,
-                        subTitle: nickname
+                        coverImgUrl: contentData.coverURL,
+                        title: contentData.title,
+                        subTitle: contentData.nickname
                     )
                     
                     return cell

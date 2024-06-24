@@ -50,7 +50,7 @@ final class PopularPostListViewModel {
     }
     
     struct Output {
-        var postListData = PublishSubject<[PostDataModel]>()
+        var postListData = PublishSubject<[ContentDataModel]>()
     }
     
     struct Route {

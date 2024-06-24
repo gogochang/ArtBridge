@@ -12,9 +12,9 @@ import FirebaseFirestore
 //TODO: 모델로 이동
 struct HomeDataModel: Decodable {
     var bannerUrls: [HomeBannerDataModel]
-    var popularPosts: [PostDataModel]
-    var popularTutors: [TutorDataModel]
-    var news: [NewsDataModel]
+    var popularPosts: [ContentDataModel]
+    var popularTutors: [ContentDataModel]
+    var news: [ContentDataModel]
     
     enum CodingKeys: String, CodingKey {
         case bannerUrls = "bannerUrls"
@@ -24,29 +24,14 @@ struct HomeDataModel: Decodable {
     }
 }
 
-struct PostDataModel: Decodable {
-    let id: String
-    let title: String
-    let content: String
-    let coverURLs: String
-    var likeCount: Int
-}
-
-struct TutorDataModel: Decodable {
-    let userIdx: Int
+struct ContentDataModel: Decodable, Equatable, Hashable {
+    let id: Int
     let nickname: String
-    let categoryType: Int
-    let profileImgURL: String
-    let likeCount: Int
-}
-
-struct NewsDataModel: Decodable {
-    let index: Int
+    let category: String
     let title: String
     let content: String
-    let author: String
-    let likeCount: Int
-    let coverImgURL: String
+    let coverURL: String
+    var likeCount: Int
 }
 
 struct HomeBannerDataModel: Decodable {
@@ -103,14 +88,15 @@ final class HomeAPIService {
         }
     }
     
-    func fetchHomePopularPostsData() -> Observable<[PostDataModel]> {
+    func fetchHomePopularPostsData() -> Observable<[ContentDataModel]> {
         return Observable.create { observer in
             FirestoreService.shared.fetchDocuments(
                 collection: "post",
-                type: PostDataModel.self,
+                type: ContentDataModel.self,
                 limit: 5
             ) { postData in
                 if let postData = postData {
+                    print("seijflsjflsef \(postData)")
                     observer.onNext(postData)
                     observer.onCompleted()
                 } else {
@@ -125,11 +111,11 @@ final class HomeAPIService {
         }
     }
     
-    func fetchHomePopularTutorsData() -> Observable<[TutorDataModel]> {
+    func fetchHomePopularTutorsData() -> Observable<[ContentDataModel]> {
         return Observable.create { observer in
             FirestoreService.shared.fetchDocuments(
                 collection: "tutors",
-                type: TutorDataModel.self,
+                type: ContentDataModel.self,
                 limit: 5
             ) { tutorData in
                 if let tutorData = tutorData {
@@ -148,11 +134,11 @@ final class HomeAPIService {
         }
     }
     
-    func fetchHomeNewsData() -> Observable<[NewsDataModel]> {
+    func fetchHomeNewsData() -> Observable<[ContentDataModel]> {
         return Observable.create { observer in
             FirestoreService.shared.fetchDocuments(
                 collection: "news",
-                type: NewsDataModel.self,
+                type: ContentDataModel.self,
                 limit: 5
             ) { newsData in
                 if let newsData = newsData {
