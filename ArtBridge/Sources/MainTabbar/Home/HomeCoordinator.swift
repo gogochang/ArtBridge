@@ -90,7 +90,7 @@ final class HomeCoordinator: BaseCoordinator<Void> {
         animated: Bool
     ) {
         let comp = component.popularPostListComponent(listType: listType)
-        let coord = PopularPostListCoordinator(component: comp, navController: navigationController)
+        let coord = ContentListCoordinator(component: comp, navController: navigationController)
         
         coordinate(coordinator: coord, animated: animated) { coordResult in
             switch coordResult {

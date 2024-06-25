@@ -20,8 +20,8 @@ final class HomeComponent {
         return DetailInstrumentComponent()
     }
     
-    func popularPostListComponent(listType: HeaderType) -> PopularPostListComponent {
-        return PopularPostListComponent(listType: listType)
+    func popularPostListComponent(listType: HeaderType) -> ContentListComponent {
+        return ContentListComponent(listType: listType)
     }
     
     var detailPostComponent: DetailPostComponent {

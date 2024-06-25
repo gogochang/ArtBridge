@@ -57,10 +57,10 @@
 		2B6B20D52BFCBBA7002D9E79 /* DetailNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B20D42BFCBBA7002D9E79 /* DetailNewsViewModel.swift */; };
 		2B6B20D72BFCBBB0002D9E79 /* DetailNewsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B20D62BFCBBB0002D9E79 /* DetailNewsComponent.swift */; };
 		2B6B20D92BFCBBB9002D9E79 /* DetailNewsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B20D82BFCBBB9002D9E79 /* DetailNewsCoordinator.swift */; };
-		2B6F28A72BED326300BDA911 /* PopularPostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28A62BED326300BDA911 /* PopularPostListViewController.swift */; };
-		2B6F28A92BED330100BDA911 /* PopularPostListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28A82BED330100BDA911 /* PopularPostListComponent.swift */; };
-		2B6F28AB2BED33A800BDA911 /* PopularPostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28AA2BED33A800BDA911 /* PopularPostListViewModel.swift */; };
-		2B6F28AD2BED347200BDA911 /* PopularPostListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28AC2BED347200BDA911 /* PopularPostListCoordinator.swift */; };
+		2B6F28A72BED326300BDA911 /* ContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28A62BED326300BDA911 /* ContentListViewController.swift */; };
+		2B6F28A92BED330100BDA911 /* ContentListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28A82BED330100BDA911 /* ContentListComponent.swift */; };
+		2B6F28AB2BED33A800BDA911 /* ContentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28AA2BED33A800BDA911 /* ContentListViewModel.swift */; };
+		2B6F28AD2BED347200BDA911 /* ContentListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28AC2BED347200BDA911 /* ContentListCoordinator.swift */; };
 		2B9705C72C21DBDC00B94E8B /* PostAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9705C62C21DBDC00B94E8B /* PostAPIService.swift */; };
 		2B9705C92C21DE4400B94E8B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2B9705C82C21DE4400B94E8B /* FirebaseFirestore */; };
 		2B9C4FCE2BED3B690058CE3F /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 2B9C4FCD2BED3B690058CE3F /* Then */; };
@@ -187,10 +187,10 @@
 		2B6B20D42BFCBBA7002D9E79 /* DetailNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsViewModel.swift; sourceTree = "<group>"; };
 		2B6B20D62BFCBBB0002D9E79 /* DetailNewsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsComponent.swift; sourceTree = "<group>"; };
 		2B6B20D82BFCBBB9002D9E79 /* DetailNewsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsCoordinator.swift; sourceTree = "<group>"; };
-		2B6F28A62BED326300BDA911 /* PopularPostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListViewController.swift; sourceTree = "<group>"; };
-		2B6F28A82BED330100BDA911 /* PopularPostListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListComponent.swift; sourceTree = "<group>"; };
-		2B6F28AA2BED33A800BDA911 /* PopularPostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListViewModel.swift; sourceTree = "<group>"; };
-		2B6F28AC2BED347200BDA911 /* PopularPostListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostListCoordinator.swift; sourceTree = "<group>"; };
+		2B6F28A62BED326300BDA911 /* ContentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListViewController.swift; sourceTree = "<group>"; };
+		2B6F28A82BED330100BDA911 /* ContentListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListComponent.swift; sourceTree = "<group>"; };
+		2B6F28AA2BED33A800BDA911 /* ContentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListViewModel.swift; sourceTree = "<group>"; };
+		2B6F28AC2BED347200BDA911 /* ContentListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListCoordinator.swift; sourceTree = "<group>"; };
 		2B9705C62C21DBDC00B94E8B /* PostAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAPIService.swift; sourceTree = "<group>"; };
 		2B9C4FD12BF0B57E0058CE3F /* DetailPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewController.swift; sourceTree = "<group>"; };
 		2B9C4FD32BF0B58F0058CE3F /* DetailPostComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostComponent.swift; sourceTree = "<group>"; };
@@ -489,15 +489,15 @@
 			path = DetailNews;
 			sourceTree = "<group>";
 		};
-		2B6F28A52BED325300BDA911 /* PopularPostList */ = {
+		2B6F28A52BED325300BDA911 /* ContentList */ = {
 			isa = PBXGroup;
 			children = (
-				2B6F28A62BED326300BDA911 /* PopularPostListViewController.swift */,
-				2B6F28A82BED330100BDA911 /* PopularPostListComponent.swift */,
-				2B6F28AA2BED33A800BDA911 /* PopularPostListViewModel.swift */,
-				2B6F28AC2BED347200BDA911 /* PopularPostListCoordinator.swift */,
+				2B6F28A62BED326300BDA911 /* ContentListViewController.swift */,
+				2B6F28A82BED330100BDA911 /* ContentListComponent.swift */,
+				2B6F28AA2BED33A800BDA911 /* ContentListViewModel.swift */,
+				2B6F28AC2BED347200BDA911 /* ContentListCoordinator.swift */,
 			);
-			path = PopularPostList;
+			path = ContentList;
 			sourceTree = "<group>";
 		};
 		2B9705C52C21D89900B94E8B /* Service */ = {
@@ -578,7 +578,7 @@
 				2B6B20D12BFCBB82002D9E79 /* DetailNews */,
 				2B3852032BF77CAF00BCF540 /* DetailTutor */,
 				2B9C4FD02BF0B5590058CE3F /* DetailPost */,
-				2B6F28A52BED325300BDA911 /* PopularPostList */,
+				2B6F28A52BED325300BDA911 /* ContentList */,
 				2B9C4FCF2BEF79530058CE3F /* Cells */,
 				2BB5156D2BDAC99E0092CC72 /* View */,
 				2BB515602BDAA7190092CC72 /* HomeComponent.swift */,
@@ -909,18 +909,18 @@
 				2B9C4FD82BF0B5B00058CE3F /* DetailPostCoordinator.swift in Sources */,
 				2B9C4FDB2BF0CA5C0058CE3F /* CommentCollectionViewCell.swift in Sources */,
 				2BFA9C562C0F341E00E72C99 /* LoginComponent.swift in Sources */,
-				2B6F28A92BED330100BDA911 /* PopularPostListComponent.swift in Sources */,
+				2B6F28A92BED330100BDA911 /* ContentListComponent.swift in Sources */,
 				2BFA9C522C0F340B00E72C99 /* LoginViewModel.swift in Sources */,
 				2BFA9C542C0F341600E72C99 /* LoginCoordinator.swift in Sources */,
 				2BB5157F2BDE15A50092CC72 /* CommunityComponent.swift in Sources */,
 				2BB5158C2BDE998E0092CC72 /* ButtonCollectionViewCell.swift in Sources */,
 				2BB5155E2BD91CE90092CC72 /* UIStackView+.swift in Sources */,
-				2B6F28AD2BED347200BDA911 /* PopularPostListCoordinator.swift in Sources */,
+				2B6F28AD2BED347200BDA911 /* ContentListCoordinator.swift in Sources */,
 				2B9C4FD22BF0B57E0058CE3F /* DetailPostViewController.swift in Sources */,
 				2BB515722BDBCE5A0092CC72 /* UIColor+.swift in Sources */,
 				2B5C6C9E2BF84E1E004800CC /* TutorProfileCollectionViewCell.swift in Sources */,
 				2BB5159D2BDFE4F70092CC72 /* MyPageViewController.swift in Sources */,
-				2B6F28A72BED326300BDA911 /* PopularPostListViewController.swift in Sources */,
+				2B6F28A72BED326300BDA911 /* ContentListViewController.swift in Sources */,
 				2BB084AC2C1E9948005E7221 /* AlarmCoordinator.swift in Sources */,
 				2B3852022BF63B8600BCF540 /* UIButton+.swift in Sources */,
 				2B6B20D32BFCBB9E002D9E79 /* DetailNewsViewController.swift in Sources */,
@@ -955,7 +955,7 @@
 				2BB5158F2BDFD53D0092CC72 /* MessageListComponent.swift in Sources */,
 				2B0BCF142C13209C0053ACAD /* SettingViewModel.swift in Sources */,
 				2B1469F82BD3979700E6483E /* MainTabViewModel.swift in Sources */,
-				2B6F28AB2BED33A800BDA911 /* PopularPostListViewModel.swift in Sources */,
+				2B6F28AB2BED33A800BDA911 /* ContentListViewModel.swift in Sources */,
 				2BB5156F2BDACA2E0092CC72 /* BannerCollectionViewCell.swift in Sources */,
 				2B3851FE2BF238AE00BCF540 /* CommentInputView.swift in Sources */,
 			);

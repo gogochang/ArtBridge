@@ -1,5 +1,5 @@
 //
-//  PopularPostListCoordinator.swift
+//  ContentListCoordinator.swift
 //  ArtBridge
 //
 //  Created by 김창규 on 5/10/24.
@@ -10,12 +10,12 @@ enum PopularPostListResult {
     case backward
 }
 
-final class PopularPostListCoordinator: BaseCoordinator<PopularPostListResult> {
-    var component: PopularPostListComponent
+final class ContentListCoordinator: BaseCoordinator<PopularPostListResult> {
+    var component: ContentListComponent
     
     //MARK: - Init
     init(
-        component: PopularPostListComponent,
+        component: ContentListComponent,
         navController: UINavigationController
     ) {
         self.component = component
@@ -50,7 +50,7 @@ final class PopularPostListCoordinator: BaseCoordinator<PopularPostListResult> {
             }.disposed(by: sceneDisposeBag)
     }
     
-    private func pushDetailPostScene(vm: PopularPostListViewModel, animated: Bool) {
+    private func pushDetailPostScene(vm: ContentListViewModel, animated: Bool) {
         let comp = component.detailPostComponent
         let coord = DetailPostCoordinator(component: comp, navController: navigationController)
         

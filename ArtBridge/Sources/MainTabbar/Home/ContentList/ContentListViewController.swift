@@ -1,5 +1,5 @@
 //
-//  PopularPostListViewController.swift
+//  ContentListViewController.swift
 //  ArtBridge
 //
 //  Created by 김창규 on 5/10/24.
@@ -16,9 +16,9 @@ fileprivate enum Item: Hashable {
     case previewItem(String, String, String?)
 }
 
-final class PopularPostListViewController: UIViewController {
+final class ContentListViewController: UIViewController {
     //MARK: - Properties
-    private let viewModel: PopularPostListViewModel
+    private let viewModel: ContentListViewModel
     private let disposeBag: DisposeBag = DisposeBag()
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
@@ -45,7 +45,7 @@ final class PopularPostListViewController: UIViewController {
     }
     
     //MARK: - Init
-    init(viewModel: PopularPostListViewModel) {
+    init(viewModel: ContentListViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -106,7 +106,7 @@ final class PopularPostListViewController: UIViewController {
 }
 
 //MARK: - Layout
-extension PopularPostListViewController {
+extension ContentListViewController {
     private func setupViews() {
         view.addSubviews([
             navBar,
@@ -129,7 +129,7 @@ extension PopularPostListViewController {
 }
 
 //MARK: - CompositionalLayout
-extension PopularPostListViewController {
+extension ContentListViewController {
     private func createLayout() -> UICollectionViewCompositionalLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()
         return UICollectionViewCompositionalLayout(sectionProvider: { [weak self] sectionIndex, _ in
@@ -171,7 +171,7 @@ extension PopularPostListViewController {
 }
 
 //MARK: - Datasource
-extension PopularPostListViewController {
+extension ContentListViewController {
     private func setDatasource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(
             collectionView: collectionView,
@@ -210,7 +210,7 @@ extension PopularPostListViewController {
 }
 
 //MARK: - UICollectionView Delegate
-extension PopularPostListViewController: UICollectionViewDelegate {
+extension ContentListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("선택된 아이템의 상세페이지로 이동")
         viewModel.inputs.showDetailPost.onNext(())

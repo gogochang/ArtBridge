@@ -1,5 +1,5 @@
 //
-//  PopularPostListComponent.swift
+//  ContentListComponent.swift
 //  ArtBridge
 //
 //  Created by 김창규 on 5/10/24.
@@ -7,14 +7,14 @@
 
 import UIKit
 
-final class PopularPostListComponent {
-    var scene: (VC: PopularPostListViewController, VM: PopularPostListViewModel) {
+final class ContentListComponent {
+    var scene: (VC: ContentListViewController, VM: ContentListViewModel) {
         let viewModel = self.viewModel
-        return (VC: PopularPostListViewController(viewModel: viewModel), VM: viewModel)
+        return (VC: ContentListViewController(viewModel: viewModel), VM: viewModel)
     }
     
-    var viewModel: PopularPostListViewModel {
-        return PopularPostListViewModel(listType: listType)
+    var viewModel: ContentListViewModel {
+        return ContentListViewModel(listType: listType)
     }
     
     var detailPostComponent: DetailPostComponent {

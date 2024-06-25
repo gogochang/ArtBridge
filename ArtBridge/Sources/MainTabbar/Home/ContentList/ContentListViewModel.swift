@@ -1,5 +1,5 @@
 //
-//  PopularPostListViewModel.swift
+//  ContentListViewModel.swift
 //  ArtBridge
 //
 //  Created by 김창규 on 5/10/24.
@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-final class PopularPostListViewModel {
+final class ContentListViewModel {
     private var disposeBag = DisposeBag()
     var routeInputs = RouteInput()
     var routes = Route()
