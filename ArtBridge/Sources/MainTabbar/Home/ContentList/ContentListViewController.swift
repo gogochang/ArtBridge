@@ -198,12 +198,7 @@ extension ContentListViewController {
     private func createSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         let doubleSection = Section.double("지금 인기있는 글")
-        let popularPostItems = [
-            Item.previewItem("제 연주 피드백 부탁드립니다.", "강호동", "https://source.unsplash.com/random/400x400?5")
-        ]
-        
         snapshot.appendSections([doubleSection])
-        snapshot.appendItems(popularPostItems, toSection: doubleSection)
         
         dataSource?.apply(snapshot)
     }
