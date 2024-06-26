@@ -499,6 +499,7 @@ extension HomeViewController {
 //MARK: - UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         let section = dataSource?.sectionIdentifier(for: indexPath.section)
         switch section {
         case .banner:
@@ -506,7 +507,7 @@ extension HomeViewController: UICollectionViewDelegate {
         case .quickHorizontal:
             self.viewModel.inputs.showDetailInstrument.onNext(())
         case .PopularPost:
-            self.viewModel.inputs.showDetailPost.onNext(())
+            self.viewModel.inputs.showDetailPost.onNext(indexPath.item)
         case .PopularTutor:
             self.viewModel.inputs.showDetailTutor.onNext(())
         case .news:

@@ -12,7 +12,7 @@ final class CommunityComponent {
     
     lazy var viewModel: CommunityViewModel = .init()
     
-    var detailPostComponent: DetailPostComponent {
-        return DetailPostComponent()
+    func detailPostComponent(postID: Int) -> DetailPostComponent {
+        return DetailPostComponent(postID: postID)
     }
 }

@@ -24,8 +24,8 @@ final class HomeComponent {
         return ContentListComponent(listType: listType)
     }
     
-    var detailPostComponent: DetailPostComponent {
-        return DetailPostComponent()
+    func detailPostComponent(postID: Int) -> DetailPostComponent {
+        return DetailPostComponent(postID: postID)
     }
     
     var detailTutorComponent: DetailTutorComponent {

@@ -8,9 +8,22 @@
 import UIKit
 
 final class DetailPostComponent {
+    //MARK: - Properties
     var scene: (VC: DetailPostViewController, VM: DetailPostViewModel) {
+        let viewModel = self.viewModel
         return (VC: DetailPostViewController(viewModel: viewModel), VM: viewModel)
     }
     
-    var viewModel: DetailPostViewModel = .init()
+    var viewModel: DetailPostViewModel {
+        return DetailPostViewModel(postID: self.postID)
+    }
+    
+    let postID: Int
+    
+    //MARK: - Init
+    init(postID: Int) {
+        self.postID = postID
+    }
+    
+    
 }

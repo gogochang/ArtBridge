@@ -7,13 +7,25 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 final class DetailPostViewModel {
     private var disposeBag = DisposeBag()
     var inputs = Input()
+    var outputs = Output()
     var routes = Route()
     
-    init() {
+    init(
+        postID: Int,
+        postAPIService: PostAPIService = PostAPIService()
+    ) {
+        postAPIService.fetchDetailPost(postID: postID)
+            .subscribe(onNext: { [weak self] postData in
+                self?.outputs.postData.onNext(postData)
+            }, onError: { error in
+                print("Error: \(error.localizedDescription)")
+            }).disposed(by: disposeBag)
+        
         inputs.backward
             .bind(to: routes.backward)
             .disposed(by: disposeBag)
@@ -21,6 +33,10 @@ final class DetailPostViewModel {
     
     struct Input {
         var backward = PublishSubject<Void>()
+    }
+    
+    struct Output {
+        var postData = ReplaySubject<ContentDataModel>.create(bufferSize: 1)
     }
     
     struct Route {

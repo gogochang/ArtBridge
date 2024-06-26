@@ -51,7 +51,7 @@ final class ContentListCoordinator: BaseCoordinator<PopularPostListResult> {
     }
     
     private func pushDetailPostScene(vm: ContentListViewModel, animated: Bool) {
-        let comp = component.detailPostComponent
+        let comp = component.detailPostComponent(postID: 0)//FIXME: 임시로0처리
         let coord = DetailPostCoordinator(component: comp, navController: navigationController)
         
         coordinate(coordinator: coord, animated: animated) { coordResult in

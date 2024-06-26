@@ -17,8 +17,8 @@ final class ContentListComponent {
         return ContentListViewModel(listType: listType)
     }
     
-    var detailPostComponent: DetailPostComponent {
-        return DetailPostComponent()
+    func detailPostComponent(postID: Int) -> DetailPostComponent {
+        return DetailPostComponent(postID: postID)
     }
     
     var listType: HeaderType

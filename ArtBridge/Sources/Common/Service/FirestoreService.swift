@@ -50,6 +50,7 @@ class FirestoreService {
         type: T.Type,
         order: String? = nil,
         limit: Int? = nil,
+        filter: (field: String, isEqualTo: Any)? = nil,
         completion: @escaping ([T]?) -> Void
     ) {
         var collection: Query = db.collection(collection)
@@ -60,6 +61,10 @@ class FirestoreService {
         
         if let limit = limit {
             collection = collection.limit(to: limit)
+        }
+        
+        if let filter = filter {
+            collection = collection.whereField(filter.field, isEqualTo: filter.isEqualTo)
         }
         
         collection.getDocuments { snapshot, error in
@@ -77,9 +82,13 @@ class FirestoreService {
             
             let decoder = JSONDecoder()
             let dataList = documents.compactMap { document in
+                
                 do {
                     let jsonData = try JSONSerialization.data(withJSONObject: document.data())
                     let decodedData = try decoder.decode(T.self, from: jsonData)
+                    if let filter = filter {
+                        print("sejf9sje90sfj : decodedData: \(decodedData)")
+                    }
                     return decodedData
                 } catch {
                     print("Error decoding data: \(error)")

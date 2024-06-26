@@ -15,6 +15,31 @@ final class PostAPIService {
     //MARK: - Init
     init() {}
     
+    //MARK: - Methods
+    func fetchDetailPost(postID: Int) -> Observable<ContentDataModel> {
+        return Observable.create { observer in
+            FirestoreService.shared.fetchDocuments(
+                collection: "post",
+                type: ContentDataModel.self,
+                limit: 1,
+                filter: (field: "id", isEqualTo: postID as Int)
+            ) { postData in
+                
+                if let postData = postData?.first {
+                    observer.onNext(postData)
+                    observer.onCompleted()
+                } else {
+                    observer.onError(NSError(
+                        domain: "HomeAPIService",
+                        code: -1,
+                        userInfo: [NSLocalizedDescriptionKey: "Failed to fetch home data"])
+                    )
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
     func fetchPopularPostList(listType: HeaderType) -> Observable<[ContentDataModel]> {
         return Observable.create { observer in
             FirestoreService.shared.fetchDocuments(

@@ -42,9 +42,13 @@ final class HomeCoordinator: BaseCoordinator<Void> {
             }.disposed(by: sceneDisposeBag)
         
         scene.VM.routes.detailPost
-            .map { scene.VM }
-            .bind { [weak self] vm in
-                self?.pushDetailPostScene(vm: vm, animated: true)
+            .map { (vm: scene.VM, postId: $0) }
+            .bind { [weak self] inputs in
+                self?.pushDetailPostScene(
+                    vm: inputs.vm,
+                    postID: inputs.postId,
+                    animated: true
+                )
             }.disposed(by: sceneDisposeBag)
         
         scene.VM.routes.detailTutor
@@ -100,8 +104,8 @@ final class HomeCoordinator: BaseCoordinator<Void> {
         }
     }
     
-    private func pushDetailPostScene(vm: HomeViewModel, animated: Bool) {
-        let comp = component.detailPostComponent
+    private func pushDetailPostScene(vm: HomeViewModel, postID: Int, animated: Bool) {
+        let comp = component.detailPostComponent(postID: postID)
         let coord = DetailPostCoordinator(component: comp, navController: navigationController)
         
         coordinate(coordinator: coord, animated: animated) { coordResult in

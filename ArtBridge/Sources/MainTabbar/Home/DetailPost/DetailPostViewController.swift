@@ -15,7 +15,7 @@ fileprivate enum Section: Hashable {
 }
 
 fileprivate enum Item: Hashable {
-    case contentItem(String)
+    case contentItem(ContentDataModel)
     case bannerItem(String)
     case commentItem(String)
 }
@@ -63,16 +63,39 @@ final class DetailPostViewController: UIViewController {
         createSnapshot()
         
         viewModelInput()
+        viewModelOutput()
         
         dismissKeyboardWhenTappedAround()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    //MARK: - Private Methods
     private func viewModelInput() {
         navBar.leftBtnItem.rx.tap
             .bind(to: viewModel.inputs.backward)
             .disposed(by: disposeBag)
+    }
+    
+    private func viewModelOutput() {
+        viewModel.outputs.postData
+            .bind { [weak self] postData in
+                self?.updatePostData(with: postData)
+            }.disposed(by: disposeBag)
+    }
+    
+    private func updatePostData(with postData: ContentDataModel) {
+        guard var currentSnapshot = self.dataSource?.snapshot() else { return }
+        
+        let singleSection = Section.single
+        let singleItem = Item.contentItem(postData)
+        
+        currentSnapshot.deleteItems(currentSnapshot.itemIdentifiers(inSection: singleSection))
+        currentSnapshot.appendItems([singleItem])
+        
+        DispatchQueue.main.async {
+            self.dataSource?.apply(currentSnapshot)
+        }
     }
 }
 
@@ -201,11 +224,13 @@ extension DetailPostViewController {
             collectionView: collectionView,
             cellProvider: { collectionView, indexPath, item in
                 switch item {
-                case .contentItem:
+                case .contentItem(let postData):
                     let cell = collectionView.dequeueReusableCell(
                         withReuseIdentifier: ContentCollectionViewCell.id,
                         for: indexPath
                     ) as? ContentCollectionViewCell
+                    
+                    cell?.configure(with: postData)
                     
                     return cell
                 case .bannerItem:
@@ -234,19 +259,18 @@ extension DetailPostViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         
         let singleSection = Section.single
-        let contentItem = Item.contentItem("test")
         snapshot.appendSections([singleSection])
-        snapshot.appendItems([contentItem],toSection: singleSection)
+        
         
         let bannerSection = Section.banner
-        let bannerItem = Item.bannerItem("testest")
+//        let bannerItem = Item.bannerItem("testest")
         snapshot.appendSections([bannerSection])
-        snapshot.appendItems([bannerItem],toSection: bannerSection)
+//        snapshot.appendItems([bannerItem],toSection: bannerSection)
         
         let verticalSection = Section.vertical
-        let commentItems = [Item.commentItem("1"), Item.commentItem("2"), Item.commentItem("3")]
+//        let commentItems = [Item.commentItem("1"), Item.commentItem("2"), Item.commentItem("3")]
         snapshot.appendSections([verticalSection])
-        snapshot.appendItems(commentItems,toSection: verticalSection)
+//        snapshot.appendItems(commentItems,toSection: verticalSection)
         
         dataSource?.apply(snapshot)
     }

@@ -12,6 +12,7 @@ import RxSwift
 final class HomeViewModel {
     //MARK: - properties
     private var disposeBag = DisposeBag()
+    private var homeData: HomeDataModel?
     var inputs = Input()
     var outputs = Output()
     var routeInputs = RouteInput()
@@ -21,8 +22,9 @@ final class HomeViewModel {
         homeAPIService: HomeAPIService = HomeAPIService()
     ) {
         homeAPIService.fetchHomeData()
-            .subscribe(onNext: { homeData in
-                self.outputs.homeData.onNext(homeData)
+            .subscribe(onNext: { [weak self] homeData in
+                self?.homeData = homeData
+                self?.outputs.homeData.onNext(homeData)
             }, onError: { error in
                 print("Error: \(error.localizedDescription)")
             }).disposed(by: disposeBag)
@@ -36,6 +38,7 @@ final class HomeViewModel {
             .disposed(by: disposeBag)
         
         inputs.showDetailPost
+            .compactMap { self.homeData?.popularPosts[$0].id }
             .bind(to: routes.detailPost)
             .disposed(by: disposeBag)
         
@@ -62,7 +65,7 @@ final class HomeViewModel {
         
         var showDetailInstrument = PublishSubject<Void>()
         var showPopularPostList = PublishSubject<HeaderType>()
-        var showDetailPost = PublishSubject<Void>()
+        var showDetailPost = PublishSubject<Int>()
         var showDetailTutor = PublishSubject<Void>()
         var showDetailNews = PublishSubject<Void>()
     }
@@ -77,7 +80,7 @@ final class HomeViewModel {
         
         var detailInstrument = PublishSubject<Void>()
         var popularPostList = PublishSubject<HeaderType>()
-        var detailPost = PublishSubject<Void>()
+        var detailPost = PublishSubject<Int>()
         var detailTutor = PublishSubject<Void>()
         var detailNews = PublishSubject<Void>()
     }

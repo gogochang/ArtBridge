@@ -66,6 +66,12 @@ final class ContentCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func configure(with postData: ContentDataModel) {
+        self.title.text = postData.title
+        self.content.text = postData.content
+        //TODO: UI업데이트 요소들을 추가해야함
+    }
 }
 
 //MARK: - Layout
