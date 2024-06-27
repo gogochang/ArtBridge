@@ -1,4 +1,6 @@
 ## 음악인들을 위한 커뮤니티 ArtBridge
+![ArtBridge_Appstore_screen](https://github.com/gogochang/ArtBridge/assets/54075367/9bc12899-37be-425d-9de0-1b6440d2e528)
+
 * 음악인들의 소통을 위한 커뮤니티를 제공하는 서비스
 * 악기를 배우고싶은사람, 악기를 가르치고 싶은사람들을 연결 시켜주는 서비스
 * 악기 연주 영상 피드백
