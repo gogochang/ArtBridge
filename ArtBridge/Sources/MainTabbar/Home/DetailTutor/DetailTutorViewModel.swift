@@ -11,10 +11,22 @@ import RxSwift
 final class DetailTutorViewModel {
     private var disposeBag = DisposeBag()
     var inputs = Input()
+    var outputs = Output()
     var routeInputs = RouteInput()
     var routes = Route()
     
-    init() {
+    init(
+        tutorID: Int,
+        tutorAPIService: TutorAPIService = TutorAPIService()
+    ) {
+        
+        tutorAPIService.fetchDetailTutor(tutorID: tutorID)
+            .subscribe(onNext: { [weak self] postData in
+                self?.outputs.tutorData.onNext(postData)
+            }, onError: { error in
+                print("Error: \(error.localizedDescription)")
+            }).disposed(by: disposeBag)
+        
         inputs.backward
             .bind(to: routes.backward)
             .disposed(by: disposeBag)
@@ -31,6 +43,10 @@ final class DetailTutorViewModel {
     struct Input {
         var backward = PublishSubject<Void>()
         var message = PublishSubject<Void>()
+    }
+    
+    struct Output {
+        var tutorData = ReplaySubject<ContentDataModel>.create(bufferSize: 1)
     }
     
     struct Route {

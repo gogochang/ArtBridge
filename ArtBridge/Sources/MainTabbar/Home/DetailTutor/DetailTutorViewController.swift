@@ -18,7 +18,7 @@ fileprivate enum Section: Hashable {
 
 fileprivate enum Item: Hashable {
     case bannerItem(String) // ImageURL
-    case profile
+    case profile(String)
     case detailInfo
     case descItem
 }
@@ -66,20 +66,41 @@ final class DetailTutorViewController: UIViewController {
         createSnapshot()
         
         viewModelInputs()
+        viewModelOutput()
         
         viewInputs()
     }
     
+    //MARK: - Private Methods
     private func viewModelInputs() {
         navBar.leftBtnItem.rx.tap
             .bind(to: viewModel.inputs.backward)
             .disposed(by: disposeBag)
+    }
+    private func viewModelOutput() {
+        viewModel.outputs.tutorData
+            .bind { [weak self] postData in
+                self?.updateTutorData(with: postData)
+            }.disposed(by: disposeBag)
     }
     
     private func viewInputs() {
         bottomButtonView.button.rx.tap
             .bind(to: viewModel.inputs.message)
             .disposed(by: disposeBag)
+    }
+    
+    private func updateTutorData(with tutorData: ContentDataModel) {
+        guard var currentSnapshot = self.dataSource?.snapshot() else { return }
+        
+        let profileSection = Section.profile
+        let profileItem = Item.profile(tutorData.nickname)
+        currentSnapshot.deleteItems(currentSnapshot.itemIdentifiers(inSection: profileSection))
+        currentSnapshot.appendItems([profileItem])
+        
+        DispatchQueue.main.async {
+            self.dataSource?.apply(currentSnapshot)
+        }
     }
 }
 
@@ -254,12 +275,13 @@ extension DetailTutorViewController {
                     
                     return cell
                     
-                case .profile:
+                case .profile(let userName):
                     let cell = collectionView.dequeueReusableCell(
                         withReuseIdentifier: TutorProfileCollectionViewCell.id,
                         for: indexPath
                     ) as? TutorProfileCollectionViewCell
                     
+                    cell?.configure(userName: userName)
                     return cell
                     
                 case .detailInfo:
@@ -297,19 +319,19 @@ extension DetailTutorViewController {
         snapshot.appendItems(bannerItems,toSection: bannerSection)
         
         let profileSection = Section.profile
-        let profileItem = Item.profile
+//        let profileItem = Item.profile
         snapshot.appendSections([profileSection])
-        snapshot.appendItems([profileItem], toSection: profileSection)
+//        snapshot.appendItems([profileItem], toSection: profileSection)
         
         let infoSection = Section.detailInfo
-        let infoItem = Item.detailInfo
+//        let infoItem = Item.detailInfo
         snapshot.appendSections([infoSection])
-        snapshot.appendItems([infoItem], toSection: infoSection)
+//        snapshot.appendItems([infoItem], toSection: infoSection)
         
         let descSection = Section.description
-        let descItem = Item.descItem
+//        let descItem = Item.descItem
         snapshot.appendSections([descSection])
-        snapshot.appendItems([descItem], toSection: descSection)
+//        snapshot.appendItems([descItem], toSection: descSection)
         
         dataSource?.apply(snapshot)
     }

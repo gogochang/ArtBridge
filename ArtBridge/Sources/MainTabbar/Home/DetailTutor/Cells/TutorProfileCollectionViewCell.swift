@@ -65,6 +65,11 @@ class TutorProfileCollectionViewCell: UICollectionViewCell {
             starStackView.addArrangedSubview(starImageView)
         }
     }
+    
+    //MARK: - Public Methods
+    func configure(userName: String) { //TODO: 프로필 데이터 모델로 사용
+        self.userNameLabel.text = userName
+    }
 }
 
 //MARK: - Layout

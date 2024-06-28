@@ -43,6 +43,7 @@ final class HomeViewModel {
             .disposed(by: disposeBag)
         
         inputs.showDetailTutor
+            .compactMap { self.homeData?.popularTutors[$0].id }
             .bind(to: routes.detailTutor)
             .disposed(by: disposeBag)
         
@@ -66,7 +67,7 @@ final class HomeViewModel {
         var showDetailInstrument = PublishSubject<Void>()
         var showPopularPostList = PublishSubject<HeaderType>()
         var showDetailPost = PublishSubject<Int>()
-        var showDetailTutor = PublishSubject<Void>()
+        var showDetailTutor = PublishSubject<Int>()
         var showDetailNews = PublishSubject<Void>()
     }
     
@@ -81,7 +82,7 @@ final class HomeViewModel {
         var detailInstrument = PublishSubject<Void>()
         var popularPostList = PublishSubject<HeaderType>()
         var detailPost = PublishSubject<Int>()
-        var detailTutor = PublishSubject<Void>()
+        var detailTutor = PublishSubject<Int>()
         var detailNews = PublishSubject<Void>()
     }
 }

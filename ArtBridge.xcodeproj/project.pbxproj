@@ -109,6 +109,7 @@
 		2BC1326E2BE3D3D200F13EC4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2BC1326D2BE3D3D200F13EC4 /* Kingfisher */; };
 		2BC132702BE3D63900F13EC4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 2BC1326F2BE3D63900F13EC4 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		2BEDD4B92BE23DA300C12E17 /* MenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEDD4B82BE23DA300C12E17 /* MenuItemCollectionViewCell.swift */; };
+		2BF0B6A52C2EDFA700FD47B8 /* TutorAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF0B6A42C2EDFA700FD47B8 /* TutorAPIService.swift */; };
 		2BFA9C4B2C0DD42400E72C99 /* NewsInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFA9C4A2C0DD42400E72C99 /* NewsInfoCollectionViewCell.swift */; };
 		2BFA9C4D2C0DDD5600E72C99 /* NewsContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFA9C4C2C0DDD5600E72C99 /* NewsContentCollectionViewCell.swift */; };
 		2BFA9C502C0F340300E72C99 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFA9C4F2C0F340300E72C99 /* LoginViewController.swift */; };
@@ -233,6 +234,7 @@
 		2BB515A02BDFE5090092CC72 /* MyPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCoordinator.swift; sourceTree = "<group>"; };
 		2BB515A32BDFEEC00092CC72 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BEDD4B82BE23DA300C12E17 /* MenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		2BF0B6A42C2EDFA700FD47B8 /* TutorAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorAPIService.swift; sourceTree = "<group>"; };
 		2BFA9C4A2C0DD42400E72C99 /* NewsInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BFA9C4C2C0DDD5600E72C99 /* NewsContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BFA9C4F2C0F340300E72C99 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -506,6 +508,7 @@
 				2B9705C62C21DBDC00B94E8B /* PostAPIService.swift */,
 				2B455FD02C22F2FB00C29F0B /* HomeAPIService.swift */,
 				2B455FD22C22F61400C29F0B /* FirestoreService.swift */,
+				2BF0B6A42C2EDFA700FD47B8 /* TutorAPIService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -873,6 +876,7 @@
 				2BFA9C4D2C0DDD5600E72C99 /* NewsContentCollectionViewCell.swift in Sources */,
 				2BB515932BDFD56D0092CC72 /* MessageListViewModel.swift in Sources */,
 				2B1469F42BD3963600E6483E /* MainTabComponent.swift in Sources */,
+				2BF0B6A52C2EDFA700FD47B8 /* TutorAPIService.swift in Sources */,
 				2BB084AA2C1E993E005E7221 /* AlarmComponent.swift in Sources */,
 				2B455FD12C22F2FB00C29F0B /* HomeAPIService.swift in Sources */,
 				2BB5157C2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift in Sources */,
