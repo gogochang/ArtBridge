@@ -27,6 +27,13 @@ final class DetailTutorViewModel {
                 print("Error: \(error.localizedDescription)")
             }).disposed(by: disposeBag)
         
+        tutorAPIService.fetchUserData(userID: 0)
+            .subscribe(onNext: { [weak self] userData in
+                self?.outputs.userData.onNext(userData)
+            }, onError: { error in
+                print("Error: \(error.localizedDescription)")
+            }).disposed(by: disposeBag)
+        
         inputs.backward
             .bind(to: routes.backward)
             .disposed(by: disposeBag)
@@ -47,6 +54,7 @@ final class DetailTutorViewModel {
     
     struct Output {
         var tutorData = ReplaySubject<ContentDataModel>.create(bufferSize: 1)
+        var userData = ReplaySubject<UserDataModel>.create(bufferSize: 1)
     }
     
     struct Route {
