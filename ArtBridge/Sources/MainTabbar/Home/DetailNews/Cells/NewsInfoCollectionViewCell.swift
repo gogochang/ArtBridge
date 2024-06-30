@@ -62,6 +62,12 @@ final class NewsInfoCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: - Internal Methods
+    func configure(with newsData: ContentDataModel) {
+        nickNameLabel.text = newsData.nickname
+    }
+    
 }
 
 //MARK: - Layout

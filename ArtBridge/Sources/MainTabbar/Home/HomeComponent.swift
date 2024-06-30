@@ -32,7 +32,7 @@ final class HomeComponent {
         return DetailTutorComponent(tutorID: tutorID)
     }
     
-    var detailNewsComponent: DetailNewsComponent {
-        return DetailNewsComponent()
+    func detailNewsComponent(newsID: Int) -> DetailNewsComponent {
+        return DetailNewsComponent(newsID: newsID)
     }
 }

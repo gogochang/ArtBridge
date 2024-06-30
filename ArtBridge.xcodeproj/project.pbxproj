@@ -44,6 +44,7 @@
 		2B4170012C0AEC1000F31881 /* MessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4170002C0AEC1000F31881 /* MessageCollectionViewCell.swift */; };
 		2B455FD12C22F2FB00C29F0B /* HomeAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B455FD02C22F2FB00C29F0B /* HomeAPIService.swift */; };
 		2B455FD32C22F61400C29F0B /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B455FD22C22F61400C29F0B /* FirestoreService.swift */; };
+		2B4814B02C319BAB00A7529E /* NewsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4814AF2C319BAB00A7529E /* NewsAPIService.swift */; };
 		2B54ADD32C1B35B3002BD5C5 /* DetailInstrumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54ADD22C1B35B3002BD5C5 /* DetailInstrumentViewController.swift */; };
 		2B54ADD92C1B35DA002BD5C5 /* DetailInstrumentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54ADD82C1B35DA002BD5C5 /* DetailInstrumentCoordinator.swift */; };
 		2B54ADDD2C1B35F6002BD5C5 /* DetailInstrumentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54ADDC2C1B35F6002BD5C5 /* DetailInstrumentViewModel.swift */; };
@@ -175,6 +176,7 @@
 		2B4170002C0AEC1000F31881 /* MessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		2B455FD02C22F2FB00C29F0B /* HomeAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPIService.swift; sourceTree = "<group>"; };
 		2B455FD22C22F61400C29F0B /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
+		2B4814AF2C319BAB00A7529E /* NewsAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAPIService.swift; sourceTree = "<group>"; };
 		2B54ADD22C1B35B3002BD5C5 /* DetailInstrumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInstrumentViewController.swift; sourceTree = "<group>"; };
 		2B54ADD82C1B35DA002BD5C5 /* DetailInstrumentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInstrumentCoordinator.swift; sourceTree = "<group>"; };
 		2B54ADDC2C1B35F6002BD5C5 /* DetailInstrumentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInstrumentViewModel.swift; sourceTree = "<group>"; };
@@ -509,6 +511,7 @@
 				2B455FD02C22F2FB00C29F0B /* HomeAPIService.swift */,
 				2B455FD22C22F61400C29F0B /* FirestoreService.swift */,
 				2BF0B6A42C2EDFA700FD47B8 /* TutorAPIService.swift */,
+				2B4814AF2C319BAB00A7529E /* NewsAPIService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -922,6 +925,7 @@
 				2B6F28AD2BED347200BDA911 /* ContentListCoordinator.swift in Sources */,
 				2B9C4FD22BF0B57E0058CE3F /* DetailPostViewController.swift in Sources */,
 				2BB515722BDBCE5A0092CC72 /* UIColor+.swift in Sources */,
+				2B4814B02C319BAB00A7529E /* NewsAPIService.swift in Sources */,
 				2B5C6C9E2BF84E1E004800CC /* TutorProfileCollectionViewCell.swift in Sources */,
 				2BB5159D2BDFE4F70092CC72 /* MyPageViewController.swift in Sources */,
 				2B6F28A72BED326300BDA911 /* ContentListViewController.swift in Sources */,

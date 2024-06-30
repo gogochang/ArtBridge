@@ -61,9 +61,12 @@ final class HomeCoordinator: BaseCoordinator<Void> {
             }.disposed(by: sceneDisposeBag)
         
         scene.VM.routes.detailNews
-            .map { scene.VM }
-            .bind { [weak self] vm in
-                self?.pushDetailNewsScene(vm: vm, animated: true)
+            .map { (vm: scene.VM, newsID: $0) }
+            .bind { [weak self] inputs in
+                self?.pushDetailNewsScene(
+                    vm: inputs.vm,
+                    newsID: inputs.newsID,
+                    animated: true)
             }.disposed(by: sceneDisposeBag)
     }
     
@@ -132,8 +135,8 @@ final class HomeCoordinator: BaseCoordinator<Void> {
         }
     }
     
-    private func pushDetailNewsScene(vm: HomeViewModel, animated: Bool) {
-        let comp = component.detailNewsComponent
+    private func pushDetailNewsScene(vm: HomeViewModel, newsID: Int, animated: Bool) {
+        let comp = component.detailNewsComponent(newsID: newsID)
         let coord = DetailNewsCoordinator(component: comp, navController: navigationController)
         
         coordinate(coordinator: coord, animated: animated) { coordResult in

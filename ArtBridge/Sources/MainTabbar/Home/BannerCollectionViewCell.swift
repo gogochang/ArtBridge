@@ -37,7 +37,11 @@ final class BannerCollectionViewCell: UICollectionViewCell {
     //MARK: - Methods
     func configure(bannerModel: BannerModel) {
         let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
-        bannerImage.kf.setImage(with: URL(string: bannerModel.imageUrl), options: options)
+        
+        bannerImage.kf.setImage(
+            with: URL(string: bannerModel.imageUrl),
+            options: options
+        )
     }
 }
 

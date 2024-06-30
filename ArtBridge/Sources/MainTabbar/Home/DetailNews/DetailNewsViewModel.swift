@@ -11,9 +11,19 @@ import RxSwift
 final class DetailNewsViewModel {
     private var disposeBag = DisposeBag()
     var inputs = Input()
+    var outputs = Output()
     var routes = Route()
     
-    init() {
+    init(newsID: Int,
+         newsAPIServie: NewsAPIService = NewsAPIService()
+    ) {
+        newsAPIServie.fetchDetailNews(newsID: newsID)
+            .subscribe(onNext: { [weak self] newsData in
+                self?.outputs.newsData.onNext(newsData)
+            }, onError: { error in
+                print("Error: \(error.localizedDescription)")
+            }).disposed(by: disposeBag)
+        
         inputs.backward
             .bind(to: routes.bacward)
             .disposed(by: disposeBag)
@@ -21,6 +31,10 @@ final class DetailNewsViewModel {
     
     struct Input {
         var backward = PublishSubject<Void>()
+    }
+    
+    struct Output {
+        var newsData = ReplaySubject<ContentDataModel>.create(bufferSize: 1)
     }
     
     struct Route {

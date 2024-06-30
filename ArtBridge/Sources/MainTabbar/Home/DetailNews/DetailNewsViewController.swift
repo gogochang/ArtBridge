@@ -16,8 +16,8 @@ fileprivate enum Section: Hashable {
 }
 
 fileprivate enum Item: Hashable {
-    case bannerItem
-    case infoItem
+    case bannerItem(ContentDataModel)
+    case infoItem(ContentDataModel)
     case contentItem
     case commentItem
 }
@@ -64,16 +64,41 @@ final class DetailNewsViewController: UIViewController {
         createSnapshot()
         
         viewModelInput()
+        viewModelOutput()
         
         dismissKeyboardWhenTappedAround()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    //MARK: - Private Methods
     private func viewModelInput() {
         navBar.leftBtnItem.rx.tap
             .bind(to: viewModel.inputs.backward)
             .disposed(by: disposeBag)
+    }
+    
+    private func viewModelOutput() {
+        viewModel.outputs.newsData
+            .bind { [weak self] newsData in
+                self?.updateNewsData(with: newsData)
+            }.disposed(by: disposeBag)
+    }
+    
+    private func updateNewsData(with newsData: ContentDataModel) {
+        guard var currentSnapshot = self.dataSource?.snapshot() else { return }
+        let bannerSection = Section.newsBanner
+        let bannerItem = Item.bannerItem(newsData)
+        currentSnapshot.deleteItems(currentSnapshot.itemIdentifiers(inSection: bannerSection))
+        currentSnapshot.appendItems([bannerItem], toSection: bannerSection)
+        
+        let infoSection = Section.newsInfo
+        let infoItem = Item.infoItem(newsData)
+        currentSnapshot.deleteItems(currentSnapshot.itemIdentifiers(inSection: infoSection))
+        currentSnapshot.appendItems([infoItem], toSection: infoSection)
+        DispatchQueue.main.async {
+            self.dataSource?.apply(currentSnapshot)
+        }
     }
 }
 
@@ -227,21 +252,25 @@ extension DetailNewsViewController {
             collectionView: collectionView,
             cellProvider: { collectionView, indexPath, item in
                 switch item {
-                case .bannerItem:
+                case .bannerItem(let newsData):
                     let cell = collectionView.dequeueReusableCell(
                         withReuseIdentifier: BannerCollectionViewCell.id,
                         for: indexPath
                     ) as? BannerCollectionViewCell
                     
-                    cell?.configure(bannerModel: BannerModel(imageUrl: "https://source.unsplash.com/random/400x400?17"))
+                    cell?.configure(
+                        bannerModel: BannerModel(
+                        imageUrl: newsData.coverURL
+                        )
+                    )
                     return cell
                     
-                case .infoItem:
+                case .infoItem(let newsData):
                     let cell = collectionView.dequeueReusableCell(
                         withReuseIdentifier: NewsInfoCollectionViewCell.id,
                         for: indexPath
                     ) as? NewsInfoCollectionViewCell
-                    
+                    cell?.configure(with: newsData)
                     return cell
                     
                 case .contentItem:
@@ -266,22 +295,22 @@ extension DetailNewsViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         
         let bannerSection = Section.newsBanner
-        let bannerItem = Item.bannerItem
+//        let bannerItem = Item.bannerItem(nil)
         
         let infoSection = Section.newsInfo
-        let infoItem = Item.infoItem
+//        let infoItem = Item.infoItem
         
         let contentSection = Section.newsContent
-        let contentItem = Item.contentItem
+//        let contentItem = Item.contentItem
         
         let commentSection = Section.newsComment
-        let commentItem = Item.commentItem
+//        let commentItem = Item.commentItem
         
         snapshot.appendSections([bannerSection, infoSection, contentSection, commentSection])
-        snapshot.appendItems([bannerItem], toSection: bannerSection)
-        snapshot.appendItems([infoItem], toSection: infoSection)
-        snapshot.appendItems([contentItem], toSection: contentSection)
-        snapshot.appendItems([commentItem], toSection: commentSection)
+//        snapshot.appendItems([bannerItem], toSection: bannerSection)
+//        snapshot.appendItems([infoItem], toSection: infoSection)
+//        snapshot.appendItems([contentItem], toSection: contentSection)
+//        snapshot.appendItems([commentItem], toSection: commentSection)
         
         dataSource?.apply(snapshot)
     }

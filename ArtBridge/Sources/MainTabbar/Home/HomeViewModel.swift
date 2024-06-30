@@ -68,7 +68,7 @@ final class HomeViewModel {
         var showPopularPostList = PublishSubject<HeaderType>()
         var showDetailPost = PublishSubject<Int>()
         var showDetailTutor = PublishSubject<Int>()
-        var showDetailNews = PublishSubject<Void>()
+        var showDetailNews = PublishSubject<Int>()
     }
     
     struct Output {
@@ -83,6 +83,6 @@ final class HomeViewModel {
         var popularPostList = PublishSubject<HeaderType>()
         var detailPost = PublishSubject<Int>()
         var detailTutor = PublishSubject<Int>()
-        var detailNews = PublishSubject<Void>()
+        var detailNews = PublishSubject<Int>()
     }
 }

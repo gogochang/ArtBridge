@@ -511,7 +511,7 @@ extension HomeViewController: UICollectionViewDelegate {
         case .PopularTutor:
             self.viewModel.inputs.showDetailTutor.onNext(indexPath.item)
         case .news:
-            self.viewModel.inputs.showDetailNews.onNext(())
+            self.viewModel.inputs.showDetailNews.onNext(indexPath.item)
         case .none:
             print("none")
         }
