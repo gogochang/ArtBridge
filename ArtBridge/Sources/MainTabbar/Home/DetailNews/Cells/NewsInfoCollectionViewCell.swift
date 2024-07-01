@@ -64,8 +64,8 @@ final class NewsInfoCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: - Internal Methods
-    func configure(with newsData: ContentDataModel) {
-        nickNameLabel.text = newsData.nickname
+    func configure(with newsData: DetailNewsDataModel) {
+        nickNameLabel.text = newsData.author.nickname
     }
     
 }

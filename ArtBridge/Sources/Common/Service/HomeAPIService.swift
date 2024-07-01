@@ -26,6 +26,7 @@ struct HomeDataModel: Decodable {
 
 struct ContentDataModel: Decodable, Equatable, Hashable {
     let id: Int
+    let userId: Int
     let nickname: String
     let category: String
     let title: String

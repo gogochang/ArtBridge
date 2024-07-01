@@ -34,7 +34,7 @@ final class DetailNewsViewModel {
     }
     
     struct Output {
-        var newsData = ReplaySubject<ContentDataModel>.create(bufferSize: 1)
+        var newsData = ReplaySubject<DetailNewsDataModel>.create(bufferSize: 1)
     }
     
     struct Route {

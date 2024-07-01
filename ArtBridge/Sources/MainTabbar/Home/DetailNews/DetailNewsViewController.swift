@@ -16,8 +16,8 @@ fileprivate enum Section: Hashable {
 }
 
 fileprivate enum Item: Hashable {
-    case bannerItem(ContentDataModel)
-    case infoItem(ContentDataModel)
+    case bannerItem(DetailNewsDataModel)
+    case infoItem(DetailNewsDataModel)
     case contentItem
     case commentItem
 }
@@ -85,7 +85,7 @@ final class DetailNewsViewController: UIViewController {
             }.disposed(by: disposeBag)
     }
     
-    private func updateNewsData(with newsData: ContentDataModel) {
+    private func updateNewsData(with newsData: DetailNewsDataModel) {
         guard var currentSnapshot = self.dataSource?.snapshot() else { return }
         let bannerSection = Section.newsBanner
         let bannerItem = Item.bannerItem(newsData)
@@ -257,10 +257,9 @@ extension DetailNewsViewController {
                         withReuseIdentifier: BannerCollectionViewCell.id,
                         for: indexPath
                     ) as? BannerCollectionViewCell
-                    
                     cell?.configure(
                         bannerModel: BannerModel(
-                        imageUrl: newsData.coverURL
+                            imageUrl: newsData.news.coverURL
                         )
                     )
                     return cell

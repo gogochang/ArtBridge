@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-struct UserDataModel: Decodable {
+struct UserDataModel: Decodable, Hashable {
     let id: Int
     let nickname: String
 }
