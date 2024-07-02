@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ContentCollectionViewCell: UICollectionViewCell {
     static let id = "ContentCollectionViewCell"
@@ -67,10 +68,12 @@ final class ContentCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with postData: ContentDataModel) {
-        self.title.text = postData.title
-        self.content.text = postData.content
-        //TODO: UI업데이트 요소들을 추가해야함
+    func configure(with postData: DetailPostDataModel) {
+        self.title.text = postData.post.title
+        self.content.text = postData.post.content
+        
+        profileView.profileImageView.kf.setImage(with: URL(string: postData.author.profileImgUrl))
+        profileView.nickNameLabel.text = postData.author.nickname
     }
 }
 

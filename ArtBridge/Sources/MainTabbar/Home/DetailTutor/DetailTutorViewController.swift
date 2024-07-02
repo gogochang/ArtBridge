@@ -18,7 +18,7 @@ fileprivate enum Section: Hashable {
 
 fileprivate enum Item: Hashable {
     case bannerItem(String) // ImageURL
-    case profile(String)
+    case profile(DetailTutorDataModel)
     case detailInfo
     case descItem
 }
@@ -90,11 +90,11 @@ final class DetailTutorViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    private func updateTutorData(with tutorData: ContentDataModel) {
+    private func updateTutorData(with tutorData: DetailTutorDataModel) {
         guard var currentSnapshot = self.dataSource?.snapshot() else { return }
         
         let profileSection = Section.profile
-        let profileItem = Item.profile(tutorData.nickname)
+        let profileItem = Item.profile(tutorData)
         currentSnapshot.deleteItems(currentSnapshot.itemIdentifiers(inSection: profileSection))
         currentSnapshot.appendItems([profileItem])
         
@@ -275,13 +275,13 @@ extension DetailTutorViewController {
                     
                     return cell
                     
-                case .profile(let userName):
+                case .profile(let tutorData):
                     let cell = collectionView.dequeueReusableCell(
                         withReuseIdentifier: TutorProfileCollectionViewCell.id,
                         for: indexPath
                     ) as? TutorProfileCollectionViewCell
                     
-                    cell?.configure(userName: userName)
+                    cell?.configure(with: tutorData)
                     return cell
                     
                 case .detailInfo:

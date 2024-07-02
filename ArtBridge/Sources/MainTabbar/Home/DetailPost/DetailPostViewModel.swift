@@ -19,7 +19,7 @@ final class DetailPostViewModel {
         postID: Int,
         postAPIService: PostAPIService = PostAPIService()
     ) {
-        postAPIService.fetchDetailPost(postID: postID)
+        postAPIService.fetchDetailPost(postId: postID)
             .subscribe(onNext: { [weak self] postData in
                 self?.outputs.postData.onNext(postData)
             }, onError: { error in
@@ -36,7 +36,7 @@ final class DetailPostViewModel {
     }
     
     struct Output {
-        var postData = ReplaySubject<ContentDataModel>.create(bufferSize: 1)
+        var postData = ReplaySubject<DetailPostDataModel>.create(bufferSize: 1)
     }
     
     struct Route {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class TutorProfileCollectionViewCell: UICollectionViewCell {
     static let id = "TutorProfileCollectionViewCell"
@@ -13,6 +14,8 @@ class TutorProfileCollectionViewCell: UICollectionViewCell {
     //MARK: - UI
     private let imageView = UIImageView().then {
         $0.backgroundColor = .systemGray6
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
         $0.layer.cornerRadius = 20
     }
     
@@ -67,8 +70,9 @@ class TutorProfileCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: - Public Methods
-    func configure(userName: String) { //TODO: 프로필 데이터 모델로 사용
-        self.userNameLabel.text = userName
+    func configure(with tutorData: DetailTutorDataModel) { //TODO: 프로필 데이터 모델로 사용
+        self.userNameLabel.text = tutorData.author.nickname
+        self.imageView.kf.setImage(with: URL(string: tutorData.author.profileImgUrl))
     }
 }
 

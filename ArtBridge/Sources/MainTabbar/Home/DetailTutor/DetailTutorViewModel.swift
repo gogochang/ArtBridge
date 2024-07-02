@@ -16,11 +16,11 @@ final class DetailTutorViewModel {
     var routes = Route()
     
     init(
-        tutorID: Int,
+        tutorId: Int,
         tutorAPIService: TutorAPIService = TutorAPIService()
     ) {
         
-        tutorAPIService.fetchDetailTutor(tutorID: tutorID)
+        tutorAPIService.fetchDetailTutor(tutorId: tutorId)
             .subscribe(onNext: { [weak self] postData in
                 self?.outputs.tutorData.onNext(postData)
             }, onError: { error in
@@ -53,7 +53,7 @@ final class DetailTutorViewModel {
     }
     
     struct Output {
-        var tutorData = ReplaySubject<ContentDataModel>.create(bufferSize: 1)
+        var tutorData = ReplaySubject<DetailTutorDataModel>.create(bufferSize: 1)
         var userData = ReplaySubject<UserDataModel>.create(bufferSize: 1)
     }
     

@@ -8,9 +8,15 @@
 import Foundation
 import RxSwift
 
+struct DetailTutorDataModel: Hashable {
+    let tutor: ContentDataModel
+    let author: UserDataModel
+}
+
 struct UserDataModel: Decodable, Hashable {
     let id: Int
     let nickname: String
+    let profileImgUrl: String
 }
 
 final class TutorAPIService {
@@ -21,13 +27,27 @@ final class TutorAPIService {
     init() {}
     
     //MARK: - Methods
-    func fetchDetailTutor(tutorID: Int) -> Observable<ContentDataModel> {
+    func fetchDetailTutor(tutorId: Int) -> Observable<DetailTutorDataModel> {
+        let tutorDataObservable = fetchDetailTutor2(tutorId: tutorId)
+        
+        return tutorDataObservable.flatMap { tutorData in
+            self.fetchUserData(userID: tutorData.userId)
+                .map { authorData in
+                    DetailTutorDataModel(
+                        tutor: tutorData,
+                        author: authorData
+                    )
+                }
+        }
+    }
+    
+    func fetchDetailTutor2(tutorId: Int) -> Observable<ContentDataModel> {
         return Observable.create { observer in
             FirestoreService.shared.fetchDocuments(
                 collection: "tutors",
                 type: ContentDataModel.self,
                 limit: 1,
-                filter: (field: "id", isEqualTo: tutorID as Int)
+                filter: (field: "id", isEqualTo: tutorId as Int)
             ) { postData in
                 
                 if let postData = postData?.first {
@@ -59,6 +79,29 @@ final class TutorAPIService {
                 } else {
                     observer.onError(NSError(
                         domain: "TutorAPIService",
+                        code: -1,
+                        userInfo: [NSLocalizedDescriptionKey: "Failed to fetch home data"])
+                    )
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func fetchPostUser(userID: Int) -> Observable<UserDataModel> {
+        return Observable.create { observer in
+            FirestoreService.shared.fetchDocuments(
+                collection: "users",
+                type: UserDataModel.self,
+                limit: 1,
+                filter: (field: "id", isEqualTo: userID)
+            ) { userData in
+                if let userData = userData?.first {
+                    observer.onNext(userData)
+                    observer.onCompleted()
+                } else {
+                    observer.onError(NSError(
+                        domain: "HomeAPIService",
                         code: -1,
                         userInfo: [NSLocalizedDescriptionKey: "Failed to fetch home data"])
                     )

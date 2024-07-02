@@ -14,17 +14,17 @@ final class DetailTutorComponent {
     }
     
     var viewModel: DetailTutorViewModel {
-        return DetailTutorViewModel(tutorID: self.tutorID)
+        return DetailTutorViewModel(tutorId: self.tutorId)
     }
     
     var chatComponent: MessageComponent {
         return MessageComponent()
     }
     
-    let tutorID: Int
+    let tutorId: Int
     
     //MARK: - Init
-    init(tutorID: Int) {
-        self.tutorID = tutorID
+    init(tutorId: Int) {
+        self.tutorId = tutorId
     }
 }

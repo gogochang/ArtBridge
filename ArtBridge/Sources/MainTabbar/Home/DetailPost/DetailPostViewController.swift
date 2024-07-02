@@ -15,7 +15,7 @@ fileprivate enum Section: Hashable {
 }
 
 fileprivate enum Item: Hashable {
-    case contentItem(ContentDataModel)
+    case contentItem(DetailPostDataModel)
     case bannerItem(String)
     case commentItem(String)
 }
@@ -84,7 +84,7 @@ final class DetailPostViewController: UIViewController {
             }.disposed(by: disposeBag)
     }
     
-    private func updatePostData(with postData: ContentDataModel) {
+    private func updatePostData(with postData: DetailPostDataModel) {
         guard var currentSnapshot = self.dataSource?.snapshot() else { return }
         
         let singleSection = Section.single

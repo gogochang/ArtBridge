@@ -8,6 +8,11 @@
 import Foundation
 import RxSwift
 
+struct DetailPostDataModel: Hashable {
+    let post: ContentDataModel
+    let author: UserDataModel
+}
+
 final class PostAPIService {
     //MARK: - Properties
     private let disposeBag = DisposeBag()
@@ -16,13 +21,27 @@ final class PostAPIService {
     init() {}
     
     //MARK: - Methods
-    func fetchDetailPost(postID: Int) -> Observable<ContentDataModel> {
+    func fetchDetailPost(postId: Int) -> Observable<DetailPostDataModel> {
+        let postDataObservable = fetchDetailPost2(postId: postId)
+        
+        return postDataObservable.flatMap { postData in
+            self.fetchPostUser(userID: postData.userId)
+                .map { authorData in
+                    DetailPostDataModel(
+                        post: postData,
+                        author: authorData
+                    )
+                }
+        }
+    }
+    
+    func fetchDetailPost2(postId: Int) -> Observable<ContentDataModel> {
         return Observable.create { observer in
             FirestoreService.shared.fetchDocuments(
                 collection: "post",
                 type: ContentDataModel.self,
                 limit: 1,
-                filter: (field: "id", isEqualTo: postID as Int)
+                filter: (field: "id", isEqualTo: postId as Int)
             ) { postData in
                 
                 if let postData = postData?.first {
@@ -60,6 +79,29 @@ final class PostAPIService {
             }
             return Disposables.create()
             
+        }
+    }
+    
+    func fetchPostUser(userID: Int) -> Observable<UserDataModel> {
+        return Observable.create { observer in
+            FirestoreService.shared.fetchDocuments(
+                collection: "users",
+                type: UserDataModel.self,
+                limit: 1,
+                filter: (field: "id", isEqualTo: userID)
+            ) { userData in
+                if let userData = userData?.first {
+                    observer.onNext(userData)
+                    observer.onCompleted()
+                } else {
+                    observer.onError(NSError(
+                        domain: "HomeAPIService",
+                        code: -1,
+                        userInfo: [NSLocalizedDescriptionKey: "Failed to fetch home data"])
+                    )
+                }
+            }
+            return Disposables.create()
         }
     }
 }

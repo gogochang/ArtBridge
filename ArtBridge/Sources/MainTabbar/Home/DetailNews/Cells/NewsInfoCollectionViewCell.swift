@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class NewsInfoCollectionViewCell: UICollectionViewCell {
     static let id = "NewsInfoCollectionViewCell"
@@ -25,7 +26,7 @@ final class NewsInfoCollectionViewCell: UICollectionViewCell {
     
     private let profileImageView = UIImageView().then {
         $0.backgroundColor = .systemGray6
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 20
     }
@@ -66,6 +67,7 @@ final class NewsInfoCollectionViewCell: UICollectionViewCell {
     //MARK: - Internal Methods
     func configure(with newsData: DetailNewsDataModel) {
         nickNameLabel.text = newsData.author.nickname
+        profileImageView.kf.setImage(with: URL(string: newsData.author.profileImgUrl))
     }
     
 }

@@ -28,8 +28,8 @@ final class HomeComponent {
         return DetailPostComponent(postID: postID)
     }
     
-    func detailTutorComponent(tutorID: Int) -> DetailTutorComponent {
-        return DetailTutorComponent(tutorID: tutorID)
+    func detailTutorComponent(tutorId: Int) -> DetailTutorComponent {
+        return DetailTutorComponent(tutorId: tutorId)
     }
     
     func detailNewsComponent(newsID: Int) -> DetailNewsComponent {

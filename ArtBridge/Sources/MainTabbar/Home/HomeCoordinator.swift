@@ -124,7 +124,7 @@ final class HomeCoordinator: BaseCoordinator<Void> {
     }
     
     private func pushDetailTutorScene(vm: HomeViewModel, tutorID: Int, animated: Bool) {
-        let comp = component.detailTutorComponent(tutorID: tutorID)
+        let comp = component.detailTutorComponent(tutorId: tutorID)
         let coord = DetailTutorCoordinator(component: comp, navController: navigationController)
         
         coordinate(coordinator: coord, animated: animated) { coordResult in

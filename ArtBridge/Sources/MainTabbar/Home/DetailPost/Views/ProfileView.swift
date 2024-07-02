@@ -17,24 +17,24 @@ struct ProfileData {
 
 final class ProfileView: UIView {
     //MARK: - UI
-    private let profileImageView = UIImageView().then {
+    let profileImageView = UIImageView().then {
         $0.backgroundColor = .systemGray6
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 20
     }
     
-    private let nickNameLabel = UILabel().then {
+    let nickNameLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 12, weight: .semibold)
         $0.textColor = .black
     }
     
-    private let timeLabel = UILabel().then {
+    let timeLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 10, weight: .regular)
         $0.textColor = .systemGray3
     }
     
-    private let categoryLabel = UILabel().then {
+    let categoryLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 12, weight: .medium)
         $0.textColor = .systemGray4
     }
