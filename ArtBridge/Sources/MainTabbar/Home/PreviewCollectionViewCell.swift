@@ -16,7 +16,7 @@ final class PreviewCollectionViewCell: UICollectionViewCell {
         $0.backgroundColor = .systemGray6
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
-        $0.layer.cornerRadius = 10
+        $0.layer.masksToBounds = true
     }
     
     private let title = UILabel().then {
@@ -42,13 +42,15 @@ final class PreviewCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         setupViews()
         initialLayout()
+        self.backgroundColor = .white
+        self.layer.cornerRadius = 10
+        self.clipsToBounds = true
+        self.layer.masksToBounds = true
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
 }
 
 //MARK: - Layout
@@ -69,12 +71,12 @@ extension PreviewCollectionViewCell {
         
         title.snp.makeConstraints {
             $0.top.equalTo(imageView.snp.bottom).offset(8)
-            $0.left.right.equalToSuperview()
+            $0.left.right.equalToSuperview().inset(8)
         }
         
         subTitle.snp.makeConstraints {
             $0.top.equalTo(title.snp.bottom).offset(8)
-            $0.left.equalToSuperview()
+            $0.left.equalToSuperview().inset(8)
         }
     }
 }

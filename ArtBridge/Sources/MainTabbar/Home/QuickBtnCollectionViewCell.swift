@@ -14,6 +14,8 @@ class QuickBtnCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         setupViews()
         initialLayout()
+        backgroundColor = .white
+        self.layer.cornerRadius = 10
     }
     
     required init?(coder: NSCoder) {

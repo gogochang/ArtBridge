@@ -38,6 +38,7 @@ final class HomeViewController: UIViewController {
     
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
         $0.showsVerticalScrollIndicator = false
+        $0.backgroundColor = .systemGray6
         
         $0.register(
             BannerCollectionViewCell.self,
@@ -209,7 +210,7 @@ extension HomeViewController {
     }
     
     private func initialLayout() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemGray6
         
         navBar.snp.makeConstraints {
             $0.top.left.right.equalToSuperview()
@@ -254,7 +255,7 @@ extension HomeViewController {
             heightDimension: .fractionalHeight(1.0)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)  // 아이템 간 간격 조정
         // Group
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
@@ -297,7 +298,7 @@ extension HomeViewController {
             heightDimension: .fractionalHeight(1.0)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)  // 아이템 간 간격 조정
+        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)  // 아이템 간 간격 조정
         
         // Group
         let groupSize = NSCollectionLayoutSize(
@@ -321,7 +322,7 @@ extension HomeViewController {
             heightDimension: .fractionalHeight(1.0)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)  // 아이템 간 간격 조정
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)  // 아이템 간 간격 조정
         
         // Group
         let groupSize = NSCollectionLayoutSize(

@@ -23,6 +23,9 @@ final class BannerCollectionViewCell: UICollectionViewCell {
         
         setupViews()
         initialLayout()
+        
+        self.layer.cornerRadius = 10
+        self.clipsToBounds = true
     }
     
     required init?(coder: NSCoder) {
