@@ -21,17 +21,15 @@ final class HeaderView: UICollectionReusableView {
     var type: HeaderType = .none
     
     //MARK: - UI
+    let titleView = UIView()
+    
     private let titleLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 20, weight: .bold)
     }
     
-    let moreButton = UIButton().then {
-        $0.setTitle("더 보기", for: .normal)
-        $0.setTitleColor(.black, for: .normal)
-        $0.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
-        $0.setImage(UIImage(systemName: "chevron.right"), for: .normal)
-        $0.tintColor = .systemGray3
-        $0.semanticContentAttribute = .forceRightToLeft
+    private let icon = UIImageView().then {
+        $0.image = UIImage(systemName: "chevron.right")
+        $0.tintColor = .black
     }
     
     override init(frame: CGRect) {
@@ -58,19 +56,29 @@ final class HeaderView: UICollectionReusableView {
 extension HeaderView {
     private func setupViews() {
         addSubviews([
+            titleView,
+        ])
+        
+        titleView.addSubviews([
             titleLabel,
-            moreButton
+            icon
         ])
     }
     
     private func initialLayout() {
-        titleLabel.snp.makeConstraints {
-            $0.top.left.right.equalToSuperview()
+        titleView.snp.makeConstraints {
+            $0.top.left.equalToSuperview()
+            $0.right.equalTo(icon)
+            $0.bottom.equalTo(titleLabel)
         }
         
-        moreButton.snp.makeConstraints {
+        titleLabel.snp.makeConstraints {
+            $0.top.left.equalToSuperview()
+        }
+        
+        icon.snp.makeConstraints {
             $0.centerY.equalTo(titleLabel)
-            $0.right.equalToSuperview()
+            $0.left.equalTo(titleLabel.snp.right).offset(4)
         }
     }
 }

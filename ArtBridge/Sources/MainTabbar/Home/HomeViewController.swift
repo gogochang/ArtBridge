@@ -181,7 +181,13 @@ final class HomeViewController: UIViewController {
                           Item.quickBtn(UIImage(named: "flute.png"),"플루트"),
                           Item.quickBtn(UIImage(named: "horn.png"), "호른"),
                           Item.quickBtn(UIImage(named: "harp.png"), "하프"),
-                          Item.quickBtn(UIImage(named: "more.png"), "더보기"),]
+                          Item.quickBtn(UIImage(named: "more.png"), "더보기"),
+                          Item.quickBtn(UIImage(named: "more.png"), "테스트1"),
+                          Item.quickBtn(UIImage(named: "more.png"), "테스트2"),
+                          Item.quickBtn(UIImage(named: "more.png"), "테스트3"),
+                          Item.quickBtn(UIImage(named: "more.png"), "테스트4"),
+                          Item.quickBtn(UIImage(named: "more.png"), "테스트5"),
+        ]
         snapshot.appendSections([horizontalSection])
         snapshot.appendItems(quickItems, toSection: horizontalSection)
         
@@ -451,8 +457,9 @@ extension HomeViewController {
                 print("Default")
             }
             
-            (header as? HeaderView)?.moreButton.rx.tap
-                .map { (header as? HeaderView)?.type ?? .none }
+            (header as? HeaderView)?.titleView.rx.tapGesture()
+                .skip(1)
+                .map { _ in (header as? HeaderView)?.type ?? .none }
                 .bind(to: self.viewModel.inputs.showPopularPostList)
                 .disposed(by: (header as? HeaderView)?.disposeBag ?? DisposeBag())
             
