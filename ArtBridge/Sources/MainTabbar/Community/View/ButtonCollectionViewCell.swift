@@ -23,11 +23,17 @@ final class ButtonCollectionViewCell: UICollectionViewCell {
     private let leftButton = UIButton().then {
         $0.setTitle("사는 얘기", for: .normal)
         $0.setTitleColor(.black, for: .normal)
+        $0.setBackgroundColor(.white, for: .normal)
+        $0.layer.cornerRadius = 10
+        $0.layer.masksToBounds = true
     }
     
     private let rightButton = UIButton().then {
         $0.setTitle("음악", for: .normal)
         $0.setTitleColor(.black, for: .normal)
+        $0.setBackgroundColor(.white, for: .normal)
+        $0.layer.cornerRadius = 10
+        $0.layer.masksToBounds = true
     }
     
     private let separatorView = UIView().then {
@@ -48,13 +54,15 @@ extension ButtonCollectionViewCell {
     private func initialLayout() {
         
         leftButton.snp.makeConstraints {
-            $0.top.left.bottom.equalToSuperview()
-            $0.width.equalToSuperview().multipliedBy(0.5)
+            $0.top.bottom.equalToSuperview()
+            $0.left.equalToSuperview().inset(20)
+            $0.right.equalTo(self.snp.centerX).offset(-10)
         }
         
         rightButton.snp.makeConstraints {
-            $0.top.right.bottom.equalToSuperview()
-            $0.width.equalToSuperview().multipliedBy(0.5)
+            $0.top.bottom.equalToSuperview()
+            $0.left.equalTo(self.snp.centerX).offset(10)
+            $0.right.equalToSuperview().inset(20)
         }
         
         separatorView.snp.makeConstraints {

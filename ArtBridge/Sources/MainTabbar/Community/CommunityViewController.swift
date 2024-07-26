@@ -47,6 +47,7 @@ final class CommunityViewController: UIViewController {
     
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
         $0.showsVerticalScrollIndicator = false
+        $0.backgroundColor = UIColor(white: 0.97, alpha: 1.0)
         
         $0.register(
             ButtonCollectionViewCell.self,
@@ -144,7 +145,7 @@ extension CommunityViewController {
             heightDimension: .fractionalHeight(1.0)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4)  // 아이템 간 간격 조정
+        item.contentInsets = NSDirectionalEdgeInsets(top: 4, leading: 4, bottom: 0, trailing: 4)  // 아이템 간 간격 조정
         
         // Group
         let groupSize = NSCollectionLayoutSize(
@@ -168,7 +169,7 @@ extension CommunityViewController {
             heightDimension: .fractionalHeight(1.0)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 4, bottom: 8, trailing: 4)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 20, bottom: 8, trailing: 20)
         
         // Group
         let groupSize = NSCollectionLayoutSize(
