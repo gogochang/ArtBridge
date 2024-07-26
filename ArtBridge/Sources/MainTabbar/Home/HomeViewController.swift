@@ -38,7 +38,7 @@ final class HomeViewController: UIViewController {
     
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
         $0.showsVerticalScrollIndicator = false
-        $0.backgroundColor = .systemGray6
+        $0.backgroundColor = UIColor(white: 0.97, alpha: 1.0)
         
         $0.register(
             BannerCollectionViewCell.self,
