@@ -6,6 +6,10 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import SnapKit
+
 fileprivate enum Section: Hashable {
     case topButtons
     case horizontal
@@ -20,6 +24,10 @@ fileprivate enum Item: Hashable {
 final class CommunityViewController: UIViewController {
     //MARK: - Properties
     private let viewModel: CommunityViewModel
+    private let disposeBag = DisposeBag()
+    
+    private var createButtonWidthConstraint: Constraint?
+    private var createButtonHeightConstraint: Constraint?
     
     //MARK: - Init
     init(viewModel: CommunityViewModel) {
@@ -41,10 +49,13 @@ final class CommunityViewController: UIViewController {
         createSnapshot()
         
         collectionView.delegate = self
+        
+        inputView()
     }
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
+    //MARK: - UI
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
         $0.showsVerticalScrollIndicator = false
         $0.backgroundColor = UIColor(white: 0.97, alpha: 1.0)
@@ -69,6 +80,27 @@ final class CommunityViewController: UIViewController {
         $0.leftBtnItem.setImage(UIImage(systemName: "apple.logo"), for: .normal)
         $0.rightBtnItem.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
     }
+    private let createButton = FloatingButton().then {
+        $0.backgroundColor = .brown
+        $0.layer.cornerRadius = 25
+        $0.layer.shadowColor = UIColor.black.cgColor
+        $0.layer.shadowOpacity = 0.3
+        $0.layer.shadowOffset = CGSize(width: 2, height: 2)
+        $0.layer.shadowRadius = 5
+    }
+    
+    private func inputView() {
+        collectionView.rx.contentOffset
+            .map { $0.y > 100 }
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] isScrolledDown in
+                guard let self = self else { return }
+                self.createButtonWidthConstraint?.update(offset: isScrolledDown ? 50 : 110)
+                UIView.animate(withDuration: 0.2) {
+                    self.view.layoutIfNeeded()
+                }
+            }).disposed(by: disposeBag)
+    }
 }
 
 //MARK: - Layout
@@ -76,7 +108,8 @@ extension CommunityViewController {
     private func setupViews() {
         view.addSubviews([
             navBar,
-            collectionView
+            collectionView,
+            createButton
         ])
     }
     
@@ -91,6 +124,13 @@ extension CommunityViewController {
             $0.top.equalTo(navBar.snp.bottom)
             $0.left.right.bottom.equalToSuperview()
         }
+        
+        createButton.snp.makeConstraints {
+            $0.bottom.right.equalTo(collectionView).inset(16)
+            createButtonWidthConstraint = $0.width.equalTo(110).constraint
+            createButtonHeightConstraint = $0.height.equalTo(50).constraint
+        }
+        
     }
 }
 
@@ -169,7 +209,7 @@ extension CommunityViewController {
             heightDimension: .fractionalHeight(1.0)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 20, bottom: 8, trailing: 20)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 4, leading: 20, bottom: 4, trailing: 20)
         
         // Group
         let groupSize = NSCollectionLayoutSize(

@@ -41,6 +41,7 @@
 		2B3852072BF77D3700BCF540 /* DetailTutorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3852062BF77D3700BCF540 /* DetailTutorViewModel.swift */; };
 		2B3852092BF77D4400BCF540 /* DetailTutorComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3852082BF77D4400BCF540 /* DetailTutorComponent.swift */; };
 		2B38520B2BF77D4F00BCF540 /* DetailTutorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B38520A2BF77D4F00BCF540 /* DetailTutorCoordinator.swift */; };
+		2B3EBFA32C54BE950089D48C /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3EBFA22C54BE950089D48C /* FloatingButton.swift */; };
 		2B4170012C0AEC1000F31881 /* MessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4170002C0AEC1000F31881 /* MessageCollectionViewCell.swift */; };
 		2B455FD12C22F2FB00C29F0B /* HomeAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B455FD02C22F2FB00C29F0B /* HomeAPIService.swift */; };
 		2B455FD32C22F61400C29F0B /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B455FD22C22F61400C29F0B /* FirestoreService.swift */; };
@@ -173,6 +174,7 @@
 		2B3852062BF77D3700BCF540 /* DetailTutorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTutorViewModel.swift; sourceTree = "<group>"; };
 		2B3852082BF77D4400BCF540 /* DetailTutorComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTutorComponent.swift; sourceTree = "<group>"; };
 		2B38520A2BF77D4F00BCF540 /* DetailTutorCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTutorCoordinator.swift; sourceTree = "<group>"; };
+		2B3EBFA22C54BE950089D48C /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		2B4170002C0AEC1000F31881 /* MessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		2B455FD02C22F2FB00C29F0B /* HomeAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPIService.swift; sourceTree = "<group>"; };
 		2B455FD22C22F61400C29F0B /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
@@ -623,6 +625,7 @@
 			children = (
 				2B9705C52C21D89900B94E8B /* Service */,
 				2BB515742BDBD1620092CC72 /* NavigationBar */,
+				2B3EBFA22C54BE950089D48C /* FloatingButton.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -942,6 +945,7 @@
 				2B9C4FDD2BF0CA740058CE3F /* ContentCollectionViewCell.swift in Sources */,
 				2BB5157A2BDDF1E60092CC72 /* HeaderView.swift in Sources */,
 				2B1469BF2BD38F8000E6483E /* SceneDelegate.swift in Sources */,
+				2B3EBFA32C54BE950089D48C /* FloatingButton.swift in Sources */,
 				2B54ADD32C1B35B3002BD5C5 /* DetailInstrumentViewController.swift in Sources */,
 				2BB515782BDBF13D0092CC72 /* QuickBtnCollectionViewCell.swift in Sources */,
 				2B0024692C0A094D00C4C276 /* MessageViewModel.swift in Sources */,
