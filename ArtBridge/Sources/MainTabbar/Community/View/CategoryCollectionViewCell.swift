@@ -34,7 +34,7 @@ extension CategoryCollectionViewCell {
     }
     
     private func initialLayout() {
-        backgroundColor = .systemGray6
+        backgroundColor = .white
         layer.cornerRadius = 10
         
         titleLabel.snp.makeConstraints {

@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import SnapKit
 
 final class PostCollectionViewCell: UICollectionViewCell {
     static let id = "PostCollectionViewCell"
+    //MARK: - Properties
     
+    //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -20,6 +23,7 @@ final class PostCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - UI
     private let imageView = UIImageView().then {
         $0.backgroundColor = .systemGray6
         $0.layer.cornerRadius = 10
@@ -27,10 +31,19 @@ final class PostCollectionViewCell: UICollectionViewCell {
     
     private let titelLabel = UILabel().then {
         $0.text = "Title"
+        $0.textColor = .darkText
+        $0.contentMode = .left
     }
     
     private let subTitelLabel = UILabel().then {
         $0.text = "SubTitle"
+        $0.textColor = .darkText
+        $0.contentMode = .left
+    }
+    
+    private let moreButton = UIButton().then {
+        $0.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        $0.tintColor = .darkText
     }
 }
 
@@ -39,6 +52,7 @@ extension PostCollectionViewCell {
     private func setupViews() {
         addSubviews([
             imageView,
+            moreButton,
             titelLabel,
             subTitelLabel
         ])
@@ -57,12 +71,18 @@ extension PostCollectionViewCell {
         
         titelLabel.snp.makeConstraints {
             $0.bottom.equalTo(self.snp.centerY).offset(-8)
+            $0.left.equalTo(imageView.snp.right).offset(8)
             $0.right.equalToSuperview().inset(20)
         }
         
         subTitelLabel.snp.makeConstraints {
             $0.top.equalTo(self.snp.centerY).offset(8)
+            $0.left.equalTo(imageView.snp.right).offset(8)
             $0.right.equalToSuperview().inset(20)
+        }
+        
+        moreButton.snp.makeConstraints {
+            $0.top.right.equalToSuperview().inset(8)
         }
     }
 }
