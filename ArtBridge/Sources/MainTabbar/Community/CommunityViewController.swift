@@ -51,7 +51,7 @@ final class CommunityViewController: UIViewController {
         collectionView.delegate = self
         
         inputView()
-        inputVieWModel()
+        viewModelInput()
     }
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
@@ -103,7 +103,7 @@ final class CommunityViewController: UIViewController {
             }).disposed(by: disposeBag)
     }
     
-    private func inputVieWModel() {
+    private func viewModelInput() {
         createPostButton.rx.tapGesture()
             .skip(1)
             .map { _ in }
