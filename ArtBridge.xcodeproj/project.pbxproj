@@ -54,6 +54,10 @@
 		2B5C6C9E2BF84E1E004800CC /* TutorProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C6C9D2BF84E1E004800CC /* TutorProfileCollectionViewCell.swift */; };
 		2B5C6CA02BFA0251004800CC /* TutorInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C6C9F2BFA0251004800CC /* TutorInfoCollectionViewCell.swift */; };
 		2B5C6CA22BFA3355004800CC /* TutorDescCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C6CA12BFA3355004800CC /* TutorDescCollectionViewCell.swift */; };
+		2B5F006D2C59205800FCC51A /* CreatePostComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F006C2C59205800FCC51A /* CreatePostComponent.swift */; };
+		2B5F006F2C59206200FCC51A /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F006E2C59206200FCC51A /* CreatePostViewController.swift */; };
+		2B5F00712C59206D00FCC51A /* CreatePostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F00702C59206D00FCC51A /* CreatePostViewModel.swift */; };
+		2B5F00732C59207800FCC51A /* CreatePostCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F00722C59207800FCC51A /* CreatePostCoordinator.swift */; };
 		2B6B20D02BFA3740002D9E79 /* BottomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B20CF2BFA3740002D9E79 /* BottomButton.swift */; };
 		2B6B20D32BFCBB9E002D9E79 /* DetailNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B20D22BFCBB9E002D9E79 /* DetailNewsViewController.swift */; };
 		2B6B20D52BFCBBA7002D9E79 /* DetailNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B20D42BFCBBA7002D9E79 /* DetailNewsViewModel.swift */; };
@@ -187,6 +191,10 @@
 		2B5C6C9D2BF84E1E004800CC /* TutorProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		2B5C6C9F2BFA0251004800CC /* TutorInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		2B5C6CA12BFA3355004800CC /* TutorDescCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorDescCollectionViewCell.swift; sourceTree = "<group>"; };
+		2B5F006C2C59205800FCC51A /* CreatePostComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostComponent.swift; sourceTree = "<group>"; };
+		2B5F006E2C59206200FCC51A /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
+		2B5F00702C59206D00FCC51A /* CreatePostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewModel.swift; sourceTree = "<group>"; };
+		2B5F00722C59207800FCC51A /* CreatePostCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostCoordinator.swift; sourceTree = "<group>"; };
 		2B6B20CF2BFA3740002D9E79 /* BottomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButton.swift; sourceTree = "<group>"; };
 		2B6B20D22BFCBB9E002D9E79 /* DetailNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsViewController.swift; sourceTree = "<group>"; };
 		2B6B20D42BFCBBA7002D9E79 /* DetailNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsViewModel.swift; sourceTree = "<group>"; };
@@ -483,6 +491,17 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		2B5F006B2C59204A00FCC51A /* CreatePost */ = {
+			isa = PBXGroup;
+			children = (
+				2B5F006C2C59205800FCC51A /* CreatePostComponent.swift */,
+				2B5F006E2C59206200FCC51A /* CreatePostViewController.swift */,
+				2B5F00702C59206D00FCC51A /* CreatePostViewModel.swift */,
+				2B5F00722C59207800FCC51A /* CreatePostCoordinator.swift */,
+			);
+			path = CreatePost;
+			sourceTree = "<group>";
+		};
 		2B6B20D12BFCBB82002D9E79 /* DetailNews */ = {
 			isa = PBXGroup;
 			children = (
@@ -641,6 +660,7 @@
 		2BB5157D2BDE15580092CC72 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				2B5F006B2C59204A00FCC51A /* CreatePost */,
 				2BB515862BDE86DF0092CC72 /* View */,
 				2BB5157E2BDE15A50092CC72 /* CommunityComponent.swift */,
 				2BB515802BDE15B20092CC72 /* CommunityViewController.swift */,
@@ -887,6 +907,7 @@
 				2B455FD12C22F2FB00C29F0B /* HomeAPIService.swift in Sources */,
 				2BB5157C2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift in Sources */,
 				2B9C4FD62BF0B59F0058CE3F /* DetailPostViewModel.swift in Sources */,
+				2B5F006F2C59206200FCC51A /* CreatePostViewController.swift in Sources */,
 				2B00246D2C0A096200C4C276 /* MessageComponent.swift in Sources */,
 				2BB084A62C1E9924005E7221 /* AlarmViewController.swift in Sources */,
 				2B0BCF182C1320AE0053ACAD /* SettingCoordinator.swift in Sources */,
@@ -894,6 +915,7 @@
 				2BB515882BDE86F40092CC72 /* CategoryCollectionViewCell.swift in Sources */,
 				2B3852092BF77D4400BCF540 /* DetailTutorComponent.swift in Sources */,
 				2BB084A82C1E9930005E7221 /* AlarmViewModel.swift in Sources */,
+				2B5F00712C59206D00FCC51A /* CreatePostViewModel.swift in Sources */,
 				2B6B20D72BFCBBB0002D9E79 /* DetailNewsComponent.swift in Sources */,
 				2BB084AF2C1EA7D5005E7221 /* AlarmCollectionViewCell.swift in Sources */,
 				2B1469F62BD3974000E6483E /* MainTabController.swift in Sources */,
@@ -904,6 +926,7 @@
 				2B00246B2C0A095800C4C276 /* MessageCoordinator.swift in Sources */,
 				2B146A062BD3DC0C00E6483E /* MainTabCoordinator.swift in Sources */,
 				2BB515852BDE15CA0092CC72 /* CommunityCoordinator.swift in Sources */,
+				2B5F006D2C59205800FCC51A /* CreatePostComponent.swift in Sources */,
 				2BB515A12BDFE5090092CC72 /* MyPageCoordinator.swift in Sources */,
 				2B1469F12BD395E300E6483E /* AppComponent.swift in Sources */,
 				2B4170012C0AEC1000F31881 /* MessageCollectionViewCell.swift in Sources */,
@@ -945,6 +968,7 @@
 				2B9C4FDD2BF0CA740058CE3F /* ContentCollectionViewCell.swift in Sources */,
 				2BB5157A2BDDF1E60092CC72 /* HeaderView.swift in Sources */,
 				2B1469BF2BD38F8000E6483E /* SceneDelegate.swift in Sources */,
+				2B5F00732C59207800FCC51A /* CreatePostCoordinator.swift in Sources */,
 				2B3EBFA32C54BE950089D48C /* FloatingButton.swift in Sources */,
 				2B54ADD32C1B35B3002BD5C5 /* DetailInstrumentViewController.swift in Sources */,
 				2BB515782BDBF13D0092CC72 /* QuickBtnCollectionViewCell.swift in Sources */,

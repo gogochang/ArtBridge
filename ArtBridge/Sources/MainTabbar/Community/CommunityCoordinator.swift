@@ -28,6 +28,15 @@ final class CommunityCoordinator: BaseCoordinator<Void> {
             .bind { [weak self] vm in
                 self?.pushDetailPostScene(vm: vm, animated: true)
             }.disposed(by: sceneDisposeBag)
+        
+        scene.VM.routes.createPost
+            .map { scene.VM }
+            .bind { [weak self] vm in
+                self?.pushCreatePostScene(
+                    vm: vm,
+                    animated: true
+                )
+            }.disposed(by: sceneDisposeBag)
     }
     
     private func pushDetailPostScene(vm: CommunityViewModel, animated: Bool) {
@@ -41,5 +50,24 @@ final class CommunityCoordinator: BaseCoordinator<Void> {
             }
             
         }
+    }
+    
+    private func pushCreatePostScene(
+        vm: CommunityViewModel,
+        animated: Bool
+    ) {
+        let comp = component.createPostComponent
+        let coord = CreatePostCoordinator(
+            component: comp,
+            navController: navigationController
+        )
+        
+        coordinate(coordinator: coord, animated: animated) { coordResult in
+            switch coordResult {
+            case .backward:
+                vm.routeInputs.needUpdate.onNext(false)
+            }
+        }
+        
     }
 }

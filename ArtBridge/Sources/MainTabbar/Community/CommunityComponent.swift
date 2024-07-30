@@ -15,4 +15,8 @@ final class CommunityComponent {
     func detailPostComponent(postID: Int) -> DetailPostComponent {
         return DetailPostComponent(postID: postID)
     }
+    
+    var createPostComponent: CreatePostComponent {
+        return CreatePostComponent()
+    }
 }

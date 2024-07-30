@@ -51,6 +51,7 @@ final class CommunityViewController: UIViewController {
         collectionView.delegate = self
         
         inputView()
+        inputVieWModel()
     }
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
@@ -80,7 +81,7 @@ final class CommunityViewController: UIViewController {
         $0.leftBtnItem.setImage(UIImage(systemName: "apple.logo"), for: .normal)
         $0.rightBtnItem.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
     }
-    private let createButton = FloatingButton().then {
+    private let createPostButton = FloatingButton().then {
         $0.backgroundColor = .brown
         $0.layer.cornerRadius = 25
         $0.layer.shadowColor = UIColor.black.cgColor
@@ -101,6 +102,14 @@ final class CommunityViewController: UIViewController {
                 }
             }).disposed(by: disposeBag)
     }
+    
+    private func inputVieWModel() {
+        createPostButton.rx.tapGesture()
+            .skip(1)
+            .map { _ in }
+            .bind(to: viewModel.inputs.tappedCreatePost)
+            .disposed(by: disposeBag)
+    }
 }
 
 //MARK: - Layout
@@ -109,7 +118,7 @@ extension CommunityViewController {
         view.addSubviews([
             navBar,
             collectionView,
-            createButton
+            createPostButton
         ])
     }
     
@@ -125,7 +134,7 @@ extension CommunityViewController {
             $0.left.right.bottom.equalToSuperview()
         }
         
-        createButton.snp.makeConstraints {
+        createPostButton.snp.makeConstraints {
             $0.bottom.right.equalTo(collectionView).inset(16)
             createButtonWidthConstraint = $0.width.equalTo(110).constraint
             createButtonHeightConstraint = $0.height.equalTo(50).constraint

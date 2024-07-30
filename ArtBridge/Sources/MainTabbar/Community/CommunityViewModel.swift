@@ -18,6 +18,10 @@ final class CommunityViewModel {
         inputs.showDetailPost
             .bind(to: routes.detailPost)
             .disposed(by: disposeBag)
+        
+        inputs.tappedCreatePost
+            .bind(to: routes.createPost)
+            .disposed(by: disposeBag)
     }
     
     var routeInputs = RouteInput()
@@ -28,9 +32,11 @@ final class CommunityViewModel {
     
     struct Input {
         var showDetailPost = PublishSubject<Void>()
+        var tappedCreatePost = PublishSubject<Void>()
     }
     
     struct Route {
         var detailPost = PublishSubject<Void>()
+        var createPost = PublishSubject<Void>()
     }
 }
