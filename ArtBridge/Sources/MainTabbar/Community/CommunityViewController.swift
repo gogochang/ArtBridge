@@ -11,13 +11,12 @@ import RxCocoa
 import SnapKit
 
 fileprivate enum Section: Hashable {
-    case topButtons
     case horizontal
     case vertical
 }
+
 fileprivate enum Item: Hashable {
-    case buttons(Int)
-    case category(Int)
+    case category(String)
     case post(Int)
 }
 
@@ -57,14 +56,11 @@ final class CommunityViewController: UIViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
     //MARK: - UI
+    private let topButtonsView = TopButtonsView()
+    
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
         $0.showsVerticalScrollIndicator = false
         $0.backgroundColor = UIColor(white: 0.97, alpha: 1.0)
-        
-        $0.register(
-            ButtonCollectionViewCell.self,
-            forCellWithReuseIdentifier: ButtonCollectionViewCell.id
-        )
         
         $0.register(
             CategoryCollectionViewCell.self,
@@ -117,6 +113,7 @@ extension CommunityViewController {
     private func setupViews() {
         view.addSubviews([
             navBar,
+            topButtonsView,
             collectionView,
             createPostButton
         ])
@@ -129,8 +126,13 @@ extension CommunityViewController {
             $0.top.left.right.equalToSuperview()
         }
         
-        collectionView.snp.makeConstraints {
+        topButtonsView.snp.makeConstraints {
             $0.top.equalTo(navBar.snp.bottom)
+            $0.left.right.equalToSuperview()
+        }
+        
+        collectionView.snp.makeConstraints {
+            $0.top.equalTo(topButtonsView.snp.bottom)
             $0.left.right.bottom.equalToSuperview()
         }
         
@@ -147,13 +149,10 @@ extension CommunityViewController {
 extension CommunityViewController {
     private func createLayout() -> UICollectionViewCompositionalLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()
-        config.interSectionSpacing = 20
         return UICollectionViewCompositionalLayout(sectionProvider: { [weak self] sectionIndex, _ in
             let section = self?.dataSource?.sectionIdentifier(for: sectionIndex)
             
             switch section {
-            case .topButtons:
-                return self?.createTopButtonsSection()
             case .horizontal:
                 return self?.createCategorySection()
             case .vertical:
@@ -165,48 +164,26 @@ extension CommunityViewController {
         },configuration: config)
     }
     
-    private func createTopButtonsSection() -> NSCollectionLayoutSection {
-        // Item
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(1.0)
-        )
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        // Group
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(44)
-        )
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        
-        // Section
-        let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .none
-        
-        return section
-    }
-    
     private func createCategorySection() -> NSCollectionLayoutSection {
         // Item
         let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
+            widthDimension: .estimated(80),
             heightDimension: .fractionalHeight(1.0)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 4, leading: 4, bottom: 0, trailing: 4)  // 아이템 간 간격 조정
-        
+
         // Group
         let groupSize = NSCollectionLayoutSize(
-            widthDimension: .absolute(160),
-            heightDimension: .absolute(40)
+            widthDimension: .estimated(80),
+            heightDimension: .absolute(30)
         )
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+
         // Section
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
+        section.interGroupSpacing = 8  // 그룹 간 간격 설정
+        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 0)
         
         return section
     }
@@ -229,6 +206,7 @@ extension CommunityViewController {
         
         // Section
         let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
         return section
     }
 }
@@ -238,18 +216,25 @@ extension CommunityViewController {
     private func createSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         
-        let buttonItems = [Item.buttons(1)]
-        let buttonSection = Section.topButtons
+        let categoryItems = [
+            Item.category("전체"),
+            Item.category("바이올린"),
+            Item.category("피아노"),
+            Item.category("플루트"),
+            Item.category("하프"),
+            Item.category("호른"),
+            Item.category("오카리나"),
+            Item.category("비올라"),
+            Item.category("첼로"),
+        ]
         
-        let categoryItems = [Item.category(1),Item.category(2),Item.category(3),Item.category(4),Item.category(5)]
         let horizontalSection = Section.horizontal
         
         let postITems = [Item.post(1),Item.post(2),Item.post(3),Item.post(4),Item.post(5),
                          Item.post(6),Item.post(7),Item.post(8),Item.post(9),Item.post(10)]
         let verticalSection = Section.vertical
         
-        snapshot.appendSections([buttonSection, horizontalSection, verticalSection])
-        snapshot.appendItems(buttonItems, toSection: buttonSection)
+        snapshot.appendSections([horizontalSection, verticalSection])
         snapshot.appendItems(categoryItems, toSection: horizontalSection)
         snapshot.appendItems(postITems, toSection: verticalSection)
         
@@ -261,18 +246,13 @@ extension CommunityViewController {
             collectionView: collectionView,
             cellProvider: { collectionView, indexPath, item in
                 switch item {
-                case .buttons:
-                    let cell = collectionView.dequeueReusableCell(
-                        withReuseIdentifier: ButtonCollectionViewCell.id,
-                        for: indexPath
-                    ) as? ButtonCollectionViewCell
-                    
-                    return cell
-                case .category:
+                case .category(let title):
                     let cell = collectionView.dequeueReusableCell(
                         withReuseIdentifier: CategoryCollectionViewCell.id,
                         for: indexPath
                     ) as? CategoryCollectionViewCell
+                    
+                    cell?.configure(title: title)
                     
                     return cell
                     

@@ -41,6 +41,7 @@
 		2B3852072BF77D3700BCF540 /* DetailTutorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3852062BF77D3700BCF540 /* DetailTutorViewModel.swift */; };
 		2B3852092BF77D4400BCF540 /* DetailTutorComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3852082BF77D4400BCF540 /* DetailTutorComponent.swift */; };
 		2B38520B2BF77D4F00BCF540 /* DetailTutorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B38520A2BF77D4F00BCF540 /* DetailTutorCoordinator.swift */; };
+		2B3C998C2C5B23B700CA865D /* TopButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3C998B2C5B23B700CA865D /* TopButtonsView.swift */; };
 		2B3EBFA32C54BE950089D48C /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3EBFA22C54BE950089D48C /* FloatingButton.swift */; };
 		2B4170012C0AEC1000F31881 /* MessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4170002C0AEC1000F31881 /* MessageCollectionViewCell.swift */; };
 		2B455FD12C22F2FB00C29F0B /* HomeAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B455FD02C22F2FB00C29F0B /* HomeAPIService.swift */; };
@@ -101,7 +102,6 @@
 		2BB515852BDE15CA0092CC72 /* CommunityCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515842BDE15CA0092CC72 /* CommunityCoordinator.swift */; };
 		2BB515882BDE86F40092CC72 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515872BDE86F40092CC72 /* CategoryCollectionViewCell.swift */; };
 		2BB5158A2BDE8DCE0092CC72 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515892BDE8DCE0092CC72 /* PostCollectionViewCell.swift */; };
-		2BB5158C2BDE998E0092CC72 /* ButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5158B2BDE998E0092CC72 /* ButtonCollectionViewCell.swift */; };
 		2BB5158F2BDFD53D0092CC72 /* MessageListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5158E2BDFD53D0092CC72 /* MessageListComponent.swift */; };
 		2BB515912BDFD5640092CC72 /* MessageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515902BDFD5640092CC72 /* MessageListViewController.swift */; };
 		2BB515932BDFD56D0092CC72 /* MessageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB515922BDFD56D0092CC72 /* MessageListViewModel.swift */; };
@@ -178,6 +178,7 @@
 		2B3852062BF77D3700BCF540 /* DetailTutorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTutorViewModel.swift; sourceTree = "<group>"; };
 		2B3852082BF77D4400BCF540 /* DetailTutorComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTutorComponent.swift; sourceTree = "<group>"; };
 		2B38520A2BF77D4F00BCF540 /* DetailTutorCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTutorCoordinator.swift; sourceTree = "<group>"; };
+		2B3C998B2C5B23B700CA865D /* TopButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopButtonsView.swift; sourceTree = "<group>"; };
 		2B3EBFA22C54BE950089D48C /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		2B4170002C0AEC1000F31881 /* MessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		2B455FD02C22F2FB00C29F0B /* HomeAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPIService.swift; sourceTree = "<group>"; };
@@ -234,7 +235,6 @@
 		2BB515842BDE15CA0092CC72 /* CommunityCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCoordinator.swift; sourceTree = "<group>"; };
 		2BB515872BDE86F40092CC72 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BB515892BDE8DCE0092CC72 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
-		2BB5158B2BDE998E0092CC72 /* ButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BB5158E2BDFD53D0092CC72 /* MessageListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListComponent.swift; sourceTree = "<group>"; };
 		2BB515902BDFD5640092CC72 /* MessageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListViewController.swift; sourceTree = "<group>"; };
 		2BB515922BDFD56D0092CC72 /* MessageListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListViewModel.swift; sourceTree = "<group>"; };
@@ -453,6 +453,15 @@
 			path = DetailTutor;
 			sourceTree = "<group>";
 		};
+		2B3C998A2C5B239E00CA865D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2BB515872BDE86F40092CC72 /* CategoryCollectionViewCell.swift */,
+				2BB515892BDE8DCE0092CC72 /* PostCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		2B416FFF2C0AEBF600F31881 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -661,6 +670,7 @@
 			isa = PBXGroup;
 			children = (
 				2B5F006B2C59204A00FCC51A /* CreatePost */,
+				2B3C998A2C5B239E00CA865D /* Cells */,
 				2BB515862BDE86DF0092CC72 /* View */,
 				2BB5157E2BDE15A50092CC72 /* CommunityComponent.swift */,
 				2BB515802BDE15B20092CC72 /* CommunityViewController.swift */,
@@ -673,9 +683,7 @@
 		2BB515862BDE86DF0092CC72 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2BB515872BDE86F40092CC72 /* CategoryCollectionViewCell.swift */,
-				2BB515892BDE8DCE0092CC72 /* PostCollectionViewCell.swift */,
-				2BB5158B2BDE998E0092CC72 /* ButtonCollectionViewCell.swift */,
+				2B3C998B2C5B23B700CA865D /* TopButtonsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -946,7 +954,6 @@
 				2BFA9C522C0F340B00E72C99 /* LoginViewModel.swift in Sources */,
 				2BFA9C542C0F341600E72C99 /* LoginCoordinator.swift in Sources */,
 				2BB5157F2BDE15A50092CC72 /* CommunityComponent.swift in Sources */,
-				2BB5158C2BDE998E0092CC72 /* ButtonCollectionViewCell.swift in Sources */,
 				2BB5155E2BD91CE90092CC72 /* UIStackView+.swift in Sources */,
 				2B6F28AD2BED347200BDA911 /* ContentListCoordinator.swift in Sources */,
 				2B9C4FD22BF0B57E0058CE3F /* DetailPostViewController.swift in Sources */,
@@ -983,6 +990,7 @@
 				2BFA9C502C0F340300E72C99 /* LoginViewController.swift in Sources */,
 				2BB515812BDE15B20092CC72 /* CommunityViewController.swift in Sources */,
 				2B9C4FE02BF0CB5C0058CE3F /* ProfileView.swift in Sources */,
+				2B3C998C2C5B23B700CA865D /* TopButtonsView.swift in Sources */,
 				2BEDD4B92BE23DA300C12E17 /* MenuItemCollectionViewCell.swift in Sources */,
 				2B54ADDD2C1B35F6002BD5C5 /* DetailInstrumentViewModel.swift in Sources */,
 				2BB515A42BDFEEC00092CC72 /* ProfileCollectionViewCell.swift in Sources */,

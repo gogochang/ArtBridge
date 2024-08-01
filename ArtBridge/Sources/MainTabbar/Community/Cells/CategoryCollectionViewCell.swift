@@ -21,7 +21,13 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     }
     
     private let titleLabel = UILabel().then {
-        $0.text = "CategoryLabel"
+        $0.text = "바이올린"
+        $0.font = UIFont.systemFont(ofSize: 14)
+        $0.textColor = .darkGray
+    }
+    
+    func configure(title: String) {
+        titleLabel.text = title
     }
 }
 
@@ -34,11 +40,12 @@ extension CategoryCollectionViewCell {
     }
     
     private func initialLayout() {
-        backgroundColor = .white
-        layer.cornerRadius = 10
+        backgroundColor = .systemGray5
+        layer.cornerRadius = 15
         
         titleLabel.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.left.right.equalToSuperview().inset(8)
+            $0.centerY.equalToSuperview()
         }
     }
 }
