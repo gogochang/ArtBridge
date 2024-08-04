@@ -56,7 +56,12 @@ final class CommunityViewController: UIViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
     //MARK: - UI
-    private let topButtonsView = TopButtonsView()
+    private let topButtonsView = TopButtonsView(titles: [
+        "뉴스",
+        "사는얘기",
+        "음악",
+        "피드백"
+    ])
     
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
         $0.showsVerticalScrollIndicator = false
