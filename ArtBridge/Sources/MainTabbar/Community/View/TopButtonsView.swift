@@ -18,7 +18,7 @@ final class TopButtonsView: UIView {
         $0.distribution = .fillEqually
     }
     
-    private let focusBottom = UIView().then {
+    private let focusBottomBar = UIView().then {
         $0.backgroundColor = .systemBrown
     }
     
@@ -32,8 +32,8 @@ final class TopButtonsView: UIView {
         setupViews()
         initialLayout()
         
-        for title in titles {
-            createButton(title: title)
+        for (index, title) in titles.enumerated() {
+            createButton(title: title, tag: index)
         }
     }
     
@@ -48,19 +48,25 @@ extension TopButtonsView {
         addSubviews([
             stackView,
             separatorView,
-            focusBottom
+            focusBottomBar
         ])
     }
     
-    private func createButton(title: String) {
+    private func createButton(title: String, tag: Int) {
         let topButton = UIButton().then {
             $0.setTitle(title, for: .normal)
+            $0.titleLabel?.font = UIFont.systemFont(ofSize: 16)
             $0.setTitleColor(.darkGray, for: .normal)
             $0.setTitleColor(.black, for: .selected)
             $0.setBackgroundColor(.white, for: .normal)
             $0.snp.makeConstraints {
                 $0.width.equalTo(80)
             }
+            $0.tag = tag
+            if tag == 0 {
+                $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+            }
+            $0.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         }
         
         stackView.addArrangedSubview(topButton)
@@ -68,8 +74,8 @@ extension TopButtonsView {
     
     private func initialLayout() {
         stackView.snp.makeConstraints {
-            $0.top.equalToSuperview() // Adjust top margin as needed
-            $0.left.equalToSuperview().offset(8) // Adjust left margin as needed
+            $0.top.equalToSuperview()
+            $0.left.right.equalToSuperview().inset(8)
             $0.bottom.equalToSuperview().inset(8)
         }
         
@@ -78,11 +84,46 @@ extension TopButtonsView {
             $0.height.equalTo(0.5)
         }
         
-        focusBottom.snp.makeConstraints {
-            $0.left.equalToSuperview().offset(8)
+        focusBottomBar.snp.makeConstraints {
+            $0.left.equalToSuperview()
             $0.bottom.equalToSuperview()
-            $0.width.equalTo(80)
+            $0.width.equalTo(96)
             $0.height.equalTo(2)
+        }
+    }
+}
+
+//MARK: - Actions
+extension TopButtonsView {
+    @objc private func buttonTapped(_ sender: UIButton) {
+        // 모든 버튼의 선택 상태를 초기화하고 폰트 설정
+        for case let button as UIButton in stackView.arrangedSubviews {
+            button.isSelected = false
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        }
+        
+        // 클릭된 버튼의 선택 상태를 true로 설정하고 볼드체로 변경
+        sender.isSelected = true
+        sender.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        
+        guard let superview = sender.superview else { return }
+        
+        // 클릭된 버튼의 선택 상태를 true로 설정하고 볼드체로 변경
+        sender.isSelected = true
+        sender.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        
+        guard let superview = sender.superview else { return }
+        
+        // 클릭된 버튼의 x 위치와 너비를 이용해 새로운 제약 조건을 계산
+        let newLeftConstraint = sender.frame.origin.x
+        let buttonWidth = sender.frame.width + 16
+        
+        UIView.animate(withDuration: 0.2) {
+            self.focusBottomBar.snp.updateConstraints {
+                $0.left.equalToSuperview().offset(newLeftConstraint)
+                $0.width.equalTo(buttonWidth)
+            }
+            self.layoutIfNeeded()
         }
     }
 }
