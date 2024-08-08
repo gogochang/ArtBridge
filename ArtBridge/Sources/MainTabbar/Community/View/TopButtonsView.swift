@@ -58,13 +58,14 @@ extension TopButtonsView {
             $0.titleLabel?.font = UIFont.systemFont(ofSize: 16)
             $0.setTitleColor(.darkGray, for: .normal)
             $0.setTitleColor(.black, for: .selected)
-            $0.setBackgroundColor(.white, for: .normal)
+            $0.backgroundColor = .white
             $0.snp.makeConstraints {
                 $0.width.equalTo(80)
             }
             $0.tag = tag
             if tag == 0 {
                 $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+                $0.isSelected = true
             }
             $0.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         }
@@ -106,13 +107,7 @@ extension TopButtonsView {
         sender.isSelected = true
         sender.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         
-        guard let superview = sender.superview else { return }
-        
-        // 클릭된 버튼의 선택 상태를 true로 설정하고 볼드체로 변경
-        sender.isSelected = true
-        sender.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        
-        guard let superview = sender.superview else { return }
+        guard let _ = sender.superview else { return }
         
         // 클릭된 버튼의 x 위치와 너비를 이용해 새로운 제약 조건을 계산
         let newLeftConstraint = sender.frame.origin.x
