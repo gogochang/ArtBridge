@@ -83,50 +83,6 @@ final class CommunityViewController: UIViewController {
         $0.rightBtnItem.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
     }
     
-    //++ 그라데이션 + 카테고리 모달 리스트 뷰 보기 버튼
-    //TODO: 그라데이션 + 버튼배경 커스텀 UIView 추가해서 사용해야함
-    private let gradientView = UIView().then {
-        $0.backgroundColor = UIColor(white: 0.97, alpha: 1.0)
-    }
-    
-    private let gradientContainerView = UIView().then {
-        $0.backgroundColor = UIColor(white: 0.97, alpha: 1.0)
-    }
-    
-    private let categoryListButton = UIImageView().then {
-        $0.contentMode = .scaleAspectFill
-        $0.image = UIImage(systemName: "text.justify")
-        $0.tintColor = .darkGray
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
-        // viewDidLayoutSubviews에서 gradientLayer를 추가하여, 뷰의 크기가 결정된 후에 실행
-        let gradientLayer = CAGradientLayer()
-
-        // 그라데이션의 시작과 끝 포인트 설정 (왼쪽 -> 오른쪽)
-        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.5)
-        gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.5)
-        
-        // 색상 배열 설정 (왼쪽에서 투명도 1 -> 오른쪽에서 투명도 0)
-        gradientLayer.colors = [
-            UIColor.black.withAlphaComponent(1.0).cgColor,
-            UIColor.black.withAlphaComponent(0.0).cgColor
-        ]
-        
-        // 그라데이션 레이어가 이미지 뷰의 크기에 맞도록 설정
-        gradientLayer.frame = gradientView.bounds
-        
-        // 이전 마스크 제거 (중복 추가 방지)
-        gradientView.layer.mask = nil
-
-        // 이미지 뷰의 마스크로 그라데이션 레이어 설정
-        gradientView.layer.mask = gradientLayer
-    }
-    
-    //-- 그라데이션 + 카테고리 모달 리스트 뷰 보기 버튼
-    
     private let createPostButton = FloatingButton().then {
         $0.backgroundColor = .brown
         $0.layer.cornerRadius = 25
@@ -165,12 +121,8 @@ extension CommunityViewController {
             navBar,
             topButtonsView,
             collectionView,
-            gradientView,
-            gradientContainerView,
             createPostButton
         ])
-        
-        gradientContainerView.addSubview(categoryListButton)
     }
     
     private func initialLayout() {
@@ -183,25 +135,6 @@ extension CommunityViewController {
         topButtonsView.snp.makeConstraints {
             $0.top.equalTo(navBar.snp.bottom)
             $0.left.right.equalToSuperview()
-        }
-        
-        gradientView.snp.makeConstraints {
-            $0.top.equalTo(topButtonsView.snp.bottom)
-            $0.right.equalTo(gradientContainerView.snp.left)
-            $0.size.equalTo(46)
-        }
-        
-        gradientContainerView.snp.makeConstraints {
-            $0.top.equalTo(gradientView)
-            $0.right.equalToSuperview()
-            $0.width.equalTo(30)
-            $0.height.equalTo(46)
-        }
-        
-        categoryListButton.snp.makeConstraints {
-            $0.center.equalToSuperview()
-            $0.right.equalToSuperview().inset(20)
-            $0.size.equalTo(16)
         }
         
         collectionView.snp.makeConstraints {
