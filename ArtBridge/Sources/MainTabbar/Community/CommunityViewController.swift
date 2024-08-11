@@ -268,6 +268,14 @@ extension CommunityViewController {
                         for: indexPath
                     ) as? PostCollectionViewCell
                     
+                    cell?.configure()
+                    
+                    cell?.moreButton.rx.tapGesture()
+                        .skip(1)
+                        .bind { _ in
+                            print("morebuton is clicked")
+                        }.disposed(by: cell?.disposeBag ?? DisposeBag())
+                    
                     return cell
                 }
             }

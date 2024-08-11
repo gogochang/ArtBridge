@@ -7,10 +7,12 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 final class PostCollectionViewCell: UICollectionViewCell {
     static let id = "PostCollectionViewCell"
     //MARK: - Properties
+    var disposeBag = DisposeBag()
     
     //MARK: - Init
     override init(frame: CGRect) {
@@ -41,9 +43,14 @@ final class PostCollectionViewCell: UICollectionViewCell {
         $0.contentMode = .left
     }
     
-    private let moreButton = UIButton().then {
+    let moreButton = UIButton().then {
         $0.setImage(UIImage(systemName: "ellipsis"), for: .normal)
         $0.tintColor = .darkText
+    }
+    
+    //MARK: - Methods
+    func configure() {
+        disposeBag = DisposeBag()
     }
 }
 
