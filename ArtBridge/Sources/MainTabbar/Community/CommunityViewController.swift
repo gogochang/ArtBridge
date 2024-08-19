@@ -271,9 +271,10 @@ extension CommunityViewController {
                     cell?.configure()
                     
                     cell?.moreButton.rx.tapGesture()
-                        .skip(1)
+                        .when(.recognized)
                         .bind { _ in
-                            print("morebuton is clicked")
+                            let modalView = ModalViewController()
+                            self.present(modalView, animated: true)
                         }.disposed(by: cell?.disposeBag ?? DisposeBag())
                     
                     return cell

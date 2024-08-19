@@ -123,6 +123,7 @@
 		2BFA9C542C0F341600E72C99 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFA9C532C0F341600E72C99 /* LoginCoordinator.swift */; };
 		2BFA9C562C0F341E00E72C99 /* LoginComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFA9C552C0F341E00E72C99 /* LoginComponent.swift */; };
 		2BFDBF082C25AEBF0081247B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BFDBF072C25AEBF0081247B /* GoogleService-Info.plist */; };
+		2BFF700A2C68771900A82C07 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFF70092C68771900A82C07 /* ModalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -254,6 +255,7 @@
 		2BFA9C532C0F341600E72C99 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		2BFA9C552C0F341E00E72C99 /* LoginComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginComponent.swift; sourceTree = "<group>"; };
 		2BFDBF072C25AEBF0081247B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2BFF70092C68771900A82C07 /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -651,6 +653,7 @@
 		2BB515732BDBD14C0092CC72 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				2BFF70082C6876DE00A82C07 /* Modal */,
 				2B9705C52C21D89900B94E8B /* Service */,
 				2BB515742BDBD1620092CC72 /* NavigationBar */,
 				2B3EBFA22C54BE950089D48C /* FloatingButton.swift */,
@@ -749,6 +752,14 @@
 				2BFA9C552C0F341E00E72C99 /* LoginComponent.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		2BFF70082C6876DE00A82C07 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				2BFF70092C68771900A82C07 /* ModalViewController.swift */,
+			);
+			path = Modal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -941,6 +952,7 @@
 				2BB515632BDAA7490092CC72 /* HomeViewController.swift in Sources */,
 				2B3852002BF2628900BCF540 /* UITextView+.swift in Sources */,
 				2B5C6CA02BFA0251004800CC /* TutorInfoCollectionViewCell.swift in Sources */,
+				2BFF700A2C68771900A82C07 /* ModalViewController.swift in Sources */,
 				2B9C4FD42BF0B58F0058CE3F /* DetailPostComponent.swift in Sources */,
 				2B1469FF2BD399BF00E6483E /* UIView+.swift in Sources */,
 				2B1469BD2BD38F8000E6483E /* AppDelegate.swift in Sources */,
