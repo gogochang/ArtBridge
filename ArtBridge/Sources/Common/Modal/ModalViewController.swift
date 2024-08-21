@@ -76,33 +76,45 @@ extension ModalViewController {
             $0.backgroundColor = .white
             $0.setTitle("수정", for: .normal)
             $0.setTitleColor(.darkText, for: .normal)
+            $0.titleLabel?.font = .systemFont(ofSize: 14)
             $0.rx.tapGesture()
                 .bind { _ in
                     print("Button1 is Clicked")
                     self.dismiss(animated: false)
                 }.disposed(by: disposeBag)
+            $0.snp.makeConstraints {
+                $0.height.equalTo(44)
+            }
         }
         
         let button2 = UIButton().then {
             $0.backgroundColor = .white
             $0.setTitle("삭제", for: .normal)
             $0.setTitleColor(.darkText, for: .normal)
+            $0.titleLabel?.font = .systemFont(ofSize: 14)
             $0.rx.tapGesture()
                 .bind { _ in
                     print("Button2 is Clicked")
                     self.dismiss(animated: false)
                 }.disposed(by: disposeBag)
+            $0.snp.makeConstraints {
+                $0.height.equalTo(44)
+            }
         }
         
         let button3 = UIButton().then {
             $0.backgroundColor = .white
             $0.setTitle("신고", for: .normal)
             $0.setTitleColor(.darkText, for: .normal)
+            $0.titleLabel?.font = .systemFont(ofSize: 14)
             $0.rx.tapGesture()
                 .bind { _ in
                     print("Button3 is Clicked")
                     self.dismiss(animated: false)
                 }.disposed(by: disposeBag)
+            $0.snp.makeConstraints {
+                $0.height.equalTo(44)
+            }
         }
         
         let buttons = [button1, button2, button3]
