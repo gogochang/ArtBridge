@@ -182,7 +182,7 @@ final class MainTabController: UIViewController {
     private let myPageBtn = UIButton().then { button in
         button.setImage(UIImage(systemName: "person"), for: .normal)
         button.setImage(UIImage(systemName: "person.fill"), for: .selected)
-        button.setTitle("내정보", for: .normal)
+        button.setTitle("내 정보", for: .normal)
         button.setTitleColor(.darkGray, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 12)
         button.tintColor = .darkGray

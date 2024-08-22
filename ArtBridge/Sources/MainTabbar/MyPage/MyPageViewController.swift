@@ -71,6 +71,7 @@ final class MyPageViewController: UIViewController {
     private let navBar = ArtBridgeNavBar().then {
         $0.leftBtnItem.setImage(UIImage(systemName: "apple.logo"), for: .normal)
         $0.rightBtnItem.setImage(UIImage(systemName: "gearshape"), for: .normal)
+        $0.title.text = "내 정보"
     }
     
     private func viewModelInputs() {

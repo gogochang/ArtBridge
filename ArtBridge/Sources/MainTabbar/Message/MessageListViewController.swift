@@ -41,6 +41,7 @@ final class MessageListViewController: UIViewController {
     private let navBar = ArtBridgeNavBar().then {
         $0.leftBtnItem.setImage(UIImage(systemName: "apple.logo"), for: .normal)
         $0.rightBtnItem.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        $0.searchView.isHidden = false
     }
     
     //MARK: - Init

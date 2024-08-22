@@ -6,22 +6,12 @@
 //
 
 import UIKit
+import Then
 
 final class ArtBridgeNavBar: UIView {
-    
-    init() {
-        super.init(frame: .zero)
-        setupViews()
-        initialLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+    //MARK: - UI
     private var contentView = UIView()
     
-    //MARK: - Internal
     let leftBtnItem = UIButton().then {
         $0.tintColor = .black
     }
@@ -34,7 +24,35 @@ final class ArtBridgeNavBar: UIView {
         $0.font = .systemFont(ofSize: 20, weight: .bold)
     }
     
+    let searchView = UIView().then {
+        $0.backgroundColor = .systemGray6
+        $0.layer.cornerRadius = 15
+        $0.isHidden = true
+    }
+    
+    private let searchIcon = UIImageView().then {
+        $0.image = UIImage(systemName: "magnifyingglass")
+        $0.tintColor = .darkGray
+    }
+    
+    private let searchPlaceHolder = UILabel().then {
+        $0.text = "검색어를 입력해주세요."
+        $0.font = .systemFont(ofSize: 14)
+        $0.textColor = .darkGray
+    }
+    
+    //MARK: - Init
+    init() {
+        super.init(frame: .zero)
+        setupViews()
+        initialLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
+
 //MARK: - Actions
 extension ArtBridgeNavBar {
 }
@@ -49,15 +67,22 @@ extension ArtBridgeNavBar {
         contentView.addSubviews([
             leftBtnItem,
             rightBtnItem,
-            title
+            title,
+            searchView
+        ])
+        
+        searchView.addSubviews([
+            searchIcon,
+            searchPlaceHolder
         ])
     }
     
     func initialLayout() {
+        backgroundColor = .white
         contentView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
             $0.left.right.bottom.equalToSuperview()
-            $0.height.equalTo(44)
+            $0.height.equalTo(60)
         }
         
         leftBtnItem.snp.makeConstraints {
@@ -72,6 +97,24 @@ extension ArtBridgeNavBar {
         
         title.snp.makeConstraints {
             $0.center.equalToSuperview()
+        }
+        
+        searchView.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview().inset(12)
+            $0.left.equalTo(leftBtnItem.snp.right).offset(20)
+            $0.right.equalTo(rightBtnItem.snp.left).offset(-20)
+            $0.centerY.equalToSuperview()
+        }
+        
+        searchIcon.snp.makeConstraints {
+            $0.left.equalToSuperview().inset(12)
+            $0.centerY.equalToSuperview()
+            $0.size.equalTo(16)
+        }
+        
+        searchPlaceHolder.snp.makeConstraints {
+            $0.left.equalTo(searchIcon.snp.right).offset(4)
+            $0.centerY.equalToSuperview()
         }
     }
 }
