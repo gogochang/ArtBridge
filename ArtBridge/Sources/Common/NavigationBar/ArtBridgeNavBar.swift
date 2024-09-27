@@ -17,6 +17,9 @@ final class ArtBridgeNavBar: UIView {
     }
     
     let rightBtnItem = UIButton().then {
+        $0.titleLabel?.font? = .systemFont(ofSize: 14, weight: .medium)
+        $0.setTitleColor(.systemGray3, for: .normal)
+        $0.setTitleColor(.black, for: .disabled)
         $0.tintColor = .black
     }
     
@@ -41,6 +44,11 @@ final class ArtBridgeNavBar: UIView {
         $0.textColor = .darkGray
     }
     
+    let hDivider = UIView().then {
+        $0.backgroundColor = .systemGray6
+        $0.isHidden = true
+    }
+    
     //MARK: - Init
     init() {
         super.init(frame: .zero)
@@ -61,7 +69,8 @@ extension ArtBridgeNavBar {
 extension ArtBridgeNavBar {
     func setupViews() {
         addSubviews([
-            contentView
+            contentView,
+            hDivider
         ])
         
         contentView.addSubviews([
@@ -115,6 +124,11 @@ extension ArtBridgeNavBar {
         searchPlaceHolder.snp.makeConstraints {
             $0.left.equalTo(searchIcon.snp.right).offset(4)
             $0.centerY.equalToSuperview()
+        }
+        
+        hDivider.snp.makeConstraints {
+            $0.left.bottom.right.equalToSuperview()
+            $0.height.equalTo(1)
         }
     }
 }

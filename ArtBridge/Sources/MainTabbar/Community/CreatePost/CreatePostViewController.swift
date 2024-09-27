@@ -16,9 +16,27 @@ final class CreatePostViewController: UIViewController {
     //MARK: - UI
     private let navBar = ArtBridgeNavBar().then {
         $0.leftBtnItem.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        $0.rightBtnItem.setTitle("등록", for: .normal)
         $0.title.text = "게시글 작성"
+        $0.hDivider.isHidden = false
     }
     
+    private let selectCategoryView = SelectCategoryView()
+    
+    private let hDivider1 = UIView().then {
+        $0.backgroundColor = .systemGray6
+    }
+    
+    private let titleTextField = UITextField().then {
+        $0.placeholder = "제목을 입력해주세요."
+        $0.font = .systemFont(ofSize: 16, weight: .bold)
+    }
+    
+    private let artBridgeInputTextView = ArtBridgeInputTextView()
+    
+    private let createPostBottomView = CreatePostBottomView().then {
+        $0.backgroundColor = .orange
+    }
     //MARK: - Init
     init(viewModel: CreatePostViewModel) {
         self.viewModel = viewModel
@@ -49,7 +67,12 @@ final class CreatePostViewController: UIViewController {
 extension CreatePostViewController {
     private func setupViews() {
         view.addSubviews([
-            navBar
+            navBar,
+            selectCategoryView,
+            hDivider1,
+            titleTextField,
+            artBridgeInputTextView,
+            createPostBottomView
         ])
     }
     
@@ -58,6 +81,34 @@ extension CreatePostViewController {
         
         navBar.snp.makeConstraints {
             $0.top.left.right.equalToSuperview()
+        }
+        
+        selectCategoryView.snp.makeConstraints {
+            $0.top.equalTo(navBar.snp.bottom)
+            $0.left.right.equalToSuperview()
+        }
+        
+        hDivider1.snp.makeConstraints {
+            $0.top.equalTo(selectCategoryView.snp.bottom)
+            $0.left.right.equalToSuperview().inset(20)
+            $0.height.equalTo(1)
+        }
+        
+        titleTextField.snp.makeConstraints {
+            $0.top.equalTo(hDivider1.snp.bottom)
+            $0.left.right.equalToSuperview().inset(20)
+            $0.height.equalTo(44)
+        }
+        
+        artBridgeInputTextView.snp.makeConstraints {
+            $0.top.equalTo(titleTextField.snp.bottom).offset(12)
+            $0.left.right.equalToSuperview().inset(20)
+            $0.bottom.equalTo(createPostBottomView.snp.top).offset(-20)
+        }
+        
+        createPostBottomView.snp.makeConstraints {
+            $0.left.bottom.right.equalToSuperview()
+            $0.height.equalTo(100)
         }
     }
 }
