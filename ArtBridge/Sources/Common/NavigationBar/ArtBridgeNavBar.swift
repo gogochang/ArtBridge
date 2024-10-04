@@ -18,8 +18,8 @@ final class ArtBridgeNavBar: UIView {
     
     let rightBtnItem = UIButton().then {
         $0.titleLabel?.font? = .systemFont(ofSize: 14, weight: .medium)
-        $0.setTitleColor(.systemGray3, for: .normal)
-        $0.setTitleColor(.black, for: .disabled)
+        $0.setTitleColor(.black, for: .normal)
+        $0.setTitleColor(.systemGray3, for: .disabled)
         $0.tintColor = .black
     }
     

@@ -17,6 +17,8 @@ final class CreatePostViewController: UIViewController {
     private let navBar = ArtBridgeNavBar().then {
         $0.leftBtnItem.setImage(UIImage(systemName: "chevron.left"), for: .normal)
         $0.rightBtnItem.setTitle("등록", for: .normal)
+        $0.rightBtnItem.isEnabled = false
+        
         $0.title.text = "게시글 작성"
         $0.hDivider.isHidden = false
     }
@@ -34,9 +36,8 @@ final class CreatePostViewController: UIViewController {
     
     private let artBridgeInputTextView = ArtBridgeInputTextView()
     
-    private let createPostBottomView = CreatePostBottomView().then {
-        $0.backgroundColor = .orange
-    }
+    private let createPostBottomView = CreatePostBottomView()
+    
     //MARK: - Init
     init(viewModel: CreatePostViewModel) {
         self.viewModel = viewModel
@@ -54,12 +55,34 @@ final class CreatePostViewController: UIViewController {
         initialLayout()
         
         viewModelInput()
+        viewModelOutput()
     }
     
+    //MARK: - Methods
     private func viewModelInput() {
         navBar.leftBtnItem.rx.tap
             .bind (to: viewModel.inputs.backward )
             .disposed(by: disposeBag)
+        
+        navBar.rightBtnItem.rx.tap
+            .bind (to: viewModel.inputs.tappedCreateButton )
+            .disposed(by: disposeBag)
+        
+        titleTextField.rx.text
+            .bind(to: viewModel.inputs.titleText)
+            .disposed(by: disposeBag)
+        
+        artBridgeInputTextView.textView.rx.text
+            .bind(to: viewModel.inputs.contentText)
+            .disposed(by: disposeBag)
+    }
+    
+    private func viewModelOutput() {
+        viewModel.outputs.isValid
+            .bind { [weak self] isValid in
+                guard let self = self else { return }
+                self.navBar.rightBtnItem.isEnabled = isValid
+            }.disposed(by: disposeBag)
     }
 }
 
@@ -107,8 +130,13 @@ extension CreatePostViewController {
         }
         
         createPostBottomView.snp.makeConstraints {
+            let scenes = UIApplication.shared.connectedScenes
+            let windowScene = scenes.first as? UIWindowScene
+            let window = windowScene?.windows.first
+            let safeAreaBottom = window?.safeAreaInsets.bottom ?? 0
+            
             $0.left.bottom.right.equalToSuperview()
-            $0.height.equalTo(100)
+            $0.height.equalTo(40.0 + safeAreaBottom)
         }
     }
 }

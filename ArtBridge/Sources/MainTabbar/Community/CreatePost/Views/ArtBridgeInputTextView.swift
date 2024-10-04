@@ -15,7 +15,7 @@ final class ArtBridgeInputTextView: UIView {
         $0.textColor = .lightGray
     }
     
-    private let textView = UITextView().then {
+    let textView = UITextView().then {
         $0.contentInset = .zero
         $0.font = .systemFont(ofSize: 14, weight: .regular)
         $0.textContainerInset = .zero
