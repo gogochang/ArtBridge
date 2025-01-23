@@ -117,6 +117,13 @@
 		2BB9006F2CA69875004FC44C /* CreatePostBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB9006E2CA69875004FC44C /* CreatePostBottomView.swift */; };
 		2BC1326E2BE3D3D200F13EC4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2BC1326D2BE3D3D200F13EC4 /* Kingfisher */; };
 		2BC132702BE3D63900F13EC4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 2BC1326F2BE3D63900F13EC4 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		2BDA19EF2D42614B00E8F7C0 /* JalnanOTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2BDA19EE2D42614B00E8F7C0 /* JalnanOTF.otf */; };
+		2BDA19F12D42619900E8F7C0 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDA19F02D42619700E8F7C0 /* Font+.swift */; };
+		2BDA19F62D42633700E8F7C0 /* NanumSquareEB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BDA19F32D42633700E8F7C0 /* NanumSquareEB.ttf */; };
+		2BDA19F72D42633700E8F7C0 /* NanumSquareL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BDA19F42D42633700E8F7C0 /* NanumSquareL.ttf */; };
+		2BDA19F82D42633700E8F7C0 /* NanumSquareB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BDA19F22D42633700E8F7C0 /* NanumSquareB.ttf */; };
+		2BDA19F92D42633700E8F7C0 /* NanumSquareR.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BDA19F52D42633700E8F7C0 /* NanumSquareR.ttf */; };
+		2BDA19FC2D42644B00E8F7C0 /* ButtonScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDA19FB2D42644400E8F7C0 /* ButtonScrollView.swift */; };
 		2BEDD4B92BE23DA300C12E17 /* MenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEDD4B82BE23DA300C12E17 /* MenuItemCollectionViewCell.swift */; };
 		2BF0B6A52C2EDFA700FD47B8 /* TutorAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF0B6A42C2EDFA700FD47B8 /* TutorAPIService.swift */; };
 		2BFA9C4B2C0DD42400E72C99 /* NewsInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFA9C4A2C0DD42400E72C99 /* NewsInfoCollectionViewCell.swift */; };
@@ -252,6 +259,13 @@
 		2BB515A32BDFEEC00092CC72 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BB9006C2CA686CA004FC44C /* SelectCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryView.swift; sourceTree = "<group>"; };
 		2BB9006E2CA69875004FC44C /* CreatePostBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostBottomView.swift; sourceTree = "<group>"; };
+		2BDA19EE2D42614B00E8F7C0 /* JalnanOTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JalnanOTF.otf; sourceTree = "<group>"; };
+		2BDA19F02D42619700E8F7C0 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
+		2BDA19F22D42633700E8F7C0 /* NanumSquareB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareB.ttf; sourceTree = "<group>"; };
+		2BDA19F32D42633700E8F7C0 /* NanumSquareEB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareEB.ttf; sourceTree = "<group>"; };
+		2BDA19F42D42633700E8F7C0 /* NanumSquareL.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareL.ttf; sourceTree = "<group>"; };
+		2BDA19F52D42633700E8F7C0 /* NanumSquareR.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareR.ttf; sourceTree = "<group>"; };
+		2BDA19FB2D42644400E8F7C0 /* ButtonScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonScrollView.swift; sourceTree = "<group>"; };
 		2BEDD4B82BE23DA300C12E17 /* MenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BF0B6A42C2EDFA700FD47B8 /* TutorAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorAPIService.swift; sourceTree = "<group>"; };
 		2BFA9C4A2C0DD42400E72C99 /* NewsInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsInfoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -388,6 +402,8 @@
 		2B1469ED2BD391DB00E6483E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2BDA19F02D42619700E8F7C0 /* Font+.swift */,
+				2BDA19ED2D42614400E8F7C0 /* Fonts */,
 				2B1469C52BD38F8000E6483E /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -670,6 +686,7 @@
 		2BB515732BDBD14C0092CC72 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				2BDA19FA2D42643D00E8F7C0 /* Buttons */,
 				2BFF70082C6876DE00A82C07 /* Modal */,
 				2B9705C52C21D89900B94E8B /* Service */,
 				2BB515742BDBD1620092CC72 /* NavigationBar */,
@@ -749,6 +766,26 @@
 				2BEDD4B82BE23DA300C12E17 /* MenuItemCollectionViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2BDA19ED2D42614400E8F7C0 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				2BDA19EE2D42614B00E8F7C0 /* JalnanOTF.otf */,
+				2BDA19F22D42633700E8F7C0 /* NanumSquareB.ttf */,
+				2BDA19F32D42633700E8F7C0 /* NanumSquareEB.ttf */,
+				2BDA19F42D42633700E8F7C0 /* NanumSquareL.ttf */,
+				2BDA19F52D42633700E8F7C0 /* NanumSquareR.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		2BDA19FA2D42643D00E8F7C0 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				2BDA19FB2D42644400E8F7C0 /* ButtonScrollView.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 		2BFA9C492C0DD40F00E72C99 /* Cells */ = {
@@ -903,8 +940,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B1469C62BD38F8000E6483E /* Assets.xcassets in Resources */,
+				2BDA19EF2D42614B00E8F7C0 /* JalnanOTF.otf in Resources */,
 				2B1469C92BD38F8000E6483E /* Base in Resources */,
 				2BFDBF082C25AEBF0081247B /* GoogleService-Info.plist in Resources */,
+				2BDA19F62D42633700E8F7C0 /* NanumSquareEB.ttf in Resources */,
+				2BDA19F72D42633700E8F7C0 /* NanumSquareL.ttf in Resources */,
+				2BDA19F82D42633700E8F7C0 /* NanumSquareB.ttf in Resources */,
+				2BDA19F92D42633700E8F7C0 /* NanumSquareR.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -980,9 +1022,11 @@
 				2B9C4FD82BF0B5B00058CE3F /* DetailPostCoordinator.swift in Sources */,
 				2B9C4FDB2BF0CA5C0058CE3F /* CommentCollectionViewCell.swift in Sources */,
 				2BFA9C562C0F341E00E72C99 /* LoginComponent.swift in Sources */,
+				2BDA19FC2D42644B00E8F7C0 /* ButtonScrollView.swift in Sources */,
 				2B6F28A92BED330100BDA911 /* ContentListComponent.swift in Sources */,
 				2BFA9C522C0F340B00E72C99 /* LoginViewModel.swift in Sources */,
 				2BFA9C542C0F341600E72C99 /* LoginCoordinator.swift in Sources */,
+				2BDA19F12D42619900E8F7C0 /* Font+.swift in Sources */,
 				2BB5157F2BDE15A50092CC72 /* CommunityComponent.swift in Sources */,
 				2BB5155E2BD91CE90092CC72 /* UIStackView+.swift in Sources */,
 				2B6F28AD2BED347200BDA911 /* ContentListCoordinator.swift in Sources */,

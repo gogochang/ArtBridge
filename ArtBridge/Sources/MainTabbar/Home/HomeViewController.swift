@@ -78,7 +78,9 @@ final class HomeViewController: UIViewController {
     }
     
     private var navBar = ArtBridgeNavBar().then {
-        $0.leftBtnItem.setImage(UIImage(systemName: "apple.logo"), for: .normal)
+        $0.leftBtnItem.setTitle("ArtBridge", for: .normal)
+        $0.leftBtnItem.setTitleColor(.orange, for: .normal)
+        $0.leftBtnItem.titleLabel?.font = .jalnan11
         $0.rightBtnItem.setImage(UIImage(systemName: "bell"), for: .normal)
         $0.searchView.isHidden = false
     }

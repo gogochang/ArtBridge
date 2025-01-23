@@ -69,7 +69,9 @@ final class MyPageViewController: UIViewController {
     }
     
     private let navBar = ArtBridgeNavBar().then {
-        $0.leftBtnItem.setImage(UIImage(systemName: "apple.logo"), for: .normal)
+        $0.leftBtnItem.setTitle("ArtBridge", for: .normal)
+        $0.leftBtnItem.setTitleColor(.orange, for: .normal)
+        $0.leftBtnItem.titleLabel?.font = .jalnan11
         $0.rightBtnItem.setImage(UIImage(systemName: "gearshape"), for: .normal)
         $0.title.text = "내 정보"
     }
