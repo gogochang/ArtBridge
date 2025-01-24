@@ -17,7 +17,7 @@ final class LoginViewController: UIViewController {
     //MARK: - UI
     private var backgroundImageView = UIImageView().then {
         $0.backgroundColor = .systemBrown
-        $0.image = UIImage(named: "login_background_img")
+        $0.image = UIImage(named: "Launch")
         $0.contentMode = .scaleAspectFill
     }
     
