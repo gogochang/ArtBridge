@@ -8,6 +8,10 @@
 import UIKit
 
 extension UIFont {
+    static var nanumB12: UIFont {
+        return UIFont(name: "NanumSquareB", size: 12)!
+    }
+
     static var nanumB13: UIFont {
         return UIFont(name: "NanumSquareB", size: 13)!
     }

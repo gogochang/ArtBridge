@@ -31,6 +31,7 @@ final class MainTabCoordinator: BaseCoordinator<Void> {
         
         scene.VC.viewControllers = [
             configureAndGetHomeScene(vm: scene.VM),
+            configureAndGetNoticeScene(vm: scene.VM),
             configureAndGetCommunityScene(vm: scene.VM),
             configureAndGetMyPageScene(vm: scene.VM)
         ]
@@ -54,6 +55,18 @@ final class MainTabCoordinator: BaseCoordinator<Void> {
                 comp.viewModel.routeInputs.needUpdate.onNext(true)
             })
             .disposed(by: sceneDisposeBag)
+        
+        return comp.scene.VC
+    }
+    
+    private func configureAndGetNoticeScene(vm: MainTabViewModel) -> UIViewController {
+        let comp = component.noticeComponent
+        let coord = NoticeCoordinator(component: comp, navController: navigationController)
+        
+        coordinate(coordinator: coord, animated: false, needRelease: false) { coordResult in
+            
+        }
+        
         
         return comp.scene.VC
     }

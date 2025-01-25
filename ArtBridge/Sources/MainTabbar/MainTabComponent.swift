@@ -19,6 +19,10 @@ final class MainTabComponent {
         return HomeComponent()
     }
     
+    var noticeComponent: NoticeComponent {
+        return NoticeComponent()
+    }
+    
     var communityComponent: CommunityComponent {
         return CommunityComponent()
     }

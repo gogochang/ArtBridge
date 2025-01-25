@@ -23,16 +23,17 @@ class MainTabViewModel {
             })
             .disposed(by: disposeBag)
         
-        inputs.communitySelected
+        inputs.noticeSelected
             .subscribe(onNext: { [weak self] in
                 self?.changeSceneIfMember(to: 1)
-            })
-            .disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
         
-        inputs.messageSelected
+        
+        inputs.communitySelected
             .subscribe(onNext: { [weak self] in
                 self?.changeSceneIfMember(to: 2)
-            }).disposed(by: disposeBag)
+            })
+            .disposed(by: disposeBag)
         
         inputs.myPageSelected
             .subscribe(onNext: { [weak self] in
@@ -59,8 +60,8 @@ class MainTabViewModel {
     
     struct Input {
         var homeSelected = PublishSubject<Void>()
+        var noticeSelected = PublishSubject<Void>()
         var communitySelected = PublishSubject<Void>()
-        var messageSelected = PublishSubject<Void>()
         var myPageSelected = PublishSubject<Void>()
     }
     

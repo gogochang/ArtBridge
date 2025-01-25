@@ -61,12 +61,12 @@ final class MainTabController: UIViewController {
             .bind(to: viewModel.inputs.homeSelected)
             .disposed(by: disposeBag)
         
-        communityBtn.rx.tap
-            .bind(to: viewModel.inputs.communitySelected)
+        noticeBtn.rx.tap
+            .bind(to: viewModel.inputs.noticeSelected)
             .disposed(by: disposeBag)
         
-        messageBtn.rx.tap
-            .bind(to: viewModel.inputs.messageSelected)
+        communityBtn.rx.tap
+            .bind(to: viewModel.inputs.communitySelected)
             .disposed(by: disposeBag)
         
         myPageBtn.rx.tap
@@ -103,17 +103,17 @@ final class MainTabController: UIViewController {
         guard index < 4 else { return }
 
         homeBtn.isSelected = false
+        noticeBtn.isSelected = false
         communityBtn.isSelected = false
-        messageBtn.isSelected = false
         myPageBtn.isSelected = false
 
         switch index {
         case 0:
             homeBtn.isSelected = true
         case 1:
-            communityBtn.isSelected = true
+            noticeBtn.isSelected = true
         case 2:
-            messageBtn.isSelected = true
+            communityBtn.isSelected = true
         case 3:
             myPageBtn.isSelected = true
         default:
@@ -142,7 +142,7 @@ final class MainTabController: UIViewController {
         button.setImage(UIImage(systemName: "house.fill"), for: .selected)
         button.setTitle("홈", for: .normal)
         button.setTitleColor(.darkGray, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 12)
+        button.titleLabel?.font = .nanumB12
         button.tintColor = .darkGray
         button.alignTextBelow()
         button.snp.makeConstraints { make in
@@ -156,7 +156,7 @@ final class MainTabController: UIViewController {
         button.setImage(UIImage(systemName: "list.bullet.rectangle.fill"), for: .selected)
         button.setTitle("게시판", for: .normal)
         button.setTitleColor(.darkGray, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 12)
+        button.titleLabel?.font = .nanumB12
         button.tintColor = .darkGray
         button.alignTextBelow()
         button.snp.makeConstraints { make in
@@ -165,12 +165,12 @@ final class MainTabController: UIViewController {
         }
     }
     
-    private let messageBtn = UIButton().then { button in
-        button.setImage(UIImage(systemName: "message"), for: .normal)
-        button.setImage(UIImage(systemName: "message.fill"), for: .selected)
-        button.setTitle("대화", for: .normal)
+    private let noticeBtn = UIButton().then { button in
+        button.setImage(UIImage(systemName: "clipboard"), for: .normal)
+        button.setImage(UIImage(systemName: "clipboard.fill"), for: .selected)
+        button.setTitle("공고", for: .normal)
         button.setTitleColor(.darkGray, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 12)
+        button.titleLabel?.font = .nanumB12
         button.tintColor = .darkGray
         button.alignTextBelow()
         button.snp.makeConstraints { make in
@@ -184,7 +184,7 @@ final class MainTabController: UIViewController {
         button.setImage(UIImage(systemName: "person.fill"), for: .selected)
         button.setTitle("내 정보", for: .normal)
         button.setTitleColor(.darkGray, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 12)
+        button.titleLabel?.font = .nanumB12
         button.tintColor = .darkGray
         button.alignTextBelow()
         button.snp.makeConstraints { make in
@@ -194,7 +194,7 @@ final class MainTabController: UIViewController {
     }
     
     private lazy var bottomContentHStack = UIStackView.make(
-        with: [homeBtn,communityBtn, messageBtn, myPageBtn],
+        with: [homeBtn, noticeBtn, communityBtn, myPageBtn],
         axis: .horizontal,
         alignment: .center,
         distribution: .equalCentering,

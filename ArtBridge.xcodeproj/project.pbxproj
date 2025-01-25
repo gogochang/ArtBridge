@@ -34,6 +34,12 @@
 		2B146A062BD3DC0C00E6483E /* MainTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B146A052BD3DC0C00E6483E /* MainTabCoordinator.swift */; };
 		2B146A092BD3DF0000E6483E /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B146A082BD3DF0000E6483E /* BaseCoordinator.swift */; };
 		2B146A0C2BD3E07600E6483E /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B146A0B2BD3E07600E6483E /* RxSwift */; };
+		2B27FA062D451B3A00BA3817 /* NoticeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27FA052D451B3700BA3817 /* NoticeComponent.swift */; };
+		2B27FA082D451B4300BA3817 /* NoticeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27FA072D451B3E00BA3817 /* NoticeCoordinator.swift */; };
+		2B27FA0A2D451B4A00BA3817 /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27FA092D451B4600BA3817 /* NoticeViewController.swift */; };
+		2B27FA0C2D451B4F00BA3817 /* NoticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27FA0B2D451B4D00BA3817 /* NoticeViewModel.swift */; };
+		2B27FA0E2D451B7400BA3817 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27FA0D2D451B7100BA3817 /* BaseViewModel.swift */; };
+		2B27FA102D451C1500BA3817 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27FA0F2D451C1300BA3817 /* BaseViewController.swift */; };
 		2B31599D2D44AD5000726B61 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 2B31599C2D44AD5000726B61 /* Auth */; };
 		2B31599F2D44AD5000726B61 /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = 2B31599E2D44AD5000726B61 /* Functions */; };
 		2B3159A12D44AD5000726B61 /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = 2B3159A02D44AD5000726B61 /* PostgREST */; };
@@ -184,6 +190,12 @@
 		2B146A032BD3DA6D00E6483E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		2B146A052BD3DC0C00E6483E /* MainTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabCoordinator.swift; sourceTree = "<group>"; };
 		2B146A082BD3DF0000E6483E /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
+		2B27FA052D451B3700BA3817 /* NoticeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeComponent.swift; sourceTree = "<group>"; };
+		2B27FA072D451B3E00BA3817 /* NoticeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCoordinator.swift; sourceTree = "<group>"; };
+		2B27FA092D451B4600BA3817 /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
+		2B27FA0B2D451B4D00BA3817 /* NoticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewModel.swift; sourceTree = "<group>"; };
+		2B27FA0D2D451B7100BA3817 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		2B27FA0F2D451C1300BA3817 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		2B3851FD2BF238AE00BCF540 /* CommentInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputView.swift; sourceTree = "<group>"; };
 		2B3851FF2BF2628900BCF540 /* UITextView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+.swift"; sourceTree = "<group>"; };
 		2B3852012BF63B8600BCF540 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
@@ -432,6 +444,7 @@
 				2B1469F72BD3979700E6483E /* MainTabViewModel.swift */,
 				2B146A052BD3DC0C00E6483E /* MainTabCoordinator.swift */,
 				2BB5155F2BDAA7090092CC72 /* Home */,
+				2B27FA042D451B2A00BA3817 /* Notice */,
 				2BB5157D2BDE15580092CC72 /* Community */,
 				2BB5158D2BDFD4BB0092CC72 /* Message */,
 				2BB515992BDFE3ED0092CC72 /* MyPage */,
@@ -463,9 +476,22 @@
 		2B146A072BD3DEF000E6483E /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				2B27FA0F2D451C1300BA3817 /* BaseViewController.swift */,
+				2B27FA0D2D451B7100BA3817 /* BaseViewModel.swift */,
 				2B146A082BD3DF0000E6483E /* BaseCoordinator.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		2B27FA042D451B2A00BA3817 /* Notice */ = {
+			isa = PBXGroup;
+			children = (
+				2B27FA052D451B3700BA3817 /* NoticeComponent.swift */,
+				2B27FA092D451B4600BA3817 /* NoticeViewController.swift */,
+				2B27FA0B2D451B4D00BA3817 /* NoticeViewModel.swift */,
+				2B27FA072D451B3E00BA3817 /* NoticeCoordinator.swift */,
+			);
+			path = Notice;
 			sourceTree = "<group>";
 		};
 		2B3852032BF77CAF00BCF540 /* DetailTutor */ = {
@@ -975,6 +1001,7 @@
 				2B1469C12BD38F8000E6483E /* ViewController.swift in Sources */,
 				2B5C6C9B2BF845AC004800CC /* ScrollCounter.swift in Sources */,
 				2B455FD32C22F61400C29F0B /* FirestoreService.swift in Sources */,
+				2B27FA0E2D451B7400BA3817 /* BaseViewModel.swift in Sources */,
 				2BFA9C4D2C0DDD5600E72C99 /* NewsContentCollectionViewCell.swift in Sources */,
 				2B1469F42BD3963600E6483E /* MainTabComponent.swift in Sources */,
 				2BF0B6A52C2EDFA700FD47B8 /* TutorAPIService.swift in Sources */,
@@ -991,6 +1018,7 @@
 				2BB515882BDE86F40092CC72 /* CategoryCollectionViewCell.swift in Sources */,
 				2B3852092BF77D4400BCF540 /* DetailTutorComponent.swift in Sources */,
 				2BB084A82C1E9930005E7221 /* AlarmViewModel.swift in Sources */,
+				2B27FA062D451B3A00BA3817 /* NoticeComponent.swift in Sources */,
 				2B5F00712C59206D00FCC51A /* CreatePostViewModel.swift in Sources */,
 				2B6B20D72BFCBBB0002D9E79 /* DetailNewsComponent.swift in Sources */,
 				2BB084AF2C1EA7D5005E7221 /* AlarmCollectionViewCell.swift in Sources */,
@@ -1002,6 +1030,7 @@
 				2B00246B2C0A095800C4C276 /* MessageCoordinator.swift in Sources */,
 				2B146A062BD3DC0C00E6483E /* MainTabCoordinator.swift in Sources */,
 				2BB515852BDE15CA0092CC72 /* CommunityCoordinator.swift in Sources */,
+				2B27FA082D451B4300BA3817 /* NoticeCoordinator.swift in Sources */,
 				2B5F006D2C59205800FCC51A /* CreatePostComponent.swift in Sources */,
 				2BB515A12BDFE5090092CC72 /* MyPageCoordinator.swift in Sources */,
 				2B1469F12BD395E300E6483E /* AppComponent.swift in Sources */,
@@ -1017,10 +1046,12 @@
 				2BB5158A2BDE8DCE0092CC72 /* PostCollectionViewCell.swift in Sources */,
 				2B5C6CA22BFA3355004800CC /* TutorDescCollectionViewCell.swift in Sources */,
 				2B38520B2BF77D4F00BCF540 /* DetailTutorCoordinator.swift in Sources */,
+				2B27FA102D451C1500BA3817 /* BaseViewController.swift in Sources */,
 				2B9C4FD82BF0B5B00058CE3F /* DetailPostCoordinator.swift in Sources */,
 				2B9C4FDB2BF0CA5C0058CE3F /* CommentCollectionViewCell.swift in Sources */,
 				2BFA9C562C0F341E00E72C99 /* LoginComponent.swift in Sources */,
 				2BDA19FC2D42644B00E8F7C0 /* ButtonScrollView.swift in Sources */,
+				2B27FA0C2D451B4F00BA3817 /* NoticeViewModel.swift in Sources */,
 				2B6F28A92BED330100BDA911 /* ContentListComponent.swift in Sources */,
 				2BFA9C522C0F340B00E72C99 /* LoginViewModel.swift in Sources */,
 				2BFA9C542C0F341600E72C99 /* LoginCoordinator.swift in Sources */,
@@ -1030,6 +1061,7 @@
 				2B6F28AD2BED347200BDA911 /* ContentListCoordinator.swift in Sources */,
 				2B9C4FD22BF0B57E0058CE3F /* DetailPostViewController.swift in Sources */,
 				2BB515722BDBCE5A0092CC72 /* UIColor+.swift in Sources */,
+				2B27FA0A2D451B4A00BA3817 /* NoticeViewController.swift in Sources */,
 				2B4814B02C319BAB00A7529E /* NewsAPIService.swift in Sources */,
 				2B5C6C9E2BF84E1E004800CC /* TutorProfileCollectionViewCell.swift in Sources */,
 				2BB9006F2CA69875004FC44C /* CreatePostBottomView.swift in Sources */,
