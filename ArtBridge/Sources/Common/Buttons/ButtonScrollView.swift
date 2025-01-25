@@ -27,7 +27,6 @@ final class ButtonScrollView: UIScrollView {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.axis = .horizontal
         $0.alignment = .trailing
-        $0.backgroundColor = .blue
     }
     
     // MARK: - Init
@@ -63,7 +62,7 @@ final class ButtonScrollView: UIScrollView {
      - Parameters:
         - buttons: `UIButton` 배열로, 스택 뷰에 추가할 버튼들을 전달합니다.
      */
-    func addArrangedSubviews(buttons: [UIButton]) {
+    func addArrangedSubviews(buttons: [UIView]) {
         for button in buttons {
             stackView.addArrangedSubview(button)
         }
