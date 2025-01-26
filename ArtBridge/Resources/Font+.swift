@@ -16,6 +16,10 @@ extension UIFont {
         return UIFont(name: "NanumSquareB", size: 13)!
     }
     
+    static var nanumB15: UIFont {
+        return UIFont(name: "NanumSquareB", size: 15)!
+    }
+    
     static var nanumB17: UIFont {
         return UIFont(name: "NanumSquareB", size: 17)!
     }

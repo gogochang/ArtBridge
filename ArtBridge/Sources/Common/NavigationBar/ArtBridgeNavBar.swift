@@ -102,6 +102,7 @@ extension ArtBridgeNavBar {
         rightBtnItem.snp.makeConstraints {
             $0.right.equalToSuperview().inset(16)
             $0.centerY.equalToSuperview()
+            $0.size.equalTo(20)
         }
         
         title.snp.makeConstraints {

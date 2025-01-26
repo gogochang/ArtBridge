@@ -42,6 +42,8 @@
 		2B27FA102D451C1500BA3817 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27FA0F2D451C1300BA3817 /* BaseViewController.swift */; };
 		2B27FA162D453D5300BA3817 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27FA152D453D4800BA3817 /* FilterCollectionViewCell.swift */; };
 		2B27FA182D45490400BA3817 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27FA172D45490100BA3817 /* SelectionButton.swift */; };
+		2B27FA1C2D4553B500BA3817 /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27FA1B2D4553B200BA3817 /* NoticeCell.swift */; };
+		2B27FA1F2D45E29C00BA3817 /* NoticeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27FA1E2D45E29800BA3817 /* NoticeHeaderView.swift */; };
 		2B31599D2D44AD5000726B61 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 2B31599C2D44AD5000726B61 /* Auth */; };
 		2B31599F2D44AD5000726B61 /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = 2B31599E2D44AD5000726B61 /* Functions */; };
 		2B3159A12D44AD5000726B61 /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = 2B3159A02D44AD5000726B61 /* PostgREST */; };
@@ -200,6 +202,8 @@
 		2B27FA0F2D451C1300BA3817 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		2B27FA152D453D4800BA3817 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		2B27FA172D45490100BA3817 /* SelectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionButton.swift; sourceTree = "<group>"; };
+		2B27FA1B2D4553B200BA3817 /* NoticeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
+		2B27FA1E2D45E29800BA3817 /* NoticeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeHeaderView.swift; sourceTree = "<group>"; };
 		2B3851FD2BF238AE00BCF540 /* CommentInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputView.swift; sourceTree = "<group>"; };
 		2B3851FF2BF2628900BCF540 /* UITextView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+.swift"; sourceTree = "<group>"; };
 		2B3852012BF63B8600BCF540 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
@@ -490,6 +494,7 @@
 		2B27FA042D451B2A00BA3817 /* Notice */ = {
 			isa = PBXGroup;
 			children = (
+				2B27FA1D2D45E29300BA3817 /* View */,
 				2B27FA142D453D3E00BA3817 /* Cells */,
 				2B27FA052D451B3700BA3817 /* NoticeComponent.swift */,
 				2B27FA092D451B4600BA3817 /* NoticeViewController.swift */,
@@ -502,9 +507,18 @@
 		2B27FA142D453D3E00BA3817 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				2B27FA1B2D4553B200BA3817 /* NoticeCell.swift */,
 				2B27FA152D453D4800BA3817 /* FilterCollectionViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		2B27FA1D2D45E29300BA3817 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2B27FA1E2D45E29800BA3817 /* NoticeHeaderView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		2B3852032BF77CAF00BCF540 /* DetailTutor */ = {
@@ -1023,6 +1037,7 @@
 				2B455FD12C22F2FB00C29F0B /* HomeAPIService.swift in Sources */,
 				2BB5157C2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift in Sources */,
 				2B9C4FD62BF0B59F0058CE3F /* DetailPostViewModel.swift in Sources */,
+				2B27FA1C2D4553B500BA3817 /* NoticeCell.swift in Sources */,
 				2B95145C2C9C4E22002D4E2B /* ArtBridgeInputTextView.swift in Sources */,
 				2B5F006F2C59206200FCC51A /* CreatePostViewController.swift in Sources */,
 				2B00246D2C0A096200C4C276 /* MessageComponent.swift in Sources */,
@@ -1094,6 +1109,7 @@
 				2B54ADD92C1B35DA002BD5C5 /* DetailInstrumentCoordinator.swift in Sources */,
 				2B9C4FDD2BF0CA740058CE3F /* ContentCollectionViewCell.swift in Sources */,
 				2BB5157A2BDDF1E60092CC72 /* HeaderView.swift in Sources */,
+				2B27FA1F2D45E29C00BA3817 /* NoticeHeaderView.swift in Sources */,
 				2B1469BF2BD38F8000E6483E /* SceneDelegate.swift in Sources */,
 				2B5F00732C59207800FCC51A /* CreatePostCoordinator.swift in Sources */,
 				2B3EBFA32C54BE950089D48C /* FloatingButton.swift in Sources */,
