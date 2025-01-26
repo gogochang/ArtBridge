@@ -39,6 +39,30 @@ final class NoticeCoordinator: BaseCoordinator<NoticeResult> {
             .map { NoticeResult.backward }
             .bind(to: closeSignal)
             .disposed(by: sceneDisposeBag)
+        
+        scene.VM.routes.detailNotice
+            .map { (vm: scene.VM, postId: $0) }
+            .bind { [weak self] inputs in
+                self?.pushDetailPostScene(
+                    vm: inputs.vm,
+                    postID: inputs.postId,
+                    animated: true
+                )
+            }.disposed(by: sceneDisposeBag)
+        
+    }
+    
+    private func pushDetailPostScene(vm: NoticeViewModel, postID: Int, animated: Bool) {
+        let comp = component.detailNoticeComponent(postID: postID)
+        let coord = DetailNoticeCoordinator(component: comp, navController: navigationController)
+        
+        coordinate(coordinator: coord, animated: animated) { coordResult in
+            switch coordResult {
+            case .backward:
+                vm.routeInputs.needUpdate.onNext(false)
+            }
+            
+        }
     }
 }
 

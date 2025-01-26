@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import RxSwift
 
 final class NoticeViewController: BaseViewController {
     //MARK: - Properties
+    private let disposeBag = DisposeBag()
     private let viewModel: NoticeViewModel
     private var isAnimating: Bool = false
     private var previousOffsetY: CGFloat = 0
@@ -156,6 +158,10 @@ extension NoticeViewController: UICollectionViewDelegate, UICollectionViewDataSo
             return header
         }
         return UICollectionReusableView()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.viewModel.inputs.showDetailPost.onNext(indexPath.row)
     }
 
 }

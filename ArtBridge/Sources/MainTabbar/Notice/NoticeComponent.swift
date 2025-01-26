@@ -8,12 +8,14 @@
 import UIKit
 
 final class NoticeComponent {
-    var scene: (VC: UIViewController, VM: NoticeViewModel) {
+    var scene: (VC: NoticeViewController, VM: NoticeViewModel) {
         let viewModel = self.viewModel
-        return (NoticeViewController(viewModel: viewModel), viewModel)
+        return (VC: NoticeViewController(viewModel: viewModel), VM: viewModel)
     }
     
-    var viewModel: NoticeViewModel {
-        return NoticeViewModel()
+    var viewModel: NoticeViewModel = .init()
+    
+    func detailNoticeComponent(postID: Int) -> DetailNoticeComponent {
+        return DetailNoticeComponent()
     }
 }
