@@ -44,6 +44,10 @@
 		2B27FA182D45490400BA3817 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27FA172D45490100BA3817 /* SelectionButton.swift */; };
 		2B27FA1C2D4553B500BA3817 /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27FA1B2D4553B200BA3817 /* NoticeCell.swift */; };
 		2B27FA1F2D45E29C00BA3817 /* NoticeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27FA1E2D45E29800BA3817 /* NoticeHeaderView.swift */; };
+		2B27FA242D4604DE00BA3817 /* DetailNoticeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27FA232D4604D700BA3817 /* DetailNoticeCoordinator.swift */; };
+		2B27FA262D4604E900BA3817 /* DetailNoticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27FA252D4604E200BA3817 /* DetailNoticeViewModel.swift */; };
+		2B27FA282D4604F100BA3817 /* DetailNoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27FA272D4604EC00BA3817 /* DetailNoticeViewController.swift */; };
+		2B27FA2A2D4604F800BA3817 /* DetailNoticeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27FA292D4604F400BA3817 /* DetailNoticeComponent.swift */; };
 		2B31599D2D44AD5000726B61 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 2B31599C2D44AD5000726B61 /* Auth */; };
 		2B31599F2D44AD5000726B61 /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = 2B31599E2D44AD5000726B61 /* Functions */; };
 		2B3159A12D44AD5000726B61 /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = 2B3159A02D44AD5000726B61 /* PostgREST */; };
@@ -204,6 +208,10 @@
 		2B27FA172D45490100BA3817 /* SelectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionButton.swift; sourceTree = "<group>"; };
 		2B27FA1B2D4553B200BA3817 /* NoticeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
 		2B27FA1E2D45E29800BA3817 /* NoticeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeHeaderView.swift; sourceTree = "<group>"; };
+		2B27FA232D4604D700BA3817 /* DetailNoticeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNoticeCoordinator.swift; sourceTree = "<group>"; };
+		2B27FA252D4604E200BA3817 /* DetailNoticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNoticeViewModel.swift; sourceTree = "<group>"; };
+		2B27FA272D4604EC00BA3817 /* DetailNoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNoticeViewController.swift; sourceTree = "<group>"; };
+		2B27FA292D4604F400BA3817 /* DetailNoticeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNoticeComponent.swift; sourceTree = "<group>"; };
 		2B3851FD2BF238AE00BCF540 /* CommentInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputView.swift; sourceTree = "<group>"; };
 		2B3851FF2BF2628900BCF540 /* UITextView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+.swift"; sourceTree = "<group>"; };
 		2B3852012BF63B8600BCF540 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
@@ -494,6 +502,7 @@
 		2B27FA042D451B2A00BA3817 /* Notice */ = {
 			isa = PBXGroup;
 			children = (
+				2B27FA222D4604D100BA3817 /* DetailNotice */,
 				2B27FA1D2D45E29300BA3817 /* View */,
 				2B27FA142D453D3E00BA3817 /* Cells */,
 				2B27FA052D451B3700BA3817 /* NoticeComponent.swift */,
@@ -519,6 +528,17 @@
 				2B27FA1E2D45E29800BA3817 /* NoticeHeaderView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2B27FA222D4604D100BA3817 /* DetailNotice */ = {
+			isa = PBXGroup;
+			children = (
+				2B27FA292D4604F400BA3817 /* DetailNoticeComponent.swift */,
+				2B27FA272D4604EC00BA3817 /* DetailNoticeViewController.swift */,
+				2B27FA252D4604E200BA3817 /* DetailNoticeViewModel.swift */,
+				2B27FA232D4604D700BA3817 /* DetailNoticeCoordinator.swift */,
+			);
+			path = DetailNotice;
 			sourceTree = "<group>";
 		};
 		2B3852032BF77CAF00BCF540 /* DetailTutor */ = {
@@ -1050,6 +1070,7 @@
 				2B27FA062D451B3A00BA3817 /* NoticeComponent.swift in Sources */,
 				2B5F00712C59206D00FCC51A /* CreatePostViewModel.swift in Sources */,
 				2B6B20D72BFCBBB0002D9E79 /* DetailNewsComponent.swift in Sources */,
+				2B27FA282D4604F100BA3817 /* DetailNoticeViewController.swift in Sources */,
 				2BB084AF2C1EA7D5005E7221 /* AlarmCollectionViewCell.swift in Sources */,
 				2B1469F62BD3974000E6483E /* MainTabController.swift in Sources */,
 				2B54ADDF2C1B3603002BD5C5 /* DetailInstrumentComponent.swift in Sources */,
@@ -1069,6 +1090,7 @@
 				2BCBE7EF2D44D04F00EECDBE /* SupabaseManager.swift in Sources */,
 				2B3852002BF2628900BCF540 /* UITextView+.swift in Sources */,
 				2B5C6CA02BFA0251004800CC /* TutorInfoCollectionViewCell.swift in Sources */,
+				2B27FA2A2D4604F800BA3817 /* DetailNoticeComponent.swift in Sources */,
 				2BFF700A2C68771900A82C07 /* ModalViewController.swift in Sources */,
 				2B9C4FD42BF0B58F0058CE3F /* DetailPostComponent.swift in Sources */,
 				2B1469FF2BD399BF00E6483E /* UIView+.swift in Sources */,
@@ -1095,6 +1117,7 @@
 				2B4814B02C319BAB00A7529E /* NewsAPIService.swift in Sources */,
 				2B5C6C9E2BF84E1E004800CC /* TutorProfileCollectionViewCell.swift in Sources */,
 				2BB9006F2CA69875004FC44C /* CreatePostBottomView.swift in Sources */,
+				2B27FA242D4604DE00BA3817 /* DetailNoticeCoordinator.swift in Sources */,
 				2BB5159D2BDFE4F70092CC72 /* MyPageViewController.swift in Sources */,
 				2B27FA162D453D5300BA3817 /* FilterCollectionViewCell.swift in Sources */,
 				2B6F28A72BED326300BDA911 /* ContentListViewController.swift in Sources */,
@@ -1130,6 +1153,7 @@
 				2BEDD4B92BE23DA300C12E17 /* MenuItemCollectionViewCell.swift in Sources */,
 				2B54ADDD2C1B35F6002BD5C5 /* DetailInstrumentViewModel.swift in Sources */,
 				2BB515A42BDFEEC00092CC72 /* ProfileCollectionViewCell.swift in Sources */,
+				2B27FA262D4604E900BA3817 /* DetailNoticeViewModel.swift in Sources */,
 				2BB515652BDAA75A0092CC72 /* HomeViewModel.swift in Sources */,
 				2B0024672C0A094500C4C276 /* MessageViewController.swift in Sources */,
 				2B0BCF142C13209C0053ACAD /* SettingViewModel.swift in Sources */,
