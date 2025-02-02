@@ -45,6 +45,10 @@ final class DetailNoticeViewController: BaseViewController {
         $0.text = "2025 제1회 AIdol Genesis Challenge: 글로벌 K-pop 아이돌 AI 콘텐츠 기획 아이디어-프로듀싱 공모전"
     }
     
+    private let dividerView = UIView().then {
+        $0.backgroundColor = .systemGray4
+    }
+    
     private lazy var detailListTableView: UITableView = {
         var tableView = UITableView(frame: .zero, style: .plain)
         tableView.register(DetailListCell.self, forCellReuseIdentifier: DetailListCell.id)
@@ -90,12 +94,15 @@ final class DetailNoticeViewController: BaseViewController {
 }
 extension DetailNoticeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7 // 실제 데이터 개수
+        return viewModel.detailTitles.count // 실제 데이터 개수
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DetailListCell.id, for: indexPath) as! DetailListCell
-//        cell.textLabel?.text = data[indexPath.row] // 데이터 바인딩
+        cell.configure(
+            title: viewModel.detailTitles[indexPath.row],
+            content: viewModel.testDetailContent[indexPath.row]
+        )
         return cell
     }
     
@@ -111,6 +118,7 @@ extension DetailNoticeViewController {
         scrollView.addSubview(contentStackView)
         contentStackView.addArrangedSubview(bannerView)
         contentStackView.addArrangedSubview(titleLabel)
+        contentStackView.addArrangedSubview(dividerView)
         contentStackView.addArrangedSubview(detailListTableView)
     }
     
@@ -137,13 +145,16 @@ extension DetailNoticeViewController {
         titleLabel.snp.makeConstraints {
             $0.left.right.equalToSuperview().inset(20)
         }
+        
+        dividerView.snp.makeConstraints {
+            $0.left.right.equalToSuperview().inset(20)
+            $0.height.equalTo(1)
+        }
+        
         // Add constraints to the table view
-        detailListTableView.backgroundColor = .orange
         detailListTableView.snp.makeConstraints {
             $0.left.right.equalToSuperview().inset(20)
-//            $0.height.equalTo(200)
-            $0.height.greaterThanOrEqualTo(140) // Minimum
-//            $0.height.lessThanOrEqualTo(200)
+            $0.height.greaterThanOrEqualTo(100)
         }
     }
 }

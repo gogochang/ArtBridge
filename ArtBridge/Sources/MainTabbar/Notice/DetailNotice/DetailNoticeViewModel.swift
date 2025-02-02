@@ -32,6 +32,9 @@ final class DetailNoticeViewModel: BaseViewModel {
     var routes = Route()
     var routeInputs = RouteInputs()
     
+    let detailTitles: [String] = ["기간", "지역", "상금", "링크", "간단설명"]
+    let testDetailContent: [String] = ["2025.01.01 ~ 2026.01.01", "서울", "100만원", "https://www.naver.com", "이 공고는 어쩌고 하는 공고이고 테스트 간단 설명 내용입니다."]
+    
     //MARK: - Init
     override init() {
         super.init()

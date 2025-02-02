@@ -18,6 +18,7 @@ final class DetailListCell: UITableViewCell {
         $0.text = "카테고리 내용"
         $0.textColor = .darkGray
         $0.font = .nanumR15
+        $0.numberOfLines = 2
     }
     
     // MARK: - Init
@@ -30,6 +31,12 @@ final class DetailListCell: UITableViewCell {
     @available(*, unavailable)
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Methods
+    func configure(title: String, content: String) {
+        categoryLabel.text = title
+        contentLabel.text = content
     }
 }
 
@@ -48,11 +55,13 @@ extension DetailListCell {
         categoryLabel.snp.makeConstraints {
             $0.left.equalToSuperview()
             $0.centerY.equalToSuperview()
+            $0.width.equalTo(60)
         }
         
         contentLabel.snp.makeConstraints {
+            $0.top.equalTo(categoryLabel)
             $0.left.equalTo(categoryLabel.snp.right).offset(12)
-            $0.centerY.equalToSuperview()
+            $0.right.equalToSuperview()
         }
     }
 }
