@@ -60,6 +60,16 @@ final class DetailNoticeViewController: BaseViewController {
         return tableView
     }()
     
+    private let testView = UIView().then {
+        $0.backgroundColor = .orange
+    }
+    
+    private let testContentView = UIView().then {
+        $0.backgroundColor = .blue
+    }
+    
+    private let bottomButtonView = ButtonBottomView()
+    
     //MARK: - Init
     init(viewModel: DetailNoticeViewModel) {
         self.viewModel = viewModel
@@ -86,6 +96,16 @@ final class DetailNoticeViewController: BaseViewController {
         navBar.leftBtnItem.rx.tap
             .bind(to: viewModel.inputs.backward)
             .disposed(by: disposeBag)
+        
+        bottomButtonView.bookmarkButton.rx.tap
+            .bind {
+                print("북마크 버튼 클릭됨")
+            }.disposed(by: disposeBag)
+        
+        bottomButtonView.goButton.rx.tap
+            .bind {
+                print("바로가기 버튼 클릭됨")
+            }.disposed(by: disposeBag)
     }
     
     private func viewModelOutput() {
@@ -114,12 +134,14 @@ extension DetailNoticeViewController: UITableViewDataSource, UITableViewDelegate
 //MARK: - Layout
 extension DetailNoticeViewController {
     private func setupViews() {
-        view.addSubviews([scrollView, navBar])
+        view.addSubviews([scrollView, navBar, bottomButtonView])
         scrollView.addSubview(contentStackView)
         contentStackView.addArrangedSubview(bannerView)
         contentStackView.addArrangedSubview(titleLabel)
         contentStackView.addArrangedSubview(dividerView)
         contentStackView.addArrangedSubview(detailListTableView)
+        contentStackView.addArrangedSubview(testView)
+        contentStackView.addArrangedSubview(testContentView)
     }
     
     private func initialLayout() {
@@ -155,6 +177,20 @@ extension DetailNoticeViewController {
         detailListTableView.snp.makeConstraints {
             $0.left.right.equalToSuperview().inset(20)
             $0.height.greaterThanOrEqualTo(100)
+        }
+        
+        testView.snp.makeConstraints {
+            $0.left.right.equalToSuperview()
+            $0.height.equalTo(40)
+        }
+        
+        testContentView.snp.makeConstraints {
+            $0.left.right.equalToSuperview()
+            $0.height.equalTo(1000)
+        }
+        
+        bottomButtonView.snp.makeConstraints {
+            $0.left.bottom.right.equalToSuperview()
         }
     }
 }

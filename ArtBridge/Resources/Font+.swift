@@ -48,6 +48,10 @@ extension UIFont {
         return UIFont(name: "NanumSquareEB", size: 17)!
     }
     
+    static var nanumEB20: UIFont {
+        return UIFont(name: "NanumSquareEB", size: 20)!
+    }
+    
     static var jalnan11: UIFont {
         return UIFont(name: "JalnanOTF", size: 11)!
     }
