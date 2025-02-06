@@ -23,29 +23,25 @@ final class ArtBridgeNavBar: UIView {
         $0.tintColor = .black
     }
     
+    let rightButton = ArtBridgeButton(icon: UIImage(named: "notice")).then {
+        $0.layer.cornerRadius = 20
+        $0.backgroundColor = .white.withAlphaComponent(0.08)
+    }
+    
     let title = UILabel().then {
         $0.font = .systemFont(ofSize: 20, weight: .bold)
     }
     
-    let searchView = UIView().then {
-        $0.backgroundColor = .systemGray6
-        $0.layer.cornerRadius = 15
-        $0.isHidden = true
-    }
+    private let blurView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialDark) // 💡 블러 스타일 선택
+        let view = UIVisualEffectView(effect: blurEffect)
+        return view
+    }()
     
-    private let searchIcon = UIImageView().then {
-        $0.image = UIImage(systemName: "magnifyingglass")
-        $0.tintColor = .darkGray
-    }
-    
-    private let searchPlaceHolder = UILabel().then {
-        $0.text = "검색어를 입력해주세요."
-        $0.font = .systemFont(ofSize: 14)
-        $0.textColor = .darkGray
-    }
-    
-    let hDivider = UIView().then {
-        $0.backgroundColor = .systemGray6
+    let searchView = SearchView().then {
+        $0.layer.cornerRadius = 28
+        $0.backgroundColor = .white.withAlphaComponent(0.08)
+        $0.clipsToBounds = true
         $0.isHidden = true
     }
     
@@ -69,39 +65,34 @@ extension ArtBridgeNavBar {
 extension ArtBridgeNavBar {
     func setupViews() {
         addSubviews([
-            contentView,
-            hDivider
+            contentView
         ])
         
         contentView.addSubviews([
             leftBtnItem,
             rightBtnItem,
             title,
-            searchView
-        ])
-        
-        searchView.addSubviews([
-            searchIcon,
-            searchPlaceHolder
+            searchView,
+            rightButton,
         ])
     }
     
     func initialLayout() {
-        backgroundColor = .white
         contentView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
             $0.left.right.bottom.equalToSuperview()
-            $0.height.equalTo(60)
+            $0.height.equalTo(56)
         }
         
         leftBtnItem.snp.makeConstraints {
-            $0.left.equalToSuperview().inset(16)
+            $0.left.equalToSuperview().inset(24)
             $0.centerY.equalToSuperview()
         }
         
-        rightBtnItem.snp.makeConstraints {
-            $0.right.equalToSuperview().inset(16)
+        rightButton.snp.makeConstraints {
+            $0.right.equalToSuperview().inset(24)
             $0.centerY.equalToSuperview()
+            $0.size.equalTo(40)
         }
         
         title.snp.makeConstraints {
@@ -109,26 +100,10 @@ extension ArtBridgeNavBar {
         }
         
         searchView.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview().inset(12)
-            $0.left.equalTo(leftBtnItem.snp.right).offset(20)
-            $0.right.equalTo(rightBtnItem.snp.left).offset(-20)
+            $0.top.bottom.equalToSuperview()
+            $0.left.equalTo(leftBtnItem.snp.right).offset(8)
+            $0.right.equalTo(rightButton.snp.left).offset(-8)
             $0.centerY.equalToSuperview()
-        }
-        
-        searchIcon.snp.makeConstraints {
-            $0.left.equalToSuperview().inset(12)
-            $0.centerY.equalToSuperview()
-            $0.size.equalTo(16)
-        }
-        
-        searchPlaceHolder.snp.makeConstraints {
-            $0.left.equalTo(searchIcon.snp.right).offset(4)
-            $0.centerY.equalToSuperview()
-        }
-        
-        hDivider.snp.makeConstraints {
-            $0.left.bottom.right.equalToSuperview()
-            $0.height.equalTo(1)
         }
     }
 }
