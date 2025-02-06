@@ -53,6 +53,7 @@
 		2B455FD12C22F2FB00C29F0B /* HomeAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B455FD02C22F2FB00C29F0B /* HomeAPIService.swift */; };
 		2B455FD32C22F61400C29F0B /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B455FD22C22F61400C29F0B /* FirestoreService.swift */; };
 		2B4814B02C319BAB00A7529E /* NewsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4814AF2C319BAB00A7529E /* NewsAPIService.swift */; };
+		2B529CA32D5447D3004BAB32 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B529CA22D5447CC004BAB32 /* BaseViewController.swift */; };
 		2B54ADD32C1B35B3002BD5C5 /* DetailInstrumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54ADD22C1B35B3002BD5C5 /* DetailInstrumentViewController.swift */; };
 		2B54ADD92C1B35DA002BD5C5 /* DetailInstrumentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54ADD82C1B35DA002BD5C5 /* DetailInstrumentCoordinator.swift */; };
 		2B54ADDD2C1B35F6002BD5C5 /* DetailInstrumentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54ADDC2C1B35F6002BD5C5 /* DetailInstrumentViewModel.swift */; };
@@ -202,6 +203,7 @@
 		2B455FD02C22F2FB00C29F0B /* HomeAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPIService.swift; sourceTree = "<group>"; };
 		2B455FD22C22F61400C29F0B /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		2B4814AF2C319BAB00A7529E /* NewsAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAPIService.swift; sourceTree = "<group>"; };
+		2B529CA22D5447CC004BAB32 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		2B54ADD22C1B35B3002BD5C5 /* DetailInstrumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInstrumentViewController.swift; sourceTree = "<group>"; };
 		2B54ADD82C1B35DA002BD5C5 /* DetailInstrumentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInstrumentCoordinator.swift; sourceTree = "<group>"; };
 		2B54ADDC2C1B35F6002BD5C5 /* DetailInstrumentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInstrumentViewModel.swift; sourceTree = "<group>"; };
@@ -473,6 +475,7 @@
 		2B146A072BD3DEF000E6483E /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				2B529CA22D5447CC004BAB32 /* BaseViewController.swift */,
 				2B146A082BD3DF0000E6483E /* BaseCoordinator.swift */,
 			);
 			path = Base;
@@ -1043,6 +1046,7 @@
 				2B5C6CA22BFA3355004800CC /* TutorDescCollectionViewCell.swift in Sources */,
 				2B38520B2BF77D4F00BCF540 /* DetailTutorCoordinator.swift in Sources */,
 				2B9C4FD82BF0B5B00058CE3F /* DetailPostCoordinator.swift in Sources */,
+				2B529CA32D5447D3004BAB32 /* BaseViewController.swift in Sources */,
 				2B9C4FDB2BF0CA5C0058CE3F /* CommentCollectionViewCell.swift in Sources */,
 				2BFA9C562C0F341E00E72C99 /* LoginComponent.swift in Sources */,
 				2BDA19FC2D42644B00E8F7C0 /* ButtonScrollView.swift in Sources */,
