@@ -53,6 +53,10 @@
 		2B455FD12C22F2FB00C29F0B /* HomeAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B455FD02C22F2FB00C29F0B /* HomeAPIService.swift */; };
 		2B455FD32C22F61400C29F0B /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B455FD22C22F61400C29F0B /* FirestoreService.swift */; };
 		2B4814B02C319BAB00A7529E /* NewsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4814AF2C319BAB00A7529E /* NewsAPIService.swift */; };
+		2B4E1EC52D55B7870086AD5D /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4E1EC42D55B7820086AD5D /* CategoryCell.swift */; };
+		2B4E1EC72D5605A40086AD5D /* HomeNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4E1EC62D5605A30086AD5D /* HomeNavBarView.swift */; };
+		2B4E1EC92D5611CD0086AD5D /* HomeNavBarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4E1EC82D5611C60086AD5D /* HomeNavBarViewCell.swift */; };
+		2B4E1ECB2D5614630086AD5D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4E1ECA2D5614600086AD5D /* HomeHeaderView.swift */; };
 		2B529CA32D5447D3004BAB32 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B529CA22D5447CC004BAB32 /* BaseViewController.swift */; };
 		2B529CAD2D544EDE004BAB32 /* SUIT-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B529CA42D544EDE004BAB32 /* SUIT-Bold.otf */; };
 		2B529CAE2D544EDE004BAB32 /* SUIT-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B529CA72D544EDE004BAB32 /* SUIT-Heavy.otf */; };
@@ -215,6 +219,10 @@
 		2B455FD02C22F2FB00C29F0B /* HomeAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPIService.swift; sourceTree = "<group>"; };
 		2B455FD22C22F61400C29F0B /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		2B4814AF2C319BAB00A7529E /* NewsAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAPIService.swift; sourceTree = "<group>"; };
+		2B4E1EC42D55B7820086AD5D /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		2B4E1EC62D5605A30086AD5D /* HomeNavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavBarView.swift; sourceTree = "<group>"; };
+		2B4E1EC82D5611C60086AD5D /* HomeNavBarViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavBarViewCell.swift; sourceTree = "<group>"; };
+		2B4E1ECA2D5614600086AD5D /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		2B529CA22D5447CC004BAB32 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		2B529CA42D544EDE004BAB32 /* SUIT-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Bold.otf"; sourceTree = "<group>"; };
 		2B529CA52D544EDE004BAB32 /* SUIT-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-ExtraBold.otf"; sourceTree = "<group>"; };
@@ -535,13 +543,6 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		2B529CB62D54569D004BAB32 /* Search */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Search;
-			sourceTree = "<group>";
-		};
 		2B54ADD12C1B35A1002BD5C5 /* DetailInstrument */ = {
 			isa = PBXGroup;
 			children = (
@@ -633,6 +634,8 @@
 		2B9C4FCF2BEF79530058CE3F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				2B4E1EC82D5611C60086AD5D /* HomeNavBarViewCell.swift */,
+				2B4E1EC42D55B7820086AD5D /* CategoryCell.swift */,
 				2BB5156E2BDACA2E0092CC72 /* BannerCollectionViewCell.swift */,
 				2BB515772BDBF13D0092CC72 /* QuickBtnCollectionViewCell.swift */,
 				2BB5157B2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift */,
@@ -719,6 +722,8 @@
 		2BB5156D2BDAC99E0092CC72 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2B4E1ECA2D5614600086AD5D /* HomeHeaderView.swift */,
+				2B4E1EC62D5605A30086AD5D /* HomeNavBarView.swift */,
 				2BB515792BDDF1E60092CC72 /* HeaderView.swift */,
 			);
 			path = View;
@@ -735,7 +740,6 @@
 		2BB515732BDBD14C0092CC72 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				2B529CB62D54569D004BAB32 /* Search */,
 				2BDA19FA2D42643D00E8F7C0 /* Buttons */,
 				2BFF70082C6876DE00A82C07 /* Modal */,
 				2B9705C52C21D89900B94E8B /* Service */,
@@ -1065,10 +1069,13 @@
 				2B455FD12C22F2FB00C29F0B /* HomeAPIService.swift in Sources */,
 				2BB5157C2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift in Sources */,
 				2B9C4FD62BF0B59F0058CE3F /* DetailPostViewModel.swift in Sources */,
+				2B4E1EC92D5611CD0086AD5D /* HomeNavBarViewCell.swift in Sources */,
 				2B95145C2C9C4E22002D4E2B /* ArtBridgeInputTextView.swift in Sources */,
 				2B5F006F2C59206200FCC51A /* CreatePostViewController.swift in Sources */,
 				2B00246D2C0A096200C4C276 /* MessageComponent.swift in Sources */,
+				2B4E1EC72D5605A40086AD5D /* HomeNavBarView.swift in Sources */,
 				2BB084A62C1E9924005E7221 /* AlarmViewController.swift in Sources */,
+				2B4E1ECB2D5614630086AD5D /* HomeHeaderView.swift in Sources */,
 				2B0BCF182C1320AE0053ACAD /* SettingCoordinator.swift in Sources */,
 				2BB5159F2BDFE4FF0092CC72 /* MyPageViewModel.swift in Sources */,
 				2BB515882BDE86F40092CC72 /* CategoryCollectionViewCell.swift in Sources */,
@@ -1109,6 +1116,7 @@
 				2B6F28A92BED330100BDA911 /* ContentListComponent.swift in Sources */,
 				2BFA9C522C0F340B00E72C99 /* LoginViewModel.swift in Sources */,
 				2BFA9C542C0F341600E72C99 /* LoginCoordinator.swift in Sources */,
+				2B4E1EC52D55B7870086AD5D /* CategoryCell.swift in Sources */,
 				2BDA19F12D42619900E8F7C0 /* Font+.swift in Sources */,
 				2BB5157F2BDE15A50092CC72 /* CommunityComponent.swift in Sources */,
 				2BB5155E2BD91CE90092CC72 /* UIStackView+.swift in Sources */,
