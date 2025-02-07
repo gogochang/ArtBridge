@@ -21,6 +21,7 @@ fileprivate enum Item: Hashable {
     case category(String)
     case info(String)
     case user(String)
+    case news(String)
 }
 
 final class HomeViewController: BaseViewController {
@@ -106,6 +107,8 @@ extension HomeViewController {
                 return self?.createInfoSection()
             case .user:
                 return self?.createUserSection()
+            case .news:
+                return self?.createInfoSection()
             default:
                 return nil
             }
@@ -289,17 +292,28 @@ extension HomeViewController {
         ]
         let userSection = Section.user(headerTitle: "지금 인기있는 연주자")
         
+        
+        let newsItem = [
+            Item.news("AA"),
+            Item.news("BB"),
+            Item.news("CC"),
+            Item.news("DD"),
+        ]
+        let newsSection = Section.info(headerTitle: "따뜻한 클래식 뉴스")
+        
         snapshot.appendSections([
             navBarSection,
             categorySection,
             infoSection,
-            userSection
+            userSection,
+            newsSection
         ])
         
         snapshot.appendItems(navBarItem, toSection: navBarSection)
         snapshot.appendItems(categoryItem, toSection: categorySection)
         snapshot.appendItems(infoItem, toSection: infoSection)
         snapshot.appendItems(userItem, toSection: userSection)
+        snapshot.appendItems(newsItem, toSection: newsSection)
         
         dataSource?.apply(snapshot)
     }
@@ -338,6 +352,13 @@ extension HomeViewController {
                     ) as? UserCell
                     
                     return cell
+                case .news:
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: InfoCell.id,
+                        for: indexPath
+                    ) as? InfoCell
+                    
+                    return cell
                 }
                 
             }
@@ -363,6 +384,8 @@ extension HomeViewController {
             case .info(let title):
                 header.configure(title: title)
             case .user(let title):
+                header.configure(title: title)
+            case .news(let title):
                 header.configure(title: title)
             default:
                 print("Default")
