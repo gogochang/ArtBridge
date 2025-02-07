@@ -18,13 +18,9 @@ final class HomeViewModel {
     var routeInputs = RouteInput()
     var routes = Route()
     
-    var categories: [String] = []
-    // MARK: - Init
     init(
         homeAPIService: HomeAPIService = HomeAPIService()
     ) {
-        categories = ["피아노", "플루트", "하프", "바이올린", "호른", "오카리나"]
-        
         homeAPIService.fetchHomeData()
             .subscribe(onNext: { [weak self] homeData in
                 self?.homeData = homeData
@@ -33,7 +29,31 @@ final class HomeViewModel {
                 print("Error: \(error.localizedDescription)")
             }).disposed(by: disposeBag)
         
-        outputs.categories.onNext(categories.map { CategoryConfig(title: $0)})
+        inputs.showAlarm
+            .bind(to: routes.alarm)
+            .disposed(by: disposeBag)
+        
+        inputs.showPopularPostList
+            .bind(to: routes.popularPostList)
+            .disposed(by: disposeBag)
+        
+        inputs.showDetailPost
+            .compactMap { self.homeData?.popularPosts[$0].id }
+            .bind(to: routes.detailPost)
+            .disposed(by: disposeBag)
+        
+        inputs.showDetailTutor
+            .compactMap { self.homeData?.popularTutors[$0].id }
+            .bind(to: routes.detailTutor)
+            .disposed(by: disposeBag)
+        
+        inputs.showDetailNews
+            .bind(to: routes.detailNews)
+            .disposed(by: disposeBag)
+        
+        inputs.showDetailInstrument
+            .bind(to: routes.detailInstrument)
+            .disposed(by: disposeBag)
     }
     
     struct RouteInput {
@@ -53,7 +73,6 @@ final class HomeViewModel {
     
     struct Output {
         var homeData = PublishSubject<HomeDataModel>()
-        var categories = ReplaySubject<[CategoryConfig]>.create(bufferSize: 1)
     }
     
     struct Route {

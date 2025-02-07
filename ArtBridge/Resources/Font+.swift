@@ -50,9 +50,5 @@ extension UIFont {
     static var suitR16: UIFont {
         return UIFont(name:"SUIT-Regular", size: 16)!
     }
-    
-    static var suitB20: UIFont {
-        return UIFont(name:"SUIT-Bold", size: 20)!
-    }
 }
 
