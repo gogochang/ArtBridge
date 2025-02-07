@@ -47,6 +47,10 @@ extension UIFont {
         return UIFont(name: "JalnanOTF", size: 20)!
     }
     
+    static var suitR14: UIFont {
+        return UIFont(name:"SUIT-Regular", size: 14)!
+    }
+    
     static var suitR16: UIFont {
         return UIFont(name:"SUIT-Regular", size: 16)!
     }

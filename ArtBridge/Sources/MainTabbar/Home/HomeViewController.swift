@@ -19,6 +19,7 @@ fileprivate enum Section: Hashable {
 fileprivate enum Item: Hashable {
     case navBar
     case category(String)
+    case info(String)
 }
 
 final class HomeViewController: BaseViewController {
@@ -39,6 +40,7 @@ final class HomeViewController: BaseViewController {
         
         $0.register(HomeNavBarViewCell.self, forCellWithReuseIdentifier: HomeNavBarViewCell.id)
         $0.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.id)
+        $0.register(InfoCell.self, forCellWithReuseIdentifier: InfoCell.id)
 
         $0.register(
             HomeHeaderView.self,
@@ -86,7 +88,7 @@ final class HomeViewController: BaseViewController {
 extension HomeViewController {
     private func createLayout() -> UICollectionViewCompositionalLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()
-        config.interSectionSpacing = 24
+        config.interSectionSpacing = 32
         
         return UICollectionViewCompositionalLayout(sectionProvider: { [weak self] sectionIndex, _ in
             let section = self?.dataSource?.sectionIdentifier(for: sectionIndex)
@@ -96,6 +98,8 @@ extension HomeViewController {
                 return self?.createNavBarSection()
             case .category:
                 return self?.createCategorySection()
+            case .info:
+                return self?.createInfoSection()
             default:
                 return nil
             }
@@ -146,14 +150,53 @@ extension HomeViewController {
         
         // Section
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 24, leading: 20, bottom: 0, trailing: 20)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 24, bottom: 0, trailing: 24)
         section.interGroupSpacing = 8
-        section.orthogonalScrollingBehavior = .none
+        
         // Header
         // Section Header 설정 (카테고리 섹션 헤더)
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .estimated(24)  // 🔹 카테고리 헤더 높이 설정
+        )
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .topLeading
+        )
+        
+        section.boundarySupplementaryItems = [header]
+        
+        return section
+    }
+    
+    private func createInfoSection() -> NSCollectionLayoutSection {
+        // Item
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16)  // 아이템 간 간격 조정
+
+        // Group
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(240),
+            heightDimension: .absolute(200)
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        // Section
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 24, bottom: 0, trailing: 24)
+        section.orthogonalScrollingBehavior = .continuous
+        
+        // Header
+        // Section Header 설정 (카테고리 섹션 헤더)
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(40)  // 🔹 카테고리 헤더 높이 설정
         )
         let header = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
@@ -186,13 +229,23 @@ extension HomeViewController {
         
         let categorySection = Section.category(headerTitle: "당신이 사랑하는 클래식 음악")
         
+        let infoItem = [
+            Item.info("AA"),
+            Item.info("BB"),
+            Item.info("CC"),
+            Item.info("DD"),
+        ]
+        let infoSection = Section.info(headerTitle: "지금 인기있는 클래식 정보")
+        
         snapshot.appendSections([
             navBarSection,
             categorySection,
+            infoSection
         ])
         
         snapshot.appendItems(navBarItem, toSection: navBarSection)
         snapshot.appendItems(categoryItem, toSection: categorySection)
+        snapshot.appendItems(infoItem, toSection: infoSection)
         
         dataSource?.apply(snapshot)
     }
@@ -216,17 +269,27 @@ extension HomeViewController {
                     ) as? CategoryCell
                     cell?.configure(with: title)
                     return cell
+                    
+                case .info:
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: InfoCell.id,
+                        for: indexPath
+                    ) as? InfoCell
+                    
+                    return cell
                 }
                 
             }
         )
         
         dataSource?.supplementaryViewProvider = {[weak self] collectionView, kind, indexPath -> UICollectionReusableView in
-            let header = collectionView.dequeueReusableSupplementaryView(
+            guard let header = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind,
                 withReuseIdentifier: HomeHeaderView.id,
                 for: indexPath
-            )
+            ) as? HomeHeaderView else {
+                return UICollectionReusableView()
+            }
             
             let section = self?.dataSource?.sectionIdentifier(for: indexPath.section)
             
@@ -234,7 +297,10 @@ extension HomeViewController {
             case .navBar:
                 break
             case .category(let title):
-                (header as? HomeHeaderView)?.configure(title: title)
+                header.configure(title: title)
+                header.arrowButton.isHidden = true
+            case .info(let title):
+                header.configure(title: title)
             default:
                 print("Default")
             }

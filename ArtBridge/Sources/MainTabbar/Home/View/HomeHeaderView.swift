@@ -20,6 +20,11 @@ final class HomeHeaderView: UICollectionReusableView {
         $0.textColor = .white
     }
     
+    let arrowButton = ArtBridgeButton(icon: UIImage(named: "iconGo")).then {
+        $0.layer.cornerRadius = 20
+        $0.backgroundColor = .white.withAlphaComponent(0.08)
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -43,7 +48,8 @@ final class HomeHeaderView: UICollectionReusableView {
 extension HomeHeaderView {
     private func setupViews() {
         addSubviews([
-            titleLabel
+            titleLabel,
+            arrowButton
         ])
     }
     
@@ -51,6 +57,11 @@ extension HomeHeaderView {
         titleLabel.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
             $0.left.equalToSuperview()
+        }
+        
+        arrowButton.snp.makeConstraints {
+            $0.right.top.bottom.equalToSuperview()
+            $0.size.equalTo(40)
         }
     }
 }
