@@ -20,6 +20,7 @@ fileprivate enum Item: Hashable {
     case navBar
     case category(String)
     case info(String)
+    case user(String)
 }
 
 final class HomeViewController: BaseViewController {
@@ -35,19 +36,22 @@ final class HomeViewController: BaseViewController {
         $0.searchView.isHidden = false
     }
     
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
-        $0.backgroundColor = .clear
-        
-        $0.register(HomeNavBarViewCell.self, forCellWithReuseIdentifier: HomeNavBarViewCell.id)
-        $0.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.id)
-        $0.register(InfoCell.self, forCellWithReuseIdentifier: InfoCell.id)
-
-        $0.register(
-            HomeHeaderView.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: HomeHeaderView.id
-        )
-    }
+    lazy var collectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: self.createLayout()).then {
+            $0.backgroundColor = .clear
+            
+            $0.register(HomeNavBarViewCell.self, forCellWithReuseIdentifier: HomeNavBarViewCell.id)
+            $0.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.id)
+            $0.register(InfoCell.self, forCellWithReuseIdentifier: InfoCell.id)
+            $0.register(UserCell.self, forCellWithReuseIdentifier: UserCell.id)
+            
+            $0.register(
+                HomeHeaderView.self,
+                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                withReuseIdentifier: HomeHeaderView.id
+            )
+        }
     
     // MARK: - Init
     init(viewModel: HomeViewModel) {
@@ -100,6 +104,8 @@ extension HomeViewController {
                 return self?.createCategorySection()
             case .info:
                 return self?.createInfoSection()
+            case .user:
+                return self?.createUserSection()
             default:
                 return nil
             }
@@ -208,6 +214,44 @@ extension HomeViewController {
         
         return section
     }
+    
+    private func createUserSection() -> NSCollectionLayoutSection {
+        // Item
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        // Group
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .estimated(124),
+            heightDimension: .estimated(200)
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        // Section
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 24, bottom: 0, trailing: 24)
+        section.orthogonalScrollingBehavior = .continuous
+        section.interGroupSpacing = 16
+        // Header
+        // Section Header 설정 (카테고리 섹션 헤더)
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(40)  // 🔹 카테고리 헤더 높이 설정
+        )
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .topLeading
+        )
+        
+        section.boundarySupplementaryItems = [header]
+        
+        return section
+    }
 }
 
 // MARK: - DataSource
@@ -237,15 +281,25 @@ extension HomeViewController {
         ]
         let infoSection = Section.info(headerTitle: "지금 인기있는 클래식 정보")
         
+        let userItem = [
+            Item.user("A"),
+            Item.user("B"),
+            Item.user("C"),
+            Item.user("D"),
+        ]
+        let userSection = Section.user(headerTitle: "지금 인기있는 연주자")
+        
         snapshot.appendSections([
             navBarSection,
             categorySection,
-            infoSection
+            infoSection,
+            userSection
         ])
         
         snapshot.appendItems(navBarItem, toSection: navBarSection)
         snapshot.appendItems(categoryItem, toSection: categorySection)
         snapshot.appendItems(infoItem, toSection: infoSection)
+        snapshot.appendItems(userItem, toSection: userSection)
         
         dataSource?.apply(snapshot)
     }
@@ -277,6 +331,13 @@ extension HomeViewController {
                     ) as? InfoCell
                     
                     return cell
+                case .user:
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: UserCell.id,
+                        for: indexPath
+                    ) as? UserCell
+                    
+                    return cell
                 }
                 
             }
@@ -300,6 +361,8 @@ extension HomeViewController {
                 header.configure(title: title)
                 header.arrowButton.isHidden = true
             case .info(let title):
+                header.configure(title: title)
+            case .user(let title):
                 header.configure(title: title)
             default:
                 print("Default")
