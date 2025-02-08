@@ -239,7 +239,7 @@ extension DetailPostViewController {
                         for: indexPath
                     ) as? BannerCollectionViewCell
                     
-                    cell?.configure(bannerModel: BannerModel(imageUrl: "https://source.unsplash.com/random/400x400?17"))
+//                    cell?.configure(bannerModel: BannerModel(imageUrl: "https://source.unsplash.com/random/400x400?17"))
                     
                     return cell
                 case .commentItem:

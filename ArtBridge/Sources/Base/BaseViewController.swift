@@ -2,7 +2,7 @@
 //  BaseViewController.swift
 //  ArtBridge
 //
-//  Created by 김창규 on 1/25/25.
+//  Created by 김창규 on 2/6/25.
 //
 
 import UIKit
@@ -10,6 +10,9 @@ import SnapKit
 
 class BaseViewController: UIViewController {
     // MARK: - Properties
+    
+    // MARK: - UI
+    private let backgroundView = UIImageView()
     
     // MARK: - Init
     
@@ -25,11 +28,28 @@ class BaseViewController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        
+        setupViews()
+        initialLayout()
     }
 }
 
 // MARK: - Base Functions
 extension BaseViewController {
     
+}
+
+// MARK: - Layout
+extension BaseViewController {
+    private func setupViews() {
+        view.addSubview(backgroundView)
+        
+        backgroundView.image = UIImage(named: "bg")
+    }
+    
+    private func initialLayout() {
+        backgroundView.snp.makeConstraints {
+            $0.top.left.bottom.right.equalToSuperview()
+        }
+    }
 }
