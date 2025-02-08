@@ -186,7 +186,6 @@ extension HomeViewController {
             heightDimension: .fractionalHeight(1.0)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16)  // 아이템 간 간격 조정
 
         // Group
         let groupSize = NSCollectionLayoutSize(
@@ -200,7 +199,7 @@ extension HomeViewController {
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 24, bottom: 0, trailing: 24)
         section.orthogonalScrollingBehavior = .continuous
-        
+        section.interGroupSpacing = 16
         // Header
         // Section Header 설정 (카테고리 섹션 헤더)
         let headerSize = NSCollectionLayoutSize(
