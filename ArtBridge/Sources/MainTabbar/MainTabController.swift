@@ -11,6 +11,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 import FirebaseAnalytics
+import BlurUIKit
 
 final class MainTabController: UIViewController {
     //MARK: - Properties
@@ -36,6 +37,11 @@ final class MainTabController: UIViewController {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+//        bottomView.addInnerShadow()
+    }
+    
     init(viewModel: MainTabViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -57,20 +63,24 @@ final class MainTabController: UIViewController {
     private let viewModel: MainTabViewModel
     
     private func viewModelInput() {
-        homeBtn.rx.tap
-            .bind(to: viewModel.inputs.homeSelected)
+        homeButton.rx.tapGesture()
+            .map { _ in }
+            .bind(to: viewModel.inputs.homeSelected1)
             .disposed(by: disposeBag)
         
-        communityBtn.rx.tap
-            .bind(to: viewModel.inputs.communitySelected)
+        advertiseButton.rx.tapGesture()
+            .map { _ in }
+            .bind(to: viewModel.inputs.adevertiseSelected1)
             .disposed(by: disposeBag)
         
-        messageBtn.rx.tap
-            .bind(to: viewModel.inputs.messageSelected)
+        postButton.rx.tapGesture()
+            .map { _ in }
+            .bind(to: viewModel.inputs.postSelected1)
             .disposed(by: disposeBag)
         
-        myPageBtn.rx.tap
-            .bind(to: viewModel.inputs.myPageSelected)
+        myButton.rx.tapGesture()
+            .map { _ in }
+            .bind(to: viewModel.inputs.myPageSelected1)
             .disposed(by: disposeBag)
     }
     
@@ -100,104 +110,100 @@ final class MainTabController: UIViewController {
     }
     
     private func tabSelected(at index: Int) {
+//        guard index < 4 else { return }
+//
+//        homeButton.isSelected = false
+//        advertiseButton.isSelected = false
+//        postButton.isSelected = false
+//        myButton.isSelected = false
+//
+//        switch index {
+//        case 0:
+//            homeButton.isSelected = true
+//        case 1:
+//            advertiseButton.isSelected = true
+//        case 2:
+//            postButton.isSelected = true
+//        case 3:
+//            myButton.isSelected = true
+//        default:
+//            break
+//        }
+        
         guard index < 4 else { return }
 
-        homeBtn.isSelected = false
-        communityBtn.isSelected = false
-        messageBtn.isSelected = false
-        myPageBtn.isSelected = false
+        let buttons = [homeButton, advertiseButton, postButton, myButton]
 
-        switch index {
-        case 0:
-            homeBtn.isSelected = true
-        case 1:
-            communityBtn.isSelected = true
-        case 2:
-            messageBtn.isSelected = true
-        case 3:
-            myPageBtn.isSelected = true
-        default:
-            break
+        // 모든 버튼 초기화
+        buttons.forEach { button in
+            button.isSelected = false
+            button.snp.updateConstraints {
+                $0.width.equalTo(64)
+            }
+        }
+
+        // 선택된 버튼 업데이트
+        let selectedButton = buttons[index]
+        selectedButton.isSelected = true
+
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
+            selectedButton.snp.updateConstraints {
+                $0.width.equalTo(86)
+            }
+            selectedButton.superview?.layoutIfNeeded()
         }
     }
-
     
     var viewControllers: [UIViewController] = []
     
     //MARK: - UI
     private let mainContentView = UIView().then { view in
-        view.backgroundColor = .clear
+        view.backgroundColor = .red
     }
     
-    private let bottomView = UIView().then { view in
-        view.backgroundColor = .white
+    private let bottomBlurView = VariableBlurView().then {
+        $0.dimmingTintColor = .black
+        $0.dimmingOvershoot = .relative(fraction: 1)
     }
     
-    private let lineView = UIView().then {
-        $0.backgroundColor = .systemGray6
+    private let bottomView = UIView().then {
+        $0.layer.cornerRadius = 40
+        $0.clipsToBounds = true
     }
     
-    private let homeBtn = UIButton().then { button in
-        button.setImage(UIImage(systemName: "house"), for: .normal)
-        button.setImage(UIImage(systemName: "house.fill"), for: .selected)
-        button.setTitle("홈", for: .normal)
-        button.setTitleColor(.darkGray, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 12)
-        button.tintColor = .darkGray
-        button.alignTextBelow()
-        button.snp.makeConstraints { make in
-            make.width.equalTo(36)
-            make.height.equalTo(36)
-        }
+    private let homeButton = ArtBridgeButton().then {
+        $0.layer.cornerRadius = 32
+        $0.setTitle("홈")
+        $0.setImage(UIImage(named: "home"), for: .normal)
+        $0.setImage(UIImage(named: "home_fill"), for: .selected)
     }
     
-    private let communityBtn = UIButton().then { button in
-        button.setImage(UIImage(systemName: "list.bullet.rectangle"), for: .normal)
-        button.setImage(UIImage(systemName: "list.bullet.rectangle.fill"), for: .selected)
-        button.setTitle("게시판", for: .normal)
-        button.setTitleColor(.darkGray, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 12)
-        button.tintColor = .darkGray
-        button.alignTextBelow()
-        button.snp.makeConstraints { make in
-            make.width.equalTo(36)
-            make.height.equalTo(36)
-        }
+    private let advertiseButton = ArtBridgeButton().then {
+        $0.layer.cornerRadius = 32
+        $0.setTitle("공고")
+        $0.setImage(UIImage(named: "advertise"), for: .normal)
+        $0.setImage(UIImage(named: "advertise_fill"), for: .selected)
     }
     
-    private let messageBtn = UIButton().then { button in
-        button.setImage(UIImage(systemName: "message"), for: .normal)
-        button.setImage(UIImage(systemName: "message.fill"), for: .selected)
-        button.setTitle("대화", for: .normal)
-        button.setTitleColor(.darkGray, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 12)
-        button.tintColor = .darkGray
-        button.alignTextBelow()
-        button.snp.makeConstraints { make in
-            make.width.equalTo(36)
-            make.height.equalTo(36)
-        }
+    private let postButton = ArtBridgeButton().then {
+        $0.layer.cornerRadius = 32
+        $0.setTitle("게시판")
+        $0.setImage(UIImage(named: "post"), for: .normal)
+        $0.setImage(UIImage(named: "post_fill"), for: .selected)
     }
     
-    private let myPageBtn = UIButton().then { button in
-        button.setImage(UIImage(systemName: "person"), for: .normal)
-        button.setImage(UIImage(systemName: "person.fill"), for: .selected)
-        button.setTitle("내 정보", for: .normal)
-        button.setTitleColor(.darkGray, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 12)
-        button.tintColor = .darkGray
-        button.alignTextBelow()
-        button.snp.makeConstraints { make in
-            make.width.equalTo(36)
-            make.height.equalTo(36)
-        }
+    private let myButton = ArtBridgeButton().then {
+        $0.layer.cornerRadius = 32
+        $0.setTitle("내정보")
+        $0.setImage(UIImage(named: "my"), for: .normal)
+        $0.setImage(UIImage(named: "my_fill"), for: .selected)
     }
     
     private lazy var bottomContentHStack = UIStackView.make(
-        with: [homeBtn,communityBtn, messageBtn, myPageBtn],
+        with: [homeButton,advertiseButton, postButton, myButton],
         axis: .horizontal,
         alignment: .center,
-        distribution: .equalCentering,
+        distribution: .equalSpacing,
         spacing: 0
     )
 }
@@ -208,38 +214,48 @@ extension MainTabController {
         view.addSubviews([
             mainContentView,
             bottomView,
+            bottomBlurView
         ])
         
         bottomView.addSubviews([
-            lineView,
+            bottomBlurView,
             bottomContentHStack
         ])
     }
     
     private func initLayout() {
-        view.backgroundColor = .white
-        
         mainContentView.snp.makeConstraints {
-            $0.top.equalTo(view.snp.top)
-            $0.left.right.equalTo(view)
+            $0.top.left.bottom.right.equalToSuperview()
         }
         
         bottomView.snp.makeConstraints {
-            $0.top.equalTo(mainContentView.snp.bottom)
-            $0.left.right.equalTo(mainContentView)
+            $0.left.right.equalToSuperview().inset(24)
             $0.bottom.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(49)//FIXME: 임시로 처리
+            $0.height.equalTo(80)
         }
         
-        lineView.snp.makeConstraints {
-            $0.top.left.right.equalToSuperview()
-            $0.height.equalTo(1)
+        bottomBlurView.snp.makeConstraints {
+            $0.top.left.bottom.right.equalToSuperview()
         }
         
-        bottomContentHStack.snp.makeConstraints { make in
-            make.top.equalTo(bottomView.snp.top).offset(14)
-            make.leading.equalTo(bottomView.snp.leading).offset(36)
-            make.trailing.equalTo(bottomView.snp.trailing).offset(-36)
+        bottomContentHStack.snp.makeConstraints {
+            $0.top.left.bottom.right.equalToSuperview().inset(8)
+        }
+        
+        homeButton.snp.makeConstraints {
+            $0.size.equalTo(64)
+        }
+        
+        advertiseButton.snp.makeConstraints {
+            $0.size.equalTo(64)
+        }
+        
+        postButton.snp.makeConstraints {
+            $0.size.equalTo(64)
+        }
+        
+        myButton.snp.makeConstraints {
+            $0.size.equalTo(64)
         }
     }
 }

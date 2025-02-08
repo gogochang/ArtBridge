@@ -20,7 +20,8 @@ final class HomeHeaderView: UICollectionReusableView {
         $0.textColor = .white
     }
     
-    let arrowButton = ArtBridgeButton(icon: UIImage(named: "iconGo")).then {
+    let arrowButton = ArtBridgeButton().then {
+        $0.setImage(UIImage(named: "iconGo"), for: .normal)
         $0.layer.cornerRadius = 20
         $0.backgroundColor = .white.withAlphaComponent(0.08)
     }
