@@ -65,22 +65,22 @@ final class MainTabController: UIViewController {
     private func viewModelInput() {
         homeButton.rx.tapGesture()
             .map { _ in }
-            .bind(to: viewModel.inputs.homeSelected1)
+            .bind(to: viewModel.inputs.homeSelected)
             .disposed(by: disposeBag)
         
         advertiseButton.rx.tapGesture()
             .map { _ in }
-            .bind(to: viewModel.inputs.adevertiseSelected1)
+            .bind(to: viewModel.inputs.adevertiseSelected)
             .disposed(by: disposeBag)
         
         postButton.rx.tapGesture()
             .map { _ in }
-            .bind(to: viewModel.inputs.postSelected1)
+            .bind(to: viewModel.inputs.postSelected)
             .disposed(by: disposeBag)
         
         myButton.rx.tapGesture()
             .map { _ in }
-            .bind(to: viewModel.inputs.myPageSelected1)
+            .bind(to: viewModel.inputs.myPageSelected)
             .disposed(by: disposeBag)
     }
     

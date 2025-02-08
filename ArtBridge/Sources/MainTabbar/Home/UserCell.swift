@@ -17,6 +17,7 @@ final class UserCell: UICollectionViewCell {
         $0.backgroundColor = .systemGray
         $0.layer.cornerRadius = 62
         $0.clipsToBounds = true
+        $0.image = UIImage(named: "testuser")
     }
     
     private let nameLabel = UILabel().then {
