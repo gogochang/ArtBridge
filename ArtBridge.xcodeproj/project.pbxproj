@@ -59,6 +59,7 @@
 		2B4E1ECB2D5614630086AD5D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4E1ECA2D5614600086AD5D /* HomeHeaderView.swift */; };
 		2B4E1ECD2D5617770086AD5D /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4E1ECC2D56176C0086AD5D /* InfoCell.swift */; };
 		2B4E1ECF2D5629980086AD5D /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4E1ECE2D5629950086AD5D /* UserCell.swift */; };
+		2B4E1ED12D56BCCB0086AD5D /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4E1ED02D56BCC90086AD5D /* Color+.swift */; };
 		2B529CA32D5447D3004BAB32 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B529CA22D5447CC004BAB32 /* BaseViewController.swift */; };
 		2B529CAD2D544EDE004BAB32 /* SUIT-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B529CA42D544EDE004BAB32 /* SUIT-Bold.otf */; };
 		2B529CAE2D544EDE004BAB32 /* SUIT-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B529CA72D544EDE004BAB32 /* SUIT-Heavy.otf */; };
@@ -227,6 +228,7 @@
 		2B4E1ECA2D5614600086AD5D /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		2B4E1ECC2D56176C0086AD5D /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		2B4E1ECE2D5629950086AD5D /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		2B4E1ED02D56BCC90086AD5D /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		2B529CA22D5447CC004BAB32 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		2B529CA42D544EDE004BAB32 /* SUIT-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Bold.otf"; sourceTree = "<group>"; };
 		2B529CA52D544EDE004BAB32 /* SUIT-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-ExtraBold.otf"; sourceTree = "<group>"; };
@@ -454,6 +456,7 @@
 		2B1469ED2BD391DB00E6483E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2B4E1ED02D56BCC90086AD5D /* Color+.swift */,
 				2BDA19F02D42619700E8F7C0 /* Font+.swift */,
 				2BDA19ED2D42614400E8F7C0 /* Fonts */,
 				2B1469C52BD38F8000E6483E /* Assets.xcassets */,
@@ -1139,6 +1142,7 @@
 				2B3852022BF63B8600BCF540 /* UIButton+.swift in Sources */,
 				2B6B20D32BFCBB9E002D9E79 /* DetailNewsViewController.swift in Sources */,
 				2BB515612BDAA7190092CC72 /* HomeComponent.swift in Sources */,
+				2B4E1ED12D56BCCB0086AD5D /* Color+.swift in Sources */,
 				2B146A042BD3DA6D00E6483E /* AppCoordinator.swift in Sources */,
 				2BB515952BDFD5770092CC72 /* MessageListCoordinator.swift in Sources */,
 				2B0BCF162C1320A60053ACAD /* SettingComponent.swift in Sources */,
