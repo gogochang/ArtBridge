@@ -30,6 +30,16 @@ final class ArtBridgeButton: UIView {
         $0.isHidden = true
     }
     
+    private let innerShadowView = UIView().then {
+        $0.backgroundColor = .clear
+        $0.layer.shadowColor = UIColor.white.cgColor
+        $0.layer.shadowOffset = CGSize(width: 0, height: 0)
+        $0.layer.shadowRadius = 2
+        $0.layer.shadowOpacity = 0.2
+        
+        $0.layer.borderWidth = 10
+    }
+    
     //MARK: - Init
     init() {
         super.init(frame: .zero)
@@ -63,6 +73,11 @@ final class ArtBridgeButton: UIView {
             selectedIcon = image
         }
     }
+    
+    func setCornerRadius(_ radius: CGFloat) {
+        innerShadowView.layer.cornerRadius = radius + 10
+        layer.cornerRadius = radius
+    }
 }
 
 // MARK: - Gesture
@@ -84,6 +99,7 @@ extension ArtBridgeButton {
         backgroundColor = .white.withAlphaComponent(0.04)
         
         addSubview(contentView)
+        addSubview(innerShadowView)
         
         contentView.addSubviews([
             iconView,
@@ -105,6 +121,11 @@ extension ArtBridgeButton {
             $0.left.equalTo(iconView.snp.right)
             $0.right.equalToSuperview()
             $0.centerY.equalToSuperview()
+        }
+        
+        innerShadowView.snp.makeConstraints {
+            $0.top.left.equalToSuperview().offset(-10)
+            $0.bottom.right.equalToSuperview().offset(10)
         }
     }
     

@@ -25,7 +25,7 @@ final class ArtBridgeNavBar: UIView {
     
     let rightButton = ArtBridgeButton().then {
         $0.setImage(UIImage(named: "notice"), for: .normal)
-        $0.layer.cornerRadius = 20
+        $0.setCornerRadius(20)
         $0.backgroundColor = .white.withAlphaComponent(0.08)
     }
     
