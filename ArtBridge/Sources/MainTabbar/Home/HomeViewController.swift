@@ -41,6 +41,8 @@ final class HomeViewController: BaseViewController {
         frame: .zero,
         collectionViewLayout: self.createLayout()).then {
             $0.backgroundColor = .clear
+            $0.showsVerticalScrollIndicator = false
+            $0.contentInset =  UIEdgeInsets(top: 0, left: 0, bottom: 156, right: 0)
             
             $0.register(HomeNavBarViewCell.self, forCellWithReuseIdentifier: HomeNavBarViewCell.id)
             $0.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.id)
