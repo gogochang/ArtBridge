@@ -37,11 +37,6 @@ final class MainTabController: UIViewController {
         }
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-//        bottomView.addInnerShadow()
-    }
-    
     init(viewModel: MainTabViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -110,26 +105,6 @@ final class MainTabController: UIViewController {
     }
     
     private func tabSelected(at index: Int) {
-//        guard index < 4 else { return }
-//
-//        homeButton.isSelected = false
-//        advertiseButton.isSelected = false
-//        postButton.isSelected = false
-//        myButton.isSelected = false
-//
-//        switch index {
-//        case 0:
-//            homeButton.isSelected = true
-//        case 1:
-//            advertiseButton.isSelected = true
-//        case 2:
-//            postButton.isSelected = true
-//        case 3:
-//            myButton.isSelected = true
-//        default:
-//            break
-//        }
-        
         guard index < 4 else { return }
 
         let buttons = [homeButton, advertiseButton, postButton, myButton]
@@ -172,28 +147,28 @@ final class MainTabController: UIViewController {
     }
     
     private let homeButton = ArtBridgeButton().then {
-        $0.layer.cornerRadius = 32
+        $0.setCornerRadius(32)
         $0.setTitle("홈")
         $0.setImage(UIImage(named: "home"), for: .normal)
         $0.setImage(UIImage(named: "home_fill"), for: .selected)
     }
     
     private let advertiseButton = ArtBridgeButton().then {
-        $0.layer.cornerRadius = 32
+        $0.setCornerRadius(32)
         $0.setTitle("공고")
         $0.setImage(UIImage(named: "advertise"), for: .normal)
         $0.setImage(UIImage(named: "advertise_fill"), for: .selected)
     }
     
     private let postButton = ArtBridgeButton().then {
-        $0.layer.cornerRadius = 32
+        $0.setCornerRadius(32)
         $0.setTitle("게시판")
         $0.setImage(UIImage(named: "post"), for: .normal)
         $0.setImage(UIImage(named: "post_fill"), for: .selected)
     }
     
     private let myButton = ArtBridgeButton().then {
-        $0.layer.cornerRadius = 32
+        $0.setCornerRadius(32)
         $0.setTitle("내정보")
         $0.setImage(UIImage(named: "my"), for: .normal)
         $0.setImage(UIImage(named: "my_fill"), for: .selected)
@@ -206,6 +181,17 @@ final class MainTabController: UIViewController {
         distribution: .equalSpacing,
         spacing: 0
     )
+    
+    private let innerShadowView = UIView().then {
+        $0.backgroundColor = .clear
+        $0.layer.shadowColor = UIColor.white.cgColor
+        $0.layer.shadowOffset = CGSize(width: 0, height: 0)
+        $0.layer.shadowRadius = 2
+        $0.layer.shadowOpacity = 0.2
+        
+        $0.layer.borderWidth = 10
+        $0.layer.cornerRadius = 50
+    }
 }
 
 //MARK: - Layout
@@ -219,7 +205,8 @@ extension MainTabController {
         
         bottomView.addSubviews([
             bottomBlurView,
-            bottomContentHStack
+            innerShadowView,
+            bottomContentHStack,
         ])
     }
     
@@ -256,6 +243,11 @@ extension MainTabController {
         
         myButton.snp.makeConstraints {
             $0.size.equalTo(64)
+        }
+        
+        innerShadowView.snp.makeConstraints {
+            $0.top.left.equalToSuperview().offset(-10)
+            $0.bottom.right.equalToSuperview().offset(10)
         }
     }
 }

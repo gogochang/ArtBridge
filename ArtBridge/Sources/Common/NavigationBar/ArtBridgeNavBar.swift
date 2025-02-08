@@ -40,9 +40,7 @@ final class ArtBridgeNavBar: UIView {
     }()
     
     let searchView = SearchView().then {
-        $0.layer.cornerRadius = 28
-        $0.backgroundColor = .white.withAlphaComponent(0.08)
-        $0.clipsToBounds = true
+        
         $0.isHidden = true
     }
     

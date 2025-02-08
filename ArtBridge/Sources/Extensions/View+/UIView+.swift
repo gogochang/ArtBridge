@@ -13,7 +13,13 @@ extension UIView {
     }
     
     func addInnerShadow() {
+        // 기존 inner shadow 제거
+        layer.sublayers?
+            .filter { $0.name == "innerShadowLayer" }
+            .forEach { $0.removeFromSuperlayer() }
+
         let innerShadowLayer = CALayer()
+        innerShadowLayer.name = "innerShadowLayer" // 레이어 식별을 위한 이름 설정
         innerShadowLayer.frame = bounds
         
         // 기본적인 배경 색상 (투명)
