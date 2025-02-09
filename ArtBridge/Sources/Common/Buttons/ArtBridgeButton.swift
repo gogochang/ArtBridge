@@ -103,13 +103,12 @@ extension ArtBridgeButton {
     }
     
     private func initialLayout() {
-        contentView.backgroundColor = .orange
         contentView.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
         
         iconView.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.top.left.bottom.equalToSuperview()
         }
         
         titleLabel.snp.makeConstraints {
