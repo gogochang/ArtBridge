@@ -79,6 +79,11 @@ extension UIFont {
         return UIFont(name:"SUIT-SemiBold", size: 16)!
     }
     
+    static var suitSB20: UIFont {
+        return UIFont(name:"SUIT-SemiBold", size: 20)!
+    }
+    
+    
     static var suitB20: UIFont {
         return UIFont(name:"SUIT-Bold", size: 20)!
     }

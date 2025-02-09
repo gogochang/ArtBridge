@@ -16,6 +16,7 @@ final class BannerCollectionViewCell: UICollectionViewCell {
         $0.backgroundColor = .systemGray6
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
+        $0.image = UIImage(named: "section-thumbnail-item")
     }
     
     override init(frame: CGRect) {

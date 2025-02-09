@@ -19,9 +19,9 @@ class NoticeHeaderView: UICollectionReusableView {
         return label
     }()
     
-    let orderButton = SelectionButton(title: "최신순", icon: UIImage(named: "downArrow")).then {
-        $0.layer.borderWidth = 0
-    }
+//    let orderButton = SelectionButton(title: "최신순", icon: UIImage(named: "downArrow")).then {
+//        $0.layer.borderWidth = 0
+//    }
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -47,7 +47,7 @@ extension NoticeHeaderView {
     private func setupViews() {
         addSubviews([
             label,
-            orderButton
+//            orderButton
         ])
     }
     
@@ -57,10 +57,10 @@ extension NoticeHeaderView {
             $0.left.equalToSuperview().inset(20)
         }
         
-        orderButton.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.right.equalToSuperview()
-        }
+//        orderButton.snp.makeConstraints {
+//            $0.centerY.equalToSuperview()
+//            $0.right.equalToSuperview()
+//        }
     }
 }
 

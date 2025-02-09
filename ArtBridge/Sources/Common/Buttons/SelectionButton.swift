@@ -7,68 +7,45 @@
 
 import UIKit
 
-/**
- `SelectionButton` 클래스는 "ArtBridge" 앱의 디자인 가이드를 따라 구현된 선택형 버튼입니다.
- 
- 이 버튼은 선택 상태에 따라 스타일이 변경되며, 기본적으로 "착한의사" 앱의 스타일을 유지합니다.
- 버튼의 텍스트, 선택 상태에 따른 색상 및 스타일 변경 등이 이 클래스에서 관리됩니다.
- 
- - 주요 기능:
-    - `isSelected`: 버튼의 선택 상태를 나타내는 프로퍼티로, 선택 시 버튼의 스타일이 변경됩니다.
-    - `updateUI`: 선택 상태에 맞게 버튼의 스타일을 업데이트하는 메서드입니다.
-    - `title`: 버튼에 표시할 텍스트를 설정하는 프로퍼티입니다.
- 
- - Author: 김창규
- - Version: 1.0
- - Since: 1/16/25
- */
-
-class SelectionButton: UIView {
+final class SelectionButton: UIView {
     // MARK: - Properties
-    private let title: String
-    private let icon: UIImage?
-    
-    // 버튼의 선택 상태를 나타내는 프로퍼티. 선택 시 UI가 변경됩니다.
     var isSelected: Bool = false {
         didSet {
             updateUI()
         }
     }
+    private var title: String = ""
+    private var normalIcon: UIImage?
+    private var selectedIcon: UIImage?
     
-    var action: (() -> Void)?
-    // MARK: - UI
+    //MARK: - UI
+    private let contentView = UIView()
+    
+    private let iconView = UIImageView()
+    
     private let titleLabel = UILabel().then {
-        $0.font = .nanumB13
-        $0.textColor = .disableText
+        $0.font = .suitSB14
+        $0.textColor = .white
     }
     
-    private let iconImageView = UIImageView().then {
-        $0.snp.makeConstraints {
-            $0.size.equalTo(12)
-        }
+    private let innerShadowView = UIView().then {
+        $0.backgroundColor = .clear
+        $0.layer.shadowColor = UIColor.white.cgColor
+        $0.layer.shadowOffset = CGSize(width: 0, height: 0)
+        $0.layer.shadowRadius = 2
+        $0.layer.shadowOpacity = 0.2
+        
+        $0.layer.borderWidth = 10
     }
-    // MARK: - Init
-    /**
-     버튼의 텍스트와 기본 선택 상태를 설정할 수 있습니다.
-     
-     - Parameters:
-        - title: 버튼에 표시할 텍스트입니다.
-        - icon: 우측 아이콘 이미지를 설정합니다. 기본값은 `nil`입니다.
-     */
-    init(
-        title: String,
-        icon: UIImage? = nil
-    ) {
-        self.title = title
-        self.icon = icon
+    
+    //MARK: - Init
+    init() {
         super.init(frame: .zero)
         
+        clipsToBounds = true
         setupViews()
+        setupGesture()
         initialLayout()
-        updateUI()
-        // Tap gesture recognizer to handle taps
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        addGestureRecognizer(tapGesture)
     }
     
     @available(*, unavailable)
@@ -76,49 +53,83 @@ class SelectionButton: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Methods
-    /**
-     버튼의 스타일을 선택 상태에 맞게 업데이트합니다.
-     선택된 상태에서는 배경색, 테두리 색상 및 텍스트 색상이 변경됩니다.
-     */
-    private func updateUI() {
-        titleLabel.text = title
-        titleLabel.textColor = isSelected ? .black : .disableText
-        
-        iconImageView.image = icon
-
-        layer.borderWidth = 1
-        layer.cornerRadius = 4
-        layer.borderColor = isSelected ? UIColor.black.cgColor : UIColor.disableBorder.cgColor
-//        backgroundColor = isSelected ? .enableBg : .white
+    // MARK: Methods
+    func setTitle(_ title: String) {
+        self.title = title
+        self.titleLabel.text = title
     }
     
-    // MARK: - Actions
-    @objc private func handleTap() {
-        isSelected.toggle()
-        action?()
+    func setImage(_ image: UIImage?, for state: UIControl.State) {
+        if state == .normal {
+            normalIcon = image
+            iconView.image = image
+        } else if state == .selected {
+            selectedIcon = image
+        }
+    }
+    
+    func setCornerRadius(_ radius: CGFloat) {
+        innerShadowView.layer.cornerRadius = radius + 10
+        layer.cornerRadius = radius
     }
 }
 
-// MARK: - Layout
+// MARK: - Gesture
+extension SelectionButton {
+    private func setupGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        addGestureRecognizer(tapGesture)
+        isUserInteractionEnabled = true
+    }
+    
+    @objc private func handleTap() {
+        isSelected.toggle()
+    }
+}
+
+//MARK: - Layout
 extension SelectionButton {
     private func setupViews() {
+        backgroundColor = .white.withAlphaComponent(0.04)
         
-        addSubviews([
-            titleLabel,
-            iconImageView
+        addSubview(contentView)
+        addSubview(innerShadowView)
+        
+        contentView.addSubviews([
+            iconView,
+            titleLabel
         ])
     }
     
     private func initialLayout() {
-        titleLabel.snp.makeConstraints {
-            $0.top.left.bottom.equalToSuperview().inset(10)
+        contentView.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
         
-        iconImageView.snp.makeConstraints {
-            $0.centerY.equalTo(titleLabel)
-            $0.left.equalTo(titleLabel.snp.right).offset(8)
-            $0.right.equalToSuperview().inset(10)
+        iconView.snp.makeConstraints {
+            $0.left.equalToSuperview()
+            $0.centerY.equalToSuperview()
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.left.equalTo(iconView.snp.right).offset(4)
+            $0.right.equalToSuperview()
+            $0.centerY.equalTo(iconView)
+        }
+        
+        innerShadowView.snp.makeConstraints {
+            $0.top.left.equalToSuperview().offset(-10)
+            $0.bottom.right.equalToSuperview().offset(10)
+        }
+    }
+    
+    private func updateUI() {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) { [weak self] in
+            guard let self = self else { return }
+            backgroundColor = isSelected ? .primary : .white.withAlphaComponent(0.04)
+            iconView.image = isSelected ? (selectedIcon ?? normalIcon) : normalIcon
+            layoutIfNeeded()
         }
     }
 }
+

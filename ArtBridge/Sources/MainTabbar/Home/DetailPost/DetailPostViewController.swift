@@ -7,20 +7,21 @@
 
 import UIKit
 import RxSwift
+import BlurUIKit
 
 fileprivate enum Section: Hashable {
     case banner
-    case single
-    case vertical
+    case title
+    case content
 }
 
 fileprivate enum Item: Hashable {
-    case contentItem(DetailPostDataModel)
     case bannerItem(String)
-    case commentItem(String)
+    case title
+    case content(String)
 }
 
-final class DetailPostViewController: UIViewController {
+final class DetailPostViewController: BaseViewController {
     //MARK: - Properties
     private let viewModel: DetailPostViewModel
     private let disposeBag: DisposeBag = DisposeBag()
@@ -28,25 +29,69 @@ final class DetailPostViewController: UIViewController {
     
     //MARK: - UI
     private let navBar = ArtBridgeNavBar().then {
-        $0.leftBtnItem.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-        $0.rightBtnItem.setImage(UIImage(systemName: "bell"), for: .normal)
-        $0.title.text = "게시글 상세보기"
+        $0.leftButton.setImage(UIImage(named: "iconBack"), for: .normal)
+        $0.rightButton.setImage(UIImage(named: "testProfile"), for: .normal)
+        $0.title.text = "KBS 스타뉴스"
     }
     
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
-        $0.backgroundColor = .systemGray6
+        $0.backgroundColor = .clear
+        $0.showsVerticalScrollIndicator = false
+        $0.contentInset =  UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
         
-        $0.register(ContentCollectionViewCell.self, forCellWithReuseIdentifier: ContentCollectionViewCell.id)
         $0.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: BannerCollectionViewCell.id)
-        $0.register(CommentCollectionViewCell.self, forCellWithReuseIdentifier: CommentCollectionViewCell.id)
+        $0.register(DetailPostTitleCell.self, forCellWithReuseIdentifier: DetailPostTitleCell.id)
+        $0.register(DetailPostContentCell.self, forCellWithReuseIdentifier: DetailPostContentCell.id)
     }
     
-    private let commentInputView = CommentInputView(placeHolder: "댓글을 입력해주세요.")
+    // TODO: 클래스로 새로 하나 만들자 공통사용
+    private let bottomView = UIView().then {
+        $0.layer.cornerRadius = 40
+        $0.clipsToBounds = true
+    }
+    
+    private let bottomBlurView = VariableBlurView().then {
+        $0.dimmingTintColor = .black
+        $0.dimmingOvershoot = .absolute(position: 0)
+    }
+    
+    private let bottomInnerShadowView = UIView().then {
+        $0.backgroundColor = .clear
+        $0.layer.shadowColor = UIColor.white.cgColor
+        $0.layer.shadowOffset = CGSize(width: 0, height: 0)
+        $0.layer.shadowRadius = 2
+        $0.layer.shadowOpacity = 0.2
+        
+        $0.layer.borderWidth = 10
+        $0.layer.cornerRadius = 50
+    }
+    
+    private let commentButton = SelectionButton().then {
+        $0.setCornerRadius(32)
+        $0.setTitle("감상평")
+        $0.setImage(UIImage(named: "coment"), for: .normal)
+        $0.setImage(UIImage(named: "coment_fill"), for: .selected)
+    }
+    
+    private let applicantButton = SelectionButton().then {
+        $0.setCornerRadius(32)
+        $0.setTitle("관객 참여중")
+        $0.setImage(UIImage(named: "my"), for: .normal)
+        $0.setImage(UIImage(named: "my_fill"), for: .selected)
+    }
+    
+    private lazy var bottomContentHStack = UIStackView.make(
+        with: [commentButton, applicantButton],
+        axis: .horizontal,
+        alignment: .center,
+        distribution: .fillEqually,
+        spacing: 16
+    )
     
     //MARK: - Init
     init(viewModel: DetailPostViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+        super.init()
     }
     
     required init?(coder: NSCoder) {
@@ -64,10 +109,6 @@ final class DetailPostViewController: UIViewController {
         
         viewModelInput()
         viewModelOutput()
-        
-        dismissKeyboardWhenTappedAround()
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     //MARK: - Private Methods
@@ -86,16 +127,16 @@ final class DetailPostViewController: UIViewController {
     
     private func updatePostData(with postData: DetailPostDataModel) {
         guard var currentSnapshot = self.dataSource?.snapshot() else { return }
-        
-        let singleSection = Section.single
-        let singleItem = Item.contentItem(postData)
-        
-        currentSnapshot.deleteItems(currentSnapshot.itemIdentifiers(inSection: singleSection))
-        currentSnapshot.appendItems([singleItem])
-        
-        DispatchQueue.main.async {
-            self.dataSource?.apply(currentSnapshot)
-        }
+//        
+//        let singleSection = Section.single
+//        let singleItem = Item.contentItem(postData)
+//        
+//        currentSnapshot.deleteItems(currentSnapshot.itemIdentifiers(inSection: singleSection))
+//        currentSnapshot.appendItems([singleItem])
+//        
+//        DispatchQueue.main.async {
+//            self.dataSource?.apply(currentSnapshot)
+//        }
     }
 }
 
@@ -105,25 +146,46 @@ extension DetailPostViewController {
         view.addSubviews([
             navBar,
             collectionView,
-            commentInputView
+            bottomView,
+        ])
+        
+        bottomView.addSubviews([
+            bottomBlurView,
+            bottomInnerShadowView,
+            bottomContentHStack
         ])
     }
     
     private func initialLayout() {
-        view.backgroundColor = .white
-        
         navBar.snp.makeConstraints {
             $0.top.left.right.equalToSuperview()
         }
         
         collectionView.snp.makeConstraints {
             $0.top.equalTo(navBar.snp.bottom)
-            $0.left.right.equalToSuperview()
+            $0.left.bottom.right.equalToSuperview()
         }
         
-        commentInputView.snp.makeConstraints {
-            $0.top.equalTo(collectionView.snp.bottom)
-            $0.left.bottom.right.equalToSuperview()
+        bottomView.snp.makeConstraints {
+            $0.left.right.equalToSuperview().inset(24)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(80)
+        }
+        
+        bottomBlurView.snp.makeConstraints {
+            $0.top.left.bottom.right.equalToSuperview()
+        }
+        
+        bottomContentHStack.snp.makeConstraints {
+            $0.top.left.bottom.right.equalToSuperview().inset(8)
+        }
+        
+        commentButton.snp.makeConstraints {
+            $0.height.equalTo(64)
+        }
+        
+        applicantButton.snp.makeConstraints {
+            $0.height.equalTo(64)
         }
     }
 }
@@ -131,43 +193,23 @@ extension DetailPostViewController {
 //MARK: - CompositionalLayout
 extension DetailPostViewController {
     private func createLayout() -> UICollectionViewCompositionalLayout {
+        let config = UICollectionViewCompositionalLayoutConfiguration()
+        config.interSectionSpacing = 16
+        
         return UICollectionViewCompositionalLayout(sectionProvider: { [weak self] sectionIndex, _ in
             let section = self?.dataSource?.sectionIdentifier(for: sectionIndex)
-            
             switch section {
-            case .single:
-                return self?.createSingleSection()
             case .banner:
                 return self?.createBannerSection()
-            case .vertical:
-                return self?.createVerticalSection()
+            case .title:
+                return self?.createTitleSection()
+            case .content:
+                return self?.createContentSection()
             default:
                 return nil
             }
-        })
-    }
-    
-    private func createSingleSection() -> NSCollectionLayoutSection {
-        // Item
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .estimated(200)
-        )
-        
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        // Group
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .estimated(200)
-        )
-        
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-        
-        // Section
-        let section = NSCollectionLayoutSection(group: group)
-        
-        return section
+            
+        }, configuration: config)
     }
     
     private func createBannerSection() -> NSCollectionLayoutSection {
@@ -182,18 +224,18 @@ extension DetailPostViewController {
         // Group
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(100)
+            heightDimension: .absolute(260)
         )
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         // Section
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0)
         
         return section
     }
     
-    private func createVerticalSection() -> NSCollectionLayoutSection {
+    private func createTitleSection() -> NSCollectionLayoutSection {
         // Item
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
@@ -211,8 +253,30 @@ extension DetailPostViewController {
         
         // Section
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 100, trailing: 0)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 24, bottom: 0, trailing: 24)
         
+        return section
+    }
+
+    private func createContentSection() -> NSCollectionLayoutSection {
+        // Item
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(100)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        
+        // Group
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(100)
+        )
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        
+        // Section
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24)
         return section
     }
 }
@@ -224,15 +288,6 @@ extension DetailPostViewController {
             collectionView: collectionView,
             cellProvider: { collectionView, indexPath, item in
                 switch item {
-                case .contentItem(let postData):
-                    let cell = collectionView.dequeueReusableCell(
-                        withReuseIdentifier: ContentCollectionViewCell.id,
-                        for: indexPath
-                    ) as? ContentCollectionViewCell
-                    
-                    cell?.configure(with: postData)
-                    
-                    return cell
                 case .bannerItem:
                     let cell = collectionView.dequeueReusableCell(
                         withReuseIdentifier: BannerCollectionViewCell.id,
@@ -242,11 +297,19 @@ extension DetailPostViewController {
 //                    cell?.configure(bannerModel: BannerModel(imageUrl: "https://source.unsplash.com/random/400x400?17"))
                     
                     return cell
-                case .commentItem:
+                case .title:
                     let cell = collectionView.dequeueReusableCell(
-                        withReuseIdentifier: CommentCollectionViewCell.id,
+                        withReuseIdentifier: DetailPostTitleCell.id,
                         for: indexPath
-                    ) as? CommentCollectionViewCell
+                    ) as? DetailPostTitleCell
+                    
+                    return cell
+                    
+                case .content(let text):
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: DetailPostContentCell.id,
+                        for: indexPath
+                    ) as? DetailPostContentCell
                     
                     return cell
                 }
@@ -258,61 +321,25 @@ extension DetailPostViewController {
     private func createSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         
-        let singleSection = Section.single
-        snapshot.appendSections([singleSection])
-        
-        
+        let bannerItems = [Item.bannerItem("A")]
         let bannerSection = Section.banner
-//        let bannerItem = Item.bannerItem("testest")
-        snapshot.appendSections([bannerSection])
-//        snapshot.appendItems([bannerItem],toSection: bannerSection)
         
-        let verticalSection = Section.vertical
-//        let commentItems = [Item.commentItem("1"), Item.commentItem("2"), Item.commentItem("3")]
-        snapshot.appendSections([verticalSection])
-//        snapshot.appendItems(commentItems,toSection: verticalSection)
+        let titleItems = [Item.title]
+        let titleSection = Section.title
+        
+        let contentItems = [Item.content("dd")]
+        let contentSection = Section.content
+        
+        snapshot.appendSections([
+            bannerSection,
+            titleSection,
+            contentSection
+        ])
+        
+        snapshot.appendItems(bannerItems,toSection: bannerSection)
+        snapshot.appendItems(titleItems,toSection: titleSection)
+        snapshot.appendItems(contentItems,toSection: contentSection)
         
         dataSource?.apply(snapshot)
-    }
-}
-
-//MARK: - Extension Gesture
-extension DetailPostViewController {
-    func dismissKeyboardWhenTappedAround() {
-        let tap =
-            UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(false)
-    }
-
-    func gestureRecognizer(_: UIGestureRecognizer, shouldBeRequiredToFailBy _: UIGestureRecognizer) -> Bool {
-        dismissKeyboard() // 제스처로 뒤로가기할 때 키보드 없애야함
-        return true
-    }
-
-    @objc
-    func keyboardWillShow(_ notification: Notification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            UIView.animate(withDuration: 0.3) {
-                self.commentInputView.snp.updateConstraints {
-                    $0.bottom.equalToSuperview().inset(keyboardRectangle.height)
-                }
-                self.view.layoutIfNeeded()
-            }
-        }
-    }
-
-    @objc
-    func keyboardWillHide(_ notification: Notification) {
-        UIView.animate(withDuration: 0.3) {
-            self.commentInputView.snp.updateConstraints {
-                $0.bottom.equalToSuperview().inset(0)
-            }
-            self.view.layoutIfNeeded()
-        }
     }
 }

@@ -51,6 +51,9 @@
 		2B3159A32D44AD5000726B61 /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = 2B3159A22D44AD5000726B61 /* Realtime */; };
 		2B3159A52D44AD5000726B61 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 2B3159A42D44AD5000726B61 /* Storage */; };
 		2B3159A72D44AD5000726B61 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 2B3159A62D44AD5000726B61 /* Supabase */; };
+		2B3207902D58418E009802C4 /* DetailPostTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B32078F2D584184009802C4 /* DetailPostTitleCell.swift */; };
+		2B3207922D58543E009802C4 /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3207912D58543B009802C4 /* TagButton.swift */; };
+		2B3207942D585911009802C4 /* DetailPostContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3207932D58590A009802C4 /* DetailPostContent.swift */; };
 		2B3851FE2BF238AE00BCF540 /* CommentInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3851FD2BF238AE00BCF540 /* CommentInputView.swift */; };
 		2B3852002BF2628900BCF540 /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3851FF2BF2628900BCF540 /* UITextView+.swift */; };
 		2B3852022BF63B8600BCF540 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3852012BF63B8600BCF540 /* UIButton+.swift */; };
@@ -235,6 +238,9 @@
 		2B27FA272D4604EC00BA3817 /* DetailNoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNoticeViewController.swift; sourceTree = "<group>"; };
 		2B27FA292D4604F400BA3817 /* DetailNoticeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNoticeComponent.swift; sourceTree = "<group>"; };
 		2B27FA2D2D460DB500BA3817 /* DetailListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListCell.swift; sourceTree = "<group>"; };
+		2B32078F2D584184009802C4 /* DetailPostTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostTitleCell.swift; sourceTree = "<group>"; };
+		2B3207912D58543B009802C4 /* TagButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
+		2B3207932D58590A009802C4 /* DetailPostContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostContent.swift; sourceTree = "<group>"; };
 		2B3851FD2BF238AE00BCF540 /* CommentInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputView.swift; sourceTree = "<group>"; };
 		2B3851FF2BF2628900BCF540 /* UITextView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+.swift"; sourceTree = "<group>"; };
 		2B3852012BF63B8600BCF540 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
@@ -743,6 +749,8 @@
 		2B9C4FD92BF0CA490058CE3F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				2B3207932D58590A009802C4 /* DetailPostContent.swift */,
+				2B32078F2D584184009802C4 /* DetailPostTitleCell.swift */,
 				2B9C4FDC2BF0CA740058CE3F /* ContentCollectionViewCell.swift */,
 				2B9C4FDA2BF0CA5C0058CE3F /* CommentCollectionViewCell.swift */,
 			);
@@ -919,6 +927,7 @@
 		2BDA19FA2D42643D00E8F7C0 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				2B3207912D58543B009802C4 /* TagButton.swift */,
 				2BE4EB8F2D575B2F007C0B16 /* ButtonBottomView.swift */,
 				2BE4EB892D575AB7007C0B16 /* SelectionButton.swift */,
 				2B529CB92D546963004BAB32 /* ArtBridgeButton.swift */,
@@ -1245,6 +1254,7 @@
 				2B54ADD92C1B35DA002BD5C5 /* DetailInstrumentCoordinator.swift in Sources */,
 				2B9C4FDD2BF0CA740058CE3F /* ContentCollectionViewCell.swift in Sources */,
 				2BB5157A2BDDF1E60092CC72 /* HeaderView.swift in Sources */,
+				2B3207902D58418E009802C4 /* DetailPostTitleCell.swift in Sources */,
 				2B27FA1F2D45E29C00BA3817 /* NoticeHeaderView.swift in Sources */,
 				2B1469BF2BD38F8000E6483E /* SceneDelegate.swift in Sources */,
 				2B5F00732C59207800FCC51A /* CreatePostCoordinator.swift in Sources */,
@@ -1264,6 +1274,8 @@
 				2BFA9C502C0F340300E72C99 /* LoginViewController.swift in Sources */,
 				2BB515812BDE15B20092CC72 /* CommunityViewController.swift in Sources */,
 				2B27FA2E2D460DC100BA3817 /* DetailListCell.swift in Sources */,
+				2B3207922D58543E009802C4 /* TagButton.swift in Sources */,
+				2B3207942D585911009802C4 /* DetailPostContent.swift in Sources */,
 				2B9C4FE02BF0CB5C0058CE3F /* ProfileView.swift in Sources */,
 				2B3C998C2C5B23B700CA865D /* TopButtonsView.swift in Sources */,
 				2BEDD4B92BE23DA300C12E17 /* MenuItemCollectionViewCell.swift in Sources */,

@@ -189,11 +189,16 @@ extension PostListViewController {
                     return cell
                     
                 case .post:
-                    let cell = collectionView.dequeueReusableCell(
+                    guard let cell = collectionView.dequeueReusableCell(
                         withReuseIdentifier: PostCell.id,
                         for: indexPath
-                    ) as? PostCell
+                    ) as? PostCell else { return nil }
                     
+                    cell.rx.tapGesture()
+                        .skip(1)
+                        .map { _ in indexPath.row }
+                        .bind(to: self.viewModel.inputs.showDetailPost)
+                        .disposed(by: cell.disposeBag)
                     return cell
                 }
             }

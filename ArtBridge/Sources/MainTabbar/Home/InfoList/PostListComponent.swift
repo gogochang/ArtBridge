@@ -16,4 +16,8 @@ final class PostListComponent {
     var viewModel: PostListViewModel {
         return PostListViewModel()
     }
+    
+    func detailPostComponent(postID: Int) -> DetailPostComponent {
+        return DetailPostComponent(postID: postID)
+    }
 }

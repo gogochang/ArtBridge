@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import RxSwift
 import BlurUIKit
 
 final class PostCell: UICollectionViewCell {
     // MARK: - Properties
     
     static let id = "\(PostCell.self)"
+    var disposeBag = DisposeBag()
     
     // MARK: - UI
     private let blurView = VariableBlurView()
@@ -50,6 +52,12 @@ final class PostCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - LifeCycle
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
     }
     
     // MARK: - Methods

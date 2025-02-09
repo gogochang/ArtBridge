@@ -11,7 +11,7 @@ import RxSwift
 final class PostListViewModel: BaseViewModel {
     //MARK: - Properties
     struct Input {
-        
+        var showDetailPost = PublishSubject<Int>()
     }
     
     struct Output {
@@ -20,10 +20,11 @@ final class PostListViewModel: BaseViewModel {
     
     struct Route {
         var backward = PublishSubject<Void>()
+        var detailPostList = PublishSubject<Int>()
     }
     
     struct RouteInputs {
-        
+        var needUpdate = PublishSubject<Bool>()
     }
     
     private var disposeBag = DisposeBag()
@@ -35,6 +36,10 @@ final class PostListViewModel: BaseViewModel {
     //MARK: - Init
     override init() {
         super.init()
+        
+        inputs.showDetailPost
+            .bind(to: routes.detailPostList)
+            .disposed(by: disposeBag)
     }
     
     //MARK: - Methods
