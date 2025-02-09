@@ -103,6 +103,7 @@ extension ArtBridgeButton {
     }
     
     private func initialLayout() {
+        contentView.backgroundColor = .orange
         contentView.snp.makeConstraints {
             $0.center.equalToSuperview()
         }

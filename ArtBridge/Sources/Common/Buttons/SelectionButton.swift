@@ -15,8 +15,8 @@ final class SelectionButton: UIView {
         }
     }
     private var title: String = ""
-    private var normalIcon: UIImage?
-    private var selectedIcon: UIImage?
+    private var normalIcon: UIImage? = nil
+    private var selectedIcon: UIImage? = nil
     
     //MARK: - UI
     private let contentView = UIView()
@@ -63,6 +63,9 @@ final class SelectionButton: UIView {
         if state == .normal {
             normalIcon = image
             iconView.image = image
+            titleLabel.snp.updateConstraints {
+                $0.left.equalTo(iconView.snp.right).offset(4)
+            }
         } else if state == .selected {
             selectedIcon = image
         }
@@ -112,9 +115,10 @@ extension SelectionButton {
         }
         
         titleLabel.snp.makeConstraints {
-            $0.left.equalTo(iconView.snp.right).offset(4)
+            $0.left.equalTo(iconView.snp.right)
             $0.right.equalToSuperview()
             $0.centerY.equalTo(iconView)
+            $0.height.equalTo(24)
         }
         
         innerShadowView.snp.makeConstraints {

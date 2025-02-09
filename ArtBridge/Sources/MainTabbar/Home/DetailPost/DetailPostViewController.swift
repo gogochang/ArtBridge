@@ -113,8 +113,16 @@ final class DetailPostViewController: BaseViewController {
     
     //MARK: - Private Methods
     private func viewModelInput() {
-        navBar.leftBtnItem.rx.tap
+        navBar.leftButton.rx.tapGesture()
+            .skip(1)
+            .map { _ in }
             .bind(to: viewModel.inputs.backward)
+            .disposed(by: disposeBag)
+        
+        commentButton.rx.tapGesture()
+            .skip(1)
+            .map { _ in 0 }
+            .bind(to: viewModel.inputs.showComentBottomSheet)
             .disposed(by: disposeBag)
     }
     
