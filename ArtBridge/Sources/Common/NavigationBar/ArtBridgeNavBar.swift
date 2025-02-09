@@ -23,14 +23,19 @@ final class ArtBridgeNavBar: UIView {
         $0.tintColor = .black
     }
     
+    let leftButton = ArtBridgeButton().then {
+        $0.setCornerRadius(20)
+        $0.backgroundColor = .white.withAlphaComponent(0.08)
+    }
+    
     let rightButton = ArtBridgeButton().then {
-        $0.setImage(UIImage(named: "notice"), for: .normal)
         $0.setCornerRadius(20)
         $0.backgroundColor = .white.withAlphaComponent(0.08)
     }
     
     let title = UILabel().then {
-        $0.font = .systemFont(ofSize: 20, weight: .bold)
+        $0.font = .suitB20
+        $0.textColor = .white
     }
     
     private let blurView: UIVisualEffectView = {
@@ -40,7 +45,6 @@ final class ArtBridgeNavBar: UIView {
     }()
     
     let searchView = SearchView().then {
-        
         $0.isHidden = true
     }
     
@@ -68,10 +72,9 @@ extension ArtBridgeNavBar {
         ])
         
         contentView.addSubviews([
-            leftBtnItem,
-            rightBtnItem,
             title,
             searchView,
+            leftButton,
             rightButton,
         ])
     }
@@ -83,9 +86,10 @@ extension ArtBridgeNavBar {
             $0.height.equalTo(56)
         }
         
-        leftBtnItem.snp.makeConstraints {
+        leftButton.snp.makeConstraints {
             $0.left.equalToSuperview().inset(24)
             $0.centerY.equalToSuperview()
+            $0.size.equalTo(40)
         }
         
         rightButton.snp.makeConstraints {
@@ -100,7 +104,7 @@ extension ArtBridgeNavBar {
         
         searchView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
-            $0.left.equalTo(leftBtnItem.snp.right).offset(8)
+            $0.left.equalTo(leftButton.snp.right).offset(8)
             $0.right.equalTo(rightButton.snp.left).offset(-8)
             $0.centerY.equalToSuperview()
         }

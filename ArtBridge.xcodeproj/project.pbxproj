@@ -161,6 +161,11 @@
 		2BE4EB8C2D575AF3007C0B16 /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE4EB8B2D575AF3007C0B16 /* NoticeCell.swift */; };
 		2BE4EB8E2D575B0E007C0B16 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE4EB8D2D575B0E007C0B16 /* BaseViewModel.swift */; };
 		2BE4EB902D575B2F007C0B16 /* ButtonBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE4EB8F2D575B2F007C0B16 /* ButtonBottomView.swift */; };
+		2BE4EB932D575EE1007C0B16 /* InfoListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE4EB922D575ED5007C0B16 /* InfoListComponent.swift */; };
+		2BE4EB952D575EED007C0B16 /* InfoListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE4EB942D575EE5007C0B16 /* InfoListCoordinator.swift */; };
+		2BE4EB972D575EF3007C0B16 /* InfoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE4EB962D575EF0007C0B16 /* InfoListViewModel.swift */; };
+		2BE4EB992D575EFD007C0B16 /* InfoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE4EB982D575EF6007C0B16 /* InfoListViewController.swift */; };
+		2BE4EB9C2D576F5B007C0B16 /* SearchViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE4EB9B2D576F4D007C0B16 /* SearchViewCell.swift */; };
 		2BEDD4B92BE23DA300C12E17 /* MenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEDD4B82BE23DA300C12E17 /* MenuItemCollectionViewCell.swift */; };
 		2BF0B6A52C2EDFA700FD47B8 /* TutorAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF0B6A42C2EDFA700FD47B8 /* TutorAPIService.swift */; };
 		2BFA9C4B2C0DD42400E72C99 /* NewsInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFA9C4A2C0DD42400E72C99 /* NewsInfoCollectionViewCell.swift */; };
@@ -333,6 +338,11 @@
 		2BE4EB8B2D575AF3007C0B16 /* NoticeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
 		2BE4EB8D2D575B0E007C0B16 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		2BE4EB8F2D575B2F007C0B16 /* ButtonBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonBottomView.swift; sourceTree = "<group>"; };
+		2BE4EB922D575ED5007C0B16 /* InfoListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoListComponent.swift; sourceTree = "<group>"; };
+		2BE4EB942D575EE5007C0B16 /* InfoListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoListCoordinator.swift; sourceTree = "<group>"; };
+		2BE4EB962D575EF0007C0B16 /* InfoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoListViewModel.swift; sourceTree = "<group>"; };
+		2BE4EB982D575EF6007C0B16 /* InfoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoListViewController.swift; sourceTree = "<group>"; };
+		2BE4EB9B2D576F4D007C0B16 /* SearchViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewCell.swift; sourceTree = "<group>"; };
 		2BEDD4B82BE23DA300C12E17 /* MenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BF0B6A42C2EDFA700FD47B8 /* TutorAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorAPIService.swift; sourceTree = "<group>"; };
 		2BFA9C4A2C0DD42400E72C99 /* NewsInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsInfoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -771,6 +781,7 @@
 		2BB5155F2BDAA7090092CC72 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				2BE4EB912D575EC9007C0B16 /* InfoList */,
 				2B54ADD12C1B35A1002BD5C5 /* DetailInstrument */,
 				2B6B20D12BFCBB82002D9E79 /* DetailNews */,
 				2B3852032BF77CAF00BCF540 /* DetailTutor */,
@@ -914,6 +925,26 @@
 				2BDA19FB2D42644400E8F7C0 /* ButtonScrollView.swift */,
 			);
 			path = Buttons;
+			sourceTree = "<group>";
+		};
+		2BE4EB912D575EC9007C0B16 /* InfoList */ = {
+			isa = PBXGroup;
+			children = (
+				2BE4EB9A2D576F49007C0B16 /* Cell */,
+				2BE4EB922D575ED5007C0B16 /* InfoListComponent.swift */,
+				2BE4EB982D575EF6007C0B16 /* InfoListViewController.swift */,
+				2BE4EB962D575EF0007C0B16 /* InfoListViewModel.swift */,
+				2BE4EB942D575EE5007C0B16 /* InfoListCoordinator.swift */,
+			);
+			path = InfoList;
+			sourceTree = "<group>";
+		};
+		2BE4EB9A2D576F49007C0B16 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2BE4EB9B2D576F4D007C0B16 /* SearchViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		2BFA9C492C0DD40F00E72C99 /* Cells */ = {
@@ -1138,6 +1169,7 @@
 				2B00246D2C0A096200C4C276 /* MessageComponent.swift in Sources */,
 				2B4E1EC72D5605A40086AD5D /* HomeNavBarView.swift in Sources */,
 				2BB084A62C1E9924005E7221 /* AlarmViewController.swift in Sources */,
+				2BE4EB972D575EF3007C0B16 /* InfoListViewModel.swift in Sources */,
 				2B4E1ECB2D5614630086AD5D /* HomeHeaderView.swift in Sources */,
 				2B0BCF182C1320AE0053ACAD /* SettingCoordinator.swift in Sources */,
 				2BB5159F2BDFE4FF0092CC72 /* MyPageViewModel.swift in Sources */,
@@ -1196,6 +1228,7 @@
 				2B4814B02C319BAB00A7529E /* NewsAPIService.swift in Sources */,
 				2B5C6C9E2BF84E1E004800CC /* TutorProfileCollectionViewCell.swift in Sources */,
 				2BB9006F2CA69875004FC44C /* CreatePostBottomView.swift in Sources */,
+				2BE4EB9C2D576F5B007C0B16 /* SearchViewCell.swift in Sources */,
 				2B27FA242D4604DE00BA3817 /* DetailNoticeCoordinator.swift in Sources */,
 				2BB5159D2BDFE4F70092CC72 /* MyPageViewController.swift in Sources */,
 				2B27FA162D453D5300BA3817 /* FilterCollectionViewCell.swift in Sources */,
@@ -1222,6 +1255,7 @@
 				2B0024692C0A094D00C4C276 /* MessageViewModel.swift in Sources */,
 				2BB515832BDE15BD0092CC72 /* CommunityViewModel.swift in Sources */,
 				2B9705C72C21DBDC00B94E8B /* PostAPIService.swift in Sources */,
+				2BE4EB992D575EFD007C0B16 /* InfoListViewController.swift in Sources */,
 				2BFA9C4B2C0DD42400E72C99 /* NewsInfoCollectionViewCell.swift in Sources */,
 				2BB9006D2CA686CA004FC44C /* SelectCategoryView.swift in Sources */,
 				2B3852072BF77D3700BCF540 /* DetailTutorViewModel.swift in Sources */,
@@ -1233,8 +1267,10 @@
 				2B9C4FE02BF0CB5C0058CE3F /* ProfileView.swift in Sources */,
 				2B3C998C2C5B23B700CA865D /* TopButtonsView.swift in Sources */,
 				2BEDD4B92BE23DA300C12E17 /* MenuItemCollectionViewCell.swift in Sources */,
+				2BE4EB952D575EED007C0B16 /* InfoListCoordinator.swift in Sources */,
 				2B54ADDD2C1B35F6002BD5C5 /* DetailInstrumentViewModel.swift in Sources */,
 				2BB515A42BDFEEC00092CC72 /* ProfileCollectionViewCell.swift in Sources */,
+				2BE4EB932D575EE1007C0B16 /* InfoListComponent.swift in Sources */,
 				2B27FA262D4604E900BA3817 /* DetailNoticeViewModel.swift in Sources */,
 				2BB515652BDAA75A0092CC72 /* HomeViewModel.swift in Sources */,
 				2B0024672C0A094500C4C276 /* MessageViewController.swift in Sources */,

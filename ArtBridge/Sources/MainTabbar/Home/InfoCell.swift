@@ -17,6 +17,7 @@ final class InfoCell: UICollectionViewCell {
     private let blurView = VariableBlurView()
     
     private let imageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFill
         $0.backgroundColor = .systemGray
         $0.image = UIImage(named: "section-thumbnail-item")
     }

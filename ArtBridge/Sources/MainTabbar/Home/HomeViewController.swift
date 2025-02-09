@@ -366,7 +366,8 @@ extension HomeViewController {
         )
         
         dataSource?.supplementaryViewProvider = {[weak self] collectionView, kind, indexPath -> UICollectionReusableView in
-            guard let header = collectionView.dequeueReusableSupplementaryView(
+            guard let self = self,
+                  let header = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind,
                 withReuseIdentifier: HomeHeaderView.id,
                 for: indexPath
@@ -374,7 +375,7 @@ extension HomeViewController {
                 return UICollectionReusableView()
             }
             
-            let section = self?.dataSource?.sectionIdentifier(for: indexPath.section)
+            let section = self.dataSource?.sectionIdentifier(for: indexPath.section)
             
             switch section {
             case .navBar:
@@ -384,6 +385,12 @@ extension HomeViewController {
                 header.arrowButton.isHidden = true
             case .info(let title):
                 header.configure(title: title)
+                
+                header.arrowButton.rx.tapGesture()
+                    .skip(1)
+                    .map { _ in }
+                    .bind(to: self.viewModel.inputs.showInfoList)
+                    .disposed(by: disposeBag)
             case .user(let title):
                 header.configure(title: title)
             case .news(let title):
