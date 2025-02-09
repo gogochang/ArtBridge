@@ -36,7 +36,7 @@ final class HomeComponent {
         return DetailNewsComponent(newsID: newsID)
     }
     
-    var infoListComponent: InfoListComponent {
-        return InfoListComponent()
+    var infoListComponent: PostListComponent {
+        return PostListComponent()
     }
 }

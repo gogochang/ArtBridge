@@ -1,5 +1,5 @@
 //
-//  InfoCell.swift
+//  PostCell.swift
 //  ArtBridge
 //
 //  Created by 김창규 on 2/7/25.
@@ -8,10 +8,10 @@
 import UIKit
 import BlurUIKit
 
-final class InfoCell: UICollectionViewCell {
+final class PostCell: UICollectionViewCell {
     // MARK: - Properties
     
-    static let id = "\(InfoCell.self)"
+    static let id = "\(PostCell.self)"
     
     // MARK: - UI
     private let blurView = VariableBlurView()
@@ -59,7 +59,7 @@ final class InfoCell: UICollectionViewCell {
 
 // MARK: - Layout
 
-extension InfoCell {
+extension PostCell {
     private func setupViews() {
         contentView.layer.cornerRadius = 24
         contentView.clipsToBounds = true

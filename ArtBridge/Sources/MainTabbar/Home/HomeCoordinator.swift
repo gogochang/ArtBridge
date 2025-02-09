@@ -158,7 +158,7 @@ final class HomeCoordinator: BaseCoordinator<Void> {
     
     private func pushInfoListScene(vm: HomeViewModel, animated: Bool) {
         let comp = component.infoListComponent
-        let coord = InfoListCoordinator(component: comp, navController: navigationController)
+        let coord = PostListCoordinator(component: comp, navController: navigationController)
         
         coordinate(coordinator: coord, animated: animated) { coordResult in
             switch coordResult {

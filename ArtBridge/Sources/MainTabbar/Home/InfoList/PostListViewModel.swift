@@ -1,5 +1,5 @@
 //
-//  InfoListViewModel.swift
+//  PostListViewModel.swift
 //  ArtBridge
 //
 //  Created by 김창규 on 2/8/25.
@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-final class InfoListViewModel: BaseViewModel {
+final class PostListViewModel: BaseViewModel {
     //MARK: - Properties
     struct Input {
         

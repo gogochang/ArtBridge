@@ -1,5 +1,5 @@
 //
-//  InfoListViewController.swift
+//  PostListViewController.swift
 //  ArtBridge
 //
 //  Created by 김창규 on 2/8/25.
@@ -15,13 +15,13 @@ fileprivate enum Section: Hashable {
 
 fileprivate enum Item: Hashable {
     case search
-    case info(String)
+    case post(String)
 }
 
-final class InfoListViewController: BaseViewController {
+final class PostListViewController: BaseViewController {
     //MARK: - Properties
     private let disposeBag = DisposeBag()
-    private let viewModel: InfoListViewModel
+    private let viewModel: PostListViewModel
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
     //MARK: - UI
@@ -39,11 +39,11 @@ final class InfoListViewController: BaseViewController {
             $0.contentInset =  UIEdgeInsets(top: 56, left: 0, bottom: 0, right: 0)
             
             $0.register(SearchViewCell.self, forCellWithReuseIdentifier: SearchViewCell.id)
-            $0.register(InfoCell.self, forCellWithReuseIdentifier: InfoCell.id)
+            $0.register(PostCell.self, forCellWithReuseIdentifier: PostCell.id)
         }
     
     //MARK: - Init
-    init(viewModel: InfoListViewModel) {
+    init(viewModel: PostListViewModel) {
         self.viewModel = viewModel
         super.init()
     }
@@ -76,7 +76,7 @@ final class InfoListViewController: BaseViewController {
     }
 }
 // MARK: - CompositionalLayout
-extension InfoListViewController {
+extension PostListViewController {
     private func createLayout() -> UICollectionViewCompositionalLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()
         config.interSectionSpacing = 32
@@ -144,7 +144,7 @@ extension InfoListViewController {
 }
 
 // MARK: - DataSource
-extension InfoListViewController {
+extension PostListViewController {
     private func createSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         
@@ -152,16 +152,16 @@ extension InfoListViewController {
         let searchSection = Section.search
         
         let infoItem = [
-            Item.info("1"),
-            Item.info("2"),
-            Item.info("3"),
-            Item.info("4"),
-            Item.info("5"),
-            Item.info("6"),
-            Item.info("7"),
-            Item.info("8"),
-            Item.info("9"),
-            Item.info("0")
+            Item.post("1"),
+            Item.post("2"),
+            Item.post("3"),
+            Item.post("4"),
+            Item.post("5"),
+            Item.post("6"),
+            Item.post("7"),
+            Item.post("8"),
+            Item.post("9"),
+            Item.post("0")
         ]
         
         let verticalSection = Section.vertical
@@ -188,11 +188,11 @@ extension InfoListViewController {
                     ) as? SearchViewCell
                     return cell
                     
-                case .info:
+                case .post:
                     let cell = collectionView.dequeueReusableCell(
-                        withReuseIdentifier: InfoCell.id,
+                        withReuseIdentifier: PostCell.id,
                         for: indexPath
-                    ) as? InfoCell
+                    ) as? PostCell
                     
                     return cell
                 }
@@ -201,7 +201,7 @@ extension InfoListViewController {
     }
 }
 //MARK: - Layout
-extension InfoListViewController {
+extension PostListViewController {
     private func setupViews() {
         view.addSubviews([
             collectionView,

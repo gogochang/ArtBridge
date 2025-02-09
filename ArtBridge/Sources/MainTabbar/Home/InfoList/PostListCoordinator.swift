@@ -1,5 +1,5 @@
 //
-//  InfoListCoordinator.swift
+//  PostListCoordinator.swift
 //  ArtBridge
 //
 //  Created by 김창규 on 2/8/25.
@@ -7,15 +7,15 @@
 
 import UIKit
 
-enum InfoListResult {
+enum PostListResult {
 case backward
 }
 
-final class InfoListCoordinator: BaseCoordinator<InfoListResult> {
-    var component: InfoListComponent
+final class PostListCoordinator: BaseCoordinator<PostListResult> {
+    var component: PostListComponent
     
     init(
-        component: InfoListComponent,
+        component: PostListComponent,
         navController: UINavigationController
     ) {
         self.component = component
@@ -36,7 +36,7 @@ final class InfoListCoordinator: BaseCoordinator<InfoListResult> {
             }).disposed(by: sceneDisposeBag)
         
         scene.VM.routes.backward
-            .map { InfoListResult.backward }
+            .map { PostListResult.backward }
             .bind(to: closeSignal)
             .disposed(by: sceneDisposeBag)
     }
