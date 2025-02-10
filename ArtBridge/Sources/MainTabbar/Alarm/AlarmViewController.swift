@@ -8,34 +8,43 @@
 import UIKit
 import RxSwift
 
-fileprivate enum Section: Hashable {
-    case vertical
-}
-
-fileprivate enum Item: Hashable {
-    case alarmItem(String)
-}
-
-final class AlarmViewController: UIViewController {
+final class AlarmViewController: BaseViewController {
     //MARK: - Properties
     private let viewModel: AlarmViewModel
     private var disposeBag = DisposeBag()
-    private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
+    private var dataSource: UITableViewDiffableDataSource<Int, String>!
+    // 더미 데이터
+    private var alarms: [String] = [
+        "첫 번째 알람입니다.",
+        "두 번째 알람입니다.",
+        "세 번째 알람입니다.",
+        "네 번째 알람입니다.",
+        "다섯 번째 알람입니다."
+    ]
     
     //MARK: - UI
     private let navBar = ArtBridgeNavBar().then {
-        $0.leftBtnItem.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        $0.leftButton.setImage(UIImage(named: "iconBack"), for: .normal)
+        $0.rightButton.setImage(UIImage(named: "iconDelete"), for: .normal)
         $0.title.text = "알람"
     }
     
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
-        $0.register(AlarmCollectionViewCell.self, forCellWithReuseIdentifier: AlarmCollectionViewCell.id)
-    }
+    private lazy var alarmTableView: UITableView = {
+        var tableView = UITableView(frame: .zero, style: .plain)
+        tableView.register(AlarmCell.self, forCellReuseIdentifier: AlarmCell.id)
+        tableView.backgroundColor = .clear
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 144 //기본 높이 설정 추가
+        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
+        tableView.delegate = self
+        return tableView
+    }()
     
     //MARK: - Init
     init(viewModel: AlarmViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+        super.init()
     }
     
     required init?(coder: NSCoder) {
@@ -44,20 +53,39 @@ final class AlarmViewController: UIViewController {
     
     //MARK: LifeCycle
     override func viewDidLoad() {
+        super.viewDidLoad()
         setupViews()
         initialLayout()
         
-        setDataSource()
-        createSnapshot()
-        
         viewModelInput()
+        
+        configureDataSource()
+        
+        var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
+        snapshot.appendSections([0]) // 섹션 추가
+        snapshot.appendItems(alarms) // 데이터 추가
+        dataSource.apply(snapshot, animatingDifferences: false) // 스냅샷을 적용
     }
     
     //MARK: - Methods
     private func viewModelInput() {
-        navBar.leftBtnItem.rx.tap
+        navBar.leftButton.rx.tapGesture()
+            .skip(1)
+            .map { _ in }
             .bind(to: viewModel.inputs.backward)
             .disposed(by: disposeBag)
+    }
+    
+    private func configureDataSource() {
+        dataSource = UITableViewDiffableDataSource<Int, String>(tableView: alarmTableView) { (tableView, indexPath, comment) -> UITableViewCell? in
+            let cell = tableView.dequeueReusableCell(withIdentifier: AlarmCell.id, for: indexPath) as! AlarmCell
+            return cell
+        }
+    }
+}
+extension AlarmViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 160 // 셀 전체 높이 조정
     }
 }
 
@@ -66,88 +94,20 @@ extension AlarmViewController {
     private func setupViews() {
         view.addSubviews([
             navBar,
-            collectionView
+            alarmTableView
         ])
     }
     
     private func initialLayout() {
-        self.view.backgroundColor = .white
-        
+
         navBar.snp.makeConstraints {
             $0.top.left.right.equalToSuperview()
         }
         
-        collectionView.snp.makeConstraints {
+        alarmTableView.snp.makeConstraints {
             $0.top.equalTo(navBar.snp.bottom)
-            $0.left.bottom.right.equalToSuperview()
+            $0.left.right.equalToSuperview().inset(24)
+            $0.bottom.equalToSuperview()
         }
-    }
-}
-
-//MARK: - CompositionalLayout
-extension AlarmViewController {
-    private func createLayout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout(sectionProvider: { [weak self] sectionIndex, _ in
-            let section = self?.dataSource?.sectionIdentifier(for: sectionIndex)
-            
-            switch section {
-            case .vertical:
-                return self?.createVerticalSection()
-            default:
-                return nil
-            }
-        })
-    }
-    
-    private func createVerticalSection() -> NSCollectionLayoutSection {
-        // Item
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .estimated(44)
-        )
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 4, bottom: 8, trailing: 4)
-        
-        // Group
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .estimated(44)
-        )
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        
-        // Section
-        let section = NSCollectionLayoutSection(group: group)
-        return section
-    }
-}
-
-//MARK: - DataSource
-extension AlarmViewController {
-    private func createSnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-        
-        let alarmItems = [Item.alarmItem("1"),Item.alarmItem("2"),Item.alarmItem("3")]
-        let alarmSection = Section.vertical
-        
-        snapshot.appendSections([alarmSection])
-        snapshot.appendItems(alarmItems)
-        
-        dataSource?.apply(snapshot)
-    }
-    
-    private func setDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Item>(
-            collectionView: collectionView,
-            cellProvider: { collectionView, indexPath, item in
-                switch item {
-                case .alarmItem(let text):
-                    let cell = collectionView.dequeueReusableCell(
-                        withReuseIdentifier: AlarmCollectionViewCell.id,
-                        for: indexPath
-                    ) as? AlarmCollectionViewCell
-                    return cell
-                }
-            }
-        )
     }
 }

@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import RxSwift
 
 final class HomeNavBarViewCell: UICollectionViewCell {
-    static let id = "\(HomeNavBarViewCell.self)"
+    // MARK: - Properties
+    var disposeBag = DisposeBag()
     
     // MARK: UI
-    private let navBar = ArtBridgeNavBar().then {
+    let navBar = ArtBridgeNavBar().then {
         $0.leftButton.setImage(UIImage(named: "logo"), for: .normal)
         $0.rightButton.setImage(UIImage(named: "notice"), for: .normal)
         $0.searchView.isHidden = false
@@ -41,4 +43,8 @@ extension HomeNavBarViewCell {
             $0.top.left.right.equalToSuperview()
         }
     }
+}
+
+extension HomeNavBarViewCell {
+    static let id = "\(HomeNavBarViewCell.self)"
 }

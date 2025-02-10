@@ -31,11 +31,6 @@ final class HomeViewController: BaseViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
     // MARK: - UI
-    private var navBar = ArtBridgeNavBar().then {
-        $0.leftBtnItem.setImage(UIImage(named: "logo"), for: .normal)
-        $0.rightBtnItem.setImage(UIImage(systemName: "bell"), for: .normal)
-        $0.searchView.isHidden = false
-    }
     
     lazy var collectionView = UICollectionView(
         frame: .zero,
@@ -82,9 +77,6 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - Methods
     private func viewModelInputs() {
-        navBar.rightBtnItem.rx.tap
-            .bind(to: viewModel.inputs.showAlarm)
-            .disposed(by: disposeBag)
     }
     
     private func viewModelOutput() {
@@ -322,13 +314,22 @@ extension HomeViewController {
     private func setDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(
             collectionView: collectionView,
-            cellProvider: { collectionView, indexPath, item in
+            cellProvider: { [weak self] collectionView, indexPath, item in
+                guard let self = self else { return UICollectionViewCell() }
+                
                 switch item {
                 case .navBar:
-                    let cell = collectionView.dequeueReusableCell(
+                    guard let cell = collectionView.dequeueReusableCell(
                         withReuseIdentifier: HomeNavBarViewCell.id,
                         for: indexPath
-                    ) as? HomeNavBarViewCell
+                    ) as? HomeNavBarViewCell else { return UICollectionViewCell() }
+                    
+                    cell.navBar.rightButton.rx.tapGesture()
+                        .skip(1)
+                        .map { _ in }
+                        .bind(to: self.viewModel.inputs.showAlarm)
+                        .disposed(by: cell.disposeBag)
+                    
                     return cell
                     
                 case .category(let title):
