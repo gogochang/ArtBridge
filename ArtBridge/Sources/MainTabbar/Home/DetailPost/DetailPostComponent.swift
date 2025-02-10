@@ -25,5 +25,7 @@ final class DetailPostComponent {
         self.postID = postID
     }
     
-    
+    func comentBottmSheet(postId: Int) -> ComentBottomSheetComponent {
+        return ComentBottomSheetComponent(postId: postId)
+    }
 }

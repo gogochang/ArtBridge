@@ -97,9 +97,7 @@ extension ButtonScrollView {
         showsHorizontalScrollIndicator = false
         
         stackView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(8)
-            $0.left.bottom.equalToSuperview().inset(10)
-            $0.right.equalToSuperview()
+            $0.left.centerY.equalToSuperview()
         }
     }
 }

@@ -12,6 +12,7 @@ import RxCocoa
 final class DetailPostViewModel {
     private var disposeBag = DisposeBag()
     var inputs = Input()
+    var routeInputs = RouteInput()
     var outputs = Output()
     var routes = Route()
     
@@ -29,10 +30,19 @@ final class DetailPostViewModel {
         inputs.backward
             .bind(to: routes.backward)
             .disposed(by: disposeBag)
+        
+        inputs.showComentBottomSheet
+            .bind(to: routes.comentBottomSheet)
+            .disposed(by: disposeBag)
     }
     
     struct Input {
         var backward = PublishSubject<Void>()
+        var showComentBottomSheet = PublishSubject<Int>()
+    }
+    
+    struct RouteInput {
+        var needUpdate = PublishSubject<Bool>()
     }
     
     struct Output {
@@ -41,5 +51,6 @@ final class DetailPostViewModel {
     
     struct Route {
         var backward = PublishSubject<Void>()
+        var comentBottomSheet = PublishSubject<Int>()
     }
 }

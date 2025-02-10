@@ -35,4 +35,8 @@ final class HomeComponent {
     func detailNewsComponent(newsID: Int) -> DetailNewsComponent {
         return DetailNewsComponent(newsID: newsID)
     }
+    
+    var infoListComponent: PostListComponent {
+        return PostListComponent()
+    }
 }

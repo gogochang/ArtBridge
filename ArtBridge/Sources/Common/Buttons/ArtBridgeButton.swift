@@ -55,11 +55,6 @@ final class ArtBridgeButton: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-//        addInnerShadow()
-    }
-    
     // MARK: Methods
     func setTitle(_ title: String) {
         self.title = title
@@ -113,7 +108,6 @@ extension ArtBridgeButton {
         }
         
         iconView.snp.makeConstraints {
-            $0.size.equalTo(24)
             $0.top.left.bottom.equalToSuperview()
         }
         

@@ -40,9 +40,9 @@ final class NoticeViewController: BaseViewController {
         $0.kf.setImage(with: URL(string: "https://siqqojzclugpskrqnwyu.supabase.co/storage/v1/object/sign/testImage/banner_temp.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0ZXN0SW1hZ2UvYmFubmVyX3RlbXAucG5nIiwiaWF0IjoxNzM3ODE0NDg3LCJleHAiOjE3Mzg0MTkyODd9.G7pDsR14BcE9ZkjvesnTVO6yF75o4UxK0jQYjrLafZg&t=2025-01-25T14%3A14%3A48.225Z")!)
     }
     
-    private let kindButton = SelectionButton(title: "전체", icon: UIImage(named: "downArrow"))
-    private let regionButton = SelectionButton(title: "지역", icon: UIImage(named: "downArrow"))
-    private let careerButton = SelectionButton(title: "경력", icon: UIImage(named: "downArrow"))
+//    private let kindButton = SelectionButton(title: "전체", icon: UIImage(named: "downArrow"))
+//    private let regionButton = SelectionButton(title: "지역", icon: UIImage(named: "downArrow"))
+//    private let careerButton = SelectionButton(title: "경력", icon: UIImage(named: "downArrow"))
     private let horizontalScrollFilterButtonView = ButtonScrollView()
     
     private lazy var noticeCollectionView: UICollectionView = {
@@ -169,7 +169,7 @@ extension NoticeViewController: UICollectionViewDelegate, UICollectionViewDataSo
 //MARK: - Layout
 extension NoticeViewController {
     private func setupViews() {
-        horizontalScrollFilterButtonView.addArrangedSubviews(buttons: [kindButton, regionButton, careerButton])
+//        horizontalScrollFilterButtonView.addArrangedSubviews(buttons: [kindButton, regionButton, careerButton])
         
         // Add subviews to stackView
         contentStackView.addArrangedSubview(bannerView)

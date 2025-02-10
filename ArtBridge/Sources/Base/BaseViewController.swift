@@ -12,7 +12,7 @@ class BaseViewController: UIViewController {
     // MARK: - Properties
     
     // MARK: - UI
-    private let backgroundView = UIImageView()
+    let backgroundView = UIImageView()
     
     // MARK: - Init
     

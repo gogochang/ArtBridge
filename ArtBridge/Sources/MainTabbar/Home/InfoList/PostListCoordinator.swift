@@ -1,62 +1,59 @@
 //
-//  DetailPostCoordinator.swift
+//  PostListCoordinator.swift
 //  ArtBridge
 //
-//  Created by 김창규 on 5/12/24.
+//  Created by 김창규 on 2/8/25.
 //
 
 import UIKit
 
-enum PostDetailResult {
-    case backward
+enum PostListResult {
+case backward
 }
 
-final class DetailPostCoordinator: BaseCoordinator<PostDetailResult> {
-    var component: DetailPostComponent
+final class PostListCoordinator: BaseCoordinator<PostListResult> {
+    var component: PostListComponent
     
-    //MARK: - Init
     init(
-        component: DetailPostComponent,
+        component: PostListComponent,
         navController: UINavigationController
     ) {
         self.component = component
         super.init(navController: navController)
     }
     
-    override func start(animated : Bool) {
+    override func start(animated: Bool = true) {
         let scene = component.scene
         navigationController.pushViewController(scene.VC, animated: animated)
         
         closeSignal
-            .debug()
-            .bind { [weak self] result in
+            .subscribe(onNext: { [weak self] result in
                 switch result {
                 case .backward:
-                    self?.navigationController.popViewController(animated: true)
+                    self?.navigationController.popViewController(animated: animated)
                 }
-            }.disposed(by: sceneDisposeBag)
+                
+            }).disposed(by: sceneDisposeBag)
         
         scene.VM.routes.backward
-            .debug()
-            .map { PostDetailResult.backward }
+            .map { PostListResult.backward }
             .bind(to: closeSignal)
             .disposed(by: sceneDisposeBag)
         
-        scene.VM.routes.comentBottomSheet
-            .debug()
+        scene.VM.routes.detailPostList
             .map { (vm: scene.VM, postId: $0) }
             .bind { [weak self] inputs in
-                self?.pushComentBottomSheetScene(
+                self?.pushDetailPostScene(
                     vm: inputs.vm,
-                    postId: inputs.postId,
+                    postID: inputs.postId,
                     animated: true
                 )
             }.disposed(by: sceneDisposeBag)
     }
     
-    private func pushComentBottomSheetScene(vm: DetailPostViewModel, postId: Int, animated: Bool) {
-        let comp = component.comentBottmSheet(postId: postId)
-        let coord = ComentBottomSheetCoordinator(component: comp, navController: navigationController)
+    private func pushDetailPostScene(vm: PostListViewModel, postID: Int, animated: Bool) {
+        let comp = component.detailPostComponent(postID: postID)
+        let coord = DetailPostCoordinator(component: comp, navController: navigationController)
         
         coordinate(coordinator: coord, animated: animated) { coordResult in
             switch coordResult {
@@ -67,3 +64,4 @@ final class DetailPostCoordinator: BaseCoordinator<PostDetailResult> {
         }
     }
 }
+

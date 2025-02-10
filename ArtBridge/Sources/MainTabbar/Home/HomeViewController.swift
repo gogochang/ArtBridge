@@ -11,7 +11,7 @@ import RxSwift
 fileprivate enum Section: Hashable {
     case navBar
     case category(headerTitle: String)
-    case info(headerTitle: String)
+    case post(headerTitle: String)
     case user(headerTitle: String)
     case news(headerTitle: String)
 }
@@ -19,7 +19,7 @@ fileprivate enum Section: Hashable {
 fileprivate enum Item: Hashable {
     case navBar
     case category(String)
-    case info(String)
+    case post(String)
     case user(String)
     case news(String)
 }
@@ -46,7 +46,7 @@ final class HomeViewController: BaseViewController {
             
             $0.register(HomeNavBarViewCell.self, forCellWithReuseIdentifier: HomeNavBarViewCell.id)
             $0.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.id)
-            $0.register(InfoCell.self, forCellWithReuseIdentifier: InfoCell.id)
+            $0.register(PostCell.self, forCellWithReuseIdentifier: PostCell.id)
             $0.register(UserCell.self, forCellWithReuseIdentifier: UserCell.id)
             
             $0.register(
@@ -105,7 +105,7 @@ extension HomeViewController {
                 return self?.createNavBarSection()
             case .category:
                 return self?.createCategorySection()
-            case .info:
+            case .post:
                 return self?.createInfoSection()
             case .user:
                 return self?.createUserSection()
@@ -278,12 +278,12 @@ extension HomeViewController {
         let categorySection = Section.category(headerTitle: "당신이 사랑하는 클래식 음악")
         
         let infoItem = [
-            Item.info("AA"),
-            Item.info("BB"),
-            Item.info("CC"),
-            Item.info("DD"),
+            Item.post("AA"),
+            Item.post("BB"),
+            Item.post("CC"),
+            Item.post("DD"),
         ]
-        let infoSection = Section.info(headerTitle: "지금 인기있는 클래식 정보")
+        let infoSection = Section.post(headerTitle: "지금 인기있는 클래식 정보")
         
         let userItem = [
             Item.user("A"),
@@ -300,7 +300,7 @@ extension HomeViewController {
             Item.news("CC"),
             Item.news("DD"),
         ]
-        let newsSection = Section.info(headerTitle: "따뜻한 클래식 뉴스")
+        let newsSection = Section.post(headerTitle: "따뜻한 클래식 뉴스")
         
         snapshot.appendSections([
             navBarSection,
@@ -339,11 +339,11 @@ extension HomeViewController {
                     cell?.configure(with: title)
                     return cell
                     
-                case .info:
+                case .post:
                     let cell = collectionView.dequeueReusableCell(
-                        withReuseIdentifier: InfoCell.id,
+                        withReuseIdentifier: PostCell.id,
                         for: indexPath
-                    ) as? InfoCell
+                    ) as? PostCell
                     
                     return cell
                 case .user:
@@ -355,9 +355,9 @@ extension HomeViewController {
                     return cell
                 case .news:
                     let cell = collectionView.dequeueReusableCell(
-                        withReuseIdentifier: InfoCell.id,
+                        withReuseIdentifier: PostCell.id,
                         for: indexPath
-                    ) as? InfoCell
+                    ) as? PostCell
                     
                     return cell
                 }
@@ -366,7 +366,8 @@ extension HomeViewController {
         )
         
         dataSource?.supplementaryViewProvider = {[weak self] collectionView, kind, indexPath -> UICollectionReusableView in
-            guard let header = collectionView.dequeueReusableSupplementaryView(
+            guard let self = self,
+                  let header = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind,
                 withReuseIdentifier: HomeHeaderView.id,
                 for: indexPath
@@ -374,7 +375,7 @@ extension HomeViewController {
                 return UICollectionReusableView()
             }
             
-            let section = self?.dataSource?.sectionIdentifier(for: indexPath.section)
+            let section = self.dataSource?.sectionIdentifier(for: indexPath.section)
             
             switch section {
             case .navBar:
@@ -382,8 +383,14 @@ extension HomeViewController {
             case .category(let title):
                 header.configure(title: title)
                 header.arrowButton.isHidden = true
-            case .info(let title):
+            case .post(let title):
                 header.configure(title: title)
+                
+                header.arrowButton.rx.tapGesture()
+                    .skip(1)
+                    .map { _ in }
+                    .bind(to: self.viewModel.inputs.showInfoList)
+                    .disposed(by: disposeBag)
             case .user(let title):
                 header.configure(title: title)
             case .news(let title):

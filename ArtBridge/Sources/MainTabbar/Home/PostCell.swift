@@ -1,22 +1,25 @@
 //
-//  InfoCell.swift
+//  PostCell.swift
 //  ArtBridge
 //
 //  Created by 김창규 on 2/7/25.
 //
 
 import UIKit
+import RxSwift
 import BlurUIKit
 
-final class InfoCell: UICollectionViewCell {
+final class PostCell: UICollectionViewCell {
     // MARK: - Properties
     
-    static let id = "\(InfoCell.self)"
+    static let id = "\(PostCell.self)"
+    var disposeBag = DisposeBag()
     
     // MARK: - UI
     private let blurView = VariableBlurView()
     
     private let imageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFill
         $0.backgroundColor = .systemGray
         $0.image = UIImage(named: "section-thumbnail-item")
     }
@@ -51,6 +54,12 @@ final class InfoCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - LifeCycle
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
+    
     // MARK: - Methods
     
     func configure() {}
@@ -58,7 +67,7 @@ final class InfoCell: UICollectionViewCell {
 
 // MARK: - Layout
 
-extension InfoCell {
+extension PostCell {
     private func setupViews() {
         contentView.layer.cornerRadius = 24
         contentView.clipsToBounds = true
