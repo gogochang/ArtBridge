@@ -14,6 +14,9 @@
 * Back-end: Supabase
 * 아키텍처: MVVM-C
 
+## Git flow
+![비바이노베이션_사전과제_깃플로우](https://github.com/user-attachments/assets/46ca07a8-46a6-4706-ba50-1e40198bffbb)
+
 ## 화면
 **1.홈**
 - 카테고리 / 게시글 / 유저 / 뉴스 리스트를 확인할 수 있습니다.
