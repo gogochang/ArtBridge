@@ -74,6 +74,13 @@ final class AlarmViewController: BaseViewController {
             .map { _ in }
             .bind(to: viewModel.inputs.backward)
             .disposed(by: disposeBag)
+        
+        navBar.rightButton.rx.tapGesture()
+            .when(.recognized)
+            .bind { _ in
+                let modalView = ModalViewController()
+                self.present(modalView, animated: true)
+            }.disposed(by: disposeBag)
     }
     
     private func configureDataSource() {
