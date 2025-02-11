@@ -20,7 +20,6 @@ final class CreatePostViewController: UIViewController {
         $0.rightBtnItem.isEnabled = false
         
         $0.title.text = "게시글 작성"
-        $0.hDivider.isHidden = false
     }
     
     private let selectCategoryView = SelectCategoryView()

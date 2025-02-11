@@ -41,5 +41,29 @@ final class DetailPostCoordinator: BaseCoordinator<PostDetailResult> {
             .map { PostDetailResult.backward }
             .bind(to: closeSignal)
             .disposed(by: sceneDisposeBag)
+        
+        scene.VM.routes.comentBottomSheet
+            .debug()
+            .map { (vm: scene.VM, postId: $0) }
+            .bind { [weak self] inputs in
+                self?.pushComentBottomSheetScene(
+                    vm: inputs.vm,
+                    postId: inputs.postId,
+                    animated: true
+                )
+            }.disposed(by: sceneDisposeBag)
+    }
+    
+    private func pushComentBottomSheetScene(vm: DetailPostViewModel, postId: Int, animated: Bool) {
+        let comp = component.comentBottmSheet(postId: postId)
+        let coord = ComentBottomSheetCoordinator(component: comp, navController: navigationController)
+        
+        coordinate(coordinator: coord, animated: animated) { coordResult in
+            switch coordResult {
+            case .backward:
+                vm.routeInputs.needUpdate.onNext(false)
+            }
+            
+        }
     }
 }

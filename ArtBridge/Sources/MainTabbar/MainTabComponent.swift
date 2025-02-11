@@ -19,12 +19,12 @@ final class MainTabComponent {
         return HomeComponent()
     }
     
-    var communityComponent: CommunityComponent {
-        return CommunityComponent()
+    var noticeComponent: NoticeComponent {
+        return NoticeComponent()
     }
     
-    var messageComponent: MessageListComponent {
-        return MessageListComponent()
+    var communityComponent: CommunityComponent {
+        return CommunityComponent()
     }
     
     var myPageComponent: MyPageComponent {

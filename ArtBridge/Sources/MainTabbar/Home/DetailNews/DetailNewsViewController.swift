@@ -257,11 +257,11 @@ extension DetailNewsViewController {
                         withReuseIdentifier: BannerCollectionViewCell.id,
                         for: indexPath
                     ) as? BannerCollectionViewCell
-                    cell?.configure(
-                        bannerModel: BannerModel(
-                            imageUrl: newsData.news.coverURL
-                        )
-                    )
+//                    cell?.configure(
+//                        bannerModel: BannerModel(
+//                            imageUrl: newsData.news.coverURL
+//                        )
+//                    )
                     return cell
                     
                 case .infoItem(let newsData):

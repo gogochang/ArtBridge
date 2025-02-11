@@ -16,6 +16,7 @@ final class BannerCollectionViewCell: UICollectionViewCell {
         $0.backgroundColor = .systemGray6
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
+        $0.image = UIImage(named: "section-thumbnail-item")
     }
     
     override init(frame: CGRect) {
@@ -23,9 +24,6 @@ final class BannerCollectionViewCell: UICollectionViewCell {
         
         setupViews()
         initialLayout()
-        
-        self.layer.cornerRadius = 10
-        self.clipsToBounds = true
     }
     
     required init?(coder: NSCoder) {
@@ -38,14 +36,14 @@ final class BannerCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: - Methods
-    func configure(bannerModel: BannerModel) {
-        let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
-        
-        bannerImage.kf.setImage(
-            with: URL(string: bannerModel.imageUrl),
-            options: options
-        )
-    }
+//    func configure(bannerModel: BannerModel) {
+//        let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
+//        
+//        bannerImage.kf.setImage(
+//            with: URL(string: bannerModel.imageUrl),
+//            options: options
+//        )
+//    }
 }
 
 

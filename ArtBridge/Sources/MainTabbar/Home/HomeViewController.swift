@@ -9,522 +9,412 @@ import UIKit
 import RxSwift
 
 fileprivate enum Section: Hashable {
-    case banner
-    case quickHorizontal
-    case PopularPost(String)
-    case PopularTutor(String)
-    case news(String)
+    case navBar
+    case category(headerTitle: String)
+    case post(headerTitle: String)
+    case user(headerTitle: String)
+    case news(headerTitle: String)
 }
 
 fileprivate enum Item: Hashable {
-    case normal(BannerModel)
-    case quickBtn(UIImage?, String)
-    case previewItem(ContentDataModel) //TODO: 인기글 데이터 Model로 변경
+    case navBar
+    case category(String)
+    case post(String)
+    case user(String)
+    case news(String)
 }
 
-struct BannerModel: Hashable { // TODO: 모델로 이동
-    var id = UUID()
-    var imageUrl: String
-}
-
-final class HomeViewController: UIViewController {
+final class HomeViewController: BaseViewController {
+    // MARK: - Properties
     private let disposeBag = DisposeBag()
+    private let viewModel: HomeViewModel
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
-    private var autoScrollTimer: Timer?
-    private var currentAutoScrollIndex = 1
-    private var isAutoScrollEnabled = false
-    private var timeInterval = 2.0
+    // MARK: - UI
     
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
-        $0.showsVerticalScrollIndicator = false
-        $0.backgroundColor = UIColor(white: 0.97, alpha: 1.0)
-        
-        $0.register(
-            BannerCollectionViewCell.self,
-            forCellWithReuseIdentifier: BannerCollectionViewCell.id
-        )
-        
-        $0.register(
-            QuickBtnCollectionViewCell.self,
-            forCellWithReuseIdentifier: QuickBtnCollectionViewCell.id
-        )
-        
-        $0.register(
-            PreviewCollectionViewCell.self,
-            forCellWithReuseIdentifier: PreviewCollectionViewCell.id
-        )
-        
-        $0.register(
-            HeaderView.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: HeaderView.id
-        )
-    }
+    lazy var collectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: self.createLayout()).then {
+            $0.backgroundColor = .clear
+            $0.showsVerticalScrollIndicator = false
+            $0.contentInset =  UIEdgeInsets(top: 0, left: 0, bottom: 156, right: 0)
+            
+            $0.register(HomeNavBarViewCell.self, forCellWithReuseIdentifier: HomeNavBarViewCell.id)
+            $0.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.id)
+            $0.register(PostCell.self, forCellWithReuseIdentifier: PostCell.id)
+            $0.register(UserCell.self, forCellWithReuseIdentifier: UserCell.id)
+            
+            $0.register(
+                HomeHeaderView.self,
+                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                withReuseIdentifier: HomeHeaderView.id
+            )
+        }
     
-    private lazy var pageController = UIPageControl().then {
-        $0.frame = CGRect(x: 0,
-                          y: self.collectionView.frame.height + 160,
-                          width: self.collectionView.frame.size.width,
-                          height: 40.0)
-        $0.numberOfPages = 4
-        $0.currentPageIndicatorTintColor = .white
-        $0.pageIndicatorTintColor = .darkGray
-        $0.addTarget(self, action: #selector(changePage(_:)), for: .valueChanged)
-    }
-    
-    @objc private func changePage(_ sender: UIPageControl) {
-        collectionView.scrollToItem(at: IndexPath(item: sender.currentPage, section: 0), at: .left, animated: true)
-    }
-    
-    private var navBar = ArtBridgeNavBar().then {
-        $0.leftBtnItem.setTitle("ArtBridge", for: .normal)
-        $0.leftBtnItem.setTitleColor(.orange, for: .normal)
-        $0.leftBtnItem.titleLabel?.font = .jalnan11
-        $0.rightBtnItem.setImage(UIImage(systemName: "bell"), for: .normal)
-        $0.searchView.isHidden = false
-    }
-    
-    private let viewModel: HomeViewModel
-    
+    // MARK: - Init
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+        super.init()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         initialLayout()
         
-        setDatasource()
+        setDataSource()
         createSnapshot()
         
         viewModelInputs()
         viewModelOutput()
-        
-        collectionView.delegate = self
+
     }
     
+    // MARK: - Methods
     private func viewModelInputs() {
-        navBar.rightBtnItem.rx.tap
-            .bind(to: viewModel.inputs.showAlarm)
-            .disposed(by: disposeBag)
     }
     
     private func viewModelOutput() {
-        viewModel.outputs.homeData
-            .bind(onNext: { [weak self] homeData in
-                self?.updateHomeData(with: homeData)
-            }).disposed(by: disposeBag)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        //FIXME: 리팩토링 후 활성화
-//        collectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .left, animated: false)
-    }
-    
-    //TODO: 여러 섹션을 업데이트 가능하도록 재사용을 고려한 메서드로 수정
-    private func updateHomeData(with homeData: HomeDataModel) {
-        guard var currentSnapshot = self.dataSource?.snapshot() else { return }
-        
-        let bannerSection = Section.banner
-        let bannerItems = homeData.bannerUrls.map { BannerModel(imageUrl: $0.URL) }
-        
-        // 현재 스냅샷의 복사본을 만들어서 작업
-        currentSnapshot.deleteItems(currentSnapshot.itemIdentifiers(inSection: bannerSection))
-        currentSnapshot.appendItems(bannerItems.map { Item.normal($0) }, toSection: bannerSection)
-        
-        let popularPostSection = Section.PopularPost("지금 인기있는 글")
-        let popularPostItems = homeData.popularPosts.compactMap { postData in
-            return Item.previewItem(postData)
-        }
-        
-        // 현재 스냅샷의 복사본을 만들어서 작업
-        currentSnapshot.deleteItems(currentSnapshot.itemIdentifiers(inSection: popularPostSection))
-        currentSnapshot.appendItems(popularPostItems, toSection: popularPostSection)
-
-        let popularTutorSection = Section.PopularTutor("지금 인기있는 강사")
-        let popularTutorItems = homeData.popularTutors.compactMap { tutorData in
-            return Item.previewItem(tutorData)
-        }
-        
-        // 현재 스냅샷의 복사본을 만들어서 작업
-        currentSnapshot.deleteItems(currentSnapshot.itemIdentifiers(inSection: popularTutorSection))
-        currentSnapshot.appendItems(popularTutorItems, toSection: popularTutorSection)
-        
-        let newsSection = Section.news("뉴스")
-        let newsItems = homeData.news.compactMap { newsData in
-            return Item.previewItem(newsData)
-        }
-        
-        currentSnapshot.deleteItems(currentSnapshot.itemIdentifiers(inSection: newsSection))
-        currentSnapshot.appendItems(newsItems, toSection: newsSection)
-        
-        // 메인 스레드에서 스냅샷을 적용
-        DispatchQueue.main.async {
-            self.dataSource?.apply(currentSnapshot)
-        }
-    }
-    
-    private func createSnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section,Item>()
-        let bannerSection = Section.banner
-        let bannerItems = [Item.normal(BannerModel(imageUrl: ""))]
-        snapshot.appendSections([bannerSection])
-        snapshot.appendItems(bannerItems, toSection: bannerSection)
-        
-        let horizontalSection = Section.quickHorizontal
-        let quickItems = [Item.quickBtn(UIImage(named: "piano.png"), "피아노"),
-                          Item.quickBtn(UIImage(named: "violin.png"), "바이올린"),
-                          Item.quickBtn(UIImage(named: "flute.png"),"플루트"),
-                          Item.quickBtn(UIImage(named: "horn.png"), "호른"),
-                          Item.quickBtn(UIImage(named: "harp.png"), "하프"),
-                          Item.quickBtn(UIImage(named: "more.png"), "더보기"),
-                          Item.quickBtn(UIImage(named: "more.png"), "테스트1"),
-                          Item.quickBtn(UIImage(named: "more.png"), "테스트2"),
-                          Item.quickBtn(UIImage(named: "more.png"), "테스트3"),
-                          Item.quickBtn(UIImage(named: "more.png"), "테스트4"),
-                          Item.quickBtn(UIImage(named: "more.png"), "테스트5"),
-        ]
-        snapshot.appendSections([horizontalSection])
-        snapshot.appendItems(quickItems, toSection: horizontalSection)
-        
-        let popularPostSection = Section.PopularPost("지금 인기있는 글")
-        snapshot.appendSections([popularPostSection])
-        
-        let popularTutorSection = Section.PopularTutor("지금 인기있는 강사")
-        snapshot.appendSections([popularTutorSection])
-        
-        let newsSection = Section.news("뉴스")
-        snapshot.appendSections([newsSection])
-        
-        dataSource?.apply(snapshot)
     }
 }
 
-//MARK: - Layout
-extension HomeViewController {
-    private func setupViews() {
-        view.addSubviews([
-            navBar,
-            collectionView,
-        ])
-        
-        collectionView.addSubviews([pageController])
-    }
-    
-    private func initialLayout() {
-        view.backgroundColor = .systemGray6
-        
-        navBar.snp.makeConstraints {
-            $0.top.left.right.equalToSuperview()
-        }
-        
-        collectionView.snp.makeConstraints {
-            $0.top.equalTo(navBar.snp.bottom)
-            $0.left.right.bottom.equalToSuperview()
-        }
-    }
-}
 //MARK: - CompositionalLayout
 extension HomeViewController {
     private func createLayout() -> UICollectionViewCompositionalLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()
-        config.interSectionSpacing = 20
+        config.interSectionSpacing = 32
+        
         return UICollectionViewCompositionalLayout(sectionProvider: { [weak self] sectionIndex, _ in
             let section = self?.dataSource?.sectionIdentifier(for: sectionIndex)
             
             switch section {
-            case .banner:
-                return self?.createBannerSection()
-            case .quickHorizontal:
-                return self?.createQuickBtnSection()
-            case .PopularPost:
-                return self?.createPopularHorizontalSection()
-            case .PopularTutor:
-                return self?.createPopularHorizontalSection()
+            case .navBar:
+                return self?.createNavBarSection()
+            case .category:
+                return self?.createCategorySection()
+            case .post:
+                return self?.createInfoSection()
+            case .user:
+                return self?.createUserSection()
             case .news:
-                return self?.createNewsHorizontalSection()
+                return self?.createInfoSection()
             default:
-                return self?.createBannerSection()
+                return nil
             }
             
-        },configuration: config)
+        }, configuration: config)
     }
     
-    private func createBannerSection() -> NSCollectionLayoutSection {
+    private func createNavBarSection() -> NSCollectionLayoutSection {
         // Item
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .fractionalHeight(1.0)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)  // 아이템 간 간격 조정
+        
         // Group
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(200)
+            heightDimension: .absolute(60)
         )
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         // Section
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .groupPagingCentered
-        
-        //FIXME: 리팩토링 후 활성화
-//        let pageWidth = collectionView.bounds.width
-//        section.visibleItemsInvalidationHandler = { [weak self] (visibleItems, offset, env) in
-//            guard let self = self else { return }
-//            if let page = Int(exactly: (offset.x + pageWidth) / pageWidth) {
-//                self.currentAutoScrollIndex = page
-//                
-//                if page == 6 {
-//                    collectionView.scrollToItem(at: IndexPath(row: 1, section: 0), at: .left, animated: false)
-//                } else if page == 1 {
-//                    collectionView.scrollToItem(at: IndexPath(row: 4, section: 0), at: .left, animated: false)
-//                } else {
-//                    self.pageController.currentPage = page - 2
-//                }
-//            }
-//            
-//            if self.isAutoScrollEnabled {
-//                self.configAutoScroll()
-//            }
-//        }
-        
         return section
     }
     
-    private func createQuickBtnSection() -> NSCollectionLayoutSection {
-        //Item
+    private func createCategorySection() -> NSCollectionLayoutSection {
+        // Item
         let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(0.5)
+            widthDimension: .estimated(40),
+            heightDimension: .absolute(40)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)  // 아이템 간 간격 조정
-        
+        item.edgeSpacing = NSCollectionLayoutEdgeSpacing(
+            leading: nil,  // 아이템 왼쪽 간격
+            top: nil,      // 아이템 상단 간격
+            trailing: .fixed(8),  // 아이템 오른쪽 간격
+            bottom: .fixed(8)
+        )
+
         // Group
         let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(0.25),
-            heightDimension: .absolute(160)
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(40)
         )
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         // Section
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 24, bottom: 0, trailing: 24)
+        section.interGroupSpacing = 8
+        
+        // Header
+        // Section Header 설정 (카테고리 섹션 헤더)
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(24)  // 🔹 카테고리 헤더 높이 설정
+        )
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .topLeading
+        )
+        
+        section.boundarySupplementaryItems = [header]
         
         return section
     }
     
-    private func createPopularHorizontalSection() -> NSCollectionLayoutSection {
-        //Item
+    private func createInfoSection() -> NSCollectionLayoutSection {
+        // Item
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .fractionalHeight(1.0)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)  // 아이템 간 간격 조정
-        
+
         // Group
         let groupSize = NSCollectionLayoutSize(
-            widthDimension: .absolute(200),
+            widthDimension: .absolute(240),
             heightDimension: .absolute(200)
         )
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         // Section
         let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 24, bottom: 0, trailing: 24)
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
-        
+        section.interGroupSpacing = 16
+        // Header
+        // Section Header 설정 (카테고리 섹션 헤더)
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(44)
+            heightDimension: .estimated(40)  // 🔹 카테고리 헤더 높이 설정
         )
-        
         let header = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .topLeading
         )
+        
         section.boundarySupplementaryItems = [header]
+        
         return section
     }
     
-    private func createNewsHorizontalSection() -> NSCollectionLayoutSection {
-        //Item
+    private func createUserSection() -> NSCollectionLayoutSection {
+        // Item
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .fractionalHeight(1.0)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)  // 아이템 간 간격 조정
         
         // Group
         let groupSize = NSCollectionLayoutSize(
-            widthDimension: .absolute(280),
-            heightDimension: .absolute(280)
+            widthDimension: .estimated(124),
+            heightDimension: .estimated(200)
         )
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         // Section
         let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 24, bottom: 0, trailing: 24)
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
-        
+        section.interGroupSpacing = 16
+        // Header
+        // Section Header 설정 (카테고리 섹션 헤더)
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(44)
+            heightDimension: .estimated(40)  // 🔹 카테고리 헤더 높이 설정
         )
-        
         let header = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .topLeading
         )
+        
         section.boundarySupplementaryItems = [header]
+        
         return section
     }
 }
 
-//MARK: - Datasource
+// MARK: - DataSource
 extension HomeViewController {
-    private func setDatasource() {
+    private func createSnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+        
+        let navBarItem = [Item.navBar]
+        let navBarSection = Section.navBar
+        
+        let categoryItem = [
+            Item.category("피아노"),
+            Item.category("플루트"),
+            Item.category("하프"),
+            Item.category("바이올린"),
+            Item.category("호른"),
+            Item.category("오카리나"),
+        ]
+        
+        let categorySection = Section.category(headerTitle: "당신이 사랑하는 클래식 음악")
+        
+        let infoItem = [
+            Item.post("AA"),
+            Item.post("BB"),
+            Item.post("CC"),
+            Item.post("DD"),
+        ]
+        let infoSection = Section.post(headerTitle: "지금 인기있는 클래식 정보")
+        
+        let userItem = [
+            Item.user("A"),
+            Item.user("B"),
+            Item.user("C"),
+            Item.user("D"),
+        ]
+        let userSection = Section.user(headerTitle: "지금 인기있는 연주자")
+        
+        
+        let newsItem = [
+            Item.news("AA"),
+            Item.news("BB"),
+            Item.news("CC"),
+            Item.news("DD"),
+        ]
+        let newsSection = Section.post(headerTitle: "따뜻한 클래식 뉴스")
+        
+        snapshot.appendSections([
+            navBarSection,
+            categorySection,
+            infoSection,
+            userSection,
+            newsSection
+        ])
+        
+        snapshot.appendItems(navBarItem, toSection: navBarSection)
+        snapshot.appendItems(categoryItem, toSection: categorySection)
+        snapshot.appendItems(infoItem, toSection: infoSection)
+        snapshot.appendItems(userItem, toSection: userSection)
+        snapshot.appendItems(newsItem, toSection: newsSection)
+        
+        dataSource?.apply(snapshot)
+    }
+    
+    private func setDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(
             collectionView: collectionView,
-            cellProvider: { collectionView, indexPath, item in
+            cellProvider: { [weak self] collectionView, indexPath, item in
+                guard let self = self else { return UICollectionViewCell() }
                 
                 switch item {
-                case .normal(let bannerModel):
-                    let cell = collectionView.dequeueReusableCell(
-                        withReuseIdentifier: BannerCollectionViewCell.id,
+                case .navBar:
+                    guard let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: HomeNavBarViewCell.id,
                         for: indexPath
-                    ) as? BannerCollectionViewCell
+                    ) as? HomeNavBarViewCell else { return UICollectionViewCell() }
                     
-                    cell?.configure(bannerModel: bannerModel)
+                    cell.navBar.rightButton.rx.tapGesture()
+                        .skip(1)
+                        .map { _ in }
+                        .bind(to: self.viewModel.inputs.showAlarm)
+                        .disposed(by: cell.disposeBag)
                     
                     return cell
                     
-                case .quickBtn(let image, let title):
+                case .category(let title):
                     let cell = collectionView.dequeueReusableCell(
-                        withReuseIdentifier: QuickBtnCollectionViewCell.id,
+                        withReuseIdentifier: CategoryCell.id,
                         for: indexPath
-                    ) as? QuickBtnCollectionViewCell
-                    
-                    cell?.configure(
-                        icon: image,
-                        title: title
-                    )
+                    ) as? CategoryCell
+                    cell?.configure(with: title)
                     return cell
-                case .previewItem(let contentData):
-                    let cell = collectionView.dequeueReusableCell(
-                        withReuseIdentifier: PreviewCollectionViewCell.id,
-                        for: indexPath
-                    ) as? PreviewCollectionViewCell
                     
-                    cell?.configure(
-                        coverImgUrl: contentData.coverURL,
-                        title: contentData.title,
-                        subTitle: contentData.nickname
-                    )
+                case .post:
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: PostCell.id,
+                        for: indexPath
+                    ) as? PostCell
+                    
+                    return cell
+                case .user:
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: UserCell.id,
+                        for: indexPath
+                    ) as? UserCell
+                    
+                    return cell
+                case .news:
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: PostCell.id,
+                        for: indexPath
+                    ) as? PostCell
                     
                     return cell
                 }
-            })
+                
+            }
+        )
         
         dataSource?.supplementaryViewProvider = {[weak self] collectionView, kind, indexPath -> UICollectionReusableView in
-            guard let self = self else { return UICollectionReusableView() }
-            let header = collectionView.dequeueReusableSupplementaryView(
+            guard let self = self,
+                  let header = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind,
-                withReuseIdentifier: HeaderView.id,
+                withReuseIdentifier: HomeHeaderView.id,
                 for: indexPath
-            )
+            ) as? HomeHeaderView else {
+                return UICollectionReusableView()
+            }
+            
             let section = self.dataSource?.sectionIdentifier(for: indexPath.section)
             
             switch section {
-            case .PopularPost(let title):
-                (header as? HeaderView)?.configure(type: .post, title: title)
-            case .PopularTutor(let title):
-                (header as? HeaderView)?.configure(type: .tutors, title: title)
+            case .navBar:
+                break
+            case .category(let title):
+                header.configure(title: title)
+                header.arrowButton.isHidden = true
+            case .post(let title):
+                header.configure(title: title)
+                
+                header.arrowButton.rx.tapGesture()
+                    .skip(1)
+                    .map { _ in }
+                    .bind(to: self.viewModel.inputs.showInfoList)
+                    .disposed(by: disposeBag)
+            case .user(let title):
+                header.configure(title: title)
             case .news(let title):
-                (header as? HeaderView)?.configure(type: .news, title: title)
+                header.configure(title: title)
             default:
                 print("Default")
             }
             
-            (header as? HeaderView)?.titleView.rx.tapGesture()
-                .skip(1)
-                .map { _ in (header as? HeaderView)?.type ?? .none }
-                .bind(to: self.viewModel.inputs.showPopularPostList)
-                .disposed(by: (header as? HeaderView)?.disposeBag ?? DisposeBag())
-            
             return header
         }
+
     }
 }
 
-//MARK: - Auto Scroll Methods
+//MARK: - Layout
 extension HomeViewController {
-    private func configAutoScroll() {
-        resetAutoScrollTime()
-        setupAutoScrollTimer()
+    private func setupViews() {
+        view.addSubview(collectionView)
     }
     
-    private func resetAutoScrollTime() {
-        if autoScrollTimer != nil {
-            autoScrollTimer?.invalidate()
-            autoScrollTimer = nil
-        }
-    }
-    
-    private func setupAutoScrollTimer() {
-        autoScrollTimer = Timer.scheduledTimer(
-            timeInterval: self.timeInterval,
-            target: self,
-            selector: #selector(autoScrollAction(timer:)),
-            userInfo: nil,
-            repeats: true
-        )
-    }
-    
-    @objc private func autoScrollAction(timer: Timer) {
-        collectionView.scrollToItem(
-            at: IndexPath(
-                item: self.currentAutoScrollIndex,
-                section: 0
-            ),
-            at: .left,
-            animated: true
-        )
-    }
-}
-
-//MARK: - UICollectionViewDelegate
-extension HomeViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let section = dataSource?.sectionIdentifier(for: indexPath.section)
-        switch section {
-        case .banner:
-            print("A")
-        case .quickHorizontal:
-            self.viewModel.inputs.showDetailInstrument.onNext(())
-        case .PopularPost:
-            self.viewModel.inputs.showDetailPost.onNext(indexPath.item)
-        case .PopularTutor:
-            self.viewModel.inputs.showDetailTutor.onNext(indexPath.item)
-        case .news:
-            self.viewModel.inputs.showDetailNews.onNext(indexPath.item)
-        case .none:
-            print("none")
+    private func initialLayout() {
+        collectionView.snp.makeConstraints {
+            $0.top.left.bottom.right.equalToSuperview()
         }
     }
 }

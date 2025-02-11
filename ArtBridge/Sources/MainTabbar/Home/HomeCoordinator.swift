@@ -68,6 +68,15 @@ final class HomeCoordinator: BaseCoordinator<Void> {
                     newsID: inputs.newsID,
                     animated: true)
             }.disposed(by: sceneDisposeBag)
+        
+        scene.VM.routes.infoList
+            .map { scene.VM }
+            .bind { [weak self] vm in
+                self?.pushInfoListScene(
+                    vm: vm,
+                    animated: true
+                )
+            }.disposed(by: sceneDisposeBag)
     }
     
     private func pushAlarmScene(vm: HomeViewModel, animated: Bool) {
@@ -138,6 +147,18 @@ final class HomeCoordinator: BaseCoordinator<Void> {
     private func pushDetailNewsScene(vm: HomeViewModel, newsID: Int, animated: Bool) {
         let comp = component.detailNewsComponent(newsID: newsID)
         let coord = DetailNewsCoordinator(component: comp, navController: navigationController)
+        
+        coordinate(coordinator: coord, animated: animated) { coordResult in
+            switch coordResult {
+            case .backward:
+                vm.routeInputs.needUpdate.onNext(false)
+            }
+        }
+    }
+    
+    private func pushInfoListScene(vm: HomeViewModel, animated: Bool) {
+        let comp = component.infoListComponent
+        let coord = PostListCoordinator(component: comp, navController: navigationController)
         
         coordinate(coordinator: coord, animated: animated) { coordResult in
             switch coordResult {
