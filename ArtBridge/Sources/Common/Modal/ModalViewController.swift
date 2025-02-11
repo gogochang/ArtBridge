@@ -7,23 +7,57 @@
 
 import UIKit
 import RxSwift
+import BlurUIKit
 
 class ModalViewController: UIViewController {
     //MARK: - Properties
     private var disposeBag = DisposeBag()
     
     //MARK: - UI
-    private let containerView = UIView().then {
-        $0.layer.cornerRadius = 10
-        $0.layer.masksToBounds = true
-        $0.backgroundColor = .systemGray6
+    private let blurView = VariableBlurView().then {
+        $0.dimmingTintColor = .white.withAlphaComponent(0.08)
+        $0.dimmingOvershoot = .relative(fraction: 1)
     }
     
-    private let vStackView = UIStackView().then {
-        $0.axis = .vertical
-        $0.alignment = .fill
-        $0.distribution = .equalSpacing
-        $0.spacing = 1
+    private let containerView = UIView().then {
+        $0.layer.cornerRadius = 24
+        $0.layer.masksToBounds = true
+    }
+    
+    private let titleLabel = UILabel().then {
+        $0.textAlignment = .center
+        $0.font = .suitB20
+        $0.textColor = .white
+        $0.text = "알람 전부 지우기"
+    }
+    
+    private let subTitleLabel = UILabel().then {
+        $0.textAlignment = .center
+        $0.numberOfLines = 2
+        $0.font = .suitL14
+        $0.textColor = .white
+        $0.text = "모든 알람이 목록에서 제거됩니다. \n전부 지우시겠습니까?"
+    }
+    
+    private let agreeButton = SelectionButton().then {
+        $0.setCornerRadius(32)
+        $0.setTitle("전부 지우기")
+    }
+    
+    private let cancelButton = SelectionButton().then {
+        $0.setCornerRadius(32)
+        $0.setTitle("돌아가기")
+    }
+    
+    private let innerShadowView = UIView().then {
+        $0.backgroundColor = .clear
+        $0.layer.shadowColor = UIColor.white.cgColor
+        $0.layer.shadowOffset = CGSize(width: 0, height: 0)
+        $0.layer.shadowRadius = 2
+        $0.layer.shadowOpacity = 0.2
+        
+        $0.layer.borderWidth = 10
+        $0.layer.cornerRadius = 34
     }
     
     //MARK: - Init
@@ -64,75 +98,56 @@ class ModalViewController: UIViewController {
 //MARK: - Layout
 extension ModalViewController {
     private func setupViews() {
-        view.addSubviews([
-            containerView,
-        ])
+        view.addSubview(containerView)
         
         containerView.addSubviews([
-            vStackView
+            blurView,
+            innerShadowView,
+            titleLabel,
+            subTitleLabel,
+            agreeButton,
+            cancelButton
         ])
-        
-        let button1 = UIButton().then {
-            $0.backgroundColor = .white
-            $0.setTitle("수정", for: .normal)
-            $0.setTitleColor(.darkText, for: .normal)
-            $0.titleLabel?.font = .systemFont(ofSize: 14)
-            $0.rx.tapGesture()
-                .bind { _ in
-                    print("Button1 is Clicked")
-                    self.dismiss(animated: false)
-                }.disposed(by: disposeBag)
-            $0.snp.makeConstraints {
-                $0.height.equalTo(44)
-            }
-        }
-        
-        let button2 = UIButton().then {
-            $0.backgroundColor = .white
-            $0.setTitle("삭제", for: .normal)
-            $0.setTitleColor(.darkText, for: .normal)
-            $0.titleLabel?.font = .systemFont(ofSize: 14)
-            $0.rx.tapGesture()
-                .bind { _ in
-                    print("Button2 is Clicked")
-                    self.dismiss(animated: false)
-                }.disposed(by: disposeBag)
-            $0.snp.makeConstraints {
-                $0.height.equalTo(44)
-            }
-        }
-        
-        let button3 = UIButton().then {
-            $0.backgroundColor = .white
-            $0.setTitle("신고", for: .normal)
-            $0.setTitleColor(.darkText, for: .normal)
-            $0.titleLabel?.font = .systemFont(ofSize: 14)
-            $0.rx.tapGesture()
-                .bind { _ in
-                    print("Button3 is Clicked")
-                    self.dismiss(animated: false)
-                }.disposed(by: disposeBag)
-            $0.snp.makeConstraints {
-                $0.height.equalTo(44)
-            }
-        }
-        
-        let buttons = [button1, button2, button3]
-        
-        buttons.forEach {
-            vStackView.addArrangedSubview($0)
-        }
     }
     
     private func initiaLayout() {
-        vStackView.snp.makeConstraints {
+        blurView.snp.makeConstraints {
             $0.top.left.right.equalToSuperview()
+            $0.height.equalTo(340 * 2) //FIXME: 근본적인 해결방법이 아닙니다.
+        }
+        
+        innerShadowView.snp.makeConstraints {
+            $0.top.left.equalToSuperview().offset(-10)
+            $0.bottom.right.equalToSuperview().offset(10)
         }
         
         containerView.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.top.bottom.equalTo(vStackView)
-            $0.width.equalTo(240)
+            $0.width.equalTo(345)
+            $0.height.equalTo(340)
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(32)
+            $0.left.right.equalToSuperview().inset(16)
+            $0.height.equalTo(56)
+        }
+        
+        subTitleLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(4)
+            $0.left.right.equalTo(titleLabel)
+        }
+        
+        agreeButton.snp.makeConstraints {
+            $0.top.equalTo(subTitleLabel.snp.bottom).offset(24)
+            $0.left.right.equalToSuperview().inset(32)
+            $0.height.equalTo(64)
+        }
+        
+        cancelButton.snp.makeConstraints {
+            $0.top.equalTo(agreeButton.snp.bottom).offset(16)
+            $0.left.right.equalToSuperview().inset(32)
+            $0.height.equalTo(64)
         }
     }
 }

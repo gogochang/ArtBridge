@@ -177,6 +177,7 @@
 		2BE4EB9C2D576F5B007C0B16 /* SearchViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE4EB9B2D576F4D007C0B16 /* SearchViewCell.swift */; };
 		2BEDD4B92BE23DA300C12E17 /* MenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEDD4B82BE23DA300C12E17 /* MenuItemCollectionViewCell.swift */; };
 		2BF0B6A52C2EDFA700FD47B8 /* TutorAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF0B6A42C2EDFA700FD47B8 /* TutorAPIService.swift */; };
+		2BF9AA102D5A585800F8869C /* AlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF9AA0F2D5A585400F8869C /* AlarmCell.swift */; };
 		2BFA9C4B2C0DD42400E72C99 /* NewsInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFA9C4A2C0DD42400E72C99 /* NewsInfoCollectionViewCell.swift */; };
 		2BFA9C4D2C0DDD5600E72C99 /* NewsContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFA9C4C2C0DDD5600E72C99 /* NewsContentCollectionViewCell.swift */; };
 		2BFA9C502C0F340300E72C99 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFA9C4F2C0F340300E72C99 /* LoginViewController.swift */; };
@@ -363,6 +364,7 @@
 		2BE4EB9B2D576F4D007C0B16 /* SearchViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewCell.swift; sourceTree = "<group>"; };
 		2BEDD4B82BE23DA300C12E17 /* MenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BF0B6A42C2EDFA700FD47B8 /* TutorAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorAPIService.swift; sourceTree = "<group>"; };
+		2BF9AA0F2D5A585400F8869C /* AlarmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmCell.swift; sourceTree = "<group>"; };
 		2BFA9C4A2C0DD42400E72C99 /* NewsInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BFA9C4C2C0DDD5600E72C99 /* NewsContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BFA9C4F2C0F340300E72C99 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -822,6 +824,7 @@
 		2BB084AD2C1EA7C1005E7221 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				2BF9AA0F2D5A585400F8869C /* AlarmCell.swift */,
 				2BB084AE2C1EA7D5005E7221 /* AlarmCollectionViewCell.swift */,
 			);
 			path = Cells;
@@ -1210,6 +1213,7 @@
 				2BE4EB8E2D575B0E007C0B16 /* BaseViewModel.swift in Sources */,
 				2B529CB82D5456A7004BAB32 /* SearchView.swift in Sources */,
 				2BB084AA2C1E993E005E7221 /* AlarmComponent.swift in Sources */,
+				2BF9AA102D5A585800F8869C /* AlarmCell.swift in Sources */,
 				2B455FD12C22F2FB00C29F0B /* HomeAPIService.swift in Sources */,
 				2BB5157C2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift in Sources */,
 				2B4E1ECF2D5629980086AD5D /* UserCell.swift in Sources */,
