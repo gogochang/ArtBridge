@@ -392,8 +392,16 @@ extension HomeViewController {
                     .map { _ in }
                     .bind(to: self.viewModel.inputs.showInfoList)
                     .disposed(by: disposeBag)
+                
             case .user(let title):
+                
                 header.configure(title: title)
+                header.arrowButton.rx.tapGesture()
+                    .when(.recognized)
+                    .map { _ in }
+                    .bind(to: self.viewModel.inputs.showUserList)
+                    .disposed(by: disposeBag)
+                
             case .news(let title):
                 header.configure(title: title)
             default:

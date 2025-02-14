@@ -114,6 +114,10 @@
 		2B6F28A92BED330100BDA911 /* ContentListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28A82BED330100BDA911 /* ContentListComponent.swift */; };
 		2B6F28AB2BED33A800BDA911 /* ContentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28AA2BED33A800BDA911 /* ContentListViewModel.swift */; };
 		2B6F28AD2BED347200BDA911 /* ContentListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F28AC2BED347200BDA911 /* ContentListCoordinator.swift */; };
+		2B75D4F82D5C0AA30085D46D /* UserListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B75D4F72D5C0A9D0085D46D /* UserListCoordinator.swift */; };
+		2B75D4FA2D5C0AAA0085D46D /* UserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B75D4F92D5C0AA60085D46D /* UserListViewModel.swift */; };
+		2B75D4FC2D5C0AB20085D46D /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B75D4FB2D5C0AAE0085D46D /* UserListViewController.swift */; };
+		2B75D4FE2D5C0AB90085D46D /* UserListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B75D4FD2D5C0AB60085D46D /* UserListComponent.swift */; };
 		2B95145C2C9C4E22002D4E2B /* ArtBridgeInputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B95145B2C9C4E22002D4E2B /* ArtBridgeInputTextView.swift */; };
 		2B9705C72C21DBDC00B94E8B /* PostAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9705C62C21DBDC00B94E8B /* PostAPIService.swift */; };
 		2B9705C92C21DE4400B94E8B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2B9705C82C21DE4400B94E8B /* FirebaseFirestore */; };
@@ -307,6 +311,10 @@
 		2B6F28A82BED330100BDA911 /* ContentListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListComponent.swift; sourceTree = "<group>"; };
 		2B6F28AA2BED33A800BDA911 /* ContentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListViewModel.swift; sourceTree = "<group>"; };
 		2B6F28AC2BED347200BDA911 /* ContentListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListCoordinator.swift; sourceTree = "<group>"; };
+		2B75D4F72D5C0A9D0085D46D /* UserListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListCoordinator.swift; sourceTree = "<group>"; };
+		2B75D4F92D5C0AA60085D46D /* UserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModel.swift; sourceTree = "<group>"; };
+		2B75D4FB2D5C0AAE0085D46D /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
+		2B75D4FD2D5C0AB60085D46D /* UserListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListComponent.swift; sourceTree = "<group>"; };
 		2B95145B2C9C4E22002D4E2B /* ArtBridgeInputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtBridgeInputTextView.swift; sourceTree = "<group>"; };
 		2B9705C62C21DBDC00B94E8B /* PostAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAPIService.swift; sourceTree = "<group>"; };
 		2B9C4FD12BF0B57E0058CE3F /* DetailPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewController.swift; sourceTree = "<group>"; };
@@ -739,6 +747,17 @@
 			path = ContentList;
 			sourceTree = "<group>";
 		};
+		2B75D4F62D5C0A960085D46D /* UserList */ = {
+			isa = PBXGroup;
+			children = (
+				2B75D4FD2D5C0AB60085D46D /* UserListComponent.swift */,
+				2B75D4FB2D5C0AAE0085D46D /* UserListViewController.swift */,
+				2B75D4F92D5C0AA60085D46D /* UserListViewModel.swift */,
+				2B75D4F72D5C0A9D0085D46D /* UserListCoordinator.swift */,
+			);
+			path = UserList;
+			sourceTree = "<group>";
+		};
 		2B95145A2C9C4CD9002D4E2B /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -833,6 +852,7 @@
 		2BB5155F2BDAA7090092CC72 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				2B75D4F62D5C0A960085D46D /* UserList */,
 				2B3207972D5872C1009802C4 /* ComentBottomSheet */,
 				2BE4EB912D575EC9007C0B16 /* InfoList */,
 				2B54ADD12C1B35A1002BD5C5 /* DetailInstrument */,
@@ -1205,6 +1225,7 @@
 				2B6B20D92BFCBBB9002D9E79 /* DetailNewsCoordinator.swift in Sources */,
 				2BB515762BDBD1800092CC72 /* ArtBridgeNavBar.swift in Sources */,
 				2B1469C12BD38F8000E6483E /* ViewController.swift in Sources */,
+				2B75D4F82D5C0AA30085D46D /* UserListCoordinator.swift in Sources */,
 				2B5C6C9B2BF845AC004800CC /* ScrollCounter.swift in Sources */,
 				2B455FD32C22F61400C29F0B /* FirestoreService.swift in Sources */,
 				2BFA9C4D2C0DDD5600E72C99 /* NewsContentCollectionViewCell.swift in Sources */,
@@ -1214,6 +1235,7 @@
 				2B529CB82D5456A7004BAB32 /* SearchView.swift in Sources */,
 				2BB084AA2C1E993E005E7221 /* AlarmComponent.swift in Sources */,
 				2BF9AA102D5A585800F8869C /* AlarmCell.swift in Sources */,
+				2B75D4FC2D5C0AB20085D46D /* UserListViewController.swift in Sources */,
 				2B455FD12C22F2FB00C29F0B /* HomeAPIService.swift in Sources */,
 				2BB5157C2BDDFCDD0092CC72 /* PreviewCollectionViewCell.swift in Sources */,
 				2B4E1ECF2D5629980086AD5D /* UserCell.swift in Sources */,
@@ -1289,6 +1311,7 @@
 				2BB9006F2CA69875004FC44C /* CreatePostBottomView.swift in Sources */,
 				2BE4EB9C2D576F5B007C0B16 /* SearchViewCell.swift in Sources */,
 				2B27FA242D4604DE00BA3817 /* DetailNoticeCoordinator.swift in Sources */,
+				2B75D4FA2D5C0AAA0085D46D /* UserListViewModel.swift in Sources */,
 				2BB5159D2BDFE4F70092CC72 /* MyPageViewController.swift in Sources */,
 				2B27FA162D453D5300BA3817 /* FilterCollectionViewCell.swift in Sources */,
 				2B6F28A72BED326300BDA911 /* ContentListViewController.swift in Sources */,
@@ -1303,6 +1326,7 @@
 				2B6B20D52BFCBBA7002D9E79 /* DetailNewsViewModel.swift in Sources */,
 				2BB5159B2BDFE4ED0092CC72 /* MyPageComponent.swift in Sources */,
 				2B54ADD92C1B35DA002BD5C5 /* DetailInstrumentCoordinator.swift in Sources */,
+				2B75D4FE2D5C0AB90085D46D /* UserListComponent.swift in Sources */,
 				2B9C4FDD2BF0CA740058CE3F /* ContentCollectionViewCell.swift in Sources */,
 				2B3207A22D588275009802C4 /* ComentCell.swift in Sources */,
 				2BB5157A2BDDF1E60092CC72 /* HeaderView.swift in Sources */,

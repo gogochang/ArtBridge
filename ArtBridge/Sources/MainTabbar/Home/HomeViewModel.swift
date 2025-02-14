@@ -58,6 +58,10 @@ final class HomeViewModel {
         inputs.showInfoList
             .bind(to: routes.infoList)
             .disposed(by: disposeBag)
+        
+        inputs.showUserList
+            .bind(to: routes.userList)
+            .disposed(by: disposeBag)
     }
     
     struct RouteInput {
@@ -75,6 +79,7 @@ final class HomeViewModel {
         var showDetailNews = PublishSubject<Int>()
         
         var showInfoList = PublishSubject<Void>()
+        var showUserList = PublishSubject<Void>()
     }
     
     struct Output {
@@ -92,5 +97,6 @@ final class HomeViewModel {
         var detailNews = PublishSubject<Int>()
         
         var infoList = PublishSubject<Void>()
+        var userList = PublishSubject<Void>()
     }
 }

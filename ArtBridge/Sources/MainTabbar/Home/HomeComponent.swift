@@ -39,4 +39,8 @@ final class HomeComponent {
     var infoListComponent: PostListComponent {
         return PostListComponent()
     }
+    
+    var userListComponent: UserListComponent {
+        return UserListComponent()
+    }
 }
