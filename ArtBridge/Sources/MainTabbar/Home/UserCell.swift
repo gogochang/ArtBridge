@@ -15,7 +15,7 @@ final class UserCell: UICollectionViewCell {
     // MARK: - UI
     private let profileImageView = UIImageView().then {
         $0.backgroundColor = .systemGray
-        $0.layer.cornerRadius = 62
+        
         $0.clipsToBounds = true
         $0.image = UIImage(named: "testuser")
     }
@@ -60,10 +60,11 @@ extension UserCell {
     }
     
     private func initialLayout() {
+        profileImageView.layer.cornerRadius = self.frame.width / 2
         profileImageView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.left.right.equalToSuperview()
-            $0.size.equalTo(124)
+            $0.size.equalTo(self.frame.width)
         }
         
         nameLabel.snp.makeConstraints {
