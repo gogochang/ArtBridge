@@ -20,6 +20,7 @@ fileprivate enum Item: Hashable {
 
 final class UserListViewController: BaseViewController {
     //MARK: - Properties
+    private let disposeBag = DisposeBag()
     private let viewModel: UserListViewModel
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
@@ -63,7 +64,10 @@ final class UserListViewController: BaseViewController {
     
     //MARK: - Methods
     private func viewModelInput() {
-        
+        navBar.leftButton.rx.tapGesture()
+            .when(.recognized) .map { _ in }
+            .bind(to: viewModel.routes.backward)
+            .disposed(by: disposeBag)
     }
     
     private func viewModelOutput() {
