@@ -9,35 +9,7 @@ import Foundation
 import RxSwift
 import FirebaseFirestore
 
-//TODO: 모델로 이동
-struct HomeDataModel: Decodable {
-    var bannerUrls: [HomeBannerDataModel]
-    var popularPosts: [ContentDataModel]
-    var popularTutors: [ContentDataModel]
-    var news: [ContentDataModel]
-    
-    enum CodingKeys: String, CodingKey {
-        case bannerUrls = "bannerUrls"
-        case popularPosts = "popularPosts"
-        case popularTutors = "popularTutors"
-        case news = "news"
-    }
-}
 
-struct ContentDataModel: Decodable, Equatable, Hashable {
-    let id: Int
-    let userId: Int
-    let nickname: String
-    let category: String
-    let title: String
-    let content: String
-    let coverURL: String
-    var likeCount: Int
-}
-
-struct HomeBannerDataModel: Decodable {
-    let URL: String
-}
 
 final class HomeAPIService {
     //MARK: - Properties

@@ -8,11 +8,6 @@
 import Foundation
 import RxSwift
 
-struct DetailPostDataModel: Hashable {
-    let post: ContentDataModel
-    let author: UserDataModel
-}
-
 final class PostAPIService {
     //MARK: - Properties
     private let disposeBag = DisposeBag()

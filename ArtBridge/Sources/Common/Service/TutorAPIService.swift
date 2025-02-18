@@ -8,17 +8,6 @@
 import Foundation
 import RxSwift
 
-struct DetailTutorDataModel: Hashable {
-    let tutor: ContentDataModel
-    let author: UserDataModel
-}
-
-struct UserDataModel: Decodable, Hashable {
-    let id: Int
-    let nickname: String
-    let profileImgUrl: String
-}
-
 final class TutorAPIService {
     //MARK: - Properties
     private let disposeBag = DisposeBag()

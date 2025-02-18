@@ -8,11 +8,6 @@
 import Foundation
 import RxSwift
 
-struct DetailNewsDataModel: Hashable {
-    let news: ContentDataModel
-    let author: UserDataModel
-}
-
 final class NewsAPIService {
     //MARK: - Properties
     
