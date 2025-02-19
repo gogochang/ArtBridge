@@ -70,16 +70,19 @@ final class HomeViewController: BaseViewController {
         setDataSource()
         createSnapshot()
         
-        viewModelInputs()
-        viewModelOutput()
-
+        bind()
     }
     
-    // MARK: - Methods
-    private func viewModelInputs() {
-    }
-    
-    private func viewModelOutput() {
+    // MARK: - Bindindg
+    private func bind() {
+        let input = HomeViewModelInput(fetchHome: Observable.just(0))
+        
+        let output = viewModel.transform(input: input)
+        
+        output.homeData
+            .bind { [weak self] data in
+                print("api호출 후 데이터를 받아 홈데이터를 처리합니다.")
+            }.disposed(by: disposeBag)
     }
 }
 
@@ -324,10 +327,8 @@ extension HomeViewController {
                         for: indexPath
                     ) as? HomeNavBarViewCell else { return UICollectionViewCell() }
                     
-                    cell.navBar.rightButton.rx.tapGesture()
-                        .skip(1)
-                        .map { _ in }
-                        .bind(to: self.viewModel.inputs.showAlarm)
+                    cell.rightButtonTappedSubject
+                        .bind(to: viewModel.routes.alarm)
                         .disposed(by: cell.disposeBag)
                     
                     return cell
@@ -384,23 +385,18 @@ extension HomeViewController {
             case .category(let title):
                 header.configure(title: title)
                 header.arrowButton.isHidden = true
+                
             case .post(let title):
                 header.configure(title: title)
-                
-                header.arrowButton.rx.tapGesture()
-                    .skip(1)
-                    .map { _ in }
-                    .bind(to: self.viewModel.inputs.showInfoList)
-                    .disposed(by: disposeBag)
+                header.rightButtonTappedSubject
+                    .bind(to: viewModel.routes.infoList)
+                    .disposed(by: header.disposeBag)
                 
             case .user(let title):
-                
                 header.configure(title: title)
-                header.arrowButton.rx.tapGesture()
-                    .when(.recognized)
-                    .map { _ in }
-                    .bind(to: self.viewModel.inputs.showUserList)
-                    .disposed(by: disposeBag)
+                header.rightButtonTappedSubject
+                    .bind(to: viewModel.routes.userList)
+                    .disposed(by: header.disposeBag)
                 
             case .news(let title):
                 header.configure(title: title)

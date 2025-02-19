@@ -1,5 +1,5 @@
 //
-//  MainTabController.swift
+//  MainTabViewController.swift
 //  ArtBridge
 //
 //  Created by 김창규 on 4/20/24.
@@ -13,16 +13,17 @@ import RxCocoa
 import FirebaseAnalytics
 import BlurUIKit
 
-final class MainTabController: UIViewController {
+final class MainTabViewController: UIViewController {
     //MARK: - Properties
+    private var disposeBag = DisposeBag()
+    private let viewModel: MainTabViewModel
     private var isInitialized = false
     
     override func viewDidLoad() {
         setupViews()
         initLayout()
         
-        viewModelInput()
-        viewModelOutput()
+        bind()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -32,7 +33,7 @@ final class MainTabController: UIViewController {
         if !isInitialized {
             // 첫 화면을 홈화면으로 설정
             showSelectedVC(at: 0)
-            self.viewModel.inputs.homeSelected.onNext(())
+            tabSelected(at: 0)
             isInitialized = true
         }
     }
@@ -53,38 +54,21 @@ final class MainTabController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Properties
-    private var disposeBag = DisposeBag()
-    private let viewModel: MainTabViewModel
-    
-    private func viewModelInput() {
-        homeButton.rx.tapGesture()
-            .map { _ in }
-            .bind(to: viewModel.inputs.homeSelected)
-            .disposed(by: disposeBag)
+    // MARK: - Binding
+    private func bind() {
+        let input = MainTabViewModelInput(
+            homeSelected: homeButton.rx.tapGesture().asObservable(),
+            adevertiseSelected: homeButton.rx.tapGesture().asObservable(),
+            postSelected: homeButton.rx.tapGesture().asObservable(),
+            myPageSelected: homeButton.rx.tapGesture().asObservable()
+        )
         
-        //FIXME: 페이지가 구현되면 활성화합니다.
-        /**
-        advertiseButton.rx.tapGesture()
-            .map { _ in }
-            .bind(to: viewModel.inputs.adevertiseSelected)
-            .disposed(by: disposeBag)
+        let output = viewModel.transform(input: input)
         
-        postButton.rx.tapGesture()
-            .map { _ in }
-            .bind(to: viewModel.inputs.postSelected)
-            .disposed(by: disposeBag)
-        
-        myButton.rx.tapGesture()
-            .map { _ in }
-            .bind(to: viewModel.inputs.myPageSelected)
-            .disposed(by: disposeBag)
-         */
-    }
-    
-    private func viewModelOutput() {
-        viewModel.outputs.selectScene
+        output.selectScene
             .subscribe(onNext: { [weak self] index in
+                // FIXME: 나머지 화면 구현이 완료되면 수정필요합니다.
+                if index != 0 { return }
                 self?.tabSelected(at: index)
                 self?.showSelectedVC(at: index)
                 
@@ -198,7 +182,7 @@ final class MainTabController: UIViewController {
 }
 
 //MARK: - Layout
-extension MainTabController {
+extension MainTabViewController {
     private func setupViews() {
         view.addSubviews([
             mainContentView,

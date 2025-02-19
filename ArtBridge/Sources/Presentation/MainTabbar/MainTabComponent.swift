@@ -8,12 +8,12 @@
 import Foundation
 
 final class MainTabComponent {
-    lazy var scene: (VC: MainTabController, VM: MainTabViewModel) = (
-        VC: MainTabController(viewModel: viewModel),
+    lazy var scene: (VC: MainTabViewController, VM: MainTabViewModel) = (
+        VC: MainTabViewController(viewModel: viewModel),
         VM: viewModel
     )
     
-    lazy var viewModel = MainTabViewModel()
+    lazy var viewModel = DefaultMainTabViewModel()
     
     var homeComponent: HomeComponent {
         return HomeComponent()

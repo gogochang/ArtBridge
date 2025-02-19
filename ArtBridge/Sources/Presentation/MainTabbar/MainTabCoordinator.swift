@@ -47,11 +47,11 @@ final class MainTabCoordinator: BaseCoordinator<Void> {
         coordinate(coordinator: coord, animated: false, needRelease: false) { coordResult in
         }
         
-        vm.routes.home
-            .subscribe(onNext: {
-                comp.viewModel.routeInputs.needUpdate.onNext(true)
-            })
-            .disposed(by: sceneDisposeBag)
+//        vm.routes.home
+//            .subscribe(onNext: {
+//                comp.viewModel.routeInputs.needUpdate.onNext(true)
+//            })
+//            .disposed(by: sceneDisposeBag)
         
         return comp.scene.VC
     }

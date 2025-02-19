@@ -10,7 +10,7 @@ import UIKit
 final class HomeComponent {
     lazy var scene: (VC: HomeViewController, VM: HomeViewModel) = (VC: HomeViewController(viewModel: viewModel), VM: viewModel)
     
-    lazy var viewModel: HomeViewModel = .init()
+    lazy var viewModel: HomeViewModel = DefaultHomeViewModel()
     
     var alarmComponent: AlarmComponent {
         return AlarmComponent()

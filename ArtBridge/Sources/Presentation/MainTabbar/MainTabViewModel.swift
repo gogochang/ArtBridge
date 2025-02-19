@@ -5,74 +5,64 @@
 //  Created by 김창규 on 4/20/24.
 //
 
-import Foundation
+import UIKit
 import RxSwift
 
-final class MainTabViewModel {
-    //MARK: - Properties
+struct MainTabViewModelInput {
+    var homeSelected        : Observable<UITapGestureRecognizer>
+    var adevertiseSelected  : Observable<UITapGestureRecognizer>
+    var postSelected        : Observable<UITapGestureRecognizer>
+    var myPageSelected      : Observable<UITapGestureRecognizer>
+}
+
+struct MainTabViewModelOutput {
+    var selectScene         = PublishSubject<Int>()
+}
+
+struct MainTabViewModelRoute {
+    var home                = PublishSubject<Void>()
+    var community           = PublishSubject<Void>()
+    var message             = PublishSubject<Void>()
+    var myPage              = PublishSubject<Void>()
+}
+
+protocol MainTabViewModel {
+    //MARK: - Binding
+    func transform(input: MainTabViewModelInput) -> MainTabViewModelOutput
+}
+
+final class DefaultMainTabViewModel: MainTabViewModel {
+    // MARK: - Properties
     private var disposeBag = DisposeBag()
     
-    var inputs = Input()
-    var outputs = Output()
-    var routes = Route()
+    // MARK: - Init
+    init() {}
     
-    init() {
-        inputs.homeSelected
-            .subscribe(onNext: { [weak self] in
-                self?.changeSceneIfMember(to: 0)
-            })
+    // MARK: - Output
+    var selectedScene = PublishSubject<Int>()
+    
+    // MARK: - Binding
+    func transform(input: MainTabViewModelInput) -> MainTabViewModelOutput {
+        input.homeSelected
+            .map { _ in 0 }
+            .bind(to: selectedScene)
             .disposed(by: disposeBag)
         
-        inputs.adevertiseSelected
-            .subscribe(onNext: { [weak self] in
-                self?.changeSceneIfMember(to: 1)
-            }).disposed(by: disposeBag)
-        
-        inputs.postSelected
-            .subscribe(onNext: { [weak self] in
-                self?.changeSceneIfMember(to: 2)
-            })
+        input.adevertiseSelected
+            .map { _ in 1 }
+            .bind(to: selectedScene)
             .disposed(by: disposeBag)
         
-        inputs.myPageSelected
-            .subscribe(onNext: { [weak self] in
-                self?.changeSceneIfMember(to: 3)
-            }).disposed(by: disposeBag)
+        input.postSelected
+            .map { _ in 2 }
+            .bind(to: selectedScene)
+            .disposed(by: disposeBag)
         
-    }
-    
-    private func changeSceneIfMember(to index: Int) {
-        outputs.selectScene.onNext(index)
-        switch index {
-        case 0:
-            routes.home.onNext(())
-        case 1:
-            routes.community.onNext(())
-        case 2:
-            routes.message.onNext(())
-        case 3:
-            routes.myPage.onNext(())
-        default:
-            break
-        }
-    }
-    
-    struct Input {
-        var homeSelected = PublishSubject<Void>()
-        var adevertiseSelected = PublishSubject<Void>()
-        var postSelected = PublishSubject<Void>()
-        var myPageSelected = PublishSubject<Void>()
+        input.myPageSelected
+            .map { _ in 3 }
+            .bind(to: selectedScene)
+            .disposed(by: disposeBag)
         
-    }
-    
-    struct Output {
-        var selectScene = PublishSubject<Int>()
-    }
-    
-    struct Route {
-        var home = PublishSubject<Void>()
-        var community = PublishSubject<Void>()
-        var message = PublishSubject<Void>()
-        var myPage = PublishSubject<Void>()
+        return MainTabViewModelOutput(selectScene: selectedScene.asObserver())
     }
 }
