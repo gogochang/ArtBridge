@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 final class ComentBottomSheetViewModel: BaseViewModel {
-    //MARK: - Properties
+    // MARK: - Properties
     struct Input {
         
     }
@@ -32,11 +32,10 @@ final class ComentBottomSheetViewModel: BaseViewModel {
     var routes = Route()
     var routeInputs = RouteInputs()
     
-    //MARK: - Init
+    // MARK: - Init
     override init() {
         super.init()
     }
     
-    //MARK: - Methods
+    // MARK: - Methods
 }
-

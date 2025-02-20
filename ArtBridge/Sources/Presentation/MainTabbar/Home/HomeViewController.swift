@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-fileprivate enum Section: Hashable {
+private enum Section: Hashable {
     case navBar
     case category(headerTitle: String)
     case post(headerTitle: String)
@@ -16,7 +16,7 @@ fileprivate enum Section: Hashable {
     case news(headerTitle: String)
 }
 
-fileprivate enum Item: Hashable {
+private enum Item: Hashable {
     case navBar
     case category(String)
     case post(String)
@@ -80,13 +80,13 @@ final class HomeViewController: BaseViewController {
         let output = viewModel.transform(input: input)
         
         output.homeData
-            .bind { [weak self] data in
+            .bind { [weak self] _ in
                 print("api호출 후 데이터를 받아 홈데이터를 처리합니다.")
             }.disposed(by: disposeBag)
     }
 }
 
-//MARK: - CompositionalLayout
+// MARK: - CompositionalLayout
 extension HomeViewController {
     private func createLayout() -> UICollectionViewCompositionalLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()
@@ -267,7 +267,7 @@ extension HomeViewController {
             Item.category("하프"),
             Item.category("바이올린"),
             Item.category("호른"),
-            Item.category("오카리나"),
+            Item.category("오카리나")
         ]
         
         let categorySection = Section.category(headerTitle: "당신이 사랑하는 클래식 음악")
@@ -276,7 +276,7 @@ extension HomeViewController {
             Item.post("AA"),
             Item.post("BB"),
             Item.post("CC"),
-            Item.post("DD"),
+            Item.post("DD")
         ]
         let infoSection = Section.post(headerTitle: "지금 인기있는 클래식 정보")
         
@@ -284,16 +284,15 @@ extension HomeViewController {
             Item.user("A"),
             Item.user("B"),
             Item.user("C"),
-            Item.user("D"),
+            Item.user("D")
         ]
         let userSection = Section.user(headerTitle: "지금 인기있는 연주자")
-        
         
         let newsItem = [
             Item.news("AA"),
             Item.news("BB"),
             Item.news("CC"),
-            Item.news("DD"),
+            Item.news("DD")
         ]
         let newsSection = Section.post(headerTitle: "따뜻한 클래식 뉴스")
         
@@ -410,7 +409,7 @@ extension HomeViewController {
     }
 }
 
-//MARK: - Layout
+// MARK: - Layout
 extension HomeViewController {
     private func setupViews() {
         view.addSubview(collectionView)

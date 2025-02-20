@@ -8,23 +8,23 @@
 import UIKit
 import RxSwift
 
-fileprivate enum Section: Hashable {
+private enum Section: Hashable {
     case search
     case vertical
 }
 
-fileprivate enum Item: Hashable {
+private enum Item: Hashable {
     case search
     case user(String)
 }
 
 final class UserListViewController: BaseViewController {
-    //MARK: - Properties
+    // MARK: - Properties
     private let disposeBag = DisposeBag()
     private let viewModel: UserListViewModel
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
-    //MARK: - UI
+    // MARK: - UI
     private let navBar = ArtBridgeNavBar().then {
         $0.leftButton.setImage(UIImage(named: "iconBack"), for: .normal)
         $0.rightButton.isHidden = true
@@ -42,7 +42,7 @@ final class UserListViewController: BaseViewController {
             $0.register(UserCell.self, forCellWithReuseIdentifier: UserCell.id)
         }
     
-    //MARK: - Init
+    // MARK: - Init
     init(viewModel: UserListViewModel) {
         self.viewModel = viewModel
         super.init()
@@ -62,7 +62,7 @@ final class UserListViewController: BaseViewController {
         viewModelOutput()
     }
     
-    //MARK: - Methods
+    // MARK: - Methods
     private func viewModelInput() {
         navBar.leftButton.rx.tapGesture()
             .when(.recognized) .map { _ in }
@@ -200,8 +200,7 @@ extension UserListViewController {
     }
 }
 
-
-//MARK: - Layout
+// MARK: - Layout
 extension UserListViewController {
     private func setupViews() {
         view.addSubviews([
@@ -221,4 +220,3 @@ extension UserListViewController {
         }
     }
 }
-

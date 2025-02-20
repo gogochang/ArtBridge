@@ -11,7 +11,7 @@ import Kingfisher
 final class ContentCollectionViewCell: UICollectionViewCell {
     static let id = "ContentCollectionViewCell"
     
-    //MARK: - UI
+    // MARK: - UI
     private let profileView = ProfileView(profile: ProfileData(
         profileImgURL: "https://i.pravatar.cc/300?img=10",
         nickname: "밤양갱",
@@ -32,7 +32,7 @@ final class ContentCollectionViewCell: UICollectionViewCell {
         let attrString = NSMutableAttributedString(string: $0.text!)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4
-        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attrString.length))
+        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attrString.length))
         $0.attributedText = attrString
     }
     
@@ -77,7 +77,7 @@ final class ContentCollectionViewCell: UICollectionViewCell {
     }
 }
 
-//MARK: - Layout
+// MARK: - Layout
 extension ContentCollectionViewCell {
     private func setupViews() {
         addSubviews([

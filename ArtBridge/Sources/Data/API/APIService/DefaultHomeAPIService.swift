@@ -10,10 +10,10 @@ import RxSwift
 
 final class DefaultHomeAPIService: HomeAPIService {
     
-    //MARK: - Init
+    // MARK: - Init
     init() {}
     
-    //MARK: - Observable
+    // MARK: - Observable
     func fetchHome(userId: Int) -> Observable<APIResult<HomeData>> {
         return URLSession.shared
             .request(HomeAPI.fetchHome)

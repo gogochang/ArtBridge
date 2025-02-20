@@ -10,7 +10,7 @@ import UIKit
 final class AlarmCollectionViewCell: UICollectionViewCell {
     static let id = "AlarmCollectionViewCell"
     
-    //MARK: - UI
+    // MARK: - UI
     private let titleLabel = UILabel().then {
         $0.text = "알람 제목"
         $0.font = UIFont.systemFont(ofSize: 16, weight: .bold)
@@ -42,7 +42,7 @@ final class AlarmCollectionViewCell: UICollectionViewCell {
         $0.backgroundColor = .systemGray6
     }
     
-    //MARK: - Init
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -55,7 +55,7 @@ final class AlarmCollectionViewCell: UICollectionViewCell {
     }
 }
 
-//MARK: - Layout
+// MARK: - Layout
 extension AlarmCollectionViewCell {
     private func setupViews() {
         addSubviews([

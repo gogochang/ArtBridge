@@ -18,7 +18,7 @@ protocol Coordinator: AnyObject {
 }
 
 class BaseCoordinator<ResultType>: Coordinator {
-    //MARK: - LifeCycle
+    // MARK: - LifeCycle
     
     init(navController: UINavigationController) {
 //        Log.d(tag: .lifeCycle, "Coordinator Initialized")
@@ -26,7 +26,7 @@ class BaseCoordinator<ResultType>: Coordinator {
         navigationController.setNavigationBarHidden(true, animated: false)
     }
     
-    //MARK: - Internal
+    // MARK: - Internal
     typealias CoordinatorResult = ResultType
     
     var identifier: String { "\(Self.self)"}
@@ -34,8 +34,8 @@ class BaseCoordinator<ResultType>: Coordinator {
     
     var navigationController: UINavigationController
     
-    var childCoordinators = [String : any Coordinator]()
-    var childCloseSignalBags = [String : [any Disposable]]()
+    var childCoordinators = [String: any Coordinator]()
+    var childCloseSignalBags = [String: [any Disposable]]()
     
     var closeSignal = PublishSubject<CoordinatorResult>()
     
@@ -79,7 +79,7 @@ class BaseCoordinator<ResultType>: Coordinator {
         addChildDisposable(id: coordinator.identifier, disposable: disposable)
     }
     
-    //MARK: - Private
+    // MARK: - Private
     @discardableResult
     private func coordinate<T>(
         coordinator: BaseCoordinator<T>,

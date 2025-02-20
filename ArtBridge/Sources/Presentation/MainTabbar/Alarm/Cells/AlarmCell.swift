@@ -56,7 +56,7 @@ final class AlarmCell: UITableViewCell {
         $0.layer.cornerRadius = 34
     }
     
-    //MARK: - Init
+    // MARK: - Init
     override init(
         style: UITableViewCell.CellStyle,
         reuseIdentifier: String?
@@ -72,7 +72,7 @@ final class AlarmCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Methods
+    // MARK: - Methods
     func configure() {
         
     }

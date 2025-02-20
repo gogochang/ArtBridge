@@ -8,7 +8,7 @@
 import UIKit
 
 final class MainTabCoordinator: BaseCoordinator<Void> {
-    //MARK: - LiftCycle
+    // MARK: - LiftCycle
     init(
         component: MainTabComponent,
         navController: UINavigationController
@@ -17,20 +17,20 @@ final class MainTabCoordinator: BaseCoordinator<Void> {
         super.init(navController: navController)
     }
     
-    //MARK: - Internal
+    // MARK: - Internal
     var component: MainTabComponent
     
     override func start(animated _: Bool = true) {
         startTabbarController()
     }
     
-    //MARK: - Private
+    // MARK: - Private
     private func startTabbarController() {
         let scene = component.scene
         UITabBar.appearance().backgroundColor = UIColor.orange
         
         scene.VC.viewControllers = [
-            configureAndGetHomeScene(vm: scene.VM),
+            configureAndGetHomeScene(vm: scene.VM)
         ]
         
         navigationController.pushViewController(scene.VC, animated: false)
@@ -44,7 +44,7 @@ final class MainTabCoordinator: BaseCoordinator<Void> {
         let comp = component.homeComponent
         let coord = HomeCoordinator(component: comp, navController: navigationController)
         
-        coordinate(coordinator: coord, animated: false, needRelease: false) { coordResult in
+        coordinate(coordinator: coord, animated: false, needRelease: false) { _ in
         }
         
 //        vm.routes.home

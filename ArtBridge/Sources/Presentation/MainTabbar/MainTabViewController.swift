@@ -14,7 +14,7 @@ import FirebaseAnalytics
 import BlurUIKit
 
 final class MainTabViewController: UIViewController {
-    //MARK: - Properties
+    // MARK: - Properties
     private var disposeBag = DisposeBag()
     private let viewModel: MainTabViewModel
     private var isInitialized = false
@@ -46,7 +46,7 @@ final class MainTabViewController: UIViewController {
         Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
           AnalyticsParameterItemID: "id-\(className)",
           AnalyticsParameterItemName: className,
-          AnalyticsParameterContentType: "cont",
+          AnalyticsParameterContentType: "cont"
         ])
     }
     
@@ -118,7 +118,7 @@ final class MainTabViewController: UIViewController {
     
     var viewControllers: [UIViewController] = []
     
-    //MARK: - UI
+    // MARK: - UI
     private let mainContentView = UIView().then { view in
         view.backgroundColor = .red
     }
@@ -162,7 +162,7 @@ final class MainTabViewController: UIViewController {
     }
     
     private lazy var bottomContentHStack = UIStackView.make(
-        with: [homeButton,advertiseButton, postButton, myButton],
+        with: [homeButton, advertiseButton, postButton, myButton],
         axis: .horizontal,
         alignment: .center,
         distribution: .equalSpacing,
@@ -181,7 +181,7 @@ final class MainTabViewController: UIViewController {
     }
 }
 
-//MARK: - Layout
+// MARK: - Layout
 extension MainTabViewController {
     private func setupViews() {
         view.addSubviews([
@@ -193,7 +193,7 @@ extension MainTabViewController {
         bottomView.addSubviews([
             bottomBlurView,
             innerShadowView,
-            bottomContentHStack,
+            bottomContentHStack
         ])
     }
     

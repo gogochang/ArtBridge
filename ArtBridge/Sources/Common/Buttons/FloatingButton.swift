@@ -8,9 +8,9 @@
 import UIKit
 
 final class FloatingButton: UIView {
-    //MARK: - Properties
+    // MARK: - Properties
     
-    //MARK: - UI
+    // MARK: - UI
     private let containerView = UIView()
     
     private let imageView = UIImageView().then {
@@ -22,7 +22,7 @@ final class FloatingButton: UIView {
         
     }
     
-    //MARK: - Init
+    // MARK: - Init
     init() {
         super.init(frame: .zero)
         setupViews()
@@ -38,7 +38,7 @@ final class FloatingButton: UIView {
     }
 }
 
-//MARK: - Layout
+// MARK: - Layout
 extension FloatingButton {
     
     private func setupViews() {

@@ -12,7 +12,6 @@ class FirestoreService {
     static let shared = FirestoreService()
     let db = Firestore.firestore()
     
-    
     func fetchDocument<T: Decodable>(
         collection: String,
         documentId: String,

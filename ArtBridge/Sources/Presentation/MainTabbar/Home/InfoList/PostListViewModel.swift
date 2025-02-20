@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 final class PostListViewModel: BaseViewModel {
-    //MARK: - Properties
+    // MARK: - Properties
     struct Input {
         var showDetailPost = PublishSubject<Int>()
     }
@@ -33,7 +33,7 @@ final class PostListViewModel: BaseViewModel {
     var routes = Route()
     var routeInputs = RouteInputs()
     
-    //MARK: - Init
+    // MARK: - Init
     override init() {
         super.init()
         
@@ -42,6 +42,5 @@ final class PostListViewModel: BaseViewModel {
             .disposed(by: disposeBag)
     }
     
-    //MARK: - Methods
+    // MARK: - Methods
 }
-

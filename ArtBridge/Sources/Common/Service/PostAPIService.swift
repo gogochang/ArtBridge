@@ -9,13 +9,13 @@ import Foundation
 import RxSwift
 
 final class PostAPIService {
-    //MARK: - Properties
+    // MARK: - Properties
     private let disposeBag = DisposeBag()
     
-    //MARK: - Init
+    // MARK: - Init
     init() {}
     
-    //MARK: - Methods
+    // MARK: - Methods
     func fetchDetailPost(postId: Int) -> Observable<DetailPostDataModel> {
         let postDataObservable = fetchDetailPost2(postId: postId)
         

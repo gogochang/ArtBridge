@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 
 final class AlarmViewController: BaseViewController {
-    //MARK: - Properties
+    // MARK: - Properties
     private let viewModel: AlarmViewModel
     private var disposeBag = DisposeBag()
     private var dataSource: UITableViewDiffableDataSource<Int, String>!
@@ -22,7 +22,7 @@ final class AlarmViewController: BaseViewController {
         "다섯 번째 알람입니다."
     ]
     
-    //MARK: - UI
+    // MARK: - UI
     private let navBar = ArtBridgeNavBar().then {
         $0.leftButton.setImage(UIImage(named: "iconBack"), for: .normal)
         $0.rightButton.setImage(UIImage(named: "iconDelete"), for: .normal)
@@ -34,14 +34,14 @@ final class AlarmViewController: BaseViewController {
         tableView.register(AlarmCell.self, forCellReuseIdentifier: AlarmCell.id)
         tableView.backgroundColor = .clear
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 144 //기본 높이 설정 추가
+        tableView.estimatedRowHeight = 144 // 기본 높이 설정 추가
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         tableView.delegate = self
         return tableView
     }()
     
-    //MARK: - Init
+    // MARK: - Init
     init(viewModel: AlarmViewModel) {
         self.viewModel = viewModel
         super.init()
@@ -51,7 +51,7 @@ final class AlarmViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: LifeCycle
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -67,7 +67,7 @@ final class AlarmViewController: BaseViewController {
         dataSource.apply(snapshot, animatingDifferences: false) // 스냅샷을 적용
     }
     
-    //MARK: - Methods
+    // MARK: - Methods
     private func viewModelInput() {
         navBar.leftButton.rx.tapGesture()
             .skip(1)
@@ -84,8 +84,8 @@ final class AlarmViewController: BaseViewController {
     }
     
     private func configureDataSource() {
-        dataSource = UITableViewDiffableDataSource<Int, String>(tableView: alarmTableView) { (tableView, indexPath, comment) -> UITableViewCell? in
-            let cell = tableView.dequeueReusableCell(withIdentifier: AlarmCell.id, for: indexPath) as! AlarmCell
+        dataSource = UITableViewDiffableDataSource<Int, String>(tableView: alarmTableView) { (tableView, indexPath, _) -> UITableViewCell? in
+            let cell = tableView.dequeueReusableCell(withIdentifier: AlarmCell.id, for: indexPath) as? AlarmCell
             return cell
         }
     }
@@ -96,7 +96,7 @@ extension AlarmViewController: UITableViewDelegate {
     }
 }
 
-//MARK: - Layout
+// MARK: - Layout
 extension AlarmViewController {
     private func setupViews() {
         view.addSubviews([

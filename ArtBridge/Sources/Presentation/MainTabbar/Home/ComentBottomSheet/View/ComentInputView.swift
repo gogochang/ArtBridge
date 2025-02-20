@@ -8,9 +8,9 @@
 import UIKit
 
 class ComentInputView: UIView {
-    //MARK: - Properties
+    // MARK: - Properties
     
-    //MARK: - UI
+    // MARK: - UI
     private let profileImageView = UIImageView().then {
         $0.image = UIImage(named: "testProfile")
         $0.contentMode = .scaleAspectFill
@@ -39,7 +39,7 @@ class ComentInputView: UIView {
         $0.setTitle("남기기")
     }
 
-    //MARK: - Init
+    // MARK: - Init
     init() {
         super.init(frame: .zero)
         setupViews()
@@ -50,10 +50,10 @@ class ComentInputView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Methods
+    // MARK: - Methods
 }
 
-//MARK: - Layout
+// MARK: - Layout
 extension ComentInputView {
     private func setupViews() {
         clipsToBounds = true
@@ -94,4 +94,3 @@ extension ComentInputView {
         }
     }
 }
-

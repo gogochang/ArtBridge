@@ -8,7 +8,7 @@
 import UIKit
 
 final class SearchView: UIView {
-    //MARK: - UI
+    // MARK: - UI
     private let searchIcon = UIImageView().then {
         $0.image = UIImage(named: "search")
         $0.tintColor = .darkGray
@@ -30,7 +30,7 @@ final class SearchView: UIView {
         $0.layer.borderWidth = 10
     }
     
-    //MARK: - Init
+    // MARK: - Init
     init() {
         super.init(frame: .zero)
         
@@ -44,7 +44,7 @@ final class SearchView: UIView {
     }
 }
 
-//MARK: - Layout
+// MARK: - Layout
 extension SearchView {
     private func setupViews() {
         clipsToBounds = true

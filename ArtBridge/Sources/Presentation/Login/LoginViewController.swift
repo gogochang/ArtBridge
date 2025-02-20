@@ -10,11 +10,11 @@ import RxSwift
 import RxGesture
 
 final class LoginViewController: UIViewController {
-    //MARK: - Properties
+    // MARK: - Properties
     private var disposeBag = DisposeBag()
     private var viewModel: LoginViewModel
     
-    //MARK: - UI
+    // MARK: - UI
     private var backgroundImageView = UIImageView().then {
         $0.backgroundColor = .systemBrown
         $0.image = UIImage(named: "Launch")
@@ -52,7 +52,7 @@ final class LoginViewController: UIViewController {
         $0.contentMode = .scaleAspectFit
     }
     
-    //MARK: - Init
+    // MARK: - Init
     init(viewModel: LoginViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -63,7 +63,7 @@ final class LoginViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - LifeCycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -92,7 +92,7 @@ final class LoginViewController: UIViewController {
     }
 }
 
-//MARK: - Layout
+// MARK: - Layout
 extension LoginViewController {
     private func setupViews() {
         self.view.addSubviews([

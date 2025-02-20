@@ -20,7 +20,7 @@ final class HeaderView: UICollectionReusableView {
     var disposeBag = DisposeBag()
     var type: HeaderType = .none
     
-    //MARK: - UI
+    // MARK: - UI
     let titleView = UIView()
     
     private let titleLabel = UILabel().then {
@@ -41,7 +41,7 @@ final class HeaderView: UICollectionReusableView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    //MARK: - Internal
+    // MARK: - Internal
     func configure(
         type: HeaderType,
         title: String
@@ -52,11 +52,11 @@ final class HeaderView: UICollectionReusableView {
     }
 }
 
-//MARK: - Layout
+// MARK: - Layout
 extension HeaderView {
     private func setupViews() {
         addSubviews([
-            titleView,
+            titleView
         ])
         
         titleView.addSubviews([

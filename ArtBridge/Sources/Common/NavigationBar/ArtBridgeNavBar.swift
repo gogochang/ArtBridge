@@ -9,7 +9,7 @@ import UIKit
 import Then
 
 final class ArtBridgeNavBar: UIView {
-    //MARK: - UI
+    // MARK: - UI
     private var contentView = UIView()
     
     let leftBtnItem = UIButton().then {
@@ -48,7 +48,7 @@ final class ArtBridgeNavBar: UIView {
         $0.isHidden = true
     }
     
-    //MARK: - Init
+    // MARK: - Init
     init() {
         super.init(frame: .zero)
         setupViews()
@@ -60,11 +60,11 @@ final class ArtBridgeNavBar: UIView {
     }
 }
 
-//MARK: - Actions
+// MARK: - Actions
 extension ArtBridgeNavBar {
 }
 
-//MARK: - Layout
+// MARK: - Layout
 extension ArtBridgeNavBar {
     func setupViews() {
         addSubviews([
@@ -75,7 +75,7 @@ extension ArtBridgeNavBar {
             title,
             searchView,
             leftButton,
-            rightButton,
+            rightButton
         ])
     }
     

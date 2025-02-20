@@ -8,23 +8,23 @@
 import UIKit
 import RxSwift
 
-fileprivate enum Section: Hashable {
+private enum Section: Hashable {
     case search
     case vertical
 }
 
-fileprivate enum Item: Hashable {
+private enum Item: Hashable {
     case search
     case post(String)
 }
 
 final class PostListViewController: BaseViewController {
-    //MARK: - Properties
+    // MARK: - Properties
     private let disposeBag = DisposeBag()
     private let viewModel: PostListViewModel
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
-    //MARK: - UI
+    // MARK: - UI
     private let navBar = ArtBridgeNavBar().then {
         $0.leftButton.setImage(UIImage(named: "iconBack"), for: .normal)
         $0.rightButton.isHidden = true
@@ -42,7 +42,7 @@ final class PostListViewController: BaseViewController {
             $0.register(PostCell.self, forCellWithReuseIdentifier: PostCell.id)
         }
     
-    //MARK: - Init
+    // MARK: - Init
     init(viewModel: PostListViewModel) {
         self.viewModel = viewModel
         super.init()
@@ -62,7 +62,7 @@ final class PostListViewController: BaseViewController {
         viewModelOutput()
     }
     
-    //MARK: - Methods
+    // MARK: - Methods
     private func viewModelInput() {
         navBar.leftButton.rx.tapGesture()
             .skip(1)
@@ -205,12 +205,12 @@ extension PostListViewController {
         )
     }
 }
-//MARK: - Layout
+// MARK: - Layout
 extension PostListViewController {
     private func setupViews() {
         view.addSubviews([
             collectionView,
-            navBar,
+            navBar
         ])
     }
     
@@ -224,4 +224,3 @@ extension PostListViewController {
         }
     }
 }
-

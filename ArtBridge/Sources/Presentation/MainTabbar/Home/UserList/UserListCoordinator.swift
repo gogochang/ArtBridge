@@ -41,4 +41,3 @@ final class UserListCoordinator: BaseCoordinator<UserResult> {
             .disposed(by: sceneDisposeBag)
     }
 }
-

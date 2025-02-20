@@ -15,10 +15,10 @@ final class SelectionButton: UIView {
         }
     }
     private var title: String = ""
-    private var normalIcon: UIImage? = nil
-    private var selectedIcon: UIImage? = nil
+    private var normalIcon: UIImage?
+    private var selectedIcon: UIImage?
     
-    //MARK: - UI
+    // MARK: - UI
     private let contentView = UIView()
     
     private let iconView = UIImageView()
@@ -38,7 +38,7 @@ final class SelectionButton: UIView {
         $0.layer.borderWidth = 10
     }
     
-    //MARK: - Init
+    // MARK: - Init
     init() {
         super.init(frame: .zero)
         
@@ -90,7 +90,7 @@ extension SelectionButton {
     }
 }
 
-//MARK: - Layout
+// MARK: - Layout
 extension SelectionButton {
     private func setupViews() {
         backgroundColor = .white.withAlphaComponent(0.04)
@@ -136,4 +136,3 @@ extension SelectionButton {
         }
     }
 }
-

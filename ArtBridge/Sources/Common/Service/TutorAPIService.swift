@@ -9,13 +9,13 @@ import Foundation
 import RxSwift
 
 final class TutorAPIService {
-    //MARK: - Properties
+    // MARK: - Properties
     private let disposeBag = DisposeBag()
     
-    //MARK: - Init
+    // MARK: - Init
     init() {}
     
-    //MARK: - Methods
+    // MARK: - Methods
     func fetchDetailTutor(tutorId: Int) -> Observable<DetailTutorDataModel> {
         let tutorDataObservable = fetchDetailTutor2(tutorId: tutorId)
         

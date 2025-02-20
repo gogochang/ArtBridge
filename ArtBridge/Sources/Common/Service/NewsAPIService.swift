@@ -9,12 +9,12 @@ import Foundation
 import RxSwift
 
 final class NewsAPIService {
-    //MARK: - Properties
+    // MARK: - Properties
     
-    //MARK: - Init
+    // MARK: - Init
     init() {}
     
-    //MARK: - Observable
+    // MARK: - Observable
     func fetchDetailNews(newsID: Int) -> Observable<DetailNewsDataModel> {
         let newsDataObservable = fetchDetailNews2(newsID: newsID)
         
@@ -28,7 +28,7 @@ final class NewsAPIService {
                 }
         }
     }
-    //MARK: - Internal Methods
+    // MARK: - Internal Methods
     func fetchDetailNews2(newsID: Int) -> Observable<ContentDataModel> {
         return Observable.create { observer in
             FirestoreService.shared.fetchDocuments(

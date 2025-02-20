@@ -10,7 +10,7 @@ import UIKit
 final class CommentCollectionViewCell: UICollectionViewCell {
     static let id = "CommentCollectionViewCell"
     
-    //MARK: - UI
+    // MARK: - UI
     private let nickNameLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 12)
         $0.textColor = .darkGray
@@ -32,7 +32,7 @@ final class CommentCollectionViewCell: UICollectionViewCell {
         let attrString = NSMutableAttributedString(string: $0.text!)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4
-        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attrString.length))
+        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attrString.length))
         $0.attributedText = attrString
     }
     
@@ -67,7 +67,7 @@ final class CommentCollectionViewCell: UICollectionViewCell {
         $0.backgroundColor = .systemGray6
     }
     
-    //MARK: - Init
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -79,7 +79,7 @@ final class CommentCollectionViewCell: UICollectionViewCell {
     }
 }
 
-//MARK: - Layout
+// MARK: - Layout
 extension CommentCollectionViewCell {
     private func setupViews() {
         addSubviews([

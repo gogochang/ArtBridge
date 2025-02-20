@@ -9,10 +9,10 @@ import UIKit
 import RxSwift
 
 struct MainTabViewModelInput {
-    var homeSelected        : Observable<UITapGestureRecognizer>
-    var adevertiseSelected  : Observable<UITapGestureRecognizer>
-    var postSelected        : Observable<UITapGestureRecognizer>
-    var myPageSelected      : Observable<UITapGestureRecognizer>
+    var homeSelected: Observable<UITapGestureRecognizer>
+    var adevertiseSelected: Observable<UITapGestureRecognizer>
+    var postSelected: Observable<UITapGestureRecognizer>
+    var myPageSelected: Observable<UITapGestureRecognizer>
 }
 
 struct MainTabViewModelOutput {
@@ -27,7 +27,7 @@ struct MainTabViewModelRoute {
 }
 
 protocol MainTabViewModel {
-    //MARK: - Binding
+    // MARK: - Binding
     func transform(input: MainTabViewModelInput) -> MainTabViewModelOutput
 }
 

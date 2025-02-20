@@ -12,10 +12,10 @@ enum LoginResult {
 }
 
 final class LoginCoordinator: BaseCoordinator<LoginResult> {
-    //MARK: - Properties
+    // MARK: - Properties
     var component: LoginComponent
     
-    //MARK: - Init
+    // MARK: - Init
     init(
         component: LoginComponent,
         navController: UINavigationController

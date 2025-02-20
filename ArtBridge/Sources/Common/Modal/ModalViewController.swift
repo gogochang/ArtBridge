@@ -10,10 +10,10 @@ import RxSwift
 import BlurUIKit
 
 class ModalViewController: UIViewController {
-    //MARK: - Properties
+    // MARK: - Properties
     private var disposeBag = DisposeBag()
     
-    //MARK: - UI
+    // MARK: - UI
     private let blurView = VariableBlurView().then {
         $0.dimmingTintColor = .white.withAlphaComponent(0.08)
         $0.dimmingOvershoot = .relative(fraction: 1)
@@ -60,7 +60,7 @@ class ModalViewController: UIViewController {
         $0.layer.cornerRadius = 34
     }
     
-    //MARK: - Init
+    // MARK: - Init
     init() {
         super.init(nibName: nil, bundle: nil)
         self.view.backgroundColor = .black.withAlphaComponent(0.3)
@@ -72,7 +72,7 @@ class ModalViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - LifeCycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         print("seijlfsjf ModalViewController viewDidload : ")
@@ -86,7 +86,7 @@ class ModalViewController: UIViewController {
         
     }
     
-    //MARK: - Methods
+    // MARK: - Methods
     private func inputView() {
         self.view.rx.tapGesture()
             .bind { _ in
@@ -95,7 +95,7 @@ class ModalViewController: UIViewController {
     }
 }
 
-//MARK: - Layout
+// MARK: - Layout
 extension ModalViewController {
     private func setupViews() {
         view.addSubview(containerView)
@@ -113,7 +113,7 @@ extension ModalViewController {
     private func initiaLayout() {
         blurView.snp.makeConstraints {
             $0.top.left.right.equalToSuperview()
-            $0.height.equalTo(340 * 2) //FIXME: 근본적인 해결방법이 아닙니다.
+            $0.height.equalTo(340 * 2) // FIXME: 근본적인 해결방법이 아닙니다.
         }
         
         innerShadowView.snp.makeConstraints {

@@ -7,12 +7,12 @@
 
 import UIKit
 
-//TODO: 이름 변경 (댓글, 채팅 등등 여러환경에서 사용하기 때문에 좀 더 포괄적인 의미를 담은 이름 필요)
+// TODO: 이름 변경 (댓글, 채팅 등등 여러환경에서 사용하기 때문에 좀 더 포괄적인 의미를 담은 이름 필요)
 final class CommentInputView: UIView {
-    //MARK: - Properties
+    // MARK: - Properties
     private var placeHolder: String?
     
-    //MARK: - UI
+    // MARK: - UI
     private let contentView = UIView().then {
         $0.backgroundColor = .white
     }
@@ -40,7 +40,7 @@ final class CommentInputView: UIView {
         $0.backgroundColor = .systemGray5
     }
     
-    //MARK: - Init
+    // MARK: - Init
     init(placeHolder: String) {
         super.init(frame: .zero)
         
@@ -57,7 +57,7 @@ final class CommentInputView: UIView {
     }
 }
 
-//MARK: - TextView Delegate
+// MARK: - TextView Delegate
 extension CommentInputView: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == self.placeHolder {
@@ -80,7 +80,7 @@ extension CommentInputView: UITextViewDelegate {
         // Update textView's height
         contentView.snp.remakeConstraints {
             $0.top.left.bottom.right.equalToSuperview()
-            $0.height.equalTo(44 + 50 + addHeight)//TODO: safeArea bottom height
+            $0.height.equalTo(44 + 50 + addHeight)// TODO: safeArea bottom height
         }
 
         textContainerView.snp.updateConstraints {
@@ -101,7 +101,7 @@ extension CommentInputView: UITextViewDelegate {
     }
 }
 
-//MARK: - Layout
+// MARK: - Layout
 extension CommentInputView {
     private func setupViews() {
         addSubviews([
@@ -110,7 +110,7 @@ extension CommentInputView {
         
         contentView.addSubviews([
             lineView,
-            textContainerView,
+            textContainerView
         ])
         
         textContainerView.addSubviews([
@@ -122,7 +122,7 @@ extension CommentInputView {
     private func initialLayout() {
         contentView.snp.makeConstraints {
             $0.top.left.bottom.right.equalToSuperview()
-            $0.height.equalTo(44 + 50)//TODO: safeArea bottom height
+            $0.height.equalTo(44 + 50)// TODO: safeArea bottom height
         }
         
         lineView.snp.makeConstraints {
@@ -148,5 +148,3 @@ extension CommentInputView {
         }
     }
 }
-
-

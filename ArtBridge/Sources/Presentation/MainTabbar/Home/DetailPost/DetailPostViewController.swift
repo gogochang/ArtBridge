@@ -9,25 +9,25 @@ import UIKit
 import RxSwift
 import BlurUIKit
 
-fileprivate enum Section: Hashable {
+private enum Section: Hashable {
     case banner
     case title
     case content
 }
 
-fileprivate enum Item: Hashable {
+private enum Item: Hashable {
     case bannerItem(String)
     case title
     case content(String)
 }
 
 final class DetailPostViewController: BaseViewController {
-    //MARK: - Properties
+    // MARK: - Properties
     private let viewModel: DetailPostViewModel
     private let disposeBag: DisposeBag = DisposeBag()
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
-    //MARK: - UI
+    // MARK: - UI
     private let navBar = ArtBridgeNavBar().then {
         $0.leftButton.setImage(UIImage(named: "iconBack"), for: .normal)
         $0.rightButton.setImage(UIImage(named: "testProfile"), for: .normal)
@@ -88,7 +88,7 @@ final class DetailPostViewController: BaseViewController {
         spacing: 16
     )
     
-    //MARK: - Init
+    // MARK: - Init
     init(viewModel: DetailPostViewModel) {
         self.viewModel = viewModel
         super.init()
@@ -98,7 +98,7 @@ final class DetailPostViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - LifeCycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -111,7 +111,7 @@ final class DetailPostViewController: BaseViewController {
         viewModelOutput()
     }
     
-    //MARK: - Private Methods
+    // MARK: - Private Methods
     private func viewModelInput() {
         navBar.leftButton.rx.tapGesture()
             .skip(1)
@@ -148,13 +148,13 @@ final class DetailPostViewController: BaseViewController {
     }
 }
 
-//MARK: - Layout
+// MARK: - Layout
 extension DetailPostViewController {
     private func setupViews() {
         view.addSubviews([
             navBar,
             collectionView,
-            bottomView,
+            bottomView
         ])
         
         bottomView.addSubviews([
@@ -198,7 +198,7 @@ extension DetailPostViewController {
     }
 }
 
-//MARK: - CompositionalLayout
+// MARK: - CompositionalLayout
 extension DetailPostViewController {
     private func createLayout() -> UICollectionViewCompositionalLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()
@@ -251,7 +251,6 @@ extension DetailPostViewController {
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        
         // Group
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
@@ -274,7 +273,6 @@ extension DetailPostViewController {
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        
         // Group
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
@@ -289,7 +287,7 @@ extension DetailPostViewController {
     }
 }
 
-//MARK: - DataSource
+// MARK: - DataSource
 extension DetailPostViewController {
     private func setDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(
@@ -344,9 +342,9 @@ extension DetailPostViewController {
             contentSection
         ])
         
-        snapshot.appendItems(bannerItems,toSection: bannerSection)
-        snapshot.appendItems(titleItems,toSection: titleSection)
-        snapshot.appendItems(contentItems,toSection: contentSection)
+        snapshot.appendItems(bannerItems, toSection: bannerSection)
+        snapshot.appendItems(titleItems, toSection: titleSection)
+        snapshot.appendItems(contentItems, toSection: contentSection)
         
         dataSource?.apply(snapshot)
     }

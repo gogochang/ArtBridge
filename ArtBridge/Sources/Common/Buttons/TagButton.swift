@@ -10,7 +10,7 @@ import UIKit
 final class ArtBridgeTag: UIView {
     // MARK: - Properties
     
-    //MARK: - UI
+    // MARK: - UI
     private let titleLabel = UILabel().then {
         $0.font = .suitSB14
         $0.textColor = .white
@@ -26,7 +26,7 @@ final class ArtBridgeTag: UIView {
         $0.layer.borderWidth = 10
     }
     
-    //MARK: - Init
+    // MARK: - Init
     init() {
         super.init(frame: .zero)
         
@@ -51,7 +51,7 @@ final class ArtBridgeTag: UIView {
     }
 }
 
-//MARK: - Layout
+// MARK: - Layout
 extension ArtBridgeTag {
     private func setupViews() {
         backgroundColor = .white.withAlphaComponent(0.04)

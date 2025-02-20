@@ -6,13 +6,11 @@
 //
 
 import UIKit
-import UIKit
-
 final class ComentCell: UITableViewCell {
-    //MARK: - Properties
+    // MARK: - Properties
     static let id: String = "\(ComentCell.self)"
     
-    //MARK: - UI
+    // MARK: - UI
     private let profileImageView = UIImageView().then {
         $0.backgroundColor = .systemGray
         $0.contentMode = .scaleAspectFit
@@ -53,7 +51,7 @@ final class ComentCell: UITableViewCell {
         $0.textColor = .white.withAlphaComponent(0.56)
     }
     
-    //MARK: - Init
+    // MARK: - Init
     override init(
         style: UITableViewCell.CellStyle,
         reuseIdentifier: String?
@@ -69,13 +67,13 @@ final class ComentCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Methods
+    // MARK: - Methods
     func configure() {
         
     }
 }
 
-//MARK: - Layout
+// MARK: - Layout
 extension ComentCell {
     private func setupViews() {
         backgroundColor = .clear

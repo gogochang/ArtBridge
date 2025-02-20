@@ -10,7 +10,7 @@ import UIKit
 final class AppCoordinator: BaseCoordinator<Void> {
     var window: UIWindow
     
-    //MARK: - LiftCycle
+    // MARK: - LiftCycle
     init(
         component: AppComponent,
         window: UIWindow
@@ -22,7 +22,7 @@ final class AppCoordinator: BaseCoordinator<Void> {
         super.init(navController: navController)
     }
     
-    //MARK: - Internal
+    // MARK: - Internal
     var component: AppComponent
     
     override func start(animated _: Bool = true) {
@@ -53,7 +53,7 @@ final class AppCoordinator: BaseCoordinator<Void> {
             navController: navigationController
         )
         
-        coordinate(coordinator: coord, animated: animated) { [weak self] coordResult in
+        coordinate(coordinator: coord, animated: animated) { coordResult in
 //            switch coordResult {
 //            case .logout:
 //                self?.showLoggedOut(animated: false)

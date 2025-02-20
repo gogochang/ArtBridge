@@ -5,12 +5,11 @@
 //  Created by 김창규 on 4/25/24.
 //
 
-
 import UIKit
 import RxSwift
 
 struct HomeViewModelInput {
-    let fetchHome               : Observable<Int>
+    let fetchHome: Observable<Int>
     
     var showAlarm               = PublishSubject<Void>()
     
@@ -23,7 +22,6 @@ struct HomeViewModelInput {
     var showInfoList            = PublishSubject<Void>()
     var showUserList            = PublishSubject<Void>()
 }
-
 
 struct HomeViewModelOutput {
     var homeData                = PublishSubject<HomeData>()

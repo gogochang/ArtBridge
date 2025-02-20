@@ -10,7 +10,7 @@ import RxSwift
 import BlurUIKit
 
 final class ComentBottomSheetViewController: BaseViewController {
-    //MARK: - Properties
+    // MARK: Properties
     private let viewModel: ComentBottomSheetViewModel
     private var disposeBag = DisposeBag()
     private var dataSource: UITableViewDiffableDataSource<Int, String>!
@@ -23,7 +23,7 @@ final class ComentBottomSheetViewController: BaseViewController {
         "다섯 번째 댓글입니다."
     ]
     
-    //MARK: - UI
+    // MARK: - UI
     private let bottomSheetBackground = VariableBlurView().then {
         $0.layer.cornerRadius = 20
         $0.clipsToBounds = true
@@ -41,7 +41,7 @@ final class ComentBottomSheetViewController: BaseViewController {
         tableView.register(ComentCell.self, forCellReuseIdentifier: ComentCell.id)
         tableView.backgroundColor = .clear
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 100 //기본 높이 설정 추가
+        tableView.estimatedRowHeight = 100 // 기본 높이 설정 추가
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         return tableView
@@ -49,7 +49,7 @@ final class ComentBottomSheetViewController: BaseViewController {
     
     private let commentInputView = ComentInputView()
     
-    //MARK: - Init
+    // MARK: - Init
     init(viewModel: ComentBottomSheetViewModel) {
         self.viewModel = viewModel
         super.init()
@@ -73,7 +73,7 @@ final class ComentBottomSheetViewController: BaseViewController {
         dataSource.apply(snapshot, animatingDifferences: false) // 스냅샷을 적용
     }
     
-    //MARK: - Methods
+    // MARK: - Methods
     private func viewModelInput() {
         navBar.leftButton.rx.tapGesture()
             .map { _ in }
@@ -87,14 +87,14 @@ final class ComentBottomSheetViewController: BaseViewController {
     
     // DataSource 설정
     private func configureDataSource() {
-        dataSource = UITableViewDiffableDataSource<Int, String>(tableView: comentTableView) { (tableView, indexPath, comment) -> UITableViewCell? in
-            let cell = tableView.dequeueReusableCell(withIdentifier: ComentCell.id, for: indexPath) as! ComentCell
+        dataSource = UITableViewDiffableDataSource<Int, String>(tableView: comentTableView) { (tableView, indexPath, _) -> UITableViewCell? in
+            let cell = tableView.dequeueReusableCell(withIdentifier: ComentCell.id, for: indexPath) as? ComentCell
             return cell
         }
     }
 }
 
-//MARK: - Layout
+// MARK: - Layout
 extension ComentBottomSheetViewController {
     private func setupViews() {
         backgroundView.image = nil
@@ -110,7 +110,7 @@ extension ComentBottomSheetViewController {
         bottomSheetBackground.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.left.right.equalToSuperview()
-            $0.height.equalTo(view.frame.height * 2) //FIXME: 근본적인 해결방법이 아닙니다.
+            $0.height.equalTo(view.frame.height * 2) // FIXME: 근본적인 해결방법이 아닙니다.
         }
         
         navBar.snp.makeConstraints {

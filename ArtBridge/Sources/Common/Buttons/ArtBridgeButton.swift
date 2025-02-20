@@ -19,7 +19,7 @@ final class ArtBridgeButton: UIView {
     private var normalIcon: UIImage?
     private var selectedIcon: UIImage?
     
-    //MARK: - UI
+    // MARK: - UI
     private let contentView = UIView()
     
     private let iconView = UIImageView()
@@ -40,7 +40,7 @@ final class ArtBridgeButton: UIView {
         $0.layer.borderWidth = 10
     }
     
-    //MARK: - Init
+    // MARK: - Init
     init() {
         super.init(frame: .zero)
         
@@ -88,7 +88,7 @@ extension ArtBridgeButton {
     }
 }
 
-//MARK: - Layout
+// MARK: - Layout
 extension ArtBridgeButton {
     private func setupViews() {
         backgroundColor = .white.withAlphaComponent(0.04)

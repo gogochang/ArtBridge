@@ -8,14 +8,14 @@
 import RxSwift
 
 final class LoginViewModel {
-    //MARK: - Properties
+    // MARK: - Properties
     private var disposeBag = DisposeBag()
     
     var inputs = Input()
     var outputs = Output()
     var routes = Route()
     
-    //MARK: - Init
+    // MARK: - Init
     init() {
         inputs.kakaoLogin
             .debug()

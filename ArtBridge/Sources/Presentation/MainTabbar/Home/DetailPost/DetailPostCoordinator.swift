@@ -14,7 +14,7 @@ enum PostDetailResult {
 final class DetailPostCoordinator: BaseCoordinator<PostDetailResult> {
     var component: DetailPostComponent
     
-    //MARK: - Init
+    // MARK: - Init
     init(
         component: DetailPostComponent,
         navController: UINavigationController
@@ -23,7 +23,7 @@ final class DetailPostCoordinator: BaseCoordinator<PostDetailResult> {
         super.init(navController: navController)
     }
     
-    override func start(animated : Bool) {
+    override func start(animated: Bool) {
         let scene = component.scene
         navigationController.pushViewController(scene.VC, animated: animated)
         

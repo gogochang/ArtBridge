@@ -19,7 +19,7 @@ final class ButtonBottomView: UIView {
     
     let bookmarkButton = UIButton().then {
         $0.tintColor = .darkText
-        //TODO: 북마크 이미지가 제공되면 변경 예정입니다.
+        // TODO: 북마크 이미지가 제공되면 변경 예정입니다.
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 24, weight: .medium)
         $0.setImage(UIImage(systemName: "bookmark", withConfiguration: largeConfig), for: .normal)
         $0.setImage(UIImage(systemName: "bookmark.fill", withConfiguration: largeConfig), for: .selected)
@@ -54,7 +54,7 @@ extension ButtonBottomView {
         backgroundColor = .white
         addSubviews([
             divierView,
-            contentView,
+            contentView
         ])
         
         contentView.addSubviews([

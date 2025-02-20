@@ -11,7 +11,7 @@ import Kingfisher
 final class BannerCollectionViewCell: UICollectionViewCell {
     static let id = "BannerCollectionViewCell"
     
-    //MARK: - Properties
+    // MARK: - Properties
     private let bannerImage = UIImageView().then {
         $0.backgroundColor = .systemGray6
         $0.contentMode = .scaleAspectFill
@@ -35,7 +35,7 @@ final class BannerCollectionViewCell: UICollectionViewCell {
         bannerImage.image = nil
     }
     
-    //MARK: - Methods
+    // MARK: - Methods
 //    func configure(bannerModel: BannerModel) {
 //        let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
 //        
@@ -46,8 +46,7 @@ final class BannerCollectionViewCell: UICollectionViewCell {
 //    }
 }
 
-
-//MARK: - CompositionalLayout
+// MARK: - CompositionalLayout
 extension BannerCollectionViewCell {
     private func setupViews() {
         self.addSubviews([

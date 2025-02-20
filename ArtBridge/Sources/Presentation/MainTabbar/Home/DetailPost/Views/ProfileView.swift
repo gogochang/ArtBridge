@@ -8,10 +8,8 @@
 import UIKit
 import Kingfisher
 
-
-
 final class ProfileView: UIView {
-    //MARK: - UI
+    // MARK: - UI
     let profileImageView = UIImageView().then {
         $0.backgroundColor = .systemGray6
         $0.contentMode = .scaleAspectFill
@@ -34,24 +32,23 @@ final class ProfileView: UIView {
         $0.textColor = .systemGray4
     }
     
-    //MARK: - Init
+    // MARK: - Init
     init(profile: ProfileData) {
         self.profileImageView.kf.setImage(with: URL(string: profile.profileImgURL))
         self.nickNameLabel.text = profile.nickname
         self.categoryLabel.text = profile.category
-        self.timeLabel.text = "10시간" //TODO: 시간관련 계산 유틸로 따로 관리
+        self.timeLabel.text = "10시간" // TODO: 시간관련 계산 유틸로 따로 관리
         super.init(frame: .zero)
         setupViews()
         initialLayout()
     }
-    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
-//MARK: - Layout
+// MARK: - Layout
 extension ProfileView {
     private func setupViews() {
         addSubviews([

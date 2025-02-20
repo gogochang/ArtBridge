@@ -8,10 +8,10 @@
 import UIKit
 
 final class HomeCoordinator: BaseCoordinator<Void> {
-    //MARK: - Properties
+    // MARK: - Properties
     var component: HomeComponent
     
-    //MARK: - Init
+    // MARK: - Init
     init(
         component: HomeComponent,
         navController: UINavigationController

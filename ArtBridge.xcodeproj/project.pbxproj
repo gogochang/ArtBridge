@@ -158,6 +158,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B0874722D66ABF90014752A /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		2B1469B92BD38F8000E6483E /* ArtBridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArtBridge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B1469BC2BD38F8000E6483E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B1469BE2BD38F8000E6483E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -323,6 +324,7 @@
 		2B1469B02BD38F7F00E6483E = {
 			isa = PBXGroup;
 			children = (
+				2B0874722D66ABF90014752A /* .swiftlint.yml */,
 				2B1469BB2BD38F8000E6483E /* ArtBridge */,
 				2B1469D22BD38F8000E6483E /* ArtBridgeTests */,
 				2B1469DC2BD38F8000E6483E /* ArtBridgeUITests */,
@@ -804,6 +806,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2B1469E32BD38F8000E6483E /* Build configuration list for PBXNativeTarget "ArtBridge" */;
 			buildPhases = (
+				2B0874712D66ABD50014752A /* SwiftLint Script */,
 				2B1469B52BD38F8000E6483E /* Sources */,
 				2B1469B62BD38F8000E6483E /* Frameworks */,
 				2B1469B72BD38F8000E6483E /* Resources */,
@@ -879,7 +882,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					2B1469B82BD38F8000E6483E = {
 						CreatedOnToolsVersion = 15.3;
@@ -912,6 +915,7 @@
 				2B0BCF0D2C11FF270053ACAD /* XCRemoteSwiftPackageReference "RxGesture" */,
 				2B31599B2D44AD5000726B61 /* XCRemoteSwiftPackageReference "supabase-swift" */,
 				2B529CBB2D549686004BAB32 /* XCRemoteSwiftPackageReference "BlurUIKit" */,
+				2B0874702D66ABC80014752A /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 			);
 			productRefGroup = 2B1469BA2BD38F8000E6483E /* Products */;
 			projectDirPath = "";
@@ -964,6 +968,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2B0874712D66ABD50014752A /* SwiftLint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftLint Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# mac silicon 대응\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint >/dev/null; then\n  swiftlint --fix && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2B1469B52BD38F8000E6483E /* Sources */ = {
@@ -1239,6 +1265,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K988K33886;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ArtBridge/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1268,6 +1295,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K988K33886;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ArtBridge/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1292,7 +1320,6 @@
 		2B1469E72BD38F8000E6483E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1312,7 +1339,6 @@
 		2B1469E82BD38F8000E6483E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1332,7 +1358,6 @@
 		2B1469EA2BD38F8000E6483E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K988K33886;
@@ -1350,7 +1375,6 @@
 		2B1469EB2BD38F8000E6483E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K988K33886;
@@ -1407,6 +1431,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2B0874702D66ABC80014752A /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.58.2;
+			};
+		};
 		2B0BCF0D2C11FF270053ACAD /* XCRemoteSwiftPackageReference "RxGesture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture.git";
