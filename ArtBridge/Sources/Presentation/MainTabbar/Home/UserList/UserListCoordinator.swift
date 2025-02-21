@@ -39,5 +39,39 @@ final class UserListCoordinator: BaseCoordinator<UserResult> {
             .map { UserResult.backward }
             .bind(to: closeSignal)
             .disposed(by: sceneDisposeBag)
+        
+        scene.VM.routes.detailUser
+            .map { (vm: scene.VM, user: $0) }
+            .bind { [weak self] inputs in
+                self?.pushDetailUserScene(
+                    vm: inputs.vm,
+                    user: inputs.user,
+                    animated: true
+                )
+                
+            }.disposed(by: sceneDisposeBag)
+    }
+    
+    private func pushDetailUserScene(
+        vm: UserListViewModel,
+        user: User,
+        animated: Bool
+    ) {
+        let comp = component.detailUserComponent(user: user)
+        let coord = DetailUserCoordinator(
+            component: comp,
+            navController: navigationController
+        )
+        
+        coordinate(
+            coordinator: coord,
+            animated: animated
+        ) { coordResult in
+            switch coordResult {
+            case .backward:
+//                vm.routeInputs.needUpdate.onNext(false)
+                break
+            }
+        }
     }
 }

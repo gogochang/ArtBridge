@@ -21,7 +21,7 @@ private enum Item: Hashable {
 final class UserListViewController: BaseViewController {
     // MARK: - Properties
     private let disposeBag = DisposeBag()
-    private let viewModel: UserListViewModel
+    private let viewModel: DefaultUserListViewModel
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
     // MARK: - UI
@@ -43,7 +43,7 @@ final class UserListViewController: BaseViewController {
         }
     
     // MARK: - Init
-    init(viewModel: UserListViewModel) {
+    init(viewModel: DefaultUserListViewModel) {
         self.viewModel = viewModel
         super.init()
     }
@@ -58,8 +58,14 @@ final class UserListViewController: BaseViewController {
         setDataSource()
         createSnapshot()
         
-        viewModelInput()
-        viewModelOutput()
+        bind()
+    }
+    // MARK: - Binding
+    private func bind() {
+        let input = UserListViewModelInput(
+            userSelected: collectionView.rx.itemSelected.asObservable()
+        )
+        let output = viewModel.transform(input: input)
     }
     
     // MARK: - Methods

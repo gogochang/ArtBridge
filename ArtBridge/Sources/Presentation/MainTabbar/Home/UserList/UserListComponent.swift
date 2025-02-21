@@ -8,12 +8,16 @@
 import UIKit
 
 final class UserListComponent {
-    var scene: (VC: UIViewController, VM: UserListViewModel) {
+    var scene: (VC: UIViewController, VM: DefaultUserListViewModel) {
         let viewModel = self.viewModel
         return (UserListViewController(viewModel: viewModel), viewModel)
     }
     
-    var viewModel: UserListViewModel {
-        return UserListViewModel()
+    var viewModel: DefaultUserListViewModel {
+        return DefaultUserListViewModel()
+    }
+    
+    func detailUserComponent(user: User) -> DetailUserComponent {
+        return DetailUserComponent(user: user)
     }
 }

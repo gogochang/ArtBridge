@@ -5,7 +5,7 @@
 //  Created by 김창규 on 2/18/25.
 //
 
-struct UserDataModel: Decodable, Hashable {
+struct User: Decodable, Hashable {
     let id: Int
     let nickname: String
     let profileImgUrl: String

@@ -7,5 +7,5 @@
 
 struct DetailNewsDataModel: Hashable {
     let news: ContentDataModel
-    let author: UserDataModel
+    let author: User
 }

@@ -40,6 +40,10 @@
 		2B1CDD832D65BF47002AFE66 /* URLSession+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1CDD822D65BF3E002AFE66 /* URLSession+.swift */; };
 		2B1CDD852D65BF66002AFE66 /* HomeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1CDD842D65BF64002AFE66 /* HomeAPI.swift */; };
 		2B1CDD882D65BFA6002AFE66 /* Observable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1CDD872D65BFA2002AFE66 /* Observable+.swift */; };
+		2B3111492D68104F00CB17B2 /* DetailUserCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3111482D68103D00CB17B2 /* DetailUserCoordinator.swift */; };
+		2B31114B2D68105500CB17B2 /* DetailUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B31114A2D68105100CB17B2 /* DetailUserViewModel.swift */; };
+		2B31114D2D68105A00CB17B2 /* DetailUserComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B31114C2D68105800CB17B2 /* DetailUserComponent.swift */; };
+		2B31114F2D68106200CB17B2 /* DetailUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B31114E2D68105E00CB17B2 /* DetailUserViewController.swift */; };
 		2B31599D2D44AD5000726B61 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 2B31599C2D44AD5000726B61 /* Auth */; };
 		2B31599F2D44AD5000726B61 /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = 2B31599E2D44AD5000726B61 /* Functions */; };
 		2B3159A12D44AD5000726B61 /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = 2B3159A02D44AD5000726B61 /* PostgREST */; };
@@ -83,7 +87,7 @@
 		2B529CBA2D54696B004BAB32 /* ArtBridgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B529CB92D546963004BAB32 /* ArtBridgeButton.swift */; };
 		2B529CBD2D549686004BAB32 /* BlurUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2B529CBC2D549686004BAB32 /* BlurUIKit */; };
 		2B75D4F82D5C0AA30085D46D /* UserListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B75D4F72D5C0A9D0085D46D /* UserListCoordinator.swift */; };
-		2B75D4FA2D5C0AAA0085D46D /* UserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B75D4F92D5C0AA60085D46D /* UserListViewModel.swift */; };
+		2B75D4FA2D5C0AAA0085D46D /* DefaultUserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B75D4F92D5C0AA60085D46D /* DefaultUserListViewModel.swift */; };
 		2B75D4FC2D5C0AB20085D46D /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B75D4FB2D5C0AAE0085D46D /* UserListViewController.swift */; };
 		2B75D4FE2D5C0AB90085D46D /* UserListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B75D4FD2D5C0AB60085D46D /* UserListComponent.swift */; };
 		2B9705C72C21DBDC00B94E8B /* PostAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9705C62C21DBDC00B94E8B /* PostAPIService.swift */; };
@@ -193,6 +197,11 @@
 		2B1CDD822D65BF3E002AFE66 /* URLSession+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+.swift"; sourceTree = "<group>"; };
 		2B1CDD842D65BF64002AFE66 /* HomeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPI.swift; sourceTree = "<group>"; };
 		2B1CDD872D65BFA2002AFE66 /* Observable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+.swift"; sourceTree = "<group>"; };
+		2B3111462D680B8D00CB17B2 /* Untitled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Untitled.swift; sourceTree = "<group>"; };
+		2B3111482D68103D00CB17B2 /* DetailUserCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserCoordinator.swift; sourceTree = "<group>"; };
+		2B31114A2D68105100CB17B2 /* DetailUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserViewModel.swift; sourceTree = "<group>"; };
+		2B31114C2D68105800CB17B2 /* DetailUserComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserComponent.swift; sourceTree = "<group>"; };
+		2B31114E2D68105E00CB17B2 /* DetailUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserViewController.swift; sourceTree = "<group>"; };
 		2B32078F2D584184009802C4 /* DetailPostTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostTitleCell.swift; sourceTree = "<group>"; };
 		2B3207912D58543B009802C4 /* TagButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
 		2B3207932D58590A009802C4 /* DetailPostContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostContent.swift; sourceTree = "<group>"; };
@@ -229,7 +238,7 @@
 		2B529CB72D5456A5004BAB32 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		2B529CB92D546963004BAB32 /* ArtBridgeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtBridgeButton.swift; sourceTree = "<group>"; };
 		2B75D4F72D5C0A9D0085D46D /* UserListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListCoordinator.swift; sourceTree = "<group>"; };
-		2B75D4F92D5C0AA60085D46D /* UserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModel.swift; sourceTree = "<group>"; };
+		2B75D4F92D5C0AA60085D46D /* DefaultUserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultUserListViewModel.swift; sourceTree = "<group>"; };
 		2B75D4FB2D5C0AAE0085D46D /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		2B75D4FD2D5C0AB60085D46D /* UserListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListComponent.swift; sourceTree = "<group>"; };
 		2B9705C62C21DBDC00B94E8B /* PostAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAPIService.swift; sourceTree = "<group>"; };
@@ -508,6 +517,7 @@
 		2B1CDD642D64B24F002AFE66 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				2B3111462D680B8D00CB17B2 /* Untitled.swift */,
 				2B1CDD782D64B610002AFE66 /* News.swift */,
 				2B1CDD742D64B5D4002AFE66 /* Tutor.swift */,
 				2B1CDD722D64B5C5002AFE66 /* User.swift */,
@@ -545,6 +555,17 @@
 			path = "RxSwift+";
 			sourceTree = "<group>";
 		};
+		2B3111472D680F6000CB17B2 /* DetailUser */ = {
+			isa = PBXGroup;
+			children = (
+				2B31114C2D68105800CB17B2 /* DetailUserComponent.swift */,
+				2B31114E2D68105E00CB17B2 /* DetailUserViewController.swift */,
+				2B31114A2D68105100CB17B2 /* DetailUserViewModel.swift */,
+				2B3111482D68103D00CB17B2 /* DetailUserCoordinator.swift */,
+			);
+			path = DetailUser;
+			sourceTree = "<group>";
+		};
 		2B3207972D5872C1009802C4 /* ComentBottomSheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -579,7 +600,7 @@
 			children = (
 				2B75D4FD2D5C0AB60085D46D /* UserListComponent.swift */,
 				2B75D4FB2D5C0AAE0085D46D /* UserListViewController.swift */,
-				2B75D4F92D5C0AA60085D46D /* UserListViewModel.swift */,
+				2B75D4F92D5C0AA60085D46D /* DefaultUserListViewModel.swift */,
 				2B75D4F72D5C0A9D0085D46D /* UserListCoordinator.swift */,
 			);
 			path = UserList;
@@ -666,6 +687,7 @@
 		2BB5155F2BDAA7090092CC72 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				2B3111472D680F6000CB17B2 /* DetailUser */,
 				2B75D4F62D5C0A960085D46D /* UserList */,
 				2B3207972D5872C1009802C4 /* ComentBottomSheet */,
 				2BE4EB912D575EC9007C0B16 /* InfoList */,
@@ -1009,6 +1031,7 @@
 				2B75D4FC2D5C0AB20085D46D /* UserListViewController.swift in Sources */,
 				2B455FD12C22F2FB00C29F0B /* DefaultHomeAPIService.swift in Sources */,
 				2B4E1ECF2D5629980086AD5D /* UserCell.swift in Sources */,
+				2B31114D2D68105A00CB17B2 /* DetailUserComponent.swift in Sources */,
 				2B1CDD882D65BFA6002AFE66 /* Observable+.swift in Sources */,
 				2B9C4FD62BF0B59F0058CE3F /* DetailPostViewModel.swift in Sources */,
 				2B4E1EC92D5611CD0086AD5D /* HomeNavBarViewCell.swift in Sources */,
@@ -1041,11 +1064,13 @@
 				2B32079F2D5872FD009802C4 /* ComentBottomSheetComponent.swift in Sources */,
 				2B9C4FD82BF0B5B00058CE3F /* DetailPostCoordinator.swift in Sources */,
 				2B529CA32D5447D3004BAB32 /* BaseViewController.swift in Sources */,
+				2B31114F2D68106200CB17B2 /* DetailUserViewController.swift in Sources */,
 				2B9C4FDB2BF0CA5C0058CE3F /* CommentCollectionViewCell.swift in Sources */,
 				2BFA9C562C0F341E00E72C99 /* LoginComponent.swift in Sources */,
 				2BDA19FC2D42644B00E8F7C0 /* ButtonScrollView.swift in Sources */,
 				2B1CDD732D64B5C7002AFE66 /* User.swift in Sources */,
 				2BFA9C522C0F340B00E72C99 /* LoginViewModel.swift in Sources */,
+				2B31114B2D68105500CB17B2 /* DetailUserViewModel.swift in Sources */,
 				2BFA9C542C0F341600E72C99 /* LoginCoordinator.swift in Sources */,
 				2B4E1EC52D55B7870086AD5D /* CategoryCell.swift in Sources */,
 				2B1CDD832D65BF47002AFE66 /* URLSession+.swift in Sources */,
@@ -1055,7 +1080,7 @@
 				2BB515722BDBCE5A0092CC72 /* UIColor+.swift in Sources */,
 				2B4814B02C319BAB00A7529E /* NewsAPIService.swift in Sources */,
 				2BE4EB9C2D576F5B007C0B16 /* SearchViewCell.swift in Sources */,
-				2B75D4FA2D5C0AAA0085D46D /* UserListViewModel.swift in Sources */,
+				2B75D4FA2D5C0AAA0085D46D /* DefaultUserListViewModel.swift in Sources */,
 				2BB084AC2C1E9948005E7221 /* AlarmCoordinator.swift in Sources */,
 				2B3852022BF63B8600BCF540 /* UIButton+.swift in Sources */,
 				2BB515612BDAA7190092CC72 /* HomeComponent.swift in Sources */,
@@ -1072,6 +1097,7 @@
 				2BE4EB8A2D575AB7007C0B16 /* SelectionButton.swift in Sources */,
 				2B3EBFA32C54BE950089D48C /* FloatingButton.swift in Sources */,
 				2B9705C72C21DBDC00B94E8B /* PostAPIService.swift in Sources */,
+				2B3111492D68104F00CB17B2 /* DetailUserCoordinator.swift in Sources */,
 				2BE4EB992D575EFD007C0B16 /* PostListViewController.swift in Sources */,
 				2B146A092BD3DF0000E6483E /* BaseCoordinator.swift in Sources */,
 				2BB515672BDAA85E0092CC72 /* HomeCoordinator.swift in Sources */,

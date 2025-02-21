@@ -77,11 +77,11 @@ final class PostAPIService {
         }
     }
     
-    func fetchPostUser(userID: Int) -> Observable<UserDataModel> {
+    func fetchPostUser(userID: Int) -> Observable<User> {
         return Observable.create { observer in
             FirestoreService.shared.fetchDocuments(
                 collection: "users",
-                type: UserDataModel.self,
+                type: User.self,
                 limit: 1,
                 filter: (field: "id", isEqualTo: userID)
             ) { userData in

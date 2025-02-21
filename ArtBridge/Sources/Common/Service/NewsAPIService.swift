@@ -52,11 +52,11 @@ final class NewsAPIService {
         }
     }
     
-    func fetchNewsUser(userID: Int) -> Observable<UserDataModel> {
+    func fetchNewsUser(userID: Int) -> Observable<User> {
         return Observable.create { observer in
             FirestoreService.shared.fetchDocuments(
                 collection: "users",
-                type: UserDataModel.self,
+                type: User.self,
                 limit: 1,
                 filter: (field: "id", isEqualTo: userID)
             ) { userData in

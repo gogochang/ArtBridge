@@ -7,5 +7,5 @@
 
 struct DetailTutorDataModel: Hashable {
     let tutor: ContentDataModel
-    let author: UserDataModel
+    let author: User
 }

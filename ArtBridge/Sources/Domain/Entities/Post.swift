@@ -9,7 +9,7 @@ import Foundation
 
 struct DetailPostDataModel: Hashable {
     let post: ContentDataModel
-    let author: UserDataModel
+    let author: User
 }
 
 struct CreatePostForm {
