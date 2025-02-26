@@ -64,6 +64,7 @@ final class UserListCoordinator: BaseCoordinator<UserResult> {
         )
         
         coordinate(
+            
             coordinator: coord,
             animated: animated
         ) { coordResult in

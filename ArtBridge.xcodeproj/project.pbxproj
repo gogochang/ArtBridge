@@ -135,6 +135,9 @@
 		2BE4EB992D575EFD007C0B16 /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE4EB982D575EF6007C0B16 /* PostListViewController.swift */; };
 		2BE4EB9C2D576F5B007C0B16 /* SearchViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE4EB9B2D576F4D007C0B16 /* SearchViewCell.swift */; };
 		2BF0B6A52C2EDFA700FD47B8 /* TutorAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF0B6A42C2EDFA700FD47B8 /* TutorAPIService.swift */; };
+		2BF3ECA32D6EE4A400194599 /* DetailUserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF3ECA22D6EE49C00194599 /* DetailUserProfileCell.swift */; };
+		2BF3ECA52D6EE4C300194599 /* DetailUserCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF3ECA42D6EE4BF00194599 /* DetailUserCategoryCell.swift */; };
+		2BF3ECA72D6EE4CF00194599 /* DetailUserContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF3ECA62D6EE4C900194599 /* DetailUserContentCell.swift */; };
 		2BF9AA102D5A585800F8869C /* AlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF9AA0F2D5A585400F8869C /* AlarmCell.swift */; };
 		2BFA9C502C0F340300E72C99 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFA9C4F2C0F340300E72C99 /* LoginViewController.swift */; };
 		2BFA9C522C0F340B00E72C99 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFA9C512C0F340B00E72C99 /* LoginViewModel.swift */; };
@@ -280,6 +283,9 @@
 		2BE4EB982D575EF6007C0B16 /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
 		2BE4EB9B2D576F4D007C0B16 /* SearchViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewCell.swift; sourceTree = "<group>"; };
 		2BF0B6A42C2EDFA700FD47B8 /* TutorAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorAPIService.swift; sourceTree = "<group>"; };
+		2BF3ECA22D6EE49C00194599 /* DetailUserProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserProfileCell.swift; sourceTree = "<group>"; };
+		2BF3ECA42D6EE4BF00194599 /* DetailUserCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserCategoryCell.swift; sourceTree = "<group>"; };
+		2BF3ECA62D6EE4C900194599 /* DetailUserContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserContentCell.swift; sourceTree = "<group>"; };
 		2BF9AA0F2D5A585400F8869C /* AlarmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmCell.swift; sourceTree = "<group>"; };
 		2BFA9C4F2C0F340300E72C99 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2BFA9C512C0F340B00E72C99 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -558,6 +564,7 @@
 		2B3111472D680F6000CB17B2 /* DetailUser */ = {
 			isa = PBXGroup;
 			children = (
+				2BF3ECA12D6EE49500194599 /* Cells */,
 				2B31114C2D68105800CB17B2 /* DetailUserComponent.swift */,
 				2B31114E2D68105E00CB17B2 /* DetailUserViewController.swift */,
 				2B31114A2D68105100CB17B2 /* DetailUserViewModel.swift */,
@@ -802,6 +809,16 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		2BF3ECA12D6EE49500194599 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2BF3ECA22D6EE49C00194599 /* DetailUserProfileCell.swift */,
+				2BF3ECA42D6EE4BF00194599 /* DetailUserCategoryCell.swift */,
+				2BF3ECA62D6EE4C900194599 /* DetailUserContentCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		2BFA9C4E2C0F313D00E72C99 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -1037,6 +1054,7 @@
 				2B4E1EC92D5611CD0086AD5D /* HomeNavBarViewCell.swift in Sources */,
 				2B32079B2D5872F1009802C4 /* ComentBottomSheetViewModel.swift in Sources */,
 				2B4E1EC72D5605A40086AD5D /* HomeNavBarView.swift in Sources */,
+				2BF3ECA72D6EE4CF00194599 /* DetailUserContentCell.swift in Sources */,
 				2B1CDD752D64B5D7002AFE66 /* Tutor.swift in Sources */,
 				2BB084A62C1E9924005E7221 /* AlarmViewController.swift in Sources */,
 				2BE4EB972D575EF3007C0B16 /* PostListViewModel.swift in Sources */,
@@ -1059,6 +1077,7 @@
 				2BFF700A2C68771900A82C07 /* ModalViewController.swift in Sources */,
 				2B9C4FD42BF0B58F0058CE3F /* DetailPostComponent.swift in Sources */,
 				2B1469FF2BD399BF00E6483E /* UIView+.swift in Sources */,
+				2BF3ECA32D6EE4A400194599 /* DetailUserProfileCell.swift in Sources */,
 				2B1469BD2BD38F8000E6483E /* AppDelegate.swift in Sources */,
 				2B1CDD712D64B5BA002AFE66 /* Banner.swift in Sources */,
 				2B32079F2D5872FD009802C4 /* ComentBottomSheetComponent.swift in Sources */,
@@ -1076,6 +1095,7 @@
 				2B1CDD832D65BF47002AFE66 /* URLSession+.swift in Sources */,
 				2BDA19F12D42619900E8F7C0 /* Font+.swift in Sources */,
 				2BB5155E2BD91CE90092CC72 /* UIStackView+.swift in Sources */,
+				2BF3ECA52D6EE4C300194599 /* DetailUserCategoryCell.swift in Sources */,
 				2B9C4FD22BF0B57E0058CE3F /* DetailPostViewController.swift in Sources */,
 				2BB515722BDBCE5A0092CC72 /* UIColor+.swift in Sources */,
 				2B4814B02C319BAB00A7529E /* NewsAPIService.swift in Sources */,
